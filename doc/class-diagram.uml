@@ -1,0 +1,4 @@
+@startuml
+hide circle
+class foo
+@enduml
