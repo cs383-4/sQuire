@@ -12,4 +12,9 @@
 hs_err_pid*
 
 #generated png files
-doc/*.png
+doc/src/*.png
+
+#latex files
+*.aux
+*.log
+*.toc
