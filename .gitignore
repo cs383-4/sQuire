@@ -18,3 +18,5 @@ doc/src/*.png
 *.aux
 *.log
 *.toc
+*.gz
+*.out
