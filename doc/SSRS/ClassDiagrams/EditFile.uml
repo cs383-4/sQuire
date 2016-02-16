@@ -1,0 +1,50 @@
+@startuml
+hide circle
+class File
+class User
+
+File -left-* EditorWidget
+class EditorWidget
+
+class FileLineHistory {
+  User Lines[]
+}
+
+File -right-* FileLineHistory
+FileLineHistory --* "*" User
+EditorWidget --* "contains 1..*" Cursor
+
+class Cursor {
+  position
+  User
+}
+
+Cursor --* "Associated with" User
+Package OperationalTransformation {
+  class Server {
+    Operations[]
+    recieve()
+    broadcast()
+  }
+
+  class TextOperation {
+    Operations[]
+    apply()
+    transform()
+  }
+
+
+  TextOperation --* "Made of 1..*" Operation
+
+  class Operation
+  Class Insert
+  Class Delete
+  Class Retain
+  
+  Insert -up-|> Operation
+  Delete -up-|> Operation
+  Retain -up-|> Operation
+}
+Server -up-* "Recieves/sends" TextOperation
+EditorWidget --* "Creates *" TextOperation
+@enduml
