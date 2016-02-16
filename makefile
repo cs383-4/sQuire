@@ -1,19 +1,18 @@
 PLANTUML = vendor/plantuml.jar
-class_diagrams = doc/src/class-diagram.png\
-	 doc/src/class-diagram2.png
-design_doc = doc/design.pdf
+class_diagrams = doc/SSRS/class-diagrams/
+SSRS_doc = doc/SSRS/SSRS_Team4.pdf
 
-all: doc
+all: SSRS
 
-doc: $(design_doc)
+SSRS: $(SSRS_doc)
 
-$(design_doc): doc/src/design.tex $(class_diagrams)
-	latexmk -cd -pdf -output-directory=doc $<
+$(SSRS_doc): doc/SSRS/SSRS_Team4.tex $(patsubst %.uml,%.png,$(wildcard $(class_diagrams)*.uml))
+	latexmk -cd -pdf -output-directory=doc/SSRS $<
 	#clean up latex files
-	latexmk -c -cd -pdf -output-directory=doc $< 
+	latexmk -c -cd -pdf -output-directory=doc/SSRS $< 
 
 clean:
-	rm -rf $(class_diagrams)
+	rm -rf $(wildcard $(class_diagrams)*.png)
 	rm -rf $(design_doc)
 
 %.pdf: %.tex
