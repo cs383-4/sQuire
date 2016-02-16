@@ -1,0 +1,28 @@
+@startuml
+hide circle
+class File
+class User
+class LineUser
+class EditorWidget
+
+class Cursor
+
+class Server
+Server *-right- "Recieves" TextOperation
+class TextOperation {
+Operations[]
+apply()
+transform()
+}
+
+TextOperation *-right- "contains of 1..*" Operation
+note right of Operation : These clases are based\non OT.js's implementation of\nOperational Transformation
+class Operation
+Class Insert
+Class Delete
+Class Retain
+Insert -up-|> Operation
+Delete -up-|> Operation
+Retain -up-|> Operation
+
+@enduml
