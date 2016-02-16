@@ -5,8 +5,9 @@ class User
 
 File -left-* EditorWidget
 class EditorWidget
+
 class FileLineHistory {
-User Lines[]
+  User Lines[]
 }
 
 File -right-* FileLineHistory
@@ -14,8 +15,8 @@ FileLineHistory --* "*" User
 EditorWidget --* "contains 1..*" Cursor
 
 class Cursor {
-position
-User
+  position
+  User
 }
 
 Cursor --* "Associated with" User
