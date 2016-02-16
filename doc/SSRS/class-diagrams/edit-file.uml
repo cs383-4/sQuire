@@ -2,11 +2,23 @@
 hide circle
 class File
 class User
-class LineUser
+
+File --* EditorWidget
 class EditorWidget
+class FileLineHistory {
+User Lines[]
+}
 
-class Cursor
+File --* FileLineHistory
+FileLineHistory --* "1..*" User
+EditorWidget *-- "1..*" Cursor
 
+class Cursor {
+position
+User
+}
+
+Cursor --* "Associated with" User
 class Server
 Server *-right- "Recieves" TextOperation
 class TextOperation {
@@ -14,6 +26,8 @@ Operations[]
 apply()
 transform()
 }
+
+EditorWidget -left-* "1..*" Operation
 
 TextOperation *-right- "contains of 1..*" Operation
 note right of Operation : These clases are based\non OT.js's implementation of\nOperational Transformation
