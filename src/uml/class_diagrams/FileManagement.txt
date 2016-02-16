@@ -1,0 +1,38 @@
+hide circle
+
+class FileController extends Observer {
+    List<CollabFile> files
+
+    int OpenFile(CollabFile)
+    int CloseFile(CollabFile)
+    int AddFile(CollabFile)
+    int SaveFile(CollabFile)
+    int SaveFile(List<CollabFiles>)
+}
+
+FileController *- CollabFile : 0..*
+FileController -> Project : manages
+
+class CollabFile extends Observable, Serializable, File implements Downloadable {
+    Guid guid
+    bool edited
+    CollabFile parent
+    List<CollabFile> children
+
+    List<CollabFile> GetChildren()
+    void SetChildren(List<CollabFile>)
+}
+
+interface Downloadable {
+    int Download(CollabFile)
+}
+
+class Project implements Downloadable, Runnable {
+    FileController fc
+    CollabFile root
+
+    FileController GetFileController()
+    void SetFileController(FileController)
+    CollabFile GetRoot()
+    void SetRoot(CollabFile)
+}
