@@ -3,15 +3,15 @@ hide circle
 class File
 class User
 
-File --* EditorWidget
+File -left-* EditorWidget
 class EditorWidget
 class FileLineHistory {
 User Lines[]
 }
 
-File --* FileLineHistory
-FileLineHistory --* "1..*" User
-EditorWidget *-- "1..*" Cursor
+File -right-* FileLineHistory
+FileLineHistory --* "*" User
+EditorWidget --* "contains 1..*" Cursor
 
 class Cursor {
 position
@@ -19,24 +19,31 @@ User
 }
 
 Cursor --* "Associated with" User
-class Server
-Server *-right- "Recieves" TextOperation
-class TextOperation {
-Operations[]
-apply()
-transform()
+Package OperationalTransformation {
+  class Server {
+    Operations[]
+    recieve()
+    broadcast()
+  }
+
+  class TextOperation {
+    Operations[]
+    apply()
+    transform()
+  }
+
+
+  TextOperation --* "Made of 1..*" Operation
+
+  class Operation
+  Class Insert
+  Class Delete
+  Class Retain
+  
+  Insert -up-|> Operation
+  Delete -up-|> Operation
+  Retain -up-|> Operation
 }
-
-EditorWidget -left-* "1..*" Operation
-
-TextOperation *-right- "contains of 1..*" Operation
-note right of Operation : These clases are based\non OT.js's implementation of\nOperational Transformation
-class Operation
-Class Insert
-Class Delete
-Class Retain
-Insert -up-|> Operation
-Delete -up-|> Operation
-Retain -up-|> Operation
-
+Server -up-* "Recieves/sends" TextOperation
+EditorWidget --* "Creates *" TextOperation
 @enduml
