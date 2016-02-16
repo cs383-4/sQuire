@@ -1,22 +1,29 @@
 PLANTUML = vendor/plantuml.jar
-class_diagrams = doc/SSRS/class-diagrams/
-SSRS_doc = doc/SSRS/SSRS_Team4.pdf
+SSRS = doc/SSRS/
+SSRS_images = $(SSRS)images/
+SSRS_doc = $(SSRS)SSRS_Team4.pdf
+class_diagram_source = $(SSRS)ClassDiagrams/
+class_diagram_output = $(SSRS_images)ClassDiagrams/
+class_diagrams = $(notdir $(basename $(wildcard $(class_diagram_source)*.uml)))
+class_diagrams_png = $(addprefix $(class_diagram_output), $(addsuffix .png, $(class_diagrams)))
 
-all: SSRS
+all: SSRS class_diagrams
 
 SSRS: $(SSRS_doc)
 
-$(SSRS_doc): doc/SSRS/SSRS_Team4.tex $(patsubst %.uml,%.png,$(wildcard $(class_diagrams)*.uml))
-	latexmk -cd -pdf -output-directory=doc/SSRS $<
+$(SSRS_doc): $(SSRS)SSRS_Team4.tex
+	latexmk -cd -pdf -output-directory=$(SSRS) $<
 	#clean up latex files
-	latexmk -c -cd -pdf -output-directory=doc/SSRS $< 
+	latexmk -c -cd -pdf -output-directory=$(SSRS) $< 
+
+class_diagrams: $(class_diagrams_png)
 
 clean:
-	rm -rf $(wildcard $(class_diagrams)*.png)
-	rm -rf $(design_doc)
+	rm -rf $(class_diagrams_png)
+	rm -rf $(SSRS_doc)
 
 %.pdf: %.tex
 	latex -output-format=pdf $<
 
-%.png: %.uml
-	java -jar $(PLANTUML) $<
+$(class_diagram_output)%.png: $(class_diagram_source)%.uml
+	java -jar $(PLANTUML) -o $(realpath $(class_diagram_output)) $<
