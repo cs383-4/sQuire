@@ -1,38 +1,67 @@
-hide circle
+@startuml
 
-class FileController extends Observer {
+interface Downloadable {
+    int Download()
+}
+interface Serializable {
+    void Serialize<T>
+    T Deserialize
+}
+interface Observable {
+    void NotifyObservers()
+}
+interface Observer {
+    void Observe(T)
+}
+interface Runnable {
+    void Run(Task)
+}
+class File
+
+class FileController {
     List<CollabFile> files
+    Dictionary<String, Task> threadTasks
     
+    void Run(Task)
     int OpenFile(CollabFile)
     int CloseFile(CollabFile)
     int AddFile(CollabFile)
     int SaveFile(CollabFile)
     int SaveFile(List<CollabFiles>)
+    void Observer(CollabFile)
 }
 
-FileController *- CollabFile : 0..*
-FileController -> Project : manages
+FileController ..|> Observer : implements
+FileController ..|> Runnable : implements
 
-class CollabFile extends Observable, Serializable, File implements Downloadable {
+CollabFile --o Project : 0..* 
+FileController -- CollabFile : controls
+FileController -right- Project : manages files in
+
+class CollabFile {
     Guid guid
     bool edited
     CollabFile parent
     List<CollabFile> children
+    FileController observer
     
-    List<CollabFile> GetChildren()
-    void SetChildren(List<CollabFile>)
+    void NotifyObservers()
+    void Serialize<CollabFile>()
+    CollabFile Deserialize()
 }
 
-interface Downloadable {
-    int Download(CollabFile)
-}
+CollabFile --|> File : extends
+CollabFile ..|> Downloadable : implements
+CollabFile ..|> Serializable : implements
+CollabFile ..|> Observable : implements
 
-class Project implements Downloadable, Runnable {
+
+class Project {
     FileController fc
     CollabFile root
     
-    FileController GetFileController()
-    void SetFileController(FileController)
-    CollabFile GetRoot()
-    void SetRoot(CollabFile)
+    int Download()
 }
+
+Project ..|> Downloadable : implements
+@enduml
