@@ -28,7 +28,7 @@ class FileController {
     int AddFile(CollabFile)
     int SaveFile(CollabFile)
     int SaveFile(List<CollabFiles>)
-    void Observer(CollabFile)
+    void Observe(CollabFile)
 }
 
 FileController ..|> Observer : implements
