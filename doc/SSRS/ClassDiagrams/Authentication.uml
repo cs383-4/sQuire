@@ -1,3 +1,4 @@
+@startuml
 hide circle
 
 title Authentication
@@ -29,3 +30,4 @@ VerifyCode()
 Email --o Validator : Validator uses Email\n1..*
 
 User -- Validator : User uses Validator\n1..*
+@enduml

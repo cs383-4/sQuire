@@ -104,7 +104,7 @@
 
 
 \clearpage{\centering\bfseries
-SYSTEMS AND SOFTWARE \ REQUIREMENTS SPECIFICATION (SSRS) FOR 
+SYSTEMS AND SOFTWARE \ REQUIREMENTS SPECIFICATION (SSRS) FOR
 \par}
 
 
@@ -566,7 +566,7 @@ version under development is version 1.0.}
 {
 The purpose of the system under development is to
 provide Java programmers with a more social collaborative experience. Instead of individual methods of source control, sQuire will provide an environment where programmers can work together in the same environment and instantly see the effect of others' code. While the system will be used by Java programmers, this document is intended to be read and understood
-by UI CS software designers and coders. 
+by UI CS software designers and coders.
 The document will also be vetted or approved by Team 4.}
 
 \subsection[SCOPE]{\rmfamily\bfseries SCOPE}
@@ -779,7 +779,7 @@ such device or software item shall be provided.}}}
   \item Collaborator-side Client
 \end{enumerate}
 
-The Central server stores user credentials, project descriptions, and user profile and achievement data. 
+The Central server stores user credentials, project descriptions, and user profile and achievement data.
 
 Requirements for Central SQL Server
 \begin{enumerate}
@@ -954,7 +954,7 @@ requirements have equal weight, this paragraph shall so state. }
 
 \clearpage\section[SPECIFIC REQUIREMENTS]{\selectlanguage{english}\rmfamily\bfseries\color{black} SPECIFIC REQUIREMENTS}
 \hypertarget{RefHeading20459017292}{}{\selectlanguage{english}\color{black}
-	
+
 \subsection{Functional Requirements}
 
 \subsubsection{Project Browsing}
@@ -1420,7 +1420,7 @@ subsections 3.3.i for every specified feature defined for the system or software
 \hypertarget{RefHeading21859017292}{}{\selectlanguage{english}\color{black}
 }
 
-\includegraphics[width=\textwidth]{images/UseCases/Authentication}
+%\includegraphics[width=\textwidth]{images/UseCases/Authentication}
 
 \newpage
 
@@ -1665,7 +1665,7 @@ Need picture here.
 
 \subsection[Class Diagrams]{\selectlanguage{english}\rmfamily\bfseries\color{black} CLASS DIAGRAMS}
 \hypertarget{RefHeading21659017292}{}{\selectlanguage{english}\color{black}
-	
+
 \subsubsection[Class Diagram 1: File Management]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Class Diagram 1: File Management}
 \hypertarget{RefHeading22059017292}{}
@@ -1695,6 +1695,41 @@ Need picture here.
 	\item the \textbf{CollabFile} class represents a file in a \textbf{Project}. It extends the \textbf{File} class for the purposes of allowing collaborative editing, among other project functions. It implements the \textit{Serializable} interface to allow its information to be transported over the internet in the best possible format. This requires the implementation of the \textbf{void Serialize<T>()} and \textbf{T Deserialize<SerializedString>()} methods which will handle serialization and deserialization. This class also implements the \textit{Observable} interface which will specify how it communicates with the \textbf{FileController} class in order to notify of relevant changes to \textbf{CollabFile} objects. This requires the implementation of a list of observers and a method to notify observers. Lastly, it implements the \textit{Downlodable} interface which will specify how \textbf{CollabFile} objects are to be downloaded. Refer to the interfaces list above for more details of such implementations.
 \end{itemize}
 
+\subsubsection[Class Diagram 2: File Editing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 2: File Editing}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\includegraphics[width=\textwidth]{images/ClassDiagrams/EditFile}
+
+\newpage
+
+\subsubsection[Class Diagram Description 2: File Editing Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 1: File Editing Description}
+\hypertarget{RefHeading22059017292}{}
+
+\textbf{Editor:}\\
+\begin{itemize}
+\item The \textit{CollabFile} class is a class used in many of the other class diagrams in this project. It is the general class containing all the methods and variables for managing a file. It contains a \textbf{FileLineHistory} object. CollabFile has a list of \textbf{Cursor} objects, one for every user editing the file..
+  \item The \textit{User} class is a class used in many of the class diagrams. It represents a single user of the sQuire program.
+  \item The \textit{TimeStamp} class is used in several other places. It represents a date and time.
+	\item The \textit{FileLineHistory} class is a class that keeps track of who last edited every line in the file. This will be used to display the changes inside the editor. It does this by having an array (one element per line in the file) of \textbf{LineHistory} objects.
+  \item The \textit{LineHistory} class is contains the information used by the \textbf{FileLineHistory} class. It contains a \textbf{User} {the last one to edit a particular line} and a \textbf{Timestamp} (when the line was last edited). More fields can easily be added to this if it turns out there is more information we'd like to keep track of on a line-by-line basis.
+	\item The \textit{EditorWidget} class is something that we will (hopefully) not write ourselves. It will be the editor widget we use for providing the code editor. Preliminary research found RSyntaxtTextArea (https://github.com/bobbylight/RSyntaxTextArea). This looks like a good fit because it has syntax highlighting, auto completion, code analysis, and of course, support from java. It also has a simple plugin architecture, so it looks like it would be easy to extend to our needs. More research needs to be done to figure out the exact class structure for this.
+  \item The \textit{Cursor} class is made up of a \textbf{User} and a position within a file- everything that is needed to display a users cursor inside the editor.
+\end{itemize}
+
+\textbf{OperationalTransform:}
+
+
+I organized this one into a separate package because that's how I'm pretty sure we'll write it. The OperationalTransform algorithm is a collaborative editing algorithm used to allow multiple people to edit the same document at the same time, and keep the documents in sync. Ideally, we would use a pre-built library for this, as the algorithm is quite complex and there are lots of special cases, but I was unable to find one written in Java. Our best best will probably be to port an existing library in another language. The clearest, best documented implementation I found was OT.js (https://github.com/Operational-Transformation/ot.js/). The following classes are the main data structures implemented by this version of Operational Transformation.
+\begin{itemize}
+\item The \textit{TextOperation} class represents a sequence of \textbf{Operation} objects, or changes. The TextOperation can then be applied to a string, or transformed with anther TextOperation (from another client) in order account for changes that occurred simultaneously. See the Operational Transformation algorithm for more details.
+\item The \textit{Operation} class represents a specific operation. This contains an \textbf{OperationType}, a integer front, which specifies the number of characters before the change, a string s, which contains the actual character changed (ex, inserted or deleted). And then an integer back, which contains the number of characters until the end of the document.
+\item The \textit{OperationType} Enum is used to specify what type of operation a \textbf{Operation} is. Type can be either an INSERT, when character(s) are inserted to a document, DELETE, when character(s) are deleted from a document, or RETAIN, used to shift other operations.
+\item the \textit{Server} class is a class that will be running on the server to sync changes between clients. It's job it to listen for \textbf{TextOperations} from all connected clients, and when it receives one, broadcast that change to all connected clients.
+\end{itemize}
+\newpage
 \subsubsection[Class Diagram 4: Authentication]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Class Diagram 4: Authentication}
 \hypertarget{RefHeading22059017292}{}
@@ -1710,7 +1745,7 @@ Need picture here.
 
 \textbf{Classes:}
 \begin{itemize}
-	
+
 	\item The \textbf{User} class represents the main user of the entire program. It details the basic information of each individual user, and allows each user the ability to create an account, to log into an existing account, and once logged in, to log out of the user account. It also allows a user to change his/her password, which involves the other classes.
 	\item The \textbf{Email} class allows the program to send emails to Users who have signed up, or are signing up. It stores User information as a series of strings to be used by the \textbf{send()} function, which sends validation codes to Users' email addresses.
 	\item The \textbf{Validator} class will run validation functions when called to do so by the User. Upon a User indicating they would like to change/have forgotten their password, it generates a validation code for that particular User, which it then stores in a dictionary. This validation code is sent to Users by means of the \textbf{send()} function denoted earlier.

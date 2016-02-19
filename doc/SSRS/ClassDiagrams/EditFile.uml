@@ -1,50 +1,77 @@
 @startuml
 hide circle
-class File
+title File Editing
+
+class CollabFile {
+ FileLineHistory history
+ Cursor cursors[]
+}
 class User
 
-File -left-* EditorWidget
-class EditorWidget
+CollabFile -left-* EditorWidget: Edits
+class EditorWidget {
+}
 
 class FileLineHistory {
-  User Lines[]
+  LineHistory Lines[]
+  void MarkLineEdited()
 }
 
-File -right-* FileLineHistory
-FileLineHistory --* "*" User
-EditorWidget --* "contains 1..*" Cursor
+class LineHistory {
+  User u
+  Timestamp t
+}
+
+LineHistory "1" -- "*" User : "Keeps track of"
+LineHistory "1" -- "1" TimeStamp
+FileLineHistory "1" *-right- "*" LineHistory
+
+CollabFile *-down- FileLineHistory: "Owns"
+CollabFile "1" -- "1..*" Cursor: "Contains"
 
 class Cursor {
-  position
-  User
+  int position
+  User u
 }
 
-Cursor --* "Associated with" User
-Package OperationalTransformation {
+Cursor "1" -- "1" User : "Associated with"
+Package OperationalTransformation #DDDDDD {
   class Server {
     Operations[]
-    recieve()
-    broadcast()
+    void recieve()
+    void broadcast()
   }
 
   class TextOperation {
     Operations[]
-    apply()
-    transform()
+    String apply(String s)
+    TextOperation transform(TextOperation a, TextOperation b)
   }
 
 
-  TextOperation --* "Made of 1..*" Operation
+  Server "1" -left- "*" TextOperation: "Recieves/sends"
+  TextOperation "1" *-- "1..*" Operation : "Made of"
 
-  class Operation
-  Class Insert
-  Class Delete
-  Class Retain
-  
-  Insert -up-|> Operation
-  Delete -up-|> Operation
-  Retain -up-|> Operation
+  class Operation {
+    Enum OperationType
+    int front
+    string s
+    int back
+  }
+
+  enum OperationType {
+    INSERT
+    DELETE
+    RETAIN
+  }
+
+  OperationType -up- Operation : Specifies
 }
-Server -up-* "Recieves/sends" TextOperation
-EditorWidget --* "Creates *" TextOperation
+EditorWidget "1" -- "*" TextOperation: Creates
+
+legend right
+   <b>Authur:</b> Brandon Ratcliff
+   <b>Reviewed by:</b> Everyone
+endlegend
+
 @enduml
