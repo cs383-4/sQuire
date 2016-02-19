@@ -1776,7 +1776,28 @@ I organized this one into a separate package because that's how I'm pretty sure 
 \end{itemize}
 
 \newpage
+\subsubsection[Class Diagram 6: Communication]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 6: Communication}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
 
+\includegraphics[width=\textwidth]{images/ClassDiagrams/Communication}
+
+\newpage
+\subsubsection[Class Diagram Description 6: Communication Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 6: Communication Description}
+\hypertarget{RefHeading22059017292}{}
+
+\textbf{Classes:}
+\begin{itemize}
+
+	\item \textbf{TextChat:} The master class to manage the messages, users, and display of the system.
+	\item \textbf{ChatDisplay:} Displays relevant information including most recent 20 messages and active users
+	\item \textbf{User:} Users interacting with the chat system.
+	\item \textbf{Message:} Messages sent by users to TextChat, contain a string, timestamp, and sender/receiver data.
+	\item \textbf{Timestamp:} Recorded time of when message was sent.
+\end{itemize}
+\newpage	
 \subparagraph[]{\selectlanguage{english}\rmfamily\color{black} }
 \clearpage\setcounter{page}{1}\pagestyle{Convertvi}
 \section[REQUIREMENTS TRACEABILITY]{\selectlanguage{english}\rmfamily\bfseries\color{black} REQUIREMENTS TRACEABILITY}
