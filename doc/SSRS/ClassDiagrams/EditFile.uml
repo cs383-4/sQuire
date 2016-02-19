@@ -2,12 +2,14 @@
 hide circle
 title File Editing
 
-class CollabFile
+class CollabFile {
+ FileLineHistory history
+ Cursor cursors[]
+}
 class User
 
 CollabFile -left-* EditorWidget: Edits
 class EditorWidget {
-  Cursor cursors[]
 }
 
 class FileLineHistory {
@@ -22,10 +24,10 @@ class LineHistory {
 
 LineHistory "1" -- "*" User : "Keeps track of"
 LineHistory "1" -- "1" TimeStamp
-FileLineHistory "1" *-left- "*" LineHistory
+FileLineHistory "1" *-right- "*" LineHistory
 
 CollabFile *-down- FileLineHistory: "Owns"
-EditorWidget "1" -- "1..*" Cursor: "Contains"
+CollabFile "1" -- "1..*" Cursor: "Contains"
 
 class Cursor {
   int position
@@ -36,14 +38,14 @@ Cursor "1" -- "1" User : "Associated with"
 Package OperationalTransformation #DDDDDD {
   class Server {
     Operations[]
-    recieve()
-    broadcast()
+    void recieve()
+    void broadcast()
   }
 
   class TextOperation {
     Operations[]
-    apply()
-    transform()
+    String apply(String s)
+    TextOperation transform(TextOperation a, TextOperation b)
   }
 
 
