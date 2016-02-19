@@ -1,0 +1,55 @@
+@startuml
+
+hide circles
+Title Communication
+
+legend left
+Authored By: Max Welch
+Peer Reviewed By: Team I.C.Y.
+
+end legend
+
+class TextChat {
+list<Message> log
+list<User> users
+ChatDisplay display
+void refreshMessages(messages)
+void addActiveUser(User)
+void removeActiveUser(User)
+}
+
+class ChatDisplay {
+queue<Message> recent
+list<User> active
+JTextField input
+void displayMessages()
+void displayActive()
+}
+TextChat "1" o-left- "1" ChatDisplay :Aggregation
+
+class User {
+void leave()
+}
+
+TextChat "1" -- "1...*" User : Association
+
+class Message {
+string text
+Timestamp timeSent
+boolean private
+User sender
+User receiver
+void send()
+void sendPrivate()
+}
+
+Message "1" -up-* "1" User: Creates and Sends
+Message "0...*" -down-* "1" TextChat: Aggregation
+
+class Timestamp{
+int hour
+int minute
+}
+
+Timestamp "1" -left-* "1" Message: Aggregation
+@enduml
