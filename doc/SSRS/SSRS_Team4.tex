@@ -1751,6 +1751,32 @@ I organized this one into a separate package because that's how I'm pretty sure 
 	\item The \textbf{Validator} class will run validation functions when called to do so by the User. Upon a User indicating they would like to change/have forgotten their password, it generates a validation code for that particular User, which it then stores in a dictionary. This validation code is sent to Users by means of the \textbf{send()} function denoted earlier.
 \end{itemize}
 
+\newpage
+
+\subsubsection[Class Diagram 5: User Preferences]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 5: User Preferences}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\includegraphics[width=\textwidth]{images/ClassDiagrams/UserPref}
+
+\newpage
+
+\subsubsection[Class Diagram Description 5: User Preferences Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 5: User Preferences Description}
+\hypertarget{RefHeading22059017292}{}
+
+\textbf{Classes:}
+\begin{itemize}
+
+       \item \textbf{User:} Represents the human user of the program. It will hold the user's profile information so that it can be validated later. 
+       \item \textbf{Preferences:} Holds all the user's account preferences. This includes profile picture, chat font, chat color, ect.
+       \item \textbf{ModifyPref:} Allows the user to modify his or her's preferences. 
+       \item \textbf{Authentication:} Authenticates the user's username and password to allow access to make changes on their account.
+\end{itemize}
+
+\newpage
+
 \subparagraph[]{\selectlanguage{english}\rmfamily\color{black} }
 \clearpage\setcounter{page}{1}\pagestyle{Convertvi}
 \section[REQUIREMENTS TRACEABILITY]{\selectlanguage{english}\rmfamily\bfseries\color{black} REQUIREMENTS TRACEABILITY}
