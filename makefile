@@ -11,10 +11,10 @@ all: SSRS class_diagrams
 
 SSRS: $(SSRS_doc)
 
-$(SSRS_doc): $(SSRS)SSRS_Team4.tex
-	latexmk -cd -pdf -output-directory=$(SSRS) $<
+$(SSRS_doc): $(SSRS)SSRS_Team4.tex $(class_diagrams_png)
+	latexmk -pdf -output-directory=$(SSRS) $<
 	#clean up latex files
-	latexmk -c -cd -pdf -output-directory=$(SSRS) $< 
+	latexmk -c -pdf -output-directory=$(SSRS) $<
 
 class_diagrams: $(class_diagrams_png)
 
