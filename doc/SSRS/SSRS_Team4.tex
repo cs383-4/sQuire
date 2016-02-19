@@ -1695,6 +1695,27 @@ Need picture here.
 	\item the \textbf{CollabFile} class represents a file in a \textbf{Project}. It extends the \textbf{File} class for the purposes of allowing collaborative editing, among other project functions. It implements the \textit{Serializable} interface to allow its information to be transported over the internet in the best possible format. This requires the implementation of the \textbf{void Serialize<T>()} and \textbf{T Deserialize<SerializedString>()} methods which will handle serialization and deserialization. This class also implements the \textit{Observable} interface which will specify how it communicates with the \textbf{FileController} class in order to notify of relevant changes to \textbf{CollabFile} objects. This requires the implementation of a list of observers and a method to notify observers. Lastly, it implements the \textit{Downlodable} interface which will specify how \textbf{CollabFile} objects are to be downloaded. Refer to the interfaces list above for more details of such implementations.
 \end{itemize}
 
+\subsubsection[Class Diagram 4: Authentication]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 4: Authentication}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\includegraphics[width=\textwidth]{images/ClassDiagrams/Authentication}
+
+\newpage
+
+\subsubsection[Class Diagram Description 4: Authentication Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 1: Authentication Description}
+\hypertarget{RefHeading22059017292}{}
+
+\textbf{Classes:}
+\begin{itemize}
+	
+	\item The \textbf{User} class represents the main user of the entire program. It details the basic information of each individual user, and allows each user the ability to create an account, to log into an existing account, and once logged in, to log out of the user account. It also allows a user to change his/her password, which involves the other classes.
+	\item The \textbf{Email} class allows the program to send emails to Users who have signed up, or are signing up. It stores User information as a series of strings to be used by the \textbf{send()} function, which sends validation codes to Users' email addresses.
+	\item The \textbf{Validator} class will run validation functions when called to do so by the User. Upon a User indicating they would like to change/have forgotten their password, it generates a validation code for that particular User, which it then stores in a dictionary. This validation code is sent to Users by means of the \textbf{send()} function denoted earlier.
+\end{itemize}
+
 \subparagraph[]{\selectlanguage{english}\rmfamily\color{black} }
 \clearpage\setcounter{page}{1}\pagestyle{Convertvi}
 \section[REQUIREMENTS TRACEABILITY]{\selectlanguage{english}\rmfamily\bfseries\color{black} REQUIREMENTS TRACEABILITY}
