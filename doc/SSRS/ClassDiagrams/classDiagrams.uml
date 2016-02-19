@@ -1,0 +1,15 @@
+@startuml
+hide circle
+
+ProjectList o--  Project
+User <|-- ProjectAdministrator
+User "1" - "1..*" Feedback : Leaves
+Feedback <|-- Vote
+Feedback <|-- Comment
+Comment  <|-- UserReview
+
+User "1" - "1..*" ProjectList: Searches
+ProjectAdministrator "1" - "1..*" Project: Creates
+Project "1" - "0..*" Vote: Receives
+
+@enduml
