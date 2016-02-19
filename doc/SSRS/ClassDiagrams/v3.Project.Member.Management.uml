@@ -39,5 +39,9 @@ class Permissions {
 	bool invite
 }
 
+legend right
+	Written by: Brian Cartwright
+	Reviewed by: The whole team
+endlegend
 'end of Project Member Management section.
 @enduml
