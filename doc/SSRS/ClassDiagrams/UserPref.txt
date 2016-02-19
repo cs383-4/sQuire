@@ -1,0 +1,39 @@
+@startuml
+hide circle
+
+class User{
+array UserInformation[]
+Preferences pref
+}
+
+User o-right- Preferences
+
+class Authentication{
+
+bool AcessGranted
+
+GetUserInformation()
+}
+
+ModifyPref -right- Authentication : grants access
+
+class ModifyPref{
+UserInformation[]
+Apply()
+}
+
+Preferences o--"1..*" ModifyPref
+
+class Preferences{
+string ChatFont
+color FontColor
+color EditorTheme
+bool GlobalChat
+bool OfflineMode
+}
+
+legend right
+   <b>Authur:</b> Eric Gentile-Quant
+   <b>Reviewed by:</b> Everyone
+endlegend   
+@enduml
