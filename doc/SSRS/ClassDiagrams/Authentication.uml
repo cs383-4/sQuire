@@ -1,3 +1,4 @@
+@startuml
 hide circle
 
 title Authentication
@@ -35,3 +36,4 @@ Authored by: Joel Doumit (doum6708)
 Reviewed by: Team I.C.Y
 
 endlegend
+@enduml
