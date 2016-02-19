@@ -1,0 +1,47 @@
+@startuml
+hide circle
+
+'Project Member Management section, written by Brian Cartwright 
+
+Project "1" -- "1" UserManager : Controls user access to project
+User "1" -- "*" UserManager : Records thread creator
+User "1" <-- "*" Permissions : Stores permissions for each user that visits thread  
+UserManager *- "1" HashMap : Searches and manipulates
+HashMap  o- "1..*" Permissions
+
+
+class Project {
+}
+
+class HashMap {
+}
+
+class User {
+}
+
+class UserManager {
+	HashMap<User, Permissions> perms
+	User creatorid
+	Permissions defaultperms
+		
+	void AddUser(User actor, User target)
+	void KickUser(User actor, User target)
+	void SetPerms(User actor, User target, Permissions newperms)
+}
+
+class Permissions {
+	User userid	
+
+	bool admin
+	bool write
+	bool read
+	bool execute
+	bool invite
+}
+
+legend right
+	Written by: Brian Cartwright
+	Reviewed by: The whole team
+endlegend
+'end of Project Member Management section.
+@enduml
