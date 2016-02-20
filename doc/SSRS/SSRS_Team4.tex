@@ -1824,6 +1824,33 @@ I organized this one into a separate package because that's how I'm pretty sure 
 	\item The \textbf{ProjectBrowser} class contains a search-able list of zero or more projects tailored to a user's search. Users browse the list in order to find projects of interest. 
 \end{itemize}
 
+\newpage
+\subsubsection[Class Diagram 7: Project Member Management]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 7: Project Member Management}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\includegraphics[width=\textwidth]{images/ClassDiagrams/ProjectMemberManagement}
+
+\newpage
+
+\subsubsection[Class Diagram Description 7: Project Member Management Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 7: Project Member Management Description}
+\hypertarget{RefHeading22059017292}{}
+
+\textbf{Classes:}
+\begin{itemize}
+
+	\item The \textbf{User} class contains the profiles of everyone who uses sQuire, and identifies anyone who tries to access a board.  
+	\item The \textbf{Project} class contains all of the information pertinent to an individual project, including one UserManager, which the client uses to control what kind of access each user has to that specific project.
+	\item The \textbf{UserManager} class is referenced to check if a user has permission to read, modify, or run a project, or invite, ban, or change the permissions of another user. It does this by updating and checking against a HashMap of Permissions idexed by User. It records the User profile of the project creator to prevent the creator being demoted by another admin. It also contains a set of Permissions to use by default, before users are manually added to the project. 
+	The functions AddUser, KickUser, and SetPerms all modify the permissions HashMap after checking against it to make sure the active user has the authority to change the permissions of the target user.
+	\item The \textbf{HashMap} class, in this case, functions as a permissions lookup table. It's indexed by User, and for each User in it there's one set of Permissions that it returns.
+	\item The \textbf{Permissions} class is a set of bools that store whether each User has permission (within the instance's parent project) to read, write, execute the project, invite users, and/or modify the permissions of other users regarding the project. 
+\end{itemize}
+
+
+
 \subparagraph[]{\selectlanguage{english}\rmfamily\color{black} }
 \clearpage\setcounter{page}{1}\pagestyle{Convertvi}
 \section[REQUIREMENTS TRACEABILITY]{\selectlanguage{english}\rmfamily\bfseries\color{black} REQUIREMENTS TRACEABILITY}
