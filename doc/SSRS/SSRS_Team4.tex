@@ -1808,6 +1808,40 @@ subsystem, if applicable) requirements it addresses. \ A tabular form is preferr
 
 \bigskip
 
+
+
+\subsubsection[Class Diagram 7: Project Browsing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 7: Project Browsing}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\includegraphics[width=\textwidth]{images/ClassDiagrams/ProjectBrowsing}
+
+\newpage
+
+\subsubsection[Class Diagram Description 7: Project Browsing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 7: Project Browsing}
+\hypertarget{RefHeading22059017292}{}
+
+
+\textbf{Enums:}\\
+\begin{itemize}
+	\item The \textit{Rating} enum produces a value based upon the user's desired rating of another user or a project.
+	\end{itemize}
+
+\textbf{Interfaces:}\\
+\begin{itemize}
+	\item The \textit{Receives Feedback} interface requires its implementers to implement two methods: \textbf{int VoteOnUser(User)}, which returns a value based on a user's rating, and \textbf{string Comment(User)}, which leaves feedback in the form of a comment.
+	\end{itemize}
+	
+
+\textbf{Classes:}
+\begin{itemize}
+	\item The \textbf{User} class will be the class, shared across many of the class diagrams, that stores information about a user. The User class will have not only the methods and fields shown in this diagram, but a concatenation of the ones shown here and all other methods and fields from the other diagrams. Here, the User class implements the ReceivesFeedback interface so that other users may leave comments/reviews of a User object, and so that they may receive an accompanying rating from one to five stars. In relation to browsing projects, a User is the agent who searches a ProjectBrower object and works on a Project object.
+	\item The \textbf{Project} class will also have the methods and fields of other class diagrams, similar to the User class above. Here, the Project class implements the ReceivesFeedback interface so that users may leave comments/reviews on projects, as well as vote up or down on projects that they come across. Projects are displayed in the ProjectBroswer class and worked on by users.
+	\item The \textbf{ProjectBrowser} class contains a search-able list of zero or more projects tailored to a user's search. Users browse the list in order to find projects of interest. 
+\end{itemize}
+
 \begin{flushleft}
 \tablefirsthead{\hline
 \multicolumn{1}{|m{0.9212598in}|}{\centering{\selectlanguage{english}\bfseries\color{black} Feature Name}} &
