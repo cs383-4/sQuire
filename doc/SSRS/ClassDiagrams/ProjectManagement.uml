@@ -1,0 +1,38 @@
+@startuml
+hide circle
+
+title Project Management
+
+class Project {
+void AddUser(User actor, User target)
+void KickUser(User actor, User target)
+void SetPermissions(User actor, User target)
+void InvitetoProject(User actor, User target)
+void ApproveUser(User actor, User target)
+void CompileProject()
+void RunProject()
+void AllowObservers(bool mode)
+UserManager ProjectMembers
+bool ObserversAllowed
+List<User> AddRequests
+
+}
+
+class UserManager{
+}
+
+class User {
+void JoinProject(User actor, Project target)
+void LeaveProject(User actor, Project target)
+}
+
+Project <-- User : Requests Membership Change
+UserManager <-- Project : Checks for Permissions
+Project --> UserManager : Modifies
+
+legend center
+Authored by: Robert Carlson (carl7595)
+Reviewed by: Team I.C.Y
+
+endlegend
+@enduml
