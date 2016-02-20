@@ -1687,7 +1687,6 @@ Need picture here.
 	\item The \textit{Observable} interface requires its implementers to have a list of observers and a method to notify its observers of changes to itself. The purpose of this implementation is to communicate with the \textbf{FileController} object and notify it when a CollabFile changes.
 	\item The \textit{Downloadable} interface requires its implementers to implement a method with the following signature: \textbf{int Download()}. The purpose of this method is for classes to implement ways in which their objects can be downloaded. The \textbf{int} return type will be used as a status code. We foresee this interface being used with the \textbf{Project} and \textbf{CollabFile} classes, as the diagram shows, allowing users to download files or projects with the \textbf{Download()} method.
 \end{itemize}
-
 \textbf{Classes:}
 \begin{itemize}
 	\item The \textbf{FileController} class will manage the \textbf{CollabFile} objects in the \textbf{Project} class. It will do so by storing a list of files and a dictionary of its methods that can be run in a separate thread. Its methods all deal with managing files. It will implement the \textit{Observer} and \textit{Runnable} interfaces. Refer to the interfaces list above to see the details of such implementations.
@@ -1718,10 +1717,7 @@ Need picture here.
 	\item The \textit{EditorWidget} class is something that we will (hopefully) not write ourselves. It will be the editor widget we use for providing the code editor. Preliminary research found RSyntaxtTextArea (https://github.com/bobbylight/RSyntaxTextArea). This looks like a good fit because it has syntax highlighting, auto completion, code analysis, and of course, support from java. It also has a simple plugin architecture, so it looks like it would be easy to extend to our needs. More research needs to be done to figure out the exact class structure for this.
   \item The \textit{Cursor} class is made up of a \textbf{User} and a position within a file- everything that is needed to display a users cursor inside the editor.
 \end{itemize}
-
-\textbf{OperationalTransform:}
-
-
+\textbf{OperationalTransform:} \\\bigskip
 I organized this one into a separate package because that's how I'm pretty sure we'll write it. The OperationalTransform algorithm is a collaborative editing algorithm used to allow multiple people to edit the same document at the same time, and keep the documents in sync. Ideally, we would use a pre-built library for this, as the algorithm is quite complex and there are lots of special cases, but I was unable to find one written in Java. Our best best will probably be to port an existing library in another language. The clearest, best documented implementation I found was OT.js (https://github.com/Operational-Transformation/ot.js/). The following classes are the main data structures implemented by this version of Operational Transformation.
 \begin{itemize}
 \item The \textit{TextOperation} class represents a sequence of \textbf{Operation} objects, or changes. The TextOperation can then be applied to a string, or transformed with anther TextOperation (from another client) in order account for changes that occurred simultaneously. See the Operational Transformation algorithm for more details.
@@ -1730,8 +1726,8 @@ I organized this one into a separate package because that's how I'm pretty sure 
 \item the \textit{Server} class is a class that will be running on the server to sync changes between clients. It's job it to listen for \textbf{TextOperations} from all connected clients, and when it receives one, broadcast that change to all connected clients.
 \end{itemize}
 \newpage
-\subsubsection[Class Diagram 4: Authentication]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram 4: Authentication}
+\subsubsection[Class Diagram 3: Authentication]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 3: Authentication}
 \hypertarget{RefHeading22059017292}{}
 \bigskip
 
@@ -1739,8 +1735,8 @@ I organized this one into a separate package because that's how I'm pretty sure 
 
 \newpage
 
-\subsubsection[Class Diagram Description 4: Authentication Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram Description 4: Authentication Description}
+\subsubsection[Class Diagram Description 3: Authentication Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 3: Authentication Description}
 \hypertarget{RefHeading22059017292}{}
 
 \textbf{Classes:}
@@ -1753,8 +1749,8 @@ I organized this one into a separate package because that's how I'm pretty sure 
 
 \newpage
 
-\subsubsection[Class Diagram 5: User Preferences]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram 5: User Preferences}
+\subsubsection[Class Diagram 4: User Preferences]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 4: User Preferences}
 \hypertarget{RefHeading22059017292}{}
 \bigskip
 
@@ -1762,8 +1758,8 @@ I organized this one into a separate package because that's how I'm pretty sure 
 
 \newpage
 
-\subsubsection[Class Diagram Description 5: User Preferences Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram Description 5: User Preferences Description}
+\subsubsection[Class Diagram Description 4: User Preferences Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 4: User Preferences Description}
 \hypertarget{RefHeading22059017292}{}
 
 \textbf{Classes:}
@@ -1776,16 +1772,16 @@ I organized this one into a separate package because that's how I'm pretty sure 
 \end{itemize}
 
 \newpage
-\subsubsection[Class Diagram 6: Communication]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram 6: Communication}
+\subsubsection[Class Diagram 5: Communication]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 5: Communication}
 \hypertarget{RefHeading22059017292}{}
 \bigskip
 
 \includegraphics[width=\textwidth]{images/ClassDiagrams/Communication}
 
 \newpage
-\subsubsection[Class Diagram Description 6: Communication Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram Description 6: Communication Description}
+\subsubsection[Class Diagram Description 5: Communication Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 5: Communication Description}
 \hypertarget{RefHeading22059017292}{}
 
 \textbf{Classes:}
@@ -1798,6 +1794,36 @@ I organized this one into a separate package because that's how I'm pretty sure 
 	\item \textbf{Timestamp:} Recorded time of when message was sent.
 \end{itemize}
 \newpage	
+
+\subsubsection[Class Diagram 6: Project Browsing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 6: Project Browsing}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\includegraphics[width=\textwidth]{images/ClassDiagrams/ProjectBrowsing}
+
+\newpage
+
+\subsubsection[Class Diagram Description 6: Project Browsing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 6: Project Browsing}
+\hypertarget{RefHeading22059017292}{}
+
+
+\textbf{Enums:}\\
+\begin{itemize}
+	\item The \textit{Rating} enum produces a value based upon the user's desired rating of another user or a project.
+\end{itemize}
+\textbf{Interfaces:}\\
+\begin{itemize}
+	\item The \textit{Receives Feedback} interface requires its implementers to implement two methods: \textbf{int VoteOnUser(User)}, which returns a value based on a user's rating, and \textbf{string Comment(User)}, which leaves feedback in the form of a comment.
+\end{itemize}
+\textbf{Classes:}
+\begin{itemize}
+	\item The \textbf{User} class will be the class, shared across many of the class diagrams, that stores information about a user. The User class will have not only the methods and fields shown in this diagram, but a concatenation of the ones shown here and all other methods and fields from the other diagrams. Here, the User class implements the ReceivesFeedback interface so that other users may leave comments/reviews of a User object, and so that they may receive an accompanying rating from one to five stars. In relation to browsing projects, a User is the agent who searches a ProjectBrower object and works on a Project object.
+	\item The \textbf{Project} class will also have the methods and fields of other class diagrams, similar to the User class above. Here, the Project class implements the ReceivesFeedback interface so that users may leave comments/reviews on projects, as well as vote up or down on projects that they come across. Projects are displayed in the ProjectBroswer class and worked on by users.
+	\item The \textbf{ProjectBrowser} class contains a search-able list of zero or more projects tailored to a user's search. Users browse the list in order to find projects of interest. 
+\end{itemize}
+
 \subparagraph[]{\selectlanguage{english}\rmfamily\color{black} }
 \clearpage\setcounter{page}{1}\pagestyle{Convertvi}
 \section[REQUIREMENTS TRACEABILITY]{\selectlanguage{english}\rmfamily\bfseries\color{black} REQUIREMENTS TRACEABILITY}
@@ -1808,39 +1834,6 @@ subsystem, if applicable) requirements it addresses. \ A tabular form is preferr
 
 \bigskip
 
-
-
-\subsubsection[Class Diagram 7: Project Browsing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram 7: Project Browsing}
-\hypertarget{RefHeading22059017292}{}
-\bigskip
-
-\includegraphics[width=\textwidth]{images/ClassDiagrams/ProjectBrowsing}
-
-\newpage
-
-\subsubsection[Class Diagram Description 7: Project Browsing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram Description 7: Project Browsing}
-\hypertarget{RefHeading22059017292}{}
-
-
-\textbf{Enums:}\\
-\begin{itemize}
-	\item The \textit{Rating} enum produces a value based upon the user's desired rating of another user or a project.
-	\end{itemize}
-
-\textbf{Interfaces:}\\
-\begin{itemize}
-	\item The \textit{Receives Feedback} interface requires its implementers to implement two methods: \textbf{int VoteOnUser(User)}, which returns a value based on a user's rating, and \textbf{string Comment(User)}, which leaves feedback in the form of a comment.
-	\end{itemize}
-	
-
-\textbf{Classes:}
-\begin{itemize}
-	\item The \textbf{User} class will be the class, shared across many of the class diagrams, that stores information about a user. The User class will have not only the methods and fields shown in this diagram, but a concatenation of the ones shown here and all other methods and fields from the other diagrams. Here, the User class implements the ReceivesFeedback interface so that other users may leave comments/reviews of a User object, and so that they may receive an accompanying rating from one to five stars. In relation to browsing projects, a User is the agent who searches a ProjectBrower object and works on a Project object.
-	\item The \textbf{Project} class will also have the methods and fields of other class diagrams, similar to the User class above. Here, the Project class implements the ReceivesFeedback interface so that users may leave comments/reviews on projects, as well as vote up or down on projects that they come across. Projects are displayed in the ProjectBroswer class and worked on by users.
-	\item The \textbf{ProjectBrowser} class contains a search-able list of zero or more projects tailored to a user's search. Users browse the list in order to find projects of interest. 
-\end{itemize}
 
 \begin{flushleft}
 \tablefirsthead{\hline
