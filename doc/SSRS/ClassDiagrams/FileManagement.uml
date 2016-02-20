@@ -1,13 +1,19 @@
 @startuml
 
+legend right
+    Author: Domn Werner
+    Reviewers: Entire Group
+endlegend
+
 interface Downloadable {
     int Download()
 }
 interface Serializable {
-    void Serialize<T>
-    T Deserialize
+    void Serialize<T>()
+    T Deserialize<SerializedString>()
 }
 interface Observable {
+    List<T> observers
     void NotifyObservers()
 }
 interface Observer {
@@ -47,7 +53,7 @@ class CollabFile {
     
     void NotifyObservers()
     void Serialize<CollabFile>()
-    CollabFile Deserialize()
+    CollabFile Deserialize<CollabFile>()
 }
 
 CollabFile --|> File : extends
