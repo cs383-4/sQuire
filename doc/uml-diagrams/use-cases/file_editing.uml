@@ -1,0 +1,32 @@
+@startuml
+
+title File Editing
+
+:User1: --> (Type Text)
+(Type Text) <|-- (Displays Username to Other Users) : extends
+(Type Text) <|-- (Color Changes to Other Users) : extends
+(Type Text) <|-- (Display Caret) : extends
+(Type Text) <|-- (Syntax Highlighting) : extends
+(Syntax Highlighting) <|-- (Display Syntax Errors) : extends
+
+(Display Caret) <|-- (Color Changes to Other Users) : extends
+:Other Users: -> (Color Changes to Other Users) : see
+:Other Users: --> (Displays Username to Other Users) : see
+
+
+:User1: -down-> (Highlights Text)
+(Highlights Text) <|-- (Color Changes to Other Users) : extends
+
+:User1: -up-> (Change View Options)
+(Change View Options) <|-up- (View Authors) : extends
+(Change View Options) <|-up- (View Dates) : extends
+(Change View Options) <|-up- (View References) : extends
+(Change View Options) <|-up- (View Line Numbers) : extends
+
+
+:User1: -left-> (Edit Options)
+(Edit Options) <|-- (Format Document) : extends
+(Edit Options) <|-- (Find/Replace) : extends
+(Edit Options) <|-- (Comment Section) : extends
+
+@enduml

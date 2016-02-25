@@ -1,0 +1,37 @@
+@startuml
+actor User << Human >>
+actor Server << Application >>
+
+rectangle "Authentication" {
+  User --> (View home): Authenticated
+}
+
+rectangle "Project Management" {
+  (View home) --> (View Projects)
+  (View Projects) --> (Choose project)
+}
+
+rectangle "Manage Project Members" {
+  (Manage Project Members) as manage
+  (Choose project) --> manage : Admin
+  rectangle "Manage User Permissions" {
+    manage --> (Modify read access to\nfile/directory/project)
+    manage --> (Modify write access to\nfile/directory/project)
+  }
+  rectangle "Manage User Membership" {
+    manage --> (Invite User)
+    manage --> (Remove User)
+    manage --> (Block User)
+    manage --> (Promote User to Admin)
+    manage --> (Demote Admin)
+  }
+}
+
+Server <-u-> (Modify read access to\nfile/directory/project)
+Server <-u-> (Modify write access to\nfile/directory/project)
+Server <-u-> (Promote User to Admin)
+Server <-u-> (Demote Admin)
+Server <-u-> (Invite User)
+Server <-u-> (Remove User)
+Server <-u-> (Block User)
+@enduml

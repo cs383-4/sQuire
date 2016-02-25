@@ -1,0 +1,29 @@
+@startuml
+
+title File Management
+
+:User: --up--> (Create File)
+(Create File) <|-right- (Add New Files to Project) : extends
+(Create File) <|-down- (Add Existing Files to Project) : extends
+
+:User: -down-> (Delete File)
+(Delete File) <|-- (Delete Multiple Files) : extends
+
+:User: -left-> (Download File)
+(Download File) <|-- (Download Files from Project) : extends
+(Download File) <|-- (Download Entire Project) : extends
+
+:User: -right-> (Open File)
+(Open File) <|-- (Open File in New Tab) : extends
+
+:User: --up--> (Save File)
+(Save File) <|-left- (Save All Files) : extends
+
+:User: --up-> (Close File) 
+(Close File) <|-up- (Close File in Tab) : extends
+(Close File in Tab) <|-- (Close Unsaved File in Tab) : extends
+(Close File in Tab) <|-- (Close Saved File in Tab) : extends
+(Close Saved File in Tab) ..> (Save File) : can lead to
+(Close Unsaved File in Tab) ..> (Save File) : can lead to
+
+@enduml

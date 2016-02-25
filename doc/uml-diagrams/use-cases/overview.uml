@@ -1,0 +1,68 @@
+@startuml
+'scale 800 width
+title SQuire Usecase Diagram
+
+User << Human >>
+Server << Application >>
+
+rectangle "Authentication" {
+    User --> (Register) : New
+    User --> (Login) : Registered
+    User --> (View home) : Authenticated
+    (Register) --> (Login)
+    (Login) --> (View home)
+    (View home) --> (Logout)
+}
+
+rectangle "Project Management" {
+    (View home) --> (View projects)
+    (View projects) --> (Choose project)
+    (View projects) --> (Create project)
+    (View projects) --> (Delete project)
+    (View projects) --> (Join project)
+    (View projects) --> (Accept invite to project)
+}
+
+rectangle "Project Ideas" {
+    (View home) --> (View project ideas)
+}
+
+rectangle "User Profile" {
+    (View home) --> (View user profile)
+    (View user profile) --> (Modify user profile)
+    (View user profile) --> (Change User Password)
+}
+
+rectangle "User Preferences" {
+    (View home) --> (View user preferences)
+    (View user preferences) --> (Modify chat font)
+    (View user preferences) --> (Modify chat color)
+    (View user preferences) --> (Edit user color)
+}
+
+rectangle "Communication" {
+    (Choose project) --> (Open project chat)
+        (Open project chat)--> (Write to project chat)
+        (Open project chat)--> (Close project chat)
+    (Choose project) --> (Open global chat)
+        (Open global chat)--> (Write to global chat)
+        (Open global chat)--> (Close global chat)
+}
+
+rectangle "Project Permissions Management" {
+    (Choose project) --> (Invite user to project)
+    (Choose project) --> (Remove user from project)
+}
+
+rectangle "Project File Management" {
+    (Choose project) --> (Create a project file)
+    (Choose project) --> (Open a project file)
+        (Open a project file) --> (Edit a project file)
+        (Open a project file) --> (Close a project file)
+    (Choose project) --> (Delete a project file)
+    (Choose project) --> (Move a project file)
+    (Choose project) --> (Import a file to the project)
+    (Choose project) --> (Export a file from the project)
+}
+
+@enduml

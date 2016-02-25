@@ -1,0 +1,29 @@
+@startuml
+actor User
+
+(Dashboard) as dash
+(Manage Account) as mgact
+(Manage Privacy) as mgprv
+(Public Profile) as pub
+(Friend Access) as frnd
+
+User --> dash
+	dash -->(View Public Profile)
+	dash -down->  mgact
+		mgact -down-> (Change Username)
+		mgact -down-> (Change Password)
+		mgact -down-> (Change Email Address)
+		mgact -up-> (Change Name)
+		mgact -up-> (Update "About Me")
+		mgact -left-> mgprv
+			mgprv -up-> pub
+				pub --> (Display Name)
+				pub -up-> (Display Email Address)
+				pub -up-> (Receive messages from anyone)
+				pub -up-> (Receive an email when someone messages me)
+			mgprv --> frnd
+				frnd --> (Display Name to Friends)
+				frnd --> (Display Email Address to friends)
+				frnd --> (Receive an Email when a friend messages me)
+			mgprv --> (Receive update emails)
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+'left to right direction
+
+actor User << Human >>
+actor Admin << Human >>
+actor Chat_Server << Application >>
+
+rectangle "Authentication" {
+    User --> (View home) : Authenticated
+    Admin --> (View home) : Authenticated
+}
+
+rectangle "Project Management" {
+    (View home) --> (View projects)
+    (View projects) --> (Choose project)
+}
+
+rectangle "Communication" {
+    (Choose project) ..> (Open project chat) : Automatically opened
+        (Open project chat) --> (Write to project chat)
+        (Open project chat) --> (Close project chat)
+    (View home) ..> (Open global chat) : Automatically opened
+        (Open global chat) --> (Write to global chat)
+        (Open global chat) --> (Close global chat)
+}
+
+Chat_Server <--> (Write to global chat)
+Chat_Server <--> (Write to project chat)
+@enduml
