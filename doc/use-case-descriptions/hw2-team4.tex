@@ -1246,24 +1246,24 @@ A usecase diagram for sQuire\'s communication features.
 \hrule
 \newpage
 
-\subsection{Project Management (sass8427)}
+\subsection{Project Management (dani2918)}
+Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 worked on the original use cases in this section.
 \subsubsection{Create project (sass8427)}
 \vspace{2pt}
 \hrule
 \vspace{8pt}
  \textbf{Actors:} User \\ \\
-\textbf{Goals:} Create a new project with user specs. \\ \\
- \textbf{Pre-conditions:} Project creator is logged in, viewing projects.  \\ \\
-\textbf{Summary:} In order for a user to create a new project, they must be logged in to sQuire and provide at a minimum a project title. Although optional, also adding a mission statement, description, and initial project files is highly encouraged on the basis that they will create more interest for the new project. \\ \\
+\textbf{Goals:} Create a new project. \\ \\
+ \textbf{Pre-conditions:} Actor is logged in.  \\ \\
+\textbf{Summary:} User creates a new project with a description and includes any desired files. \\ \\
 \textbf{Related use cases:} Import file \\ \\
 \textbf{Steps:} \begin{enumerate}
-  \item ``New Project'' is clicked by the user.
-  \item Project creation windows appears. 
-  \item User adds a title in appropriate entry. 
-  \item User adds any of the following (Optional): mission statement, description.
-  \item User decides whether or not to perform the task: ``Import file to the project''.
+  \item User clicks ``New Project.''
+  \item User gives project a title.
+  \item User adds an applicable description.
+  \item User imports any files by clicking ''Import.''
   \item User clicks ``Create''.
-  \item System imports files and list project.
+  \item System imports files and instantiates project.
  \end{enumerate}
  \textbf{Alternatives:} None. \\ \\
  \textbf{Post-conditions:} None. \\
@@ -1275,21 +1275,20 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Admin or project owner. \\ \\
+ \textbf{Actors:} Project Administrator, sQuire Administrator. \\ \\
 \textbf{Goals:} Remove project from sQuire sever. \\ \\
- \textbf{Pre-conditions:} logged in, viewing projects.  \\ \\
-\textbf{Summary:} Deleting a project is a task the owner may want to perform for the purpose of cleaning up no longer relevant projects. Also, a sQuire admin may find the need to delete projects, either to free up wasted resources, or to fulfill everyday managerial duties. A “time to deletion” can be added to give project members time to retrieve data if they desire before the project is actually removed. \\ \\
-\textbf{Related use cases:} \\ \\
+ \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \\ \\
+\textbf{Summary:} Actor chooses to delete or remove an irrelevant or inappropriate project.  \\ \\
+\textbf{Related use cases:} Create project\\ \\
 \textbf{Steps:} \begin{enumerate}
-  \item Actor clicks delete icon on respective project.
+  \item Actor clicks ``Delete'' icon on active project.
   \item Delete dialog opens.
-  \item Actor chooses whether or not to add a deletion time deadline. 
-  \item Actor chooses whether or not to notify user of project deletion. 
-  \item Actor presses “Delete”. 
+  \item Actor presses ``Delete''. 
   \item Confirmation window is displayed.
-  \item User confirms or disregards deletion.
+  \item Actor confirms or disregards deletion.
+  \item System notifies collaborators that project was deleted.
  \end{enumerate}
- \textbf{Alternatives:} Actor may click “Cancel” at any time. \\ \\
+ \textbf{Alternatives:} Actor clicks ``Cancel.'' \\ \\
  \textbf{Post-conditions:} None. \\
 \vspace{8pt}
 \hrule
