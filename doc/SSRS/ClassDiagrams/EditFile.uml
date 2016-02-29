@@ -22,19 +22,19 @@ class LineHistory {
   Timestamp t
 }
 
-LineHistory "1" -- "*" User : "Keeps track of"
-LineHistory "1" -- "1" TimeStamp
-FileLineHistory "1" *-right- "*" LineHistory
+LineHistory -- "*" User : "Keeps track of"
+LineHistory -- TimeStamp
+FileLineHistory *-right- "*" LineHistory
 
 CollabFile *-down- FileLineHistory: "Owns"
-CollabFile "1" -- "1..*" Cursor: "Contains"
+CollabFile -- "1..*" Cursor: "Contains"
 
 class Cursor {
   int position
   User u
 }
 
-Cursor "1" -- "1" User : "Associated with"
+Cursor --  User : "Associated with"
 Package OperationalTransformation #DDDDDD {
   class Server {
     Operations[]
@@ -49,8 +49,8 @@ Package OperationalTransformation #DDDDDD {
   }
 
 
-  Server "1" -left- "*" TextOperation: "Recieves/sends"
-  TextOperation "1" *-- "1..*" Operation : "Made of"
+  Server -left- "*" TextOperation: "Recieves/sends"
+  TextOperation *-- "1..*" Operation : "Made of"
 
   class Operation {
     Enum OperationType
@@ -67,10 +67,10 @@ Package OperationalTransformation #DDDDDD {
 
   OperationType -up- Operation : Specifies
 }
-EditorWidget "1" -- "*" TextOperation: Creates
+EditorWidget  -- "*" TextOperation: Creates
 
 legend right
-   <b>Authur:</b> Brandon Ratcliff
+   <b>Author:</b> Brandon Ratcliff
    <b>Reviewed by:</b> Everyone
 endlegend
 
