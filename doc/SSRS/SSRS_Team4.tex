@@ -1420,33 +1420,219 @@ subsections 3.3.i for every specified feature defined for the system or software
 \hypertarget{RefHeading21859017292}{}{\selectlanguage{english}\color{black}
 }
 
-%\includegraphics[width=\textwidth]images/UseCaseDiagrams/Authentication}
+\includegraphics[width=\textwidth]{images/UseCaseDiagrams/Authentication}
 
 \newpage
 
-\subsubsection[Authentication Feature 1: Use Case 1]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-Authentication Feature 1: Use Case 1}
+\subsubsection[Authentication Feature 1: Sign Up]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+Authentication Feature 1: Sign Up}
 \hypertarget{RefHeading22059017292}{}
-\bigskip
 
-{\selectlanguage{english}\color{black}
-\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-whichever is more appropriate.}}}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
 
+\noindent\textbf{Summary:} The user signs up and creates an account using their email address and creates username and password in order to access the program. \newline
+ 
+\noindent\textbf{Purpose:} To register and create an account in the program \newline 
 
+\noindent\textbf{Preconditions:} None \newline
 
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User clicks Register button.
+	\item System prompts the user to enter email and password. 
+	\item User enters email and password and clicks Submit button.
+	\item System sends confirmation email. 
+	\item User verifies email by clicking a link. 
+	\item System adds verified user to database.
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} User already has an account. \newline
+
+\noindent\textbf{Alternative 2:} User doesn't confirm email. Delete request after timeout period. \newline
+\vspace{8pt}
+\hrule
 \newpage
 
-\subsubsection[Authentication Feature 2: Use Case Description 2]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Authentication Feature 2: [ Use Case Description 2]}
+\subsubsection[Authentication Feature 2: Log In]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 2: Log in}
 \hypertarget{RefHeading22059017292}{}
-\bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\hrule
+\vspace{8pt}
+\noindent\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} A registered logs in to the program in order to access its features.  \newline
+
+\noindent\textbf{Purpose:} Allow registered users access to the program.  \newline
+
+\noindent\textbf{Preconditions:} User must already have a registered account.  \newline
+
+\noindent\textbf{Steps:} 
+\begin{enumerate}
+	\item Users clicks Log In button.
+	\item System prompts the user for their username and password.
+	\item User enters their login information.
+	\item System verifies the login information and grants user access to their account.
+\end{enumerate}
+\noindent\textbf{Alternatives:}
+	\begin{enumerate}
+		\item User enters incorrect information. System prompts for credentials again.
+		\item User has not clicked email confirmation. System resends email and tells user.
+		\item User makes 5 incorrect login attempts. System prevents more login attempts for 5 minutes.
+	\end{enumerate} 
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[Authentication Feature 3: Log out]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 3: Log out}
+\hypertarget{RefHeading22059017292}{}
+
+\hrule
+\vspace{8pt}
+\noindent\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} A user logs out of the program.  \newline
+
+\noindent\textbf{Purpose:} Allows logged in users to log out in order to protect their account.  \newline
+
+\noindent\textbf{Preconditions:}
+\begin{enumerate}
+	\item User must have a registered account. 
+	\item User must be logged in.
+\end{enumerate} 
+
+\noindent\textbf{Steps:} 
+\begin{enumerate}
+	\item Users clicks log out button.
+	\item System logs user out.
+	\item Browser cookies are updated to reflect user being logged out.
+\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[Authentication Feature 4: Change Password]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 4: Change Password}
+\hypertarget{RefHeading22059017292}{}
+
+\hrule
+\vspace{8pt}
+\noindent\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} A user changes their password while logged in.  \newline
+
+\noindent\textbf{Purpose:} Allows logged in users to change their passwords.  \newline
+
+\noindent\textbf{Preconditions:}
+\begin{enumerate}
+	\item User must have a registered account. 
+	\item User must be logged in.
+\end{enumerate} 
+
+\noindent\textbf{Steps:} 
+\begin{enumerate}
+	\item Users clicks Change Password button.
+	\item System prompts user to enter their password twice.
+	\item User enters their password twice.
+	\item System hashes both passwords.
+\end{enumerate}
+
+\noindent\textbf{Alternatives:}
+\begin{enumerate}
+	\item If passwords match, System updates user password and sends email to registered email account.
+	\item If passwords don't match, system notifies user.
+\end{enumerate}
+
+\noindent\textbf{Related Use Cases:} 
+\begin{enumerate}
+	\item Change Email
+	\item Change Username
+\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[Authentication Feature 5: Change Email]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 5: Change Email}
+\hypertarget{RefHeading22059017292}{}
+
+\hrule
+\vspace{8pt}
+\noindent\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} A user changes their email while logged in.  \newline
+
+\noindent\textbf{Purpose:} Allows logged in users to change their email.  \newline
+
+\noindent\textbf{Preconditions:}
+\begin{enumerate}
+	\item User must have a registered account. 
+	\item User must be logged in.
+\end{enumerate} 
+
+\noindent\textbf{Steps:} 
+\begin{enumerate}
+	\item User clicks Change Email button.
+	\item System prompts user to enter their email.
+	\item User enters their email.
+	\item System sends a confirmation link to the email entered.
+\end{enumerate}
+
+\noindent\textbf{Alternatives:}
+\begin{enumerate}
+	\item If User clicks confirmation link, System updates the user's email and sends an email to the new email stating so.
+	\item If user doesn't click confirmation link in an hour, the link becomes invalid.
+\end{enumerate}
+
+\noindent\textbf{Related Use Cases:} 
+\begin{enumerate}
+	\item Change Password
+	\item Change Username
+\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[Authentication Feature 6: Change Username]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 6: Change Username}
+\hypertarget{RefHeading22059017292}{}
+
+\hrule
+\vspace{8pt}
+\noindent\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} A user changes their username while logged in.  \newline
+
+\noindent\textbf{Purpose:} Allows logged in users to change their username.  \newline
+
+\noindent\textbf{Preconditions:}
+\begin{enumerate}
+	\item User must have a registered account. 
+	\item User must be logged in.
+\end{enumerate} 
+
+\noindent\textbf{Steps:} 
+\begin{enumerate}
+	\item Users clicks Change Username button.
+	\item System prompts user to enter a new username.
+	\item User enters a username and clicks Change Username.
+\end{enumerate}
+
+\noindent\textbf{Alternatives:}
+\begin{enumerate}
+	\item If username doesn't exist, System changes the user's username.
+	\item If username exists, System asks user to enter a different username.
+\end{enumerate}
+
+\noindent\textbf{Related Use Cases:} 
+\begin{enumerate}
+	\item Change Password
+	\item Change Email
+\end{enumerate}
+\vspace{8pt}
+\hrule
 \newpage
 
 \subsubsection[Use Case Diagram 2: Project Browsing]{\selectlanguage{english}\rmfamily\bfseries\color{black}

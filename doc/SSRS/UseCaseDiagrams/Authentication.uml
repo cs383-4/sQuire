@@ -1,32 +1,15 @@
-@startuml
-'left to right direction
+:User: -down-> (Register)
+(Register) --> (Click Confirmation \n Link in Email)
+(Register) --> (Choose Username)
+(Register) --> (Choose Email)
+(Register) --> (Choose Password)
+:User: -up--> (Log in)
+(Log in) --> (Change Password)
+(Change Password) --> (Enter new password)
+(Log in) --> (Change Email)
+(Log in) --> (Change Username)
+(Log in) --> (Log out)
 
-actor User << Human >>
-actor Admin << Human >>
-actor Server << Application >>
+(Log in) ..> (Register) : requires
 
-rectangle "sign up" {
-    User --> (registration) 
-    user --> (personal data)
-    (personal data) --> (confirmation email)
-    (confirmation email) --> (save informaion) : approve
-    admin --> (home page)
-    
-}
-
-rectangle "sign in" {
-    user --> (personal data)
-    (personal data) --> (Admin) : approve
-}
-
-rectangle "log out" {
-    user --> (log out)
-    (log out) --> (Prompt)
-    (promot) --> (verifies)
-    (verifies) --> (log user out)
-}
-
-Server <--> (sends confirmation email)
-Server <--> (save informaion & home page)
-server <--> (promot & logs user out)
-@enduml
+(Change Email) --> (Click Confirmation \n Link in Email)
