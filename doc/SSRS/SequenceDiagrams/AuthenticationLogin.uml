@@ -1,0 +1,25 @@
+Program -> Server : VerifyCredentials(username, password)
+Activate Program
+Activate Server
+Server -> Database : Validate(username, password)
+Activate Database
+Database -> Database : SELECT statement 
+
+alt Valid Credentials
+    Database -> Database : GenerateSessionId()
+    Database --> Server : sessionId
+    Deactivate Database
+    Server -> Server : PerformLogin(username, sessionId)
+    Server --> Program : LoginSuccessful
+    Deactivate Server
+    Program -> Program : ShowLoggedInPage()
+else Invalid Credentials
+    Activate Database
+    Activate Server
+    Database --> Server : invalidSessionId
+    Deactivate Database
+    Server -> Server : PerformLogin(username, sessionId)
+    Server --> Program : LoginFailed
+    Deactivate Server
+    Program -> Program : ShowLoginFailedPage()
+end

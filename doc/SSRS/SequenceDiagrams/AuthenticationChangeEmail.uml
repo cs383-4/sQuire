@@ -1,0 +1,28 @@
+Activate Program
+Activate Server
+Program -> Server : CheckNewEmail(newEmail)
+Activate Database
+Server -> Database : CheckNewEmail(newEmail)
+Database -> Database : SELECT newEmail
+
+alt Valid Email
+
+    Database --> Server : validEmail
+    Deactivate Database
+    Server --> Server : SendConfirmationEmail(newEmail)
+    Server --> Program : emailSent
+    Deactivate Server
+    Program -> Program : NotifyEmailSent()
+
+else Invalid Email
+
+    Activate Database
+    Database --> Server : invalidEmail
+    Deactivate Database
+    Activate Server
+    Server --> Program : invalidEmail
+    Deactivate Server
+    Program -> Program : NotifyInvalidEmail()
+end
+
+Deactivate Program

@@ -1,0 +1,28 @@
+Activate Program
+Activate Server
+Program -> Server : CheckNewUsername(newUsername)
+Activate Database
+Server -> Database : CheckNewUsername(newUsername)
+Database -> Database : SELECT newUsername
+
+alt Valid Username
+
+    Database --> Server : validUsername
+    Deactivate Database
+    Server --> Server : SendEmailNotification(newEmail)
+    Server --> Program : validUsername
+    Deactivate Server
+    Program -> Program : NotifyUsernameChanged()
+
+else Invalid Username
+
+    Activate Database
+    Database --> Server : invalidUsername
+    Deactivate Database
+    Activate Server
+    Server --> Program : invalidUsername
+    Deactivate Server
+    Program -> Program : NotifyInvalidUsername()
+end
+
+Deactivate Program

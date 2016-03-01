@@ -1,0 +1,40 @@
+Activate Program
+Program -> Program : CheckPasswords(password1, password2)
+
+alt Passwords Match
+
+    Activate Server
+    Program -> Server : SignUp(username, email, password1)
+    Activate Database
+    Server -> Database : ValidateCredentials(username, email, password1)
+    Database -> Database : SELECT statement
+
+    alt Valid Username and Email
+    
+        Database -> Database : INSERT credentials
+        Database --> Server : validFlag
+        Deactivate Database
+        Server -> Server : SendEmailConfirmation(email)
+        Server --> Program : emailNotification
+        Deactivate Server
+        Program --> Program : emailSentMessage()
+
+    else Invalid Username or Email
+    
+        Activate Database
+        Activate Server
+        Database --> Server : invalidFlag
+        Deactivate Database
+        Server --> Program : notifyInvalid
+        Deactivate Server
+        Program -> Program : invalidMessage()
+        
+    end    
+
+else Passwords Don't Match
+
+    Program -> Program : passwordsDontMatchMessage()
+
+end
+
+Deactivate Program

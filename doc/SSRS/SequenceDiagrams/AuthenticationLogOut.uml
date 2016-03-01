@@ -1,0 +1,10 @@
+Activate Program
+Program -> Server : LogOut(user, sessionId)
+Activate Server
+Server -> Database : LogOut(user, sessionId)
+Activate Database
+Database --> Server : LogOutComplete
+Deactivate Database
+Server --> Program : LogOutCompleted
+Deactivate Server
+Deactivate Program
