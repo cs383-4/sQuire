@@ -1246,24 +1246,45 @@ A usecase diagram for sQuire\'s communication features.
 \hrule
 \newpage
 
-\subsection{Project Management (sass8427)}
-\subsubsection{Create project (sass8427)}
+\subsection{Project Management (dani2918)}
+Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 worked on the original use cases in this section.
+\subsubsection{Compile and execute project (dani2918)}
 \vspace{2pt}
 \hrule
 \vspace{8pt}
  \textbf{Actors:} User \\ \\
-\textbf{Goals:} Create a new project with user specs. \\ \\
- \textbf{Pre-conditions:} Project creator is logged in, viewing projects.  \\ \\
-\textbf{Summary:} In order for a user to create a new project, they must be logged in to sQuire and provide at a minimum a project title. Although optional, also adding a mission statement, description, and initial project files is highly encouraged on the basis that they will create more interest for the new project. \\ \\
+\textbf{Goals:} Compile and execute active project\\ \\
+ \textbf{Pre-conditions:} Actor is logged in, navigated to desired project.  \\ \\
+\textbf{Summary:} User compiles a project and the project executes.\\ \\
+\textbf{Related use cases:} \\ \\
+\textbf{Steps:} \begin{enumerate}
+  \item User clicks ``Compile''
+  \item System displays results of compilation
+  \item System executes compiled project.
+ \end{enumerate}
+ \textbf{Alternatives:} Compilation fails. \\ \\
+ \textbf{Post-conditions:} None. \\
+\vspace{8pt}
+\hrule
+\newpage
+
+
+\subsubsection{Create project (dani2918)}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+ \textbf{Actors:} User \\ \\
+\textbf{Goals:} Create a new project. \\ \\
+ \textbf{Pre-conditions:} Actor is logged in.  \\ \\
+\textbf{Summary:} User creates a new project with a description and includes any desired files. \\ \\
 \textbf{Related use cases:} Import file \\ \\
 \textbf{Steps:} \begin{enumerate}
-  \item ``New Project'' is clicked by the user.
-  \item Project creation windows appears. 
-  \item User adds a title in appropriate entry. 
-  \item User adds any of the following (Optional): mission statement, description.
-  \item User decides whether or not to perform the task: ``Import file to the project''.
+  \item User clicks ``New Project.''
+  \item User gives project a title.
+  \item User adds an applicable description.
+  \item User imports any files by clicking ''Import.''
   \item User clicks ``Create''.
-  \item System imports files and list project.
+  \item System imports files and instantiates project.
  \end{enumerate}
  \textbf{Alternatives:} None. \\ \\
  \textbf{Post-conditions:} None. \\
@@ -1271,42 +1292,41 @@ A usecase diagram for sQuire\'s communication features.
 \hrule
 \newpage
 
-\subsubsection{Delete project (sass8427)}
+\subsubsection{Delete project (dani2918)}
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Admin or project owner. \\ \\
+ \textbf{Actors:} Project Administrator, sQuire Administrator. \\ \\
 \textbf{Goals:} Remove project from sQuire sever. \\ \\
- \textbf{Pre-conditions:} logged in, viewing projects.  \\ \\
-\textbf{Summary:} Deleting a project is a task the owner may want to perform for the purpose of cleaning up no longer relevant projects. Also, a sQuire admin may find the need to delete projects, either to free up wasted resources, or to fulfill everyday managerial duties. A “time to deletion” can be added to give project members time to retrieve data if they desire before the project is actually removed. \\ \\
-\textbf{Related use cases:} \\ \\
+ \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \\ \\
+\textbf{Summary:} Actor chooses to delete or remove an irrelevant or inappropriate project.  \\ \\
+\textbf{Related use cases:} Create project\\ \\
 \textbf{Steps:} \begin{enumerate}
-  \item Actor clicks delete icon on respective project.
+  \item Actor clicks ``Delete'' icon on active project.
   \item Delete dialog opens.
-  \item Actor chooses whether or not to add a deletion time deadline. 
-  \item Actor chooses whether or not to notify user of project deletion. 
-  \item Actor presses “Delete”. 
+  \item Actor presses ``Delete''. 
   \item Confirmation window is displayed.
-  \item User confirms or disregards deletion.
+  \item Actor confirms or disregards deletion.
+  \item System notifies collaborators that project was deleted.
  \end{enumerate}
- \textbf{Alternatives:} Actor may click “Cancel” at any time. \\ \\
+ \textbf{Alternatives:} Actor clicks ``Cancel.'' \\ \\
  \textbf{Post-conditions:} None. \\
 \vspace{8pt}
 \hrule
 \newpage
 
-\subsubsection{Join project (sass8427)}
+\subsubsection{Request to join project (dani2918)}
 \vspace{2pt}
 \hrule
 \vspace{8pt}
  \textbf{Actors:} User \\ \\
-\textbf{Goals:} Join a project created by some other user. \\ \\
- \textbf{Pre-conditions:} logged in, viewing projects, have not already joined project.  \\ \\
-\textbf{Summary:} A simple task that allows user to join projects for the purpose of working collaboratively.\\ \\
-\textbf{Related use cases:} \\ \\
+\textbf{Goals:} Join an existing project. \\ \\
+ \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \\ \\
+\textbf{Summary:} Actor sends a request to join as a collaborator on a project\\ \\
+\textbf{Related use cases:} Manage request to join project\\ \\
 \textbf{Steps:} \begin{enumerate}
-  \item User clicks join project. 
-  \item Notification is sent to project owner for review. 
+  \item Actor clicks ``Join project.'' 
+  \item Notification is sent to project administrator for review. 
  \end{enumerate}
  \textbf{Alternatives:} None. \\ \\
  \textbf{Post-conditions:} None. \\
@@ -1314,53 +1334,89 @@ A usecase diagram for sQuire\'s communication features.
 \hrule
 \newpage
 
-\subsubsection{Unjoin project (sass8427)}
+
+\subsubsection{Manage request to join project (dani2918)}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+ \textbf{Actors:} Project Administrator \\ \\
+\textbf{Goals:} Approve . \\ \\
+ \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \\ \\
+\textbf{Summary:} Actor approves/rejects a user who has requested to join as a collaborator on a project.\\ \\
+\textbf{Related use cases:} Request to join project \\ \\
+\textbf{Steps:} \begin{enumerate}
+  \item Actor clicks ``Review join requests.'' 
+  \item Actor reviews information about potential collaborator.
+  \item Actor clicks ``Approve User'' to approve a collaborator or ``Reject user'' to reject a collaborator.
+  \item System notifies user that they have been approved/rejected.
+ \end{enumerate}
+ \textbf{Alternatives:} None. \\ \\
+ \textbf{Post-conditions:} None. \\
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection{Leave project (dani2918)}
 \vspace{2pt}
 \hrule
 \vspace{8pt}
  \textbf{Actors:} User \\ \\
-\textbf{Goals:} Remove member status from project. \\ \\
- \textbf{Pre-conditions:} logged in, viewing projects, member of respective project, not project owner.  \\ \\
-\textbf{Summary:} A member of a project can unjoin that project at any time as long as they are not the project owner. To prevent mistakenly unjoining a project, the user is asked to confirm their decision.\\ \\
-\textbf{Related use cases:} \\ \\
+\textbf{Goals:} Remove actor as a collaborator from project. \\ \\
+ \textbf{Pre-conditions:} logged in, viewing desired project, collaborator on desired project, not project owner.  \\ \\
+\textbf{Summary:} A member of a project leaves said project, leaving the project intact. \\ \\
+\textbf{Related use cases:} Delete project \\ \\
 \textbf{Steps:} \begin{enumerate}
-  \item User performs the task: ``Choose project".
-  \item User clicks "Unjoin". 
-  \item User is promted to confirm their decision
+  \item User clicks ``Leave Project''. 
+  \item System prompts user to confirm decision.
   \item User clicks "Confirm".
   \item User is removed from project member list.    
  \end{enumerate}
- \textbf{Alternatives:} User clicks "Cancel" at step 4, in which case the task is ends at that point. \\ \\
+ \textbf{Alternatives:} User clicks "Cancel" at step 4. \\ \\
  \textbf{Post-conditions:} None. \\
 \vspace{8pt}
 \hrule
 \newpage
 
-\subsubsection{Accept invite to project (sass8427)}
+\subsubsection{Invite to project (dani2918)}
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User who received the invite (Invitee), sQuire user who sent the invite (Referrer), and Project Owner (May be the same as the Referrer).  \\ \\
-\textbf{Goals:} Gain access to a project \\ \\
- \textbf{Pre-conditions:} Authorized user with access to the project sends an email invite to another user.   \\ \\
-\textbf{Summary:} A project owner or member of can send email s to other sQuire user's. The invited user can accept the invite by clicking the link in the email at which point the link is deavtivated. \\ \\
-\textbf{Related use cases:} \\ \\
+ \textbf{Actors:} Project Administrator, Authorized Project Collaborator (User).  \\ \\
+\textbf{Goals:} Invite user(s) to collaborate on project \\ \\
+ \textbf{Pre-conditions:} Actor is viewing project which he or she created, is logged in   \\ \\
+\textbf{Summary:} A project administrator requests help from a user on a project. The sQuire system facilitates the invitation process  \\ \\
+\textbf{Related use cases:} Respond to project invite\\ \\
 \textbf{Steps:} \begin{enumerate}
-  \item Invitee clicks on the link received by email. 
-  \item New browser window opens with sQuire site
-  \item Message appears that invitee's account has been added to the access list for the Project.
-  \item The project is added to their Projects list.
-  \item Owner and Referrer (who may be the same) receive an email in-forming them a new collaborator has been added.
-  \item Project is opened in sQuire after a short delay.
+  \item Actor clicks ``Invite User.''
+  \item Actor enters the username(s) of the user(s) to be invited to the project.
+  \item Actor enters any message to the user(s) in a text box.
+  \item Actor clicks ``Send invite.''
+  \item System sends notification of invite to user(s).
  \end{enumerate}
- \textbf{Alternatives:} 2B. If invitee is not logged in to sQuire, they are prompted for their credentials.
- 
-	2C. If invitee does not have a sQuire account, they are prompted to first create an account.
-	
-	3B. Project has been deleted. Invitee is informed the project does not exist and asks if they would like to create a new project with that name.
-	
-	3C. Join link has been deactivated because of previous use/time limit. Invitee is informed that the invite has expired and is no longer valid, instructing them to contact the Project Owner for access. \\ \\
- \textbf{Post-conditions:} Link is deactivated.  \\
+ \textbf{Alternatives:} Actor clicks ``Cancel.''
+ \textbf{Post-conditions:} None.  \\
+\vspace{8pt}
+\hrule
+\newpage
+
+
+\subsubsection{Respond to project invite (dani2918)}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+ \textbf{Actors:} User  \\ \\
+\textbf{Goals:} Actor responds to an invitation to a project.\\ \\
+ \textbf{Pre-conditions:} Actor is signed in, viewing invitation.  \\ \\
+\textbf{Summary:} Actor receives notification that he or she has been invited to a project and either accepts the invitation or declines it. \\ \\
+\textbf{Related use cases:} Invite to project \\ \\
+\textbf{Steps:} \begin{enumerate}
+  \item Actor clicks ``Respond to Invitation.''
+  \item Actor clicks ``Accept'' or ``Reject.''
+  \item Actor types any message to invitation-sender in text box.
+  \item Actor clicks ``Confirm.''
+ \end{enumerate}
+ \textbf{Alternatives:} Actor clicks ``Cancel.'' \\ \\
+ \textbf{Post-conditions:} Actor becomes collaborator on project if invitation was accepted. \\
 \vspace{8pt}
 \hrule
 \newpage
