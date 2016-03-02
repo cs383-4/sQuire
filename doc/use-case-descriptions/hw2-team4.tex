@@ -3,11 +3,11 @@
 \usepackage{graphicx}
 \usepackage{framed}
 %\graphicspath{ {images/} }
-\marginparwidth 0.5in 
-\oddsidemargin 0.25in 
-\evensidemargin 0.25in 
+\marginparwidth 0.5in
+\oddsidemargin 0.25in
+\evensidemargin 0.25in
 \marginparsep 0.25in
-\topmargin 0.0in 
+\topmargin 0.0in
 \textwidth 6in \textheight 8.5in
 \title{sQuire: A Web Based Collaborative Editor}
 \author{bolt1003, wern0096, alsh5301, sass8427, dani2918, boss2849, snev7821, jank6275}
@@ -40,7 +40,7 @@ A usecase diagram for sQuire\'s communication features.
 %\includegraphics[width=\textwidth]{sass8427}
 \subsection{User Profile Management (bolt1003)}
 %\includegraphics[width=\textwidth]{diagrams/bolt1003}
-\subsection{Project User Management (boss2849)} 
+\subsection{Project User Management (boss2849)}
 %\includegraphics[width=\textwidth]{diagrams/boss2849}
 \subsection{User Editor Preferences (snev7821)}
 %\includegraphics[width=\textwidth]{diagrams/snev7821}
@@ -51,21 +51,21 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} user. \\ \\
-\textbf{Goals:} To register and create an account in the program. \\ \\
- \textbf{Pre-conditions:} None. \\ \\
- \textbf{Summary:} The user signs up and creates an account using their email address and creates username and password. Once they can access to the program. \\ \\
-\textbf{Related use cases:} None. \\ \\
+ \textbf{Actors:} user. \newline
+\textbf{Goals:} To register and create an account in the program. \newline
+ \textbf{Pre-conditions:} None. \newline
+ \textbf{Summary:} The user signs up and creates an account using their email address and creates username and password. Once they can access to the program. \newline
+\textbf{Related use cases:} None. \newline
 \textbf{Steps:} \begin{enumerate}
-  \item User is prompted to enter email and password. 
-  \item System sends confirmation email. 
-  \item User verifies email. 
-  \item User clicks finish System presents user with additional info page. 
-  \item User enters password, may choose to upload photo, works, etc. 
-  \item System saves information, takes user to home page. 
- \end{enumerate} 
- \textbf{Alternative 1:} User already has an account. \\ \\
-\textbf{Alternative 2:} User doesn't confirm email. Delete request after timeout period. \\
+  \item User is prompted to enter email and password.
+  \item System sends confirmation email.
+  \item User verifies email.
+  \item User clicks finish System presents user with additional info page.
+  \item User enters password, may choose to upload photo, works, etc.
+  \item System saves information, takes user to home page.
+ \end{enumerate}
+ \textbf{Alternative 1:} User already has an account. \newline
+\textbf{Alternative 2:} User doesn't confirm email. Delete request after timeout period. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -74,20 +74,20 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Users. \\ \\
-\textbf{Goals:} Pre-existing user signs into profile. \\ \\
-\textbf{Precondition:} User must already have an account \\ \\
-\textbf{Summary:} User wishes to access their account, projects and info. \\ \\
+ \textbf{Actors:} Users. \newline
+\textbf{Goals:} Pre-existing user signs into profile. \newline
+\textbf{Precondition:} User must already have an account \newline
+\textbf{Summary:} User wishes to access their account, projects and info. \newline
 \textbf{Steps:} \begin{enumerate}
-  \item User is prompted to enter email and password 
+  \item User is prompted to enter email and password
   \item System verifies information
-  \item If info is correct user is presented with their home page. 
+  \item If info is correct user is presented with their home page.
   \item If user forgot their user name, they can click "Forgot Username button. They then input their email address.
-  \item System validates their email address with an account, and sends an email with the username  
+  \item System validates their email address with an account, and sends an email with the username
   \item If user forgot their password, they click "Forgot password" button. Then they input their email address.
   \item System validates their email address with an account, and sends an email to them with a temporary password.
  \end{enumerate}
- \textbf{Alternatives:} Information is incorrect, user tries again. Or makes a new account \\
+ \textbf{Alternatives:} Information is incorrect, user tries again. Or makes a new account \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -96,20 +96,20 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Users. \\ \\
-\textbf{Goal:} Existing user logs out \\ \\
-\textbf{Precondition:} User must be logged in \\ \\
- \textbf{Summary:}  The user can log-out of the program after finishing process the project  \\ \\
+ \textbf{Actors:} Users. \newline
+\textbf{Goal:} Existing user logs out \newline
+\textbf{Precondition:} User must be logged in \newline
+ \textbf{Summary:}  The user can log-out of the program after finishing process the project  \newline
  \textbf{Steps:} \begin{enumerate}
- \item User clicks the "log-out" button. 
- \item System prompts user to ensure non-accidental click. 
- \item User verifies. 
- \item System logs user out. 
- \item User enters password, may choose to upload photo, works, etc. 
+ \item User clicks the "log-out" button.
+ \item System prompts user to ensure non-accidental click.
+ \item User verifies.
+ \item System logs user out.
+ \item User enters password, may choose to upload photo, works, etc.
  \item System saves information, takes user to home page.
  \end{enumerate}
-  \textbf{Alternative 1:} The program will send notification to ask if the user is sure to sign out. \\ \\
-  \textbf{Alternative 2:} user cancels on step two. Return to home page. \\
+  \textbf{Alternative 1:} The program will send notification to ask if the user is sure to sign out. \newline
+  \textbf{Alternative 2:} user cancels on step two. Return to home page. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -119,11 +119,11 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Examine a list of available project ideas  \\ \\
- \textbf{Pre-conditions:} User is signed in  \\ \\
- \textbf{Summary:} User looks through posted project ideas to find projects to work on/discuss \\ \\
-\textbf{Related use cases:} Comment on Project Idea, Vote on Project Idea, Share Project Idea \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Examine a list of available project ideas  \newline
+ \textbf{Pre-conditions:} User is signed in  \newline
+ \textbf{Summary:} User looks through posted project ideas to find projects to work on/discuss \newline
+\textbf{Related use cases:} Comment on Project Idea, Vote on Project Idea, Share Project Idea \newline
 \textbf{Steps:} \begin{enumerate}
   \item Actor selects Browse Project Ideas button
   \item Actor refines search by selecting from list of project categories as desired
@@ -131,8 +131,8 @@ A usecase diagram for sQuire\'s communication features.
   \item Actor selects desired project
   \item System displays detailed project information
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -141,18 +141,18 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Project Administrator \\ \\
-\textbf{Goals:} Generate public interest in project idea  \\ \\
- \textbf{Pre-conditions:} Prospective project administrator is signed in  \\ \\
- \textbf{Summary:}  A user with interest in heading up own project can post ideas to get feedback and/or recruit collaborators \\ \\
-\textbf{Related use cases:} Manage Project Idea Thread \\ \\
+ \textbf{Actors:} Project Administrator \newline
+\textbf{Goals:} Generate public interest in project idea  \newline
+ \textbf{Pre-conditions:} Prospective project administrator is signed in  \newline
+ \textbf{Summary:}  A user with interest in heading up own project can post ideas to get feedback and/or recruit collaborators \newline
+\textbf{Related use cases:} Manage Project Idea Thread \newline
 \textbf{Steps:} \begin{enumerate}
   \item Actor selects Create Project Idea button
   \item Actor enters prospective project title and thoughts and ideas as a description
   \item Actor selects Submit button
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -161,20 +161,20 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Project Administrator \\ \\
-\textbf{Goals:} Respond to feedback and manage project idea  \\ \\
- \textbf{Pre-conditions:} Prospective project administrator is signed in and has navigated to one of his or her own project threads  \\ \\
- \textbf{Summary:}  A prospective project administrator responds to others' questions/comments \\ \\
-\textbf{Related use cases:} Create Project Idea Thread \\ \\
+ \textbf{Actors:} Project Administrator \newline
+\textbf{Goals:} Respond to feedback and manage project idea  \newline
+ \textbf{Pre-conditions:} Prospective project administrator is signed in and has navigated to one of his or her own project threads  \newline
+ \textbf{Summary:}  A prospective project administrator responds to others' questions/comments \newline
+\textbf{Related use cases:} Create Project Idea Thread \newline
 \textbf{Steps:} \begin{enumerate}
   \item Actor selects Reply button on a comment
   \item Actor types feedback to other user
-  \item Actor selects Submit button 
-  \item System shows confirmation that feedback was received 
-  
+  \item Actor selects Submit button
+  \item System shows confirmation that feedback was received
+
  \end{enumerate}
- \textbf{Alternatives:} Actor selects Delete Comment instead of Reply to remove harmful feedback. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} Actor selects Delete Comment instead of Reply to remove harmful feedback. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -183,19 +183,19 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Provide detailed feedback on project ideas  \\ \\
- \textbf{Pre-conditions:} Actor is signed in, has navigated to a project idea  \\ \\
- \textbf{Summary:}  User provides feedback to or asks questions about a prospective project. \\ \\
-\textbf{Related use cases:} Browse Project Ideas, Vote on Project Idea, Manage Project Idea Thread \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Provide detailed feedback on project ideas  \newline
+ \textbf{Pre-conditions:} Actor is signed in, has navigated to a project idea  \newline
+ \textbf{Summary:}  User provides feedback to or asks questions about a prospective project. \newline
+\textbf{Related use cases:} Browse Project Ideas, Vote on Project Idea, Manage Project Idea Thread \newline
 \textbf{Steps:} \begin{enumerate}
   \item Actor selects Comment button
-  \item Actor types feedback into field 
+  \item Actor types feedback into field
   \item Actor clicks Submit button
-  \item System shows confirmation that feedback was received 
+  \item System shows confirmation that feedback was received
  \end{enumerate}
- \textbf{Alternatives:} None \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -204,18 +204,18 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Support promising project ideas or offer criticism to unfavorable ones  \\ \\
- \textbf{Pre-conditions:} Actor is signed in, has navigated to a project idea  \\ \\
- \textbf{Summary:}  User offers support/discourages a project idea so that prospective project administrators get feedback and promising project ideas get publicity \\ \\
-\textbf{Related use cases:} Comment on Project Idea \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Support promising project ideas or offer criticism to unfavorable ones  \newline
+ \textbf{Pre-conditions:} Actor is signed in, has navigated to a project idea  \newline
+ \textbf{Summary:}  User offers support/discourages a project idea so that prospective project administrators get feedback and promising project ideas get publicity \newline
+\textbf{Related use cases:} Comment on Project Idea \newline
 \textbf{Steps:} \begin{enumerate}
   \item Actor selects and Up Vote or Down Vote button
-  \item Actor selects Submit button 
+  \item Actor selects Submit button
   \item System highlights which button the user has selected
  \end{enumerate}
- \textbf{Alternatives:} None \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -224,19 +224,19 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User, Project Administrator \\ \\
-\textbf{Goals:} Generate excitement about a project  \\ \\
- \textbf{Pre-conditions:} Actor is signed in, has navigated to a project idea  \\ \\
- \textbf{Summary:}  Prospective project administrators or users show other users which projects they believe are worthwhile \\ \\
-\textbf{Related use cases:} Comment on Project Idea \\ \\
+ \textbf{Actors:} User, Project Administrator \newline
+\textbf{Goals:} Generate excitement about a project  \newline
+ \textbf{Pre-conditions:} Actor is signed in, has navigated to a project idea  \newline
+ \textbf{Summary:}  Prospective project administrators or users show other users which projects they believe are worthwhile \newline
+\textbf{Related use cases:} Comment on Project Idea \newline
 \textbf{Steps:} \begin{enumerate}
   \item Actor selects Share button
   \item Actor selects an audience and method with which to share selected project
   \item Actor selects Submit button
   \item System notifies or shows audience the shared project idea
  \end{enumerate}
- \textbf{Alternatives:} None \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -246,18 +246,18 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} To open the project chat window. \\ \\
- \textbf{Pre-conditions:} User must be registered, signed in, and have a open project.  \\ \\
- \textbf{Summary:} User opens a project and the project chat automatically opens. The chat window displays chat history and updates when new chat messages are received. \\ \\
-\textbf{Related use cases:} Join global chat. \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} To open the project chat window. \newline
+ \textbf{Pre-conditions:} User must be registered, signed in, and have a open project.  \newline
+ \textbf{Summary:} User opens a project and the project chat automatically opens. The chat window displays chat history and updates when new chat messages are received. \newline
+\textbf{Related use cases:} Join global chat. \newline
 \textbf{Steps:} \begin{enumerate}
   \item User opens a project.
   \item Chat is notified that user has joined.
   \item System displays project chat window to the user.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -266,18 +266,18 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} To open the global chat window. \\ \\
- \textbf{Pre-conditions:} User must be registered, signed in, and anywhere on website.  \\ \\
- \textbf{Summary:} User authenticates with the server and the global chat automatically opens. The chat window displays chat history and updates when new chat messages are received.  \\ \\
-\textbf{Related use cases:} Join project chat. \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} To open the global chat window. \newline
+ \textbf{Pre-conditions:} User must be registered, signed in, and anywhere on website.  \newline
+ \textbf{Summary:} User authenticates with the server and the global chat automatically opens. The chat window displays chat history and updates when new chat messages are received.  \newline
+\textbf{Related use cases:} Join project chat. \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks open global chat.
   \item Chat is notified that user has joined.
   \item System displays global chat window.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -286,18 +286,18 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} To close the project chat window. \\ \\
- \textbf{Pre-conditions:} User must be registered, signed in, and in editor Mode.  \\ \\
- \textbf{Summary:} User clicks on close project chat and the chat window closes. \\ \\
-\textbf{Related use cases:} Close global chat. \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} To close the project chat window. \newline
+ \textbf{Pre-conditions:} User must be registered, signed in, and in editor Mode.  \newline
+ \textbf{Summary:} User clicks on close project chat and the chat window closes. \newline
+\textbf{Related use cases:} Close global chat. \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks close project chat.
   \item Chat is notified that user has left.
   \item Client closes project chat window.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -306,18 +306,18 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} To close the global chat window. \\ \\
- \textbf{Pre-conditions:} User must be registered, signed in, and anywhere on website.  \\ \\
- \textbf{Summary:} User clicks on open global chat and the chat opens, displaying chat history and updating when needed. \\ \\
-\textbf{Related use cases:} Close project chat. \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} To close the global chat window. \newline
+ \textbf{Pre-conditions:} User must be registered, signed in, and anywhere on website.  \newline
+ \textbf{Summary:} User clicks on open global chat and the chat opens, displaying chat history and updating when needed. \newline
+\textbf{Related use cases:} Close project chat. \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks close global chat.
   \item Chat is notified that user has left.
   \item Client closes global chat window.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -326,19 +326,19 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} To send text to project chat. \\ \\
- \textbf{Pre-conditions:} User must be registered, signed in, a project opened, with the project chat window open, and the text box selected.  \\ \\
- \textbf{Summary:} User clicks in the project chat text box and then types a message then either presses enter or clicks the submit button. The text is displayed to all users in the chat, including the user. \\ \\
-\textbf{Related use cases:} Write to global chat. \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} To send text to project chat. \newline
+ \textbf{Pre-conditions:} User must be registered, signed in, a project opened, with the project chat window open, and the text box selected.  \newline
+ \textbf{Summary:} User clicks in the project chat text box and then types a message then either presses enter or clicks the submit button. The text is displayed to all users in the chat, including the user. \newline
+\textbf{Related use cases:} Write to global chat. \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks in the project chat box.
   \item User types a message and then presses enter or clicks submit button.
   \item Message is relayed to all clients with project chat open.
   \item Message is displayed.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -347,19 +347,19 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} To send text to global chat. \\ \\
- \textbf{Pre-conditions:} User must be registered, signed in, anywhere on website, with the global chat window open, and the text box selected.  \\ \\
- \textbf{Summary:} User clicks in the global chat text box and then types a message then either presses enter or clicks the submit button. The text is displayed to all users in the chat, including the user. \\ \\
-\textbf{Related use cases:} Write to project chat. \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} To send text to global chat. \newline
+ \textbf{Pre-conditions:} User must be registered, signed in, anywhere on website, with the global chat window open, and the text box selected.  \newline
+ \textbf{Summary:} User clicks in the global chat text box and then types a message then either presses enter or clicks the submit button. The text is displayed to all users in the chat, including the user. \newline
+\textbf{Related use cases:} Write to project chat. \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks in the global chat box.
   \item User types a message and then presses enter or clicks submit button.
   \item Message is relayed to all clients with global chat open.
   \item Message is displayed.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -368,11 +368,11 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} To change a users font style inside the global and project chat. \\ \\
- \textbf{Pre-conditions:} User must be registered, signed in, the user settings window opened, and the chat settings tab open.  \\ \\
- \textbf{Summary:} The user clicks the settings menu and changes their font style for both the project and global chat through a drop down box of available fonts. \\ \\
-\textbf{Related use cases:} Modify chat color. \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} To change a users font style inside the global and project chat. \newline
+ \textbf{Pre-conditions:} User must be registered, signed in, the user settings window opened, and the chat settings tab open.  \newline
+ \textbf{Summary:} The user clicks the settings menu and changes their font style for both the project and global chat through a drop down box of available fonts. \newline
+\textbf{Related use cases:} Modify chat color. \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks the settings menu.
   \item User clicks chat settings tab.
@@ -382,8 +382,8 @@ A usecase diagram for sQuire\'s communication features.
   \item The user\'s selection is saved in the database.
   \item All further chat messages will use the selected font.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -392,11 +392,11 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} To change a users font color inside the global and project chat. \\ \\
- \textbf{Pre-conditions:} User must be registered, signed in, the user settings window opened, and the chat settings tab open.  \\ \\
- \textbf{Summary:} The user clicks the settings menu and changes their font color for both the project and global chat through a drop down box of available colors. \\ \\
-\textbf{Related use cases:} Modify chat font. \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} To change a users font color inside the global and project chat. \newline
+ \textbf{Pre-conditions:} User must be registered, signed in, the user settings window opened, and the chat settings tab open.  \newline
+ \textbf{Summary:} The user clicks the settings menu and changes their font color for both the project and global chat through a drop down box of available colors. \newline
+\textbf{Related use cases:} Modify chat font. \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks the settings menu.
   \item User clicks chat settings tab.
@@ -406,8 +406,8 @@ A usecase diagram for sQuire\'s communication features.
   \item The user\'s selection is saved in the database.
   \item All further chat messages from the user will use the selected color.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 
@@ -418,11 +418,11 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Task Name:} Add New File to Project \\ \\
-	\textbf{Task Category:} File Management \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} The user performs this task to add a new file to the project. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Task Name:} Add New File to Project \newline
+	\textbf{Task Category:} File Management \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} The user performs this task to add a new file to the project. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item User must be registered.
 		\item User must be logged in.
@@ -438,7 +438,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item User clicks \textit{Add}.
 		\item System adds the file to the project.
 	\end{enumerate}
-	\textbf{Alternatives:} 
+	\textbf{Alternatives:}
 	\begin{enumerate}
 		\item Step 1: The user right clicks in the project pane and the system continues on to step 2 above.
 		\item Step 5: The user clicks \textit{Cancel} and a new file is not added to the project.
@@ -449,7 +449,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item The database is updated to reflect the changes.
 	\end{enumerate}
 	\textbf{Related:} Add Existing File to Project
-\vspace{8pt} 
+\vspace{8pt}
 \hrule
 \newpage
 
@@ -457,11 +457,11 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Task Name:} Add Existing File to Project \\ \\
-	\textbf{Task Category:} File Management \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} The user performs this task to add an existing file to the project. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Task Name:} Add Existing File to Project \newline
+	\textbf{Task Category:} File Management \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} The user performs this task to add an existing file to the project. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item User must be registered.
 		\item User must be logged in.
@@ -479,7 +479,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item User clicks \textit{Add}.
 		\item System adds the file to the project.
 	\end{enumerate}
-	\textbf{Alternatives:} 
+	\textbf{Alternatives:}
 	\begin{enumerate}
 		\item Step 1: The user right clicks in the project pane and the system continues on to step 2 above.
 		\item Step 5-7: The user clicks \textit{Cancel} and a new file is not added to the project.
@@ -490,7 +490,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item The database is updated to reflect the changes.
 	\end{enumerate}
 	\textbf{Related:} Add New File to Project
-\vspace{8pt} 
+\vspace{8pt}
 \hrule
 \newpage
 
@@ -498,11 +498,11 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Task Name:} Delete File \\ \\
-	\textbf{Task Category:} File Management \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} The user performs this task to delete a file from the project. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Task Name:} Delete File \newline
+	\textbf{Task Category:} File Management \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} The user performs this task to delete a file from the project. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item User must be registered.
 		\item User must be logged in.
@@ -518,7 +518,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item User selects \textit{Yes}.
 		\item System deletes the file from the project.
 	\end{enumerate}
-	\textbf{Alternatives:} 
+	\textbf{Alternatives:}
 	\begin{enumerate}
 		\item Step 5: The user clicks \textit{Cancel} instead and the file is not deleted from the project.
 		\item The user selects multiple files before step 1.
@@ -528,7 +528,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item The file is deleted from the project.
 		\item The database is updated to reflect the changes.
 	\end{enumerate}
-\vspace{8pt} 
+\vspace{8pt}
 \hrule
 \newpage
 
@@ -536,11 +536,11 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Task Name:} Export Project \\ \\
-	\textbf{Task Category:} File Management \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} The user performs this task to download a project as a zip file. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Task Name:} Export Project \newline
+	\textbf{Task Category:} File Management \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} The user performs this task to download a project as a zip file. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item User must be registered.
 		\item User must be logged in.
@@ -557,7 +557,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item User clicks \textit{Export}.
 		\item System zips the file and downloads it to the specified location.
 	\end{enumerate}
-	\textbf{Alternatives:} 
+	\textbf{Alternatives:}
 	\begin{enumerate}
 		\item Step 1: The user right clicks in the project pane and the system continues on to step 2 above.
 		\item Step 5: The user clicks \textit{Cancel} and the project is not exported.
@@ -571,11 +571,11 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Task Name:} Export Files \\ \\
-	\textbf{Task Category:} File Management \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} The user performs this task to download a number of files from a project. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Task Name:} Export Files \newline
+	\textbf{Task Category:} File Management \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} The user performs this task to download a number of files from a project. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item User must be registered.
 		\item User must be logged in.
@@ -594,7 +594,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item User clicks \textit{Export}.
 		\item System downloads the selected files to the specified location.
 	\end{enumerate}
-	\textbf{Alternatives:} 
+	\textbf{Alternatives:}
 	\begin{enumerate}
 		\item Step 1: The user right clicks in the project pane and the system continues on to step 2 above.
 		\item Step 5: User selects a folder and all files under that folder are selected.
@@ -609,24 +609,24 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Open File in New Tab \\ \\
-	\textbf{Category:} File Management \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows users to open a file. \\ \\
-	\textbf{Purpose:} Opening files is essential in being able to work on a project. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Open File in New Tab \newline
+	\textbf{Category:} File Management \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows users to open a file. \newline
+	\textbf{Purpose:} Opening files is essential in being able to work on a project. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item User is registered.
 		\item User is logged in.
 		\item User has a project open.
 		\item Current project contains at least one file.
 		\item User has read permission.
-	\end{enumerate}		
+	\end{enumerate}
 	\textbf{Steps:}
 	\begin{enumerate}
 		\item User double clicks a file.
 		\item The editor opens its contents in a new tab and focuses on it.
-	\end{enumerate}	
+	\end{enumerate}
 	\textbf{Alternatives:} Step 1: Instead of double clicking a file, the user right clicks it and navigates to \textit{Open}.
 \vspace{8pt}
 \hrule
@@ -636,12 +636,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Save File \\ \\
-	\textbf{Category:} File Management \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows users save edited files. \\ \\
-	\textbf{Purpose:} Saving files is essential in maintaining the integrity of a project. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Save File \newline
+	\textbf{Category:} File Management \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows users save edited files. \newline
+	\textbf{Purpose:} Saving files is essential in maintaining the integrity of a project. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item User is registered.
 		\item User is logged in.
@@ -650,15 +650,15 @@ A usecase diagram for sQuire\'s communication features.
 		\item User has read permission.
 		\item User has write permission.
 		\item At least one file has been edited since the last save.
-	\end{enumerate}		
+	\end{enumerate}
 	\textbf{Steps:}
 	\begin{enumerate}
 		\item User edits one or more files.
 		\item System enables a flag signaling that edits have occurred.
 		\item User clicks a save button or keybind.
 		\item System saves current open file.
-	\end{enumerate}	
-	\textbf{Alternatives:} 
+	\end{enumerate}
+	\textbf{Alternatives:}
 	\begin{enumerate}
 		\item A \textit{Save All} button that saves all open, edited files.
 	\end{enumerate}
@@ -676,12 +676,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Close Saved File \\ \\
-	\textbf{Category:} File Management \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows users to close opened, saved files. \\ \\
-	\textbf{Purpose:} Closing files is essential in managing the workspace and increasing productivity. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Close Saved File \newline
+	\textbf{Category:} File Management \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows users to close opened, saved files. \newline
+	\textbf{Purpose:} Closing files is essential in managing the workspace and increasing productivity. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item User is registered.
 		\item User is logged in.
@@ -690,12 +690,12 @@ A usecase diagram for sQuire\'s communication features.
 		\item User has read permission
 		\item User has write permission.
 		\item Current opened file has no unsaved changes.
-	\end{enumerate}		
+	\end{enumerate}
 	\textbf{Steps:}
 	\begin{enumerate}
 		\item User clicks the 'x' on the edge of an open tab.
 		\item System closes current open file.
-	\end{enumerate}	
+	\end{enumerate}
 	\textbf{Postconditions:}
 	\begin{enumerate}
 		\item The opened tab and file are closed.
@@ -709,12 +709,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Close Unsaved File \\ \\
-	\textbf{Category:} File Management \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows users to close opened, unsaved files. \\ \\
-	\textbf{Purpose:} Closing unsaved files is a possibly risky procedure. It is important that the use case reduces the chance of the user losing their work. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Close Unsaved File \newline
+	\textbf{Category:} File Management \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows users to close opened, unsaved files. \newline
+	\textbf{Purpose:} Closing unsaved files is a possibly risky procedure. It is important that the use case reduces the chance of the user losing their work. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item User is registered.
 		\item User is logged in.
@@ -723,13 +723,13 @@ A usecase diagram for sQuire\'s communication features.
 		\item User has read permission
 		\item User has write permission.
 		\item Current opened file has unsaved changes.
-	\end{enumerate}		
+	\end{enumerate}
 	\textbf{Steps:}
 	\begin{enumerate}
 		\item User clicks the 'x' on the edge of an open tab.
 		\item System presents a dialog telling the user that there are unsaved changes to the file.
 		\item System asks the use if he wants to \textit{Save Changes and Don't Close}, \textit{Save and Close}, \textit{Close and Don't Save}, or \textit{Cancel}.
-	\end{enumerate}	
+	\end{enumerate}
 	\textbf{Alternatives:}
 	\begin{enumerate}
 		\item If the user selects \textit{Save Changes}, the file is saved as per the Save File use-case.
@@ -741,7 +741,7 @@ A usecase diagram for sQuire\'s communication features.
 	\begin{enumerate}
 		\item The database is updated if the user chose to save the file.
 	\end{enumerate}
-	\textbf{Related:} 
+	\textbf{Related:}
 	\begin{enumerate}
 		\item Close Saved File
 		\item Save File
@@ -749,19 +749,19 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{8pt}
 \hrule
 \newpage
-	
-		
+
+
 \subsection{File Editing (wern0096)}
 \subsubsection{View Line Numbers (wern0096)}
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} View Line Numbers \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows the user to view line numbers to the left of the document. \\ \\
-	\textbf{Purpose:} Makes it easier to communicate position in code. It is also a useful metric to have.\\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} View Line Numbers \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows the user to view line numbers to the left of the document. \newline
+	\textbf{Purpose:} Makes it easier to communicate position in code. It is also a useful metric to have.\newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -789,12 +789,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} View References \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows the user to view the number of references to a given function. \\ \\
-	\textbf{Purpose:} It is useful to know the number of references to a given function for optimization and debugging purposes. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} View References \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows the user to view the number of references to a given function. \newline
+	\textbf{Purpose:} It is useful to know the number of references to a given function for optimization and debugging purposes. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -822,12 +822,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} View Dates \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows the user to view the last date that each line of a document was edited. \\ \\
-	\textbf{Purpose:} This provides a useful metric for how up-to-date parts of the document are. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} View Dates \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows the user to view the last date that each line of a document was edited. \newline
+	\textbf{Purpose:} This provides a useful metric for how up-to-date parts of the document are. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -855,12 +855,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} View Authors \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows the user to view the last author that edited each of line of the document. \\ \\
-	\textbf{Purpose:} This is an accountability tool allowing other users to identify who is responsible for a change to a document. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} View Authors \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows the user to view the last author that edited each of line of the document. \newline
+	\textbf{Purpose:} This is an accountability tool allowing other users to identify who is responsible for a change to a document. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -888,12 +888,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Format Document \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows the user to format the document to a specified format \\ \\
-	\textbf{Purpose:} An easy tool for making sweeping changes to a large part of a document. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Format Document \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows the user to format the document to a specified format \newline
+	\textbf{Purpose:} An easy tool for making sweeping changes to a large part of a document. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -925,12 +925,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Find/Replace \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows the user to find and/or replace phrases. \\ \\
-	\textbf{Purpose:} This is a powerful tool that allows a user to make safer, quicker, and more efficient changes to a document. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Find/Replace \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows the user to find and/or replace phrases. \newline
+	\textbf{Purpose:} This is a powerful tool that allows a user to make safer, quicker, and more efficient changes to a document. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -963,12 +963,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Comment Section \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} Allows the user to comment out a part of a document. \\ \\
-	\textbf{Purpose:} A useful and quick way to disable a large part of a document. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Comment Section \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} Allows the user to comment out a part of a document. \newline
+	\textbf{Purpose:} A useful and quick way to disable a large part of a document. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -1000,16 +1000,16 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Display Typing User \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actors:} 
+	\noindent\textbf{Name:} Display Typing User \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actors:}
 	\begin{enumerate}
 		\item User
 		\item Other Users
 	\end{enumerate}
-	\textbf{Summary:} As the user types, the system displays their name, their typing, and their caret, in a different color, to other users. \\ \\
-	\textbf{Purpose:} Differentiate who is typing what. \\ \\
-	\textbf{Preconditions:} 
+	\textbf{Summary:} As the user types, the system displays their name, their typing, and their caret, in a different color, to other users. \newline
+	\textbf{Purpose:} Differentiate who is typing what. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -1031,12 +1031,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Display Syntax Errors \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} As the user types code, the editor will underline syntax errors with a red line. \\ \\
-	\textbf{Purpose:} Aids the user is writing correct code. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Display Syntax Errors \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} As the user types code, the editor will underline syntax errors with a red line. \newline
+	\textbf{Purpose:} Aids the user is writing correct code. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -1057,12 +1057,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Display Syntax Highlighting \\ \\
-	\textbf{Category:} File Editing \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} As the user types code, the editor will change font color for different code structures and keywords. \\ \\
-	\textbf{Purpose:} Aids the user is writing code and identifying key code parts. \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Display Syntax Highlighting \newline
+	\textbf{Category:} File Editing \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} As the user types code, the editor will change font color for different code structures and keywords. \newline
+	\textbf{Purpose:} Aids the user is writing code and identifying key code parts. \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered.
 		\item Must be logged in.
@@ -1084,12 +1084,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} View User Preferences \\ \\
-	\textbf{Category:} User Preferences - Editor  \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} User views their preferences and from here can change them \\ \\
-	\textbf{Purpose:} Allows user to view their preferences and change them \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} View User Preferences \newline
+	\textbf{Category:} User Preferences - Editor  \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} User views their preferences and from here can change them \newline
+	\textbf{Purpose:} Allows user to view their preferences and change them \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered
 		\item Must be logged in
@@ -1109,12 +1109,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Modify Chat Font \\ \\
-	\textbf{Category:} User Preferences - Editor  \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} User changes the chat font \\ \\
-	\textbf{Purpose:} Allows user to change what chat font they see for themselves and others \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Modify Chat Font \newline
+	\textbf{Category:} User Preferences - Editor  \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} User changes the chat font \newline
+	\textbf{Purpose:} Allows user to change what chat font they see for themselves and others \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered
 		\item Must be logged in
@@ -1137,12 +1137,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Modify Chat Color \\ \\
-	\textbf{Category:} User Preferences - Editor  \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} User changes the chat color \\ \\
-	\textbf{Purpose:} Allows user to change what chat color they see for themselves and others \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Modify Chat Color \newline
+	\textbf{Category:} User Preferences - Editor  \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} User changes the chat color \newline
+	\textbf{Purpose:} Allows user to change what chat color they see for themselves and others \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered
 		\item Must be logged in
@@ -1165,12 +1165,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Edit User Editor Theme \\ \\
-	\textbf{Category:} User Preferences - Editor  \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:}User changes the Editor theme \\ \\
-	\textbf{Purpose:} Allows user to change theme of the collaborative editor \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Edit User Editor Theme \newline
+	\textbf{Category:} User Preferences - Editor  \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:}User changes the Editor theme \newline
+	\textbf{Purpose:} Allows user to change theme of the collaborative editor \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered
 		\item Must be logged in
@@ -1183,7 +1183,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item User selects a theme
 		\item System saves user selection
 	\end{enumerate}
-	\textbf{Related:} Modify chat font, Edit user color 
+	\textbf{Related:} Modify chat font, Edit user color
 \vspace{8pt}
 \hrule
 \newpage
@@ -1192,12 +1192,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Turn Off Global Chat \\ \\
-	\textbf{Category:} User Preferences - Editor  \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} User turns off global chat \\ \\
-	\textbf{Purpose:} Allows user to choose whether or not to engage in global chat \\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Turn Off Global Chat \newline
+	\textbf{Category:} User Preferences - Editor  \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} User turns off global chat \newline
+	\textbf{Purpose:} Allows user to choose whether or not to engage in global chat \newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered
 		\item Must be logged in
@@ -1220,12 +1220,12 @@ A usecase diagram for sQuire\'s communication features.
 \vspace{2pt}
 \hrule
 \vspace{8pt}
-	\noindent\textbf{Name:} Psuedo-offline Mode \\ \\
-	\textbf{Category:} User Preferences - Editor  \\ \\
-	\textbf{Actor:} User \\ \\
-	\textbf{Summary:} User changes to offline mode \\ \\
-	\textbf{Purpose:} Allows user to turn off online features, including chat, public profiles, etc. Site then serves as basic editing environment\\ \\
-	\textbf{Preconditions:} 
+	\noindent\textbf{Name:} Psuedo-offline Mode \newline
+	\textbf{Category:} User Preferences - Editor  \newline
+	\textbf{Actor:} User \newline
+	\textbf{Summary:} User changes to offline mode \newline
+	\textbf{Purpose:} Allows user to turn off online features, including chat, public profiles, etc. Site then serves as basic editing environment\newline
+	\textbf{Preconditions:}
 	\begin{enumerate}
 		\item Must be registered
 		\item Must be logged in
@@ -1241,7 +1241,7 @@ A usecase diagram for sQuire\'s communication features.
 		\item System loads offline user page
 		\item Upon disconnect with site, online mode restarts upon next connection
 	\end{enumerate}
-	\textbf{Related:} None 
+	\textbf{Related:} None
 \vspace{8pt}
 \hrule
 \newpage
@@ -1252,18 +1252,18 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Compile and execute active project\\ \\
- \textbf{Pre-conditions:} Actor is logged in, navigated to desired project.  \\ \\
-\textbf{Summary:} User compiles a project and the project executes.\\ \\
-\textbf{Related use cases:} \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Compile and execute active project\newline
+ \textbf{Pre-conditions:} Actor is logged in, navigated to desired project.  \newline
+\textbf{Summary:} User compiles a project and the project executes.\newline
+\textbf{Related use cases:} \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks ``Compile''
   \item System displays results of compilation
   \item System executes compiled project.
  \end{enumerate}
- \textbf{Alternatives:} Compilation fails. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} Compilation fails. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1273,11 +1273,11 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Create a new project. \\ \\
- \textbf{Pre-conditions:} Actor is logged in.  \\ \\
-\textbf{Summary:} User creates a new project with a description and includes any desired files. \\ \\
-\textbf{Related use cases:} Import file \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Create a new project. \newline
+ \textbf{Pre-conditions:} Actor is logged in.  \newline
+\textbf{Summary:} User creates a new project with a description and includes any desired files. \newline
+\textbf{Related use cases:} Import file \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks ``New Project.''
   \item User gives project a title.
@@ -1286,8 +1286,8 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
   \item User clicks ``Create''.
   \item System imports files and instantiates project.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1296,21 +1296,21 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Project Administrator, sQuire Administrator. \\ \\
-\textbf{Goals:} Remove project from sQuire sever. \\ \\
- \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \\ \\
-\textbf{Summary:} Actor chooses to delete or remove an irrelevant or inappropriate project.  \\ \\
-\textbf{Related use cases:} Create project\\ \\
+ \textbf{Actors:} Project Administrator, sQuire Administrator. \newline
+\textbf{Goals:} Remove project from sQuire sever. \newline
+ \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \newline
+\textbf{Summary:} Actor chooses to delete or remove an irrelevant or inappropriate project.  \newline
+\textbf{Related use cases:} Create project\newline
 \textbf{Steps:} \begin{enumerate}
   \item Actor clicks ``Delete'' icon on active project.
   \item Delete dialog opens.
-  \item Actor presses ``Delete''. 
+  \item Actor presses ``Delete''.
   \item Confirmation window is displayed.
   \item Actor confirms or disregards deletion.
   \item System notifies collaborators that project was deleted.
  \end{enumerate}
- \textbf{Alternatives:} Actor clicks ``Cancel.'' \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} Actor clicks ``Cancel.'' \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1319,17 +1319,17 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Join an existing project. \\ \\
- \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \\ \\
-\textbf{Summary:} Actor sends a request to join as a collaborator on a project\\ \\
-\textbf{Related use cases:} Manage request to join project\\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Join an existing project. \newline
+ \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \newline
+\textbf{Summary:} Actor sends a request to join as a collaborator on a project\newline
+\textbf{Related use cases:} Manage request to join project\newline
 \textbf{Steps:} \begin{enumerate}
-  \item Actor clicks ``Join project.'' 
-  \item Notification is sent to project administrator for review. 
+  \item Actor clicks ``Join project.''
+  \item Notification is sent to project administrator for review.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1339,19 +1339,19 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Project Administrator \\ \\
-\textbf{Goals:} Approve . \\ \\
- \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \\ \\
-\textbf{Summary:} Actor approves/rejects a user who has requested to join as a collaborator on a project.\\ \\
-\textbf{Related use cases:} Request to join project \\ \\
+ \textbf{Actors:} Project Administrator \newline
+\textbf{Goals:} Approve . \newline
+ \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \newline
+\textbf{Summary:} Actor approves/rejects a user who has requested to join as a collaborator on a project.\newline
+\textbf{Related use cases:} Request to join project \newline
 \textbf{Steps:} \begin{enumerate}
-  \item Actor clicks ``Review join requests.'' 
+  \item Actor clicks ``Review join requests.''
   \item Actor reviews information about potential collaborator.
   \item Actor clicks ``Approve User'' to approve a collaborator or ``Reject user'' to reject a collaborator.
   \item System notifies user that they have been approved/rejected.
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1360,19 +1360,19 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Remove actor as a collaborator from project. \\ \\
- \textbf{Pre-conditions:} logged in, viewing desired project, collaborator on desired project, not project owner.  \\ \\
-\textbf{Summary:} A member of a project leaves said project, leaving the project intact. \\ \\
-\textbf{Related use cases:} Delete project \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Remove actor as a collaborator from project. \newline
+ \textbf{Pre-conditions:} logged in, viewing desired project, collaborator on desired project, not project owner.  \newline
+\textbf{Summary:} A member of a project leaves said project, leaving the project intact. \newline
+\textbf{Related use cases:} Delete project \newline
 \textbf{Steps:} \begin{enumerate}
-  \item User clicks ``Leave Project''. 
+  \item User clicks ``Leave Project''.
   \item System prompts user to confirm decision.
   \item User clicks "Confirm".
-  \item User is removed from project member list.    
+  \item User is removed from project member list.
  \end{enumerate}
- \textbf{Alternatives:} User clicks "Cancel" at step 4. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} User clicks "Cancel" at step 4. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1381,11 +1381,11 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Project Administrator, Authorized Project Collaborator (User).  \\ \\
-\textbf{Goals:} Invite user(s) to collaborate on project \\ \\
- \textbf{Pre-conditions:} Actor is viewing project which he or she created, is logged in   \\ \\
-\textbf{Summary:} A project administrator requests help from a user on a project. The sQuire system facilitates the invitation process  \\ \\
-\textbf{Related use cases:} Respond to project invite\\ \\
+ \textbf{Actors:} Project Administrator, Authorized Project Collaborator (User).  \newline
+\textbf{Goals:} Invite user(s) to collaborate on project \newline
+ \textbf{Pre-conditions:} Actor is viewing project which he or she created, is logged in   \newline
+\textbf{Summary:} A project administrator requests help from a user on a project. The sQuire system facilitates the invitation process  \newline
+\textbf{Related use cases:} Respond to project invite\newline
 \textbf{Steps:} \begin{enumerate}
   \item Actor clicks ``Invite User.''
   \item Actor enters the username(s) of the user(s) to be invited to the project.
@@ -1394,7 +1394,7 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
   \item System sends notification of invite to user(s).
  \end{enumerate}
  \textbf{Alternatives:} Actor clicks ``Cancel.''
- \textbf{Post-conditions:} None.  \\
+ \textbf{Post-conditions:} None.  \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1404,19 +1404,19 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User  \\ \\
-\textbf{Goals:} Actor responds to an invitation to a project.\\ \\
- \textbf{Pre-conditions:} Actor is signed in, viewing invitation.  \\ \\
-\textbf{Summary:} Actor receives notification that he or she has been invited to a project and either accepts the invitation or declines it. \\ \\
-\textbf{Related use cases:} Invite to project \\ \\
+ \textbf{Actors:} User  \newline
+\textbf{Goals:} Actor responds to an invitation to a project.\newline
+ \textbf{Pre-conditions:} Actor is signed in, viewing invitation.  \newline
+\textbf{Summary:} Actor receives notification that he or she has been invited to a project and either accepts the invitation or declines it. \newline
+\textbf{Related use cases:} Invite to project \newline
 \textbf{Steps:} \begin{enumerate}
   \item Actor clicks ``Respond to Invitation.''
   \item Actor clicks ``Accept'' or ``Reject.''
   \item Actor types any message to invitation-sender in text box.
   \item Actor clicks ``Confirm.''
  \end{enumerate}
- \textbf{Alternatives:} Actor clicks ``Cancel.'' \\ \\
- \textbf{Post-conditions:} Actor becomes collaborator on project if invitation was accepted. \\
+ \textbf{Alternatives:} Actor clicks ``Cancel.'' \newline
+ \textbf{Post-conditions:} Actor becomes collaborator on project if invitation was accepted. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1425,17 +1425,17 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Provide basic project evaluation \\ \\
- \textbf{Pre-conditions:} logged in, viewing projects \\ \\
-\textbf{Summary:} Projects can be rated based on a five star rating scale. Although the rating system itself is largely superficial, it can help sQuire users find projects that interest them greater. \\ \\
-\textbf{Related use cases:} Choose project.\\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Provide basic project evaluation \newline
+ \textbf{Pre-conditions:} logged in, viewing projects \newline
+\textbf{Summary:} Projects can be rated based on a five star rating scale. Although the rating system itself is largely superficial, it can help sQuire users find projects that interest them greater. \newline
+\textbf{Related use cases:} Choose project.\newline
 \textbf{Steps:} \begin{enumerate}
-  \item User performs the task: "Choose Project". 
+  \item User performs the task: "Choose Project".
   \item In viewing mode, user chooses to rate project (1 --- 5 stars).
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1445,21 +1445,21 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Users of sQuire. \\ \\
-\textbf{Goals:} Users views their public profile page. \\ \\
+ \textbf{Actors:} Users of sQuire. \newline
+\textbf{Goals:} Users views their public profile page. \newline
  \textbf{Pre-conditions:} \begin{enumerate}
   \item The user has registered for an account.
   \item The user is logged in.
   \item The user is at the dashboard.
  \end{enumerate}
- \textbf{Summary:} User opens their profile to see the public view of the profile.\\ \\
-\textbf{Related use cases:} User modifies their profile. \\ \\
+ \textbf{Summary:} User opens their profile to see the public view of the profile.\newline
+\textbf{Related use cases:} User modifies their profile. \newline
 \textbf{Steps:} \begin{enumerate}
   \item The user selects their avatar.
   \item A drop down appears and the user selects "View public profile".
  \end{enumerate}
- \textbf{Alternatives:} None \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} None \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1468,30 +1468,30 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Users of sQuire. \\ \\
-\textbf{Goals:} Users updates their profile. \\ \\
+ \textbf{Actors:} Users of sQuire. \newline
+\textbf{Goals:} Users updates their profile. \newline
  \textbf{Pre-conditions:} \begin{enumerate}
   \item The user has registered for an account.
   \item The user is logged in.
   \item The user is at the dashboard.
  \end{enumerate}
- \textbf{Summary:} User navigates to their profile to change their username.\\ \\
-\textbf{Related use cases:} The user modifies their email address or biography. \\ \\
+ \textbf{Summary:} User navigates to their profile to change their username.\newline
+\textbf{Related use cases:} The user modifies their email address or biography. \newline
 \textbf{Steps:} \begin{enumerate}
   \item The user select their avatar.
   \item A drop down appears and the users selects "My profile".
-  \item The user selects modify. 
+  \item The user selects modify.
   \item The user changes their username.
   \item The user clicks update to save the changes.
   \item The user clicks finish to disable modify.
  \end{enumerate}
- \textbf{Alternatives:} \begin{enumerate} 
+ \textbf{Alternatives:} \begin{enumerate}
   \item Step 4: The user changes their password.
   \item Step 4: The user changes their email.
   \item Step 4: The user changes their "About Me" information.
   \item Step 4: The user changes their name.
  \end{enumerate}
- \textbf{Post-conditions:} The user returns to the dashboard or exits sQuire. \\
+ \textbf{Post-conditions:} The user returns to the dashboard or exits sQuire. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1500,15 +1500,15 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Users of sQuire. \\ \\
-\textbf{Goals:} Users modifies email updates from friends. \\ \\
+ \textbf{Actors:} Users of sQuire. \newline
+\textbf{Goals:} Users modifies email updates from friends. \newline
  \textbf{Pre-conditions:} \begin{enumerate}
   \item The user has registered for an account.
   \item The user is logged in.
   \item The user is at the dashboard.
  \end{enumerate}
- \textbf{Summary:} User navigates to the privacy manager and changes notifications options for people in their friends list.\\ \\
-\textbf{Related use cases:} The user modifies global freind permissions. \\ \\
+ \textbf{Summary:} User navigates to the privacy manager and changes notifications options for people in their friends list.\newline
+\textbf{Related use cases:} The user modifies global freind permissions. \newline
 \textbf{Steps:} \begin{enumerate}
   \item The user select their avatar.
   \item A drop down appears and the users selects "My profile".
@@ -1517,11 +1517,11 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
   \item The user selects a friend.
   \item The user click the toggle switch next to "Receive email updates when this friends messages me".
  \end{enumerate}
- \textbf{Alternatives:} \begin{enumerate} 
+ \textbf{Alternatives:} \begin{enumerate}
   \item Step 5: The user clicks the toggle switch next to "Display email address to this friend".
   \item Step 5: The user clicks the toggle switch next to "Display name to this friend".
  \end{enumerate}
- \textbf{Post-conditions:} The user returns to the dashboard or exits sQuire. \\
+ \textbf{Post-conditions:} The user returns to the dashboard or exits sQuire. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1530,15 +1530,15 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Users of sQuire. \\ \\
-\textbf{Goals:} Users modifies settings to allow messages from any user on squire. \\ \\
+ \textbf{Actors:} Users of sQuire. \newline
+\textbf{Goals:} Users modifies settings to allow messages from any user on squire. \newline
  \textbf{Pre-conditions:} \begin{enumerate}
   \item The user has registered for an account.
   \item The user is logged in.
   \item The user is at the dashboard.
  \end{enumerate}
- \textbf{Summary:} User navigates to the privacy manager and changes messaging public messaging options.\\ \\
-\textbf{Related use cases:} The user changes public notifications preferences. \\ \\
+ \textbf{Summary:} User navigates to the privacy manager and changes messaging public messaging options.\newline
+\textbf{Related use cases:} The user changes public notifications preferences. \newline
 \textbf{Steps:} \begin{enumerate}
   \item The user select their avatar.
   \item A drop down appears and the users selects "My profile".
@@ -1546,11 +1546,11 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
   \item The user selects manage public privacy settings.
   \item The user click the toggle switch next to "Allow messages from any sQuire user".
  \end{enumerate}
- \textbf{Alternatives:} \begin{enumerate} 
+ \textbf{Alternatives:} \begin{enumerate}
   \item Step 5: The user clicks the toggle switch next to "Display email address to the public".
   \item Step 5: The user clicks the toggle switch next to "Display name to the public".
  \end{enumerate}
- \textbf{Post-conditions:} The user returns to the dashboard or exits sQuire. \\
+ \textbf{Post-conditions:} The user returns to the dashboard or exits sQuire. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1559,23 +1559,23 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} Users of sQuire. \\ \\
-\textbf{Goals:} Users modifies settings to allow email notifications. \\ \\
+ \textbf{Actors:} Users of sQuire. \newline
+\textbf{Goals:} Users modifies settings to allow email notifications. \newline
  \textbf{Pre-conditions:} \begin{enumerate}
   \item The user has registered for an account.
   \item The user is logged in.
   \item The user is at the dashboard.
  \end{enumerate}
- \textbf{Summary:} User navigates to the privacy manager and changes email preferences.\\ \\
-\textbf{Related use cases:} Change public or freind notifications. \\ \\
+ \textbf{Summary:} User navigates to the privacy manager and changes email preferences.\newline
+\textbf{Related use cases:} Change public or freind notifications. \newline
 \textbf{Steps:} \begin{enumerate}
   \item The user select their avatar.
   \item A drop down appears and the users selects "My profile".
   \item The users selects manage privacy.
   \item The user clicks the toggle switch next to "Allow email notifications".
  \end{enumerate}
- \textbf{Alternatives:} None. \\ \\
- \textbf{Post-conditions:} The user returns to the dashboard or exits sQuire. \\
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} The user returns to the dashboard or exits sQuire. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1585,19 +1585,19 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Modify a user\'s permissions. \\ \\
- \textbf{Pre-conditions:} User is signed in and holds Admin rights for the currently selected Project\\ \\
- \textbf{Summary:} User modifies another User\'s read/write permissions to portions of the project. \\ \\
- \textbf{Related use cases:} None. \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Modify a user\'s permissions. \newline
+ \textbf{Pre-conditions:} User is signed in and holds Admin rights for the currently selected Project\newline
+ \textbf{Summary:} User modifies another User\'s read/write permissions to portions of the project. \newline
+ \textbf{Related use cases:} None. \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks Permissions Management
   \item System displays permissions management window
   \item User selects a file, multiple files, directory or entirety of project and grants/revokes read/write access
   \item System modifes the target User\'s permissions and notifies them.
  \end{enumerate}
- \textbf{Alternatives:} 3. User selects cancel, System discards changes. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} 3. User selects cancel, System discards changes. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1606,11 +1606,11 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Remove a user from project. \\ \\
- \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page\\ \\
- \textbf{Summary:} User removes a selected user from the Project \\ \\
-\textbf{Related use cases:} Invite User, Modify Read/Write Access \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Remove a user from project. \newline
+ \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page\newline
+ \textbf{Summary:} User removes a selected user from the Project \newline
+\textbf{Related use cases:} Invite User, Modify Read/Write Access \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks Remove User button.
   \item System displays list of active users for project.
@@ -1621,8 +1621,8 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
   \item System revokes read and write access from the selected users.
   \item System notifies selected users that they have been removed from the project.
  \end{enumerate}
- \textbf{Alternatives:} User presses Cancel in steps 3 or 5, System returns user to User Management page \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} User presses Cancel in steps 3 or 5, System returns user to User Management page \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1631,11 +1631,11 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Invite user(s) to project \\ \\
- \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page \\ \\
- \textbf{Summary:} User invites user(s) to the current project. \\ \\
-\textbf{Related use cases:} Remove User, Join Project \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Invite user(s) to project \newline
+ \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page \newline
+ \textbf{Summary:} User invites user(s) to the current project. \newline
+\textbf{Related use cases:} Remove User, Join Project \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks Invite Users button
   \item System prompts user to enter username(s)/email(s)
@@ -1645,8 +1645,8 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
  \textbf{Alternatives:} \begin{enumerate}
   \item User presses cancel in step 3, System returns User to User Management page
   \item In step 4, username(s)/email(s) don\'t match any users, System notifies User of failed invitiations.
- \end{enumerate} 
- \textbf{Post-conditions:} None. \\
+ \end{enumerate}
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1655,11 +1655,11 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Promote a specified User to Admin \\ \\
- \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page \\ \\
- \textbf{Summary:} User selects another User to be given Admin rights for the project. \\ \\
-\textbf{Related use cases:} Demote Admin \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Promote a specified User to Admin \newline
+ \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page \newline
+ \textbf{Summary:} User selects another User to be given Admin rights for the project. \newline
+\textbf{Related use cases:} Demote Admin \newline
 \textbf{Steps:} \begin{enumerate}
   \item User selects Promote to Admin.
   \item System displays a list of non-Admin active users.
@@ -1668,8 +1668,8 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
   \item User selects Confirm.
   \item System grants Admin permissions to the selected user(s).
  \end{enumerate}
- \textbf{Alternatives:} User presses cancel in steps 3 or 5, no action taken. \\ \\
- \textbf{Post-conditions:} None. \\
+ \textbf{Alternatives:} User presses cancel in steps 3 or 5, no action taken. \newline
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1678,11 +1678,11 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Demote Admin to user \\ \\
- \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page \\ \\
- \textbf{Summary:} User demotes selected Admins to normal Users for the project. \\ \\
-\textbf{Related use cases:} Promote User to Admin \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Demote Admin to user \newline
+ \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page \newline
+ \textbf{Summary:} User demotes selected Admins to normal Users for the project. \newline
+\textbf{Related use cases:} Promote User to Admin \newline
 \textbf{Steps:} \begin{enumerate}
   \item User selects Demote Admin
   \item System displays list of Admins
@@ -1695,7 +1695,7 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
   \item User presses cancel in steps 3 or 5, no action taken
   \item User attempts to demote Admin that is the Owner of the project, System rejects request and notifies User.
  \end{enumerate}
- \textbf{Post-conditions:} None. \\
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \newpage
@@ -1704,11 +1704,11 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 \vspace{2pt}
 \hrule
 \vspace{8pt}
- \textbf{Actors:} User \\ \\
-\textbf{Goals:} Block a user from the project \\ \\
- \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page \\ \\
- \textbf{Summary:} User blocks a user from the project, making them unable to view the project. \\ \\
-\textbf{Related use cases:} Demote Admin \\ \\
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Block a user from the project \newline
+ \textbf{Pre-conditions:} User is signed in, in project with Admin rights, and is on User Management page \newline
+ \textbf{Summary:} User blocks a user from the project, making them unable to view the project. \newline
+\textbf{Related use cases:} Demote Admin \newline
 \textbf{Steps:} \begin{enumerate}
   \item User clicks Block User.
   \item System displays a list of active users.
@@ -1718,7 +1718,7 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
   \item System blocks selected user(s) from the project, revoking read/write access, and revoking Admin status as necessary.
  \end{enumerate}
  \textbf{Alternatives:} User presses cancel in steps 3 or 5.
- \textbf{Post-conditions:} None. \\
+ \textbf{Post-conditions:} None. \newline
 \vspace{8pt}
 \hrule
 \end{document}
