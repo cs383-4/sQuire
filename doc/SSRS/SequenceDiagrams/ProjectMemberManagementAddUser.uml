@@ -9,10 +9,12 @@ UserManager -> UserManager: addUser(newUser)
 Activate Email
 UserManager -> Email: SendNotification(newUser)
 Deactivate Email
+UserManager -> User: Success
 end
 
 alt Not Admin
 UserManager -> User: Permission Denied
-Deactivate UserManager
 end
+Deactivate UserManager
+Deactivate User
 @enduml
