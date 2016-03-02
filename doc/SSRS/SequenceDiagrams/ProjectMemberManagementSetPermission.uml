@@ -1,15 +1,11 @@
 @startuml
 Activate User
 Activate UserManager
-User -> UserManager: addUser(newUser)
+User -> UserManager: setPermission(targetUser, permission)
 UserManager -> UserManager: isAdmin(user)
 
 alt Admin
-  UserManager -> UserManager: addUser(newUser)
-  Activate Email
-  UserManager -> Email: SendNotification(newUser)
-  Deactivate Email
-  UserManager -> User: Success
+  UserManager -> UserManager: setPermission(targetUser, permission)
 else Not Admin
   UserManager -> User: Permission Denied
 end
