@@ -1,0 +1,18 @@
+@startuml
+Activate User
+Activate UserManager
+User -> UserManager: addUser(newUser)
+UserManager -> UserManager: isAdmin(user)
+
+alt Admin
+UserManager -> UserManager: addUser(newUser)
+Activate Email
+UserManager -> Email: SendNotification(newUser)
+Deactivate Email
+end
+
+alt Not Admin
+UserManager -> User: Permission Denied
+Deactivate UserManager
+end
+@enduml
