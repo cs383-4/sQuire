@@ -1,8 +1,10 @@
+Actor User
+User -> Program : ChangeUsername(newUsername)
 Activate Program
-Activate Server
 Program -> Server : CheckNewUsername(newUsername)
-Activate Database
+Activate Server
 Server -> Database : CheckNewUsername(newUsername)
+Activate Database
 Database -> Database : SELECT newUsername
 
 alt Valid Username
@@ -12,7 +14,7 @@ alt Valid Username
     Server --> Server : SendEmailNotification(newEmail)
     Server --> Program : validUsername
     Deactivate Server
-    Program -> Program : NotifyUsernameChanged()
+    Program --> User : NotifyUserNameChanged()
 
 else Invalid Username
 
@@ -22,7 +24,12 @@ else Invalid Username
     Activate Server
     Server --> Program : invalidUsername
     Deactivate Server
-    Program -> Program : NotifyInvalidUsername()
+    Program --> User : NotifyUserInvalidUsername()
 end
 
 Deactivate Program
+
+legend center
+Author: Domn Werner 
+Reviewed by: Entire Group
+end legend

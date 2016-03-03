@@ -1,40 +1,48 @@
+Actor User
+
+User -> Program : SignUp(username, email, password1, password2)
 Activate Program
 Program -> Program : CheckPasswords(password1, password2)
 
-alt Passwords Match
+alt Valid Passwords
 
+    Program -> Server : SignUp(username, email, password)
     Activate Server
-    Program -> Server : SignUp(username, email, password1)
-    Activate Database
     Server -> Database : ValidateCredentials(username, email, password1)
+    Activate Database
     Database -> Database : SELECT statement
 
     alt Valid Username and Email
     
         Database -> Database : INSERT credentials
-        Database --> Server : validFlag
+        Database --> Server : validCredentialsFlag
         Deactivate Database
         Server -> Server : SendEmailConfirmation(email)
-        Server --> Program : emailNotification
+        Server --> Program : emailSentNotification
         Deactivate Server
-        Program --> Program : emailSentMessage()
+        Program --> User : NotifyUserEmailSent()
 
     else Invalid Username or Email
     
         Activate Database
-        Activate Server
-        Database --> Server : invalidFlag
+        Database --> Server : invalidCredentialsFlag
         Deactivate Database
-        Server --> Program : notifyInvalid
+        Activate Server
+        Server --> Program : invalidCredentialsFlag
         Deactivate Server
-        Program -> Program : invalidMessage()
+        Program -> User : NotifyUserInvalidCredentials()
         
     end    
 
 else Passwords Don't Match
 
-    Program -> Program : passwordsDontMatchMessage()
+    Program -> User : NotifyUserPasswordsDontMatch()
 
 end
 
 Deactivate Program
+
+legend center
+Author: Domn Werner 
+Reviewed by: Entire Group
+end legend

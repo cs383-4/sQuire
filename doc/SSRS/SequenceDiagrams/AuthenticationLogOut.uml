@@ -1,10 +1,17 @@
+Actor User
+
+User -> Program : LogOut(self)
+
 Activate Program
-Program -> Server : LogOut(user, sessionId)
+Program -> Server : LogOut(user)
 Activate Server
-Server -> Database : LogOut(user, sessionId)
-Activate Database
-Database --> Server : LogOutComplete
-Deactivate Database
-Server --> Program : LogOutCompleted
+Server -> Server : LogOut(user.Guid)
+Server --> Program : logOutCompletedFlag
 Deactivate Server
+Program --> User : NotifyUserLogoutCompleted()
 Deactivate Program
+
+legend center
+Author: Domn Werner 
+Reviewed by: Entire Group
+end legend

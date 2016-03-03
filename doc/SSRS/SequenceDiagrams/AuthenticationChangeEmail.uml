@@ -1,8 +1,10 @@
+Actor User
+User -> Program : ChangeEmail(newEmail)
 Activate Program
-Activate Server
 Program -> Server : CheckNewEmail(newEmail)
-Activate Database
+Activate Server
 Server -> Database : CheckNewEmail(newEmail)
+Activate Database
 Database -> Database : SELECT newEmail
 
 alt Valid Email
@@ -12,7 +14,7 @@ alt Valid Email
     Server --> Server : SendConfirmationEmail(newEmail)
     Server --> Program : emailSent
     Deactivate Server
-    Program -> Program : NotifyEmailSent()
+    Program --> User : NotifyUserEmailSent()
 
 else Invalid Email
 
@@ -22,7 +24,12 @@ else Invalid Email
     Activate Server
     Server --> Program : invalidEmail
     Deactivate Server
-    Program -> Program : NotifyInvalidEmail()
+    Program --> User : NotifyUserInvalidEmail()
 end
 
 Deactivate Program
+
+legend center
+Author: Domn Werner 
+Reviewed by: Entire Group
+end legend

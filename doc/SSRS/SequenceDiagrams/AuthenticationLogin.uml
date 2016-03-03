@@ -1,25 +1,33 @@
-Program -> Server : VerifyCredentials(username, password)
+Actor User
+
+User -> Program : Login(username, password)
 Activate Program
+Program -> Server : VerifyCredentials(username, password)
 Activate Server
 Server -> Database : Validate(username, password)
 Activate Database
-Database -> Database : SELECT statement 
+Database -> Database : SELECT credentials 
 
 alt Valid Credentials
-    Database -> Database : GenerateSessionId()
-    Database --> Server : sessionId
+    Database --> Server : validCredentialsFlag
     Deactivate Database
-    Server -> Server : PerformLogin(username, sessionId)
-    Server --> Program : LoginSuccessful
+    Server -> Server : PerformLogin(user)
+    Server --> Program : loginSuccessfulFlag
     Deactivate Server
-    Program -> Program : ShowLoggedInPage()
+    Program --> User : ShowLoggedInPage()
 else Invalid Credentials
     Activate Database
-    Activate Server
-    Database --> Server : invalidSessionId
+    Database --> Server : invalidLoginFlag
     Deactivate Database
-    Server -> Server : PerformLogin(username, sessionId)
-    Server --> Program : LoginFailed
+    Activate Server
+    Server --> Program : loginFailedFlag
     Deactivate Server
-    Program -> Program : ShowLoginFailedPage()
+    Program --> User : NotifyUserLoginFailed()
 end
+
+Deactivate Program
+
+legend center
+Author: Domn Werner 
+Reviewed by: Entire Group
+end legend
