@@ -225,20 +225,7 @@ D} &
 2 & 02/11/16 & Pages 8-10 & M & Updated Functional Reqs & DW & 02/11/16\\\hline
 3 & 02/18/16 & Section 3.3 & A & Added Use Cases & DW & 02/18/16 \\\hline
 4 & 02/18/16 & Section 3.4  & A & Added Class Diagram Section & DW & 02/18/16 \\\hline
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hline
+5 & 03/02/16 & Section 3.3 & M & Included Sequence Diagrams & DW & 03/02/16 \\\hline
 ~
  &
 ~
@@ -975,10 +962,24 @@ These requirements involve the ability for users to find and learn about project
 These requirements involve the ability for users to have individual accounts and the security that comes from that. Users shall be able to:
 
 \begin{enumerate}
-	\item Register for a sQuire user account.
-	\item Log in to their user account.
-	\item Log out of their user account.
-	\item Reset their password via email.
+	\item Sign up for a sQuire user account.
+		\subitem Use Case Description: \textbf{S3.3.2}
+		\subitem Sequence Diagram: \textbf{S3.3.3}
+	\item Log in to the program using their user account.
+		\subitem Use Case Description: \textbf{S3.3.4}
+		\subitem Sequence Diagram: \textbf{S3.3.5}
+	\item Log out of the program using their user account.
+		\subitem Use Case Description: \textbf{S3.3.6}
+		\subitem Sequence Diagram: \textbf{S3.3.7}
+	\item Change their password.
+		\subitem Use Case Description: \textbf{S3.3.8}
+		\subitem Sequence Diagram: \textbf{S3.3.9}
+	\item Change their email.
+		\subitem Use Case Description: \textbf{S3.3.10}
+		\subitem Sequence Diagram: \textbf{S3.3.11}
+	\item Change their username.
+		\subitem Use Case Description: \textbf{S3.3.12}
+		\subitem Sequence Diagram: \textbf{S3.3.13}	
 \end{enumerate}
 
 \subsubsection{Communication}
@@ -1424,8 +1425,8 @@ subsections 3.3.i for every specified feature defined for the system or software
 
 \newpage
 
-\subsubsection[Authentication Feature 1: Sign Up]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-Authentication Feature 1: Sign Up}
+\subsubsection[Authentication Feature 1: Sign Up Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+Authentication Feature 1: Sign Up Use Case Description}
 \hypertarget{RefHeading22059017292}{}
 
 \vspace{2pt}
@@ -1450,12 +1451,32 @@ Authentication Feature 1: Sign Up}
 \noindent\textbf{Alternative 1:} User already has an account. \newline
 
 \noindent\textbf{Alternative 2:} User doesn't confirm email. Delete request after timeout period. \newline
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{Email} in \textbf{S3.4.5}
+	\item \textbf{Validator} in \textbf{S3.4.5}
+	\item \textbf{UserController} to be added.
+	\item \textbf{ServerController} to be added.
+	\item \textbf{Database} to be added.
+\end{itemize}
 \vspace{8pt}
 \hrule
 \newpage
 
-\subsubsection[Authentication Feature 2: Log In]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Authentication Feature 2: Log in}
+\subsubsection[Authentication Feature 1: Sign Up Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 1: Sign Up Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/AuthenticationSignUp}
+
+\newpage
+
+\subsubsection[Authentication Feature 2: Log In Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 2: Log In Use Case Description}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1481,12 +1502,30 @@ Authentication Feature 1: Sign Up}
 		\item User has not clicked email confirmation. System resends email and tells user.
 		\item User makes 5 incorrect login attempts. System prevents more login attempts for 5 minutes.
 	\end{enumerate} 
+	
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{UserController} to be added.
+	\item \textbf{ServerController} to be added.
+	\item \textbf{Database} to be added.
+\end{itemize}
 \vspace{8pt}
 \hrule
 \newpage
 
-\subsubsection[Authentication Feature 3: Log out]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Authentication Feature 3: Log out}
+\subsubsection[Authentication Feature 2: Log In Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 2: Log In Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/AuthenticationLogIn}
+
+\newpage
+
+\subsubsection[Authentication Feature 3: Log Out Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 3: Log Out Use Case Description}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1509,12 +1548,30 @@ Authentication Feature 1: Sign Up}
 	\item System logs user out.
 	\item Browser cookies are updated to reflect user being logged out.
 \end{enumerate}
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{UserController} to be added.
+	\item \textbf{ServerController} to be added.
+	\item \textbf{Database} to be added.
+\end{itemize}
 \vspace{8pt}
 \hrule
 \newpage
 
-\subsubsection[Authentication Feature 4: Change Password]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Authentication Feature 4: Change Password}
+\subsubsection[Authentication Feature 3: Log Out Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 3: Log Out Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/AuthenticationLogOut}
+
+\newpage
+
+\subsubsection[Authentication Feature 4: Change Password Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 4: Change Password Use Case Description}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1550,12 +1607,32 @@ Authentication Feature 1: Sign Up}
 	\item Change Email
 	\item Change Username
 \end{enumerate}
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}.
+	\item \textbf{Email} in \textbf{S3.4.5}.
+	\item \textbf{Validator} in \textbf{S3.4.5}.
+	\item \textbf{UserController} to be added.
+	\item \textbf{ServerController} to be added.
+	\item \textbf{Database} to be added.
+\end{itemize}
 \vspace{8pt}
 \hrule
 \newpage
 
-\subsubsection[Authentication Feature 5: Change Email]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Authentication Feature 5: Change Email}
+\subsubsection[Authentication Feature 4: Change Password Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 4: Change Password Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/AuthenticationChangePassword}
+
+\newpage
+
+\subsubsection[Authentication Feature 5: Change Email Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 5: Change Email Use Case Description}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1591,12 +1668,32 @@ Authentication Feature 1: Sign Up}
 	\item Change Password
 	\item Change Username
 \end{enumerate}
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}.
+	\item \textbf{Email} in \textbf{S3.4.5}.
+	\item \textbf{Validator} in \textbf{S3.4.5}.
+	\item \textbf{UserController} to be added.
+	\item \textbf{ServerController} to be added.
+	\item \textbf{Database} to be added.
+\end{itemize}
 \vspace{8pt}
 \hrule
 \newpage
 
-\subsubsection[Authentication Feature 6: Change Username]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Authentication Feature 6: Change Username}
+\subsubsection[Authentication Feature 5: Change Email Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 5: Change Email Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/AuthenticationChangeEmail}
+
+\newpage
+
+\subsubsection[Authentication Feature 6: Change Username Use Case Description] {\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 6: Change Username Use Case Description}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1622,7 +1719,7 @@ Authentication Feature 1: Sign Up}
 
 \noindent\textbf{Alternatives:}
 \begin{enumerate}
-	\item If username doesn't exist, System changes the user's username.
+	\item If username doesn't exist, System changes the user's username and notifies the user in the UI and through an email.
 	\item If username exists, System asks user to enter a different username.
 \end{enumerate}
 
@@ -1631,8 +1728,27 @@ Authentication Feature 1: Sign Up}
 	\item Change Password
 	\item Change Email
 \end{enumerate}
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}.
+	\item \textbf{Email} in \textbf{S3.4.5}.
+	\item \textbf{UserController} to be added.
+	\item \textbf{ServerController} to be added.
+	\item \textbf{Database} to be added.
+\end{itemize}
 \vspace{8pt}
 \hrule
+\newpage
+
+\subsubsection[Authentication Feature 6: Change Username Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 6: Change Username Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/AuthenticationChangeUsername}
+
 \newpage
 
 \subsubsection[Use Case Diagram 2: Project Browsing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
