@@ -1,0 +1,41 @@
+@startuml
+
+ 
+User -> Project: Syntaxhighlighting
+
+
+activate Project
+
+
+Project -> Database: CheckKeyTerms()
+
+
+activate Database
+
+
+Database --> Project: KeyTerm
+
+
+Project -> Database: KeyTermColor(KeyTerm)
+
+
+Database --> Project: Color
+
+
+deactivate Database
+
+
+Project -> Project: DisplayHighlighting
+
+legend right
+    
+    
+	<b>Author:</b> Eric Gentile-Quant
+    
+	<b>Reviewed by:</b> Everyone
+
+
+endlegend
+
+
+@enduml

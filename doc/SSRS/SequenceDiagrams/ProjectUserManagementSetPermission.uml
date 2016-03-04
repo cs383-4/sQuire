@@ -1,0 +1,21 @@
+@startuml
+Activate UI
+Activate UserManager
+UI -> UserManager: setPermission(targetUser, permission)
+UserManager -> UserManager: isAdmin(user)
+
+alt Admin
+  UserManager -> UserManager: setPermission(targetUser, permission)
+  UserManager --> UI: Success
+else Not Admin
+  UserManager --> UI: Permission Denied
+end
+
+Deactivate UserManager
+Deactivate UI
+
+legend center
+Author: Brandon Ratcliff
+Reviewed by: Entire Group
+end legend
+@enduml
