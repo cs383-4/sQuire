@@ -1935,27 +1935,175 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 
 \newpage
 
-\subsubsection[Communication Feature 1: Use Case Description 1]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Communication Feature 1: Use Case Description 1}
+\subsubsection[Communication Feature 1: Read Project Chat Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Communication Feature 1: Read Project Chat Use Case Description}
 \hypertarget{RefHeading22059017292}{}
-\bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} Open a window to view the conversation in a project  \newline
+
+\noindent\textbf{Purpose:} Allow users to communicate quickly without permanently taking up screen space in a project \newline 
+
+\noindent\textbf{Preconditions:} User is signed in and viewing a project \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User selects the "Open Chat" button
+	\item System opens the chat window, and notifies the other users in the project of the new arrival
+	\item System displays any messages from other users in the project in that window until it is closed/left.
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} None \newline
+
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User}
+	\item \textbf{TextChat}
+	\item \textbf{ChatDisplay}
+	\item \textbf{Message}
+\end{itemize}
+\hrule
 \newpage
 
-\subsubsection[Communication Feature 2: Use Case Description 2]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Communication Feature 2: Use Case Description 2}
+\subsubsection[Communication Feature 2: Write to Project Chat Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Communication Feature 2: Write to Project Chat Use Case Description}
 \hypertarget{RefHeading22059017292}{}
-\bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} at least one User \newline
+
+\noindent\textbf{Summary:} Contribute to the conversation in a project  \newline
+
+\noindent\textbf{Purpose:} Allow users to communicate quickly without permanently taking up screen space in a project \newline 
+
+\noindent\textbf{Preconditions:} User is signed in and has joined the project chat \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User types a message in the project chat window and presses Send
+	\item System sends that message to the project server, which delivers it to the other users in the project chat
+	\item Other users may read and/or respond to the message at their leisure
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} None \newline
+
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User}
+	\item \textbf{TextChat}
+	\item \textbf{ChatDisplay}
+	\item \textbf{Message}
+\end{itemize}
+\hrule
 \newpage
+
+\subsubsection[Communication Feature 3: Message User by Name Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Communication Feature 3: Message User by Name Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} Start talking an individual user \newline
+
+\noindent\textbf{Purpose:} Allow users to communicate outside of a project, or in private \newline 
+
+\noindent\textbf{Preconditions:} At least one of the users are signed in \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User selects "Send PM" from the chat menu and types or selects the other user's ID
+	\item System checks to see if the user exists and is online, and if so creates a chat channel for the two users
+	\item Both users then use the chat as normal
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} If the second user exists but is offline, the first user is notified and the second user gets the message from the server the next time they're online. \newline
+
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User}
+	\item \textbf{TextChat}
+	\item \textbf{ChatDisplay}
+	\item \textbf{Message}
+\end{itemize}
+\hrule
+\newpage
+
+\subsubsection[Communication Feature 4: Comment on Project Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Communication Feature 4: Comment on Project Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User, sometimes also a Project Admin \newline
+
+\noindent\textbf{Summary:} Communicate more important info about a project  \newline
+
+\noindent\textbf{Purpose:} Allow users to record and semi-permanently attach messages to be displayed alongside a project \newline 
+
+\noindent\textbf{Preconditions:} User is signed in and has joined the project \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item In a section of the window seperate from temporary chat, the user writes a comment and presses Post
+	\item System sends that message to the project server, which attaches it to the project. The message is then displayed with previous comments in the post. 
+	\item Other users may read and/or respond to the message at their leisure
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} A project administrator may remove the post. \newline
+
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User}
+	\item \textbf{TextChat}
+	\item \textbf{ChatDisplay}
+	\item \textbf{Message}
+\end{itemize}
+\hrule
+\newpage
+
+\subsubsection[Communication Feature 5: Close chat Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Communication Feature 4: Comment on Project Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User or Admin \newline
+
+\noindent\textbf{Summary:} Clean up when a user leaves a project chat \newline
+
+\noindent\textbf{Purpose:} Close the window and remove the user from the list of active users in the project chat so they don't receive more messages \newline 
+
+\noindent\textbf{Preconditions:} User is signed in and has joined the project chat \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User clicks "close" on the project chat window
+	\item System minimizes the window, and removes the user from the list of active users in the project chat
+\end{enumerate} 
+\noindent\textbf{Alternatives: Step one is skipped if one of the following happen: } 
+\begin{enumerate}
+	\item The user closes the entire project or program windows
+	\item The user is idle for too long
+	\item An administrator removes them from the project or project chat
+\end{enumerate}  
+
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User}
+	\item \textbf{TextChat}
+	\item \textbf{ChatDisplay}
+	\item \textbf{Message}
+\end{itemize}
+\hrule
+\newpage
+
 
 \subsubsection[Project Browsing Feature 2: Use Case Description 2]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Project Browsing Feature 2: Use Case Description 2}
