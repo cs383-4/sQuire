@@ -1758,26 +1758,175 @@ Use Case Diagram 2: Project Browsing}
 
 \newpage
 
-\subsubsection[Project Browsing Feature 1: Use Case Description 1]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Project Browsing Feature 1: Use Case Description 1}
+\subsubsection[Project Browsing Feature 1: Project Browsing Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+Project Browsing Feature 1: Project Browsing Use Case Description}
 \hypertarget{RefHeading22059017292}{}
-\bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} User looks through posted project ideas to find projects to work on and/or discuss. \newline
+ 
+\noindent\textbf{Purpose:} To find and view projects relevant to the user's search parameters \newline 
+
+\noindent\textbf{Preconditions:} User is signed in \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item Actor selects Browse Project Ideas button
+	\item Actor refines search by selecting from list of project categories as desired
+	\item Actor enters terms into search field as desired and views a list of top projects
+	\item Actor selects desired project 
+	\item System displays detailed project information
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} None \newline
+
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{Project Browser} in \textbf{S3.4.5}
+	\item \textbf{Project} in \textbf{S3.4.5}
+\end{itemize}
+\vspace{8pt}
+\hrule
 \newpage
-
-\subsubsection[Project Browsing Feature 2: Use Case Description 2]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Project Browsing Feature 2: Use Case Description 2}
+\subsubsection[Project Browsing Feature 1: Project Browsing Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Browsing Feature 1: Project Browsing Sequence Diagram}
 \hypertarget{RefHeading22059017292}{}
+
 \bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/ProjectBrowsingProjectBrowsing}
+
+\newpage
+\subsubsection[Project Browsing Feature 2: Project Creation Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+Project Browsing Feature 2: Project Creation Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} User will create a project. \newline
+ 
+\noindent\textbf{Purpose:} To allow users to create projects and make them accessible to other users \newline 
+
+\noindent\textbf{Preconditions:} User is signed in \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User selects Create Project button
+	\item User will enter the information on the project, including its name, goals, and identifying tags. 
+	\item If project name does not match any existing project, the system will create a project with the specified parameters and set user as an admin for the project.
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} Project name matches the name of an existing project and will ask the user to rename it. \newline
+
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{Project Browser} in \textbf{S3.4.5}
+	\item \textbf{Project} in \textbf{S3.4.5}
+\end{itemize}
+\vspace{8pt}
+\hrule
+\newpage
+\subsubsection[Project Browsing Feature 2: Project Creation Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Browsing Feature 2: Project Creation Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/ProjectBrowsingProjectCreation}
+
+\newpage
+\subsubsection[Project Browsing Feature 3: Project Commenting Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+Project Browsing Feature 3: Project Commenting Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} Provide detailed feedback on project ideas  \newline
+ 
+\noindent\textbf{Purpose:} To allow users to write longform feedback on projects as necessary. \newline 
+
+\noindent\textbf{Preconditions:} User is signed in \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User selects Comment button
+	\item User types feedback into field
+	\item User clicks Submit button
+	\item System shows confirmation that feedback was received
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} If the project requires comments to be made by project members only and the user is not a project member, the user will be shown an error message. \newline
+
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{Project} in \textbf{S3.4.5}
+\end{itemize}
+\vspace{8pt}
+\hrule
+\newpage
+\subsubsection[Project Browsing Feature 3: Project Commenting Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Browsing Feature 3: Project Commenting Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/ProjectBrowsingProjectCommenting}
+
+\newpage
+\subsubsection[Project Browsing Feature 4: Project Voting Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+Project Browsing Feature 4: Project Voting Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} Support promising project ideas or offer criticism to unfavorable ones  \newline
+ 
+\noindent\textbf{Purpose:} Allow for feedback and help users search for well received projects \newline 
+
+\noindent\textbf{Preconditions:} User is signed in \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User selects Browse Project Ideas button
+	\item User refines search by selecting from list of project categories as desired
+	\item User enters terms into search field as desired and views a list of top projects
+	\item User selects desired project 
+	\item System displays detailed project information
+	\item User selects Up Vote or Down Vote button
+	\item Project receives the vote and updates its total score
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} None \newline
+
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{Project Browser} in \textbf{S3.4.5}
+	\item \textbf{Project} in \textbf{S3.4.5}
+\end{itemize}
+\vspace{8pt}
+\hrule
+\newpage
+\subsubsection[Project Browsing Feature 4: Project Voting Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Browsing Feature 4: Project Voting Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/ProjectBrowsingProjectVoting}
+
 \newpage
 
 \subsubsection[Use Case Diagram 3: Communication]{\selectlanguage{english}\rmfamily\bfseries\color{black}
