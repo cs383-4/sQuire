@@ -1,0 +1,20 @@
+@startuml 
+
+User -> FileLineHistory: GetAuthor()
+
+activate FileLineHistory
+
+FileLineHistory -> LineHistory: GetAuthor()
+
+activate LineHistory
+
+LineHistory --> FileLineHistory: Author
+
+deactivate LineHistory
+
+FileLineHistory --> User: Author
+
+deactivate FileLineHistory
+
+
+@enduml

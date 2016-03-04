@@ -1,0 +1,46 @@
+@startuml
+
+
+User -> ColabFile: SyntaxError
+
+
+activate ColabFile
+
+
+ColabFile -> Database: FindError()
+
+
+activate Database
+
+
+Database --> ColabFile: ErrorFound
+
+
+deactivate Database
+
+
+ColabFile -> Project: ErrorLocation
+
+
+deactivate ColabFile
+
+
+activate Project
+
+
+Project -> Project: DisplaySyntaxError()
+
+
+
+
+legend right
+    
+    
+	<b>Author:</b> Eric Gentile-Quant
+    
+	<b>Reviewed by:</b> Everyone
+
+
+endlegend
+
+@enduml

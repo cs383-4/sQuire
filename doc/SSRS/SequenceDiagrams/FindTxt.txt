@@ -1,0 +1,19 @@
+@startuml
+
+User -> Project: FindTxt(txt)
+activate Project
+Project -> Project: FindTxt(txt)
+
+alt Valid
+
+Project--> User: ValidTxt
+
+deactivate Project
+
+else Notvalid
+
+Project --> User: NotValidTxt
+
+end
+
+@enduml

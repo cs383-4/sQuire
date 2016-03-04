@@ -1,0 +1,35 @@
+@startuml
+
+activate Program
+
+Program -> Program: CheckLineNumber
+
+Program -> Server: Lines(nums)
+
+activate Server
+
+activate Database
+
+Server -> Database: Lines(nums)
+
+
+Database -> Database: CommentOut(nums)
+
+
+
+
+
+Database --> Server: CommentedOut
+
+deactivate Database
+
+Server --> Program: CommentedOut
+
+deactivate Server
+
+deactivate Program
+
+
+
+
+@enduml

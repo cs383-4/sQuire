@@ -1,0 +1,20 @@
+@startuml
+
+User -> FileLineHistory: GetTimestamp()
+
+activate FileLineHistory
+
+FileLineHistory -> LineHistory: GetTimestamp()
+
+activate LineHistory
+LineHistory --> FileLineHistory: Timestamp
+
+deactivate LineHistory
+
+FileLineHistory --> User: Timestamp
+
+deactivate FileLineHistory
+
+
+
+@enduml
