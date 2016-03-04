@@ -1,0 +1,25 @@
+hide circle
+title File Management CloseFile
+
+activate UI
+activate Controller
+activate Project
+UI -> Controller : CloseFile(Filename)
+Controller -> Project : CloseFile(Filename)
+Project --> Controller : FileClosed_flag
+Controller --> UI : FileClosed_flag
+UI -> UI : Display FileClosed Message
+
+    alt File Cannot be Closed
+    UI -> Controller : CloseFile(Filename)
+Controller -> Project : CloseFile(Filename)
+Project --> Controller : FileClosed_fail_flag
+Controller --> UI : FileClosed_fail_flag
+UI -> UI : Display FileClosed Fail Message
+    end
+    
+    legend center
+Authored by: Joel Doumit (doum6708)
+Reviewed by: Team I.C.Y
+
+endlegend

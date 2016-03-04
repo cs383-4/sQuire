@@ -1,0 +1,24 @@
+title File Management AddFile
+
+activate UI
+activate Controller
+activate Project
+UI -> Controller : AddFile(filename)
+Controller -> Project : AddFile(filename)
+Project --> Controller : File_Added_flag
+Controller --> UI : File_Added_flag
+UI -> UI : Display File Added Message
+
+    alt File Already Exists
+    UI -> Controller : AddFile(filename)
+Controller -> Project : AddFile(filename)
+Project --> Controller : File_Already_Exists_flag
+Controller --> UI : File_Already_Exists_flag
+UI -> UI : Display File Already Exists Message
+    end
+
+    legend center
+Authored by: Joel Doumit (doum6708)
+Reviewed by: Team I.C.Y
+
+endlegend
