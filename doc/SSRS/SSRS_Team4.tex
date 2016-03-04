@@ -2063,9 +2063,39 @@ Need picture here.
 
 \newpage
 
-\subsubsection[File Management Feature 1: Use Case Description 1]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	File Management Feature 1: Use Case Description 1}
+\subsubsection[File Management Feature 1: OpenFile Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Management Feature 1: OpenFile Use Case Description}
 \hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} The user selects a file to open based on a filename, which is then opened by the software. \newline
+ 
+\noindent\textbf{Purpose:} To open a file in the program. \newline 
+
+\noindent\textbf{Preconditions:} The desired file must already exist. \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User clicks Open File button.
+	\item System prompts the user to select file to open from a list of existing files. 
+	\item User selects desired file and clicks Submit button.
+	\item System opens selected file and displays it. 
+	
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} The User decides they don't want to open a file and presses Cancel at step 3. \newline
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{UI} to be added.
+	\item \textbf{Project} to be added.
+	\item \textbf{File} to be added.
+\end{itemize}
+\vspace{8pt}
+\hrule
 \bigskip
 
 {\selectlanguage{english}\color{black}
@@ -2074,9 +2104,170 @@ Need picture here.
 		whichever is more appropriate.}}}
 \newpage
 
-\subsubsection[File Management Feature 2: Use Case Description 2]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	File Management Feature 2: Use Case Description 2}
+\subsubsection[File Management Feature 1: OpenFile Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 6: Change Username Sequence Diagram}
 \hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/FM_OpenFile_Image}
+
+\newpage
+
+\subsubsection[File Management Feature 2: CloseFile Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Management Feature 2: CloseFile Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} The user chooses to close the file they are working on. \newline
+ 
+\noindent\textbf{Purpose:} To close a file in the program. \newline 
+
+\noindent\textbf{Preconditions:} The desired file must already exist, and be already opened by the User. \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User clicks Close File button.
+	\item System closes the file and updates the Controller's status on the file being open.
+	
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} The file cannot be closed for some reason. \newline
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{UI} to be added.
+	\item \textbf{Project} to be added.
+	\item \textbf{File} to be added.
+\end{itemize}
+\vspace{8pt}
+\hrule
+\bigskip
+
+{\selectlanguage{english}\color{black}
+	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
+		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
+		whichever is more appropriate.}}}
+\newpage
+
+\subsubsection[File Management Feature 2: CloseFile Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Authentication Feature 6: CloseFile Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/FM_FileClose_Image}
+
+\newpage
+
+\subsubsection[File Management Feature 3: SaveFile Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Management Feature 1: SaveFile Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} The user chooses to save the file they are currently working on. \newline
+ 
+\noindent\textbf{Purpose:} To save a file in the program. \newline 
+
+\noindent\textbf{Preconditions:} The desired file must already exist, and be opened by the user. \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User clicks Save File button.
+	\item System prompts the user to choose a name to save the file under. 
+	\item User selects desired name and clicks Submit button.
+	\item System saves selected file and allows the user to keep working. 
+	
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} The User decides they don't want to save the file and presses Cancel at step 3. \newline
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{UI} to be added.
+	\item \textbf{Project} to be added.
+	\item \textbf{File} to be added.
+\end{itemize}
+\vspace{8pt}
+\hrule
+\bigskip
+
+{\selectlanguage{english}\color{black}
+	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
+		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
+		whichever is more appropriate.}}}
+\newpage
+
+\subsubsection[File Management Feature 3: SaveFile Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Management Feature 3: SaveFile Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/FM_SaveFile_Image}
+
+\newpage
+
+\subsubsection[File Management Feature 3: AddFile Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Management Feature 3: AddFile Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\textbf{Actors:} User \newline
+
+\noindent\textbf{Summary:} The user chooses to add a file to the directory. \newline
+ 
+\noindent\textbf{Purpose:} To add a file to a directory. \newline 
+
+\noindent\textbf{Preconditions:} The desired file must already exist. \newline
+
+\noindent\textbf{Steps:} \begin{enumerate}
+	\item User clicks Add File button.
+	\item System prompts the user to choose a file to add to a directory.. 
+	\item User selects desired file and clicks Submit button.
+	\item System prompts the user to choose a directory to add the file to.
+	\item User selects directory to add the file to and click Submit button.
+	\item System adds the file to the selected directory and lets the user return to their work.
+	
+\end{enumerate} 
+\noindent\textbf{Alternative 1:} The User decides they don't want to add the file and presses Cancel at step 3. \newline
+\noindent\textbf{Alternative 2:} The User decides, after they chose a file, not to add it to a directory and clicks Cancel at step 5. \newline
+
+\noindent\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User} in \textbf{S3.4.5}
+	\item \textbf{UI} to be added.
+	\item \textbf{Project} to be added.
+	\item \textbf{File} to be added.
+\end{itemize}
+\vspace{8pt}
+\hrule
+\bigskip
+
+{\selectlanguage{english}\color{black}
+	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
+		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
+		whichever is more appropriate.}}}
+\newpage
+
+\subsubsection[File Management Feature 4: AddFile Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Management Feature 4: AddFile Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/FM_AddFile_Image}
+
+\newpage
+
 \bigskip
 
 {\selectlanguage{english}\color{black}
