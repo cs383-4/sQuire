@@ -2150,34 +2150,282 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 		whichever is more appropriate.}}}
 \newpage
 
-\subsubsection[Use Case Diagram 5: Project Management]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+\subsubsection[Use Case Diagram 5: Project Management (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Use Case Diagram 5: Project Management}
+Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 worked on the original use cases in this section.
 
-Need picture here.
 
 \newpage
 
-\subsubsection[Project Management Feature 1: Use Case Description 1]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Project Management Feature 1: Use Case Description 1}
+
+
+\subsubsection[Project Management Feature 1: Use Case Description 1: Compile and execute project (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Management Feature 1: Compile and execute project (dani2918) }
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+ \textbf{Actors:} User \newline
+ 
+\noindent \textbf{Goals:} Compile and execute active project\newline
+
+ \noindent \textbf{Pre-conditions:} Actor is logged in, navigated to desired project.  \newline
+ 
+\noindent \textbf{Summary:} User compiles a project and the project executes.\newline
+
+\noindent \textbf{Related use cases:} \newline
+
+\noindent \textbf{Steps:} \begin{enumerate}
+  \item User clicks ``Compile''
+  \item System displays results of compilation
+  \item System executes compiled project.
+ \end{enumerate}
+ \noindent \textbf{Alternatives:} Compilation fails. \newline
+ 
+\noindent  \textbf{Post-conditions:} None. \newline
+ 
+\vspace{8pt}
+\hrule
+\newpage
+
+
+\newpage
+
+\subsubsection[Project Management Feature 2: Create project (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Management Feature 2: Create project (dani2918)}
 \hypertarget{RefHeading22059017292}{}
 \bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+ \noindent \textbf{Actors:} User \newline
+ 
+ \noindent \textbf{Goals:} Create a new project. \newline
+ 
+ \noindent  \textbf{Pre-conditions:} Actor is logged in.  \newline
+ 
+ \noindent \textbf{Summary:} User creates a new project with a description and includes any desired files. \newline
+ 
+ \noindent \textbf{Related use cases:} Import file \newline
+ 
+ \noindent \textbf{Steps:} \begin{enumerate}
+  \item User clicks ``New Project.''
+  \item User gives project a title.
+  \item User adds an applicable description.
+  \item User imports any files by clicking ''Import.''
+  \item User clicks ``Create''.
+  \item System imports files and instantiates project.
+ \end{enumerate}
+ \textbf{Alternatives:} None. \newline
+ 
+ \noindent  \textbf{Post-conditions:} None. \newline
+\vspace{8pt}
+\hrule
 \newpage
 
-\subsubsection[Project Management Feature 2: Use Case Description 2]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Project Management Feature 2: Use Case Description 2}
+
+\subsubsection[Project Management Feature 3: Delete project (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Management Feature 3: Delete project (dani2918)}
 \hypertarget{RefHeading22059017292}{}
 \bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+ \noindent \textbf{Actors:} Project Administrator, sQuire Administrator. \newline
+ 
+ \noindent \textbf{Goals:} Remove project from sQuire sever. \newline
+
+ \noindent  \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \newline
+ 
+ \noindent \textbf{Summary:} Actor chooses to delete or remove an irrelevant or inappropriate project.  \newline
+ 
+ \noindent \textbf{Related use cases:} Create project\newline
+\textbf{Steps:} \begin{enumerate}
+  \item Actor clicks ``Delete'' icon on active project.
+  \item Delete dialog opens.
+  \item Actor presses ``Delete''.
+  \item Confirmation window is displayed.
+  \item Actor confirms or disregards deletion.
+  \item System notifies collaborators that project was deleted.
+ \end{enumerate}
+ \textbf{Alternatives:} Actor clicks ``Cancel.'' \newline
+ 
+ \noindent  \textbf{Post-conditions:} None. \newline
+\vspace{8pt}
+\hrule
 \newpage
+
+
+
+\subsubsection[Project Management Feature 4: Request to join project (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Management Feature 4: Request to join project (dani2918)}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\noindent \textbf{Actors:} User \newline
+
+\noindent\textbf{Goals:} Join an existing project. \newline
+
+\noindent \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \newline
+
+\noindent \textbf{Summary:} Actor sends a request to join as a collaborator on a project\newline
+
+\noindent \textbf{Related use cases:} Manage request to join project\newline
+
+\noindent \textbf{Steps:} \begin{enumerate}
+  \item Actor clicks ``Join project.''
+  \item Notification is sent to project administrator for review.
+ \end{enumerate}
+\noindent \textbf{Alternatives:} None. \newline
+ 
+\noindent \textbf{Post-conditions:} None. \newline
+\vspace{8pt}
+\hrule
+\newpage
+
+
+
+\subsubsection[Project Management Feature 5: Manage request to join project (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Management Feature 5: Manage request to join project (dani2918)}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\noindent \textbf{Actors:} Project Administrator \newline
+ 
+\noindent \textbf{Goals:} Approve . \newline
+
+\noindent \textbf{Pre-conditions:} Actor is logged in, viewing desired project.  \newline
+
+\noindent \textbf{Summary:} Actor approves/rejects a user who has requested to join as a collaborator on a project.\newline
+
+\noindent \textbf{Related use cases:} Request to join project \newline
+
+\noindent \textbf{Steps:} \begin{enumerate}
+  \item Actor clicks ``Review join requests.''
+  \item Actor reviews information about potential collaborator.
+  \item Actor clicks ``Approve User'' to approve a collaborator or ``Reject user'' to reject a collaborator.
+  \item System notifies user that they have been approved/rejected.
+ \end{enumerate}
+ \textbf{Alternatives:} None. \newline
+ 
+ \noindent  \textbf{Post-conditions:} None. \newline
+ \noindent
+\vspace{8pt}
+\hrule
+\newpage
+
+
+\subsubsection[Project Management Feature 6: Leave project (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Management Feature 6: Leave project (dani2918)}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\noindent \textbf{Actors:} User \newline
+
+\noindent \textbf{Goals:} Remove actor as a collaborator from project. \newline
+
+\noindent  \textbf{Pre-conditions:} logged in, viewing desired project, collaborator on desired project, not project owner.  \newline
+
+\noindent \textbf{Summary:} A member of a project leaves said project, leaving the project intact. \newline
+
+\noindent \textbf{Related use cases:} Delete project \newline
+
+\noindent \textbf{Steps:} \begin{enumerate}
+  \item User clicks ``Leave Project''.
+  \item System prompts user to confirm decision.
+  \item User clicks "Confirm".
+  \item User is removed from project member list.
+ \end{enumerate}
+ 
+\noindent  \textbf{Alternatives:} User clicks "Cancel" at step 4. \newline
+ 
+\noindent  \textbf{Post-conditions:} None. \newline
+\vspace{8pt}
+\hrule
+\newpage
+
+
+
+\subsubsection[Project Management Feature 7: Invite to project (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Management Feature 7: Invite to project (dani2918)}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\noindent \textbf{Actors:} Project Administrator, Authorized Project Collaborator (User).  \newline
+
+\noindent \textbf{Goals:} Invite user(s) to collaborate on project \newline
+
+\noindent  \textbf{Pre-conditions:} Actor is viewing project which he or she created, is logged in   \newline
+
+\noindent \textbf{Summary:} A project administrator requests help from a user on a project. The sQuire system facilitates the invitation process  \newline
+
+\noindent \textbf{Related use cases:} Respond to project invite\newline
+
+\noindent \textbf{Steps:} \begin{enumerate}
+  \item Actor clicks ``Invite User.''
+  \item Actor enters the username(s) of the user(s) to be invited to the project.
+  \item Actor enters any message to the user(s) in a text box.
+  \item Actor clicks ``Send invite.''
+  \item System sends notification of invite to user(s).
+ \end{enumerate}
+ 
+\noindent  \textbf{Alternatives:} Actor clicks ``Cancel.''
+ \textbf{Post-conditions:} None.  \newline
+ 
+\vspace{8pt}
+\hrule
+\newpage
+
+
+
+\subsubsection[Project Management Feature 8: Respond to project invite (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project Management Feature 8: Respond to project invite (dani2918)}
+\hypertarget{RefHeading22059017292}{}
+\bigskip
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+\noindent \textbf{Actors:} User  \newline
+
+\noindent \textbf{Goals:} Actor responds to an invitation to a project.\newline
+
+\noindent  \textbf{Pre-conditions:} Actor is signed in, viewing invitation.  \newline
+
+\noindent \textbf{Summary:} Actor receives notification that he or she has been invited to a project and either accepts the invitation or declines it. \newline
+
+\noindent \textbf{Related use cases:} Invite to project \newline
+
+\noindent \textbf{Steps:} \begin{enumerate}
+  \item Actor clicks ``Respond to Invitation.''
+  \item Actor clicks ``Accept'' or ``Reject.''
+  \item Actor types any message to invitation-sender in text box.
+  \item Actor clicks ``Confirm.''
+ \end{enumerate}
+ 
+\noindent  \textbf{Alternatives:} Actor clicks ``Cancel.'' \newline
+
+\noindent  \textbf{Post-conditions:} Actor becomes collaborator on project if invitation was accepted. \newline
+\vspace{8pt}
+\hrule
+\newpage
+
+
 
 \subsubsection[Use Case Diagram 6: File Editing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Use Case Diagram 6: File Editing}
