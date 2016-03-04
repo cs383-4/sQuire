@@ -1,0 +1,25 @@
+hide circle
+title File Management OpenFile
+
+activate UI
+activate Controller
+activate Project
+UI -> Controller : OpenFile(filename)
+Controller -> Project : OpenFile(filename)
+Project --> Controller : File
+Controller --> UI: File
+UI -> UI : Display File
+
+alt File Doesn't Exist
+    UI -> Controller : OpenFile(filename)
+    Controller -> Project : OpenFile(filename)
+    Project --> Controller : DNE_Flag
+    Controller --> UI: DNE_Flag
+    UI -> UI : Display "File DNE" Message
+    end
+
+    legend center
+Authored by: Joel Doumit (doum6708)
+Reviewed by: Team I.C.Y
+
+endlegend

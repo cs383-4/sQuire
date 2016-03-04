@@ -1,0 +1,24 @@
+title File Management SaveFile
+
+activate UI
+activate Controller
+activate Project
+UI -> Controller : SaveFile(Filename)
+Controller -> Project : SaveFile(Filename)
+Project --> Controller : File_Saved_flag
+Controller --> UI : File_Saved_flag
+UI -> UI : Display File Saved Message
+
+    alt File Not Saved
+    UI -> Controller : SaveFile(Filename)
+    Controller -> Project : SaveFile(Filename)
+    Project --> Controller : File_Already_Exists_flag
+    Controller --> UI : File_Already_Exists_flag
+    UI -> UI : Display File Already Exists
+    end
+
+    legend center
+Authored by: Joel Doumit (doum6708)
+Reviewed by: Team I.C.Y
+
+endlegend
