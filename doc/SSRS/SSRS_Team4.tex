@@ -2434,27 +2434,461 @@ Use case descriptions were roughly based upon cases from HW2, Team 4. sass8427 w
 
 \newpage
 
-\subsubsection[File Editing Feature 1: Use Case Description 1]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	File Editing Feature 1: Use Case Description 1}
+\subsubsection[File Editing Feature 1: View Line Numbers]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 1: View Line Numbers Use Case Description}
 \hypertarget{RefHeading22059017292}{}
-\bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} View Line Numbers \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actor:} User \newline
+	\noindent\textbf{Summary:} Allows the user to view line numbers to the left of the document. \newline
+	\noindent\textbf{Purpose:} Makes it easier to communicate position in code. It is also a useful metric to have.\newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item User has view permission.
+		\item A file is open.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User selects the \textit{View} menu option.
+		\item System displays a drop-down with various options.
+		\item User selects the \textit{View Line Numbers} option.
+		\item System displays line numbers to the left of the document.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+		\item \textbf {TextOperation}
+
+	\end{enumerate}
+\vspace{8pt}
+\hrule
 \newpage
 
-\subsubsection[File Editing Feature 2: Use Case Description 2]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	File Editing Feature 2: Use Case Description 2}
+\subsubsection[File Editing Feature 1: View Line Numbers Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 1: View Line Numbers Sequence Diagram}
 \hypertarget{RefHeading22059017292}{}
+
 \bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/LineNumbers}
+
 \newpage
+
+\subsubsection[File Editing Feature 2: View References]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 2: View References Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} View References \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actor:} User \newline
+	\noindent\textbf{Summary:} Allows the user to view the number of references to a given function. \newline
+	\noindent\textbf{Purpose:} It is useful to know the number of references to a given function for optimization and debugging purposes. \newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item User has view permission.
+		\item A \textbf{code} file is open.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User selects the \textit{View} menu option.
+		\item System displays a drop-down with various options.
+		\item User selects the \textit{View References} option.
+		\item System displays the number of references above each method declaration.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+		\item \textbf {ColabFile}
+		\item \textbf {LineHistory}
+		\item \textbf {Project}
+	\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[File Editing Feature 2: View References Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 2: View References Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/References}
+
+\newpage
+
+\subsubsection[File Editing Feature 3: View Dates]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 3: View Dates Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} View Dates \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actor:} User \newline
+	\noindent\textbf{Summary:} Allows the user to view the last date that each line of a document was edited. \newline
+	\noindent\textbf{Purpose:} This provides a useful metric for how up-to-date parts of the document are. \newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item User has view permission.
+		\item A file is open.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User selects the \textit{View} menu option.
+		\item System displays a drop-down with various options.
+		\item User selects the \textit{View Dates} option.
+		\item System displays the last date that each line of a document was edited.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+		\item \textbf {LineHistory}
+		\item \textbf {FileLineHistory}
+	\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[File Editing Feature 3: View Dates Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 3: View Dates Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/EditDate}
+
+\newpage
+
+\subsubsection[File Editing Feature 4: View Authors]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 4: View Authors Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} View Authors \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actor:} User \newline
+	\noindent\textbf{Summary:} Allows the user to view the last author that edited each of line of the document. \newline
+	\noindent\textbf{Purpose:} This is an accountability tool allowing other users to identify who is responsible for a change to a document. \newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item User has read permission.
+		\item A file is open.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User selects the \textit{View} menu option.
+		\item System displays a drop-down with various options.
+		\item User selects the \textit{View Authors} option.
+		\item System displays the name of the last editor of each line of the document.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+		\item \textbf {FileLineHistory}
+		\item \textbf {LineHistory}
+	\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[File Editing Feature 4: View Author Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 4: View Author Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/Author}
+
+\newpage
+
+\subsubsection[File Editing Feature 5: Format Document]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 5: Format Document Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} Format Document \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actor:} User \newline
+	\noindent\textbf{Summary:} Allows the user to format the document to a specified format \newline
+	\noindent\textbf{Purpose:} An easy tool for making sweeping changes to a large part of a document. \newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item User has read/write permission.
+		\item A file is open.
+		\item The document has formatting options set.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User selects the \textit{Edit} menu option.
+		\item System displays a drop-down with various options.
+		\item User selects the \textit{Format Document} option.
+		\item System formats the current document to the formatting settings currently set.
+	\end{enumerate}
+	\noindent\textbf{Alternatives:}
+	\begin{enumerate}
+		\item If no formatting settings are currently set, display a dialog box after step 3 and give the option for the user to do so now.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+		\item \textbf{TextOperation}
+	\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[File Editing Feature 6: Find/Replace]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 6: Find/Replace Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} Find/Replace \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actor:} User \newline
+	\noindent\textbf{Summary:} Allows the user to find and/or replace phrases. \newline
+	\noindent\textbf{Purpose:} This is a powerful tool that allows a user to make safer, quicker, and more efficient changes to a document. \newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item User has read/write permission.
+		\item A file is open.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User selects the \textit{Edit} menu option.
+		\item System displays a drop-down with various options.
+		\item User selects the \textit{Find/Replace} option.
+		\item System displays a small form in an unobtrusive location.
+		\item User enter the phrase to find and selects find.
+		\item System highlights and focuses on the first occurrence of the phrase and all highlights all other occurrences.
+	\end{enumerate}
+	\noindent\textbf{Alternatives:}
+	\begin{enumerate}
+		\item User selects option to replace in step 5 and enters a phrase with which to replace the found occurrences of the searched phrase. The system replaces each occurrence.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+		\item \textbf{Project}
+	\end{enumerate}
+\hrule
+\vspace{8pt}
+\newpage
+
+\subsubsection[File Editing Feature 6: Find Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 6: Find Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/FindTxt}
+
+\newpage
+
+\subsubsection[File Editing Feature 7: Comment Section]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 7: Comment Section Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} Comment Section \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actor:} User \newline
+	\noindent\textbf{Summary:} Allows the user to comment out a part of a document. \newline
+	\noindent\textbf{Purpose:} A useful and quick way to disable a large part of a document. \newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item A file is open.
+		\item User has read/write permission.
+		\item Current open document supports commenting.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User selects the \textit{Edit} menu option.
+		\item System displays a drop-down with various options.
+		\item User selects the \textit{Comment Section} option.
+		\item System comments the selected area.
+	\end{enumerate}
+	\noindent\textbf{Alternatives:}
+	\begin{enumerate}
+		\item If document does not support commenting, display a dialog box telling the user.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+		\item \textbf {TextOperation}
+	\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[File Editing Feature 7: Comment Section Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 7: Comment Section Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/CommentOut}
+
+\newpage
+
+\subsubsection[File Editing Feature 8: Display Typing User]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 8: Display Typing User Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} Display Typing User \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actors:} 
+	\begin{enumerate}
+		\item User
+		\item Other Users
+	\end{enumerate}
+	\noindent\textbf{Summary:} As the user types, the system displays their name, their typing, and their caret, in a different color, to other users. \newline
+	\noindent\textbf{Purpose:} Differentiate who is typing what. \newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item User has read/write permission.
+		\item A file is open.
+		\item Other users have the same document open.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User begins typing.
+		\item System displays the user's typing, the user's name, and the user's caret, in a different color, to Other Users.
+		\item Other Users see User typing, his username, and his caret, in a different color.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+	   \item \textbf {ColabFile}
+	   \item \textbf {Cursor}
+	   \item \textbf {Project}
+	\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[File Editing Feature 8: Display Typing User Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 8: Display Typing User Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/UserPosition}
+
+\newpage
+
+
+\subsubsection[File Editing Feature 9: Display Syntax Errors]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 9: Display Syntax Errors Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} Display Syntax Errors \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actor:} User \newline
+	\noindent\textbf{Summary:} As the user types code, the editor will underline syntax errors with a red line. \newline
+	\noindent\textbf{Purpose:} Aids the user is writing correct code. \newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item User has read/write permission.
+		\item A supported code file is open.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User begins typing.
+		\item System displays any syntax errors as a red underline under the incorrect section.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+	    \item \textbf {ColabFile}
+	    \item \textbf {Project}
+	\end{enumerate}    
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[File Editing Feature 9: Display Syntax Errors Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 9: Display Syntax Errors Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/SyntaxError}
+
+\newpage
+
+\subsubsection[File Editing Feature 10: Display Syntax Highlighting]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 10: Display Syntax Highlighting Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+	\noindent\textbf{Name:} Display Syntax Highlighting \newline
+	\noindent\textbf{Category:} File Editing \newline
+	\noindent\textbf{Actor:} User \newline
+	\noindent\textbf{Summary:} As the user types code, the editor will change font color for different code structures and keywords. \newline
+	\noindent\textbf{Purpose:} Aids the user is writing code and identifying key code parts. \newline
+	\noindent\textbf{Preconditions:}
+	\begin{enumerate}
+		\item Must be registered.
+		\item Must be logged in.
+		\item User has read/write permission.
+		\item A supported code file is open.
+	\end{enumerate}
+	\noindent\textbf{Steps:}
+	\begin{enumerate}
+		\item User begins typing.
+		\item System automatically colors special code structures and keywords.
+	\end{enumerate}
+	\noindent\textbf{Relevant Classes:}
+	\begin{enumerate}
+	    \item \textbf {Project}
+	\end{enumerate}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[File Editing Feature 10: Display Syntax Highlighting Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	File Editing Feature 10: Display Syntax Highlighting Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+
+\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/SyntaxHighlighting}
+
+\newpage
+
 
 \subsubsection[Use Case Diagram 7: File Management]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Use Case Diagram 7: File Management}
