@@ -979,7 +979,7 @@ These requirements involve the ability for users to have individual accounts and
 		\subitem Sequence Diagram: \textbf{S3.3.11}
 	\item Change their username.
 		\subitem Use Case Description: \textbf{S3.3.12}
-		\subitem Sequence Diagram: \textbf{S3.3.13}	
+		\subitem Sequence Diagram: \textbf{S3.3.13}
 \end{enumerate}
 
 \subsubsection{Communication}
@@ -1041,15 +1041,14 @@ These requirements involve the management of entire projects. Users shall be abl
 	\item Leave a project.
 \end{enumerate}
 
-\subsubsection{Project Member Management}
+\subsubsection{Project User Management}
 
-These requirements involve project admins managing their members. Admins shall be able to:
+These requirements involve project admins managing their Users. Admins shall be able to:
 
 \begin{enumerate}
 	\item Invite users to a project.
 	\item Change user permissions to a project.
 	\item Remove users from a project.
-	\item Block a user from a project.
 \end{enumerate}
 
 \subsubsection{User Preferences}
@@ -1435,19 +1434,19 @@ Authentication Feature 1: Sign Up Use Case Description}
 \textbf{Actors:} User \newline
 
 \noindent\textbf{Summary:} The user signs up and creates an account using their email address and creates username and password in order to access the program. \newline
- 
-\noindent\textbf{Purpose:} To register and create an account in the program \newline 
+
+\noindent\textbf{Purpose:} To register and create an account in the program \newline
 
 \noindent\textbf{Preconditions:} None \newline
 
 \noindent\textbf{Steps:} \begin{enumerate}
 	\item User clicks Register button.
-	\item System prompts the user to enter email and password. 
+	\item System prompts the user to enter email and password.
 	\item User enters email and password and clicks Submit button.
-	\item System sends confirmation email. 
-	\item User verifies email by clicking a link. 
+	\item System sends confirmation email.
+	\item User verifies email by clicking a link.
 	\item System adds verified user to database.
-\end{enumerate} 
+\end{enumerate}
 \noindent\textbf{Alternative 1:} User already has an account. \newline
 
 \noindent\textbf{Alternative 2:} User doesn't confirm email. Delete request after timeout period. \newline
@@ -1489,7 +1488,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \noindent\textbf{Preconditions:} User must already have a registered account.  \newline
 
-\noindent\textbf{Steps:} 
+\noindent\textbf{Steps:}
 \begin{enumerate}
 	\item Users clicks Log In button.
 	\item System prompts the user for their username and password.
@@ -1501,8 +1500,8 @@ Authentication Feature 1: Sign Up Use Case Description}
 		\item User enters incorrect information. System prompts for credentials again.
 		\item User has not clicked email confirmation. System resends email and tells user.
 		\item User makes 5 incorrect login attempts. System prevents more login attempts for 5 minutes.
-	\end{enumerate} 
-	
+	\end{enumerate}
+
 \noindent\textbf{Relevant Classes:}
 \begin{itemize}
 	\item \textbf{User} in \textbf{S3.4.5}
@@ -1538,11 +1537,11 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \noindent\textbf{Preconditions:}
 \begin{enumerate}
-	\item User must have a registered account. 
+	\item User must have a registered account.
 	\item User must be logged in.
-\end{enumerate} 
+\end{enumerate}
 
-\noindent\textbf{Steps:} 
+\noindent\textbf{Steps:}
 \begin{enumerate}
 	\item Users clicks log out button.
 	\item System logs user out.
@@ -1584,11 +1583,11 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \noindent\textbf{Preconditions:}
 \begin{enumerate}
-	\item User must have a registered account. 
+	\item User must have a registered account.
 	\item User must be logged in.
-\end{enumerate} 
+\end{enumerate}
 
-\noindent\textbf{Steps:} 
+\noindent\textbf{Steps:}
 \begin{enumerate}
 	\item Users clicks Change Password button.
 	\item System prompts user to enter their password twice.
@@ -1602,7 +1601,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 	\item If passwords don't match, system notifies user.
 \end{enumerate}
 
-\noindent\textbf{Related Use Cases:} 
+\noindent\textbf{Related Use Cases:}
 \begin{enumerate}
 	\item Change Email
 	\item Change Username
@@ -1645,11 +1644,11 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \noindent\textbf{Preconditions:}
 \begin{enumerate}
-	\item User must have a registered account. 
+	\item User must have a registered account.
 	\item User must be logged in.
-\end{enumerate} 
+\end{enumerate}
 
-\noindent\textbf{Steps:} 
+\noindent\textbf{Steps:}
 \begin{enumerate}
 	\item User clicks Change Email button.
 	\item System prompts user to enter their email.
@@ -1663,7 +1662,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 	\item If user doesn't click confirmation link in an hour, the link becomes invalid.
 \end{enumerate}
 
-\noindent\textbf{Related Use Cases:} 
+\noindent\textbf{Related Use Cases:}
 \begin{enumerate}
 	\item Change Password
 	\item Change Username
@@ -1706,11 +1705,11 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \noindent\textbf{Preconditions:}
 \begin{enumerate}
-	\item User must have a registered account. 
+	\item User must have a registered account.
 	\item User must be logged in.
-\end{enumerate} 
+\end{enumerate}
 
-\noindent\textbf{Steps:} 
+\noindent\textbf{Steps:}
 \begin{enumerate}
 	\item Users clicks Change Username button.
 	\item System prompts user to enter a new username.
@@ -1723,7 +1722,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 	\item If username exists, System asks user to enter a different username.
 \end{enumerate}
 
-\noindent\textbf{Related Use Cases:} 
+\noindent\textbf{Related Use Cases:}
 \begin{enumerate}
 	\item Change Password
 	\item Change Email
@@ -1768,8 +1767,8 @@ Project Browsing Feature 1: Project Browsing Use Case Description}
 \textbf{Actors:} User \newline
 
 \noindent\textbf{Summary:} User looks through posted project ideas to find projects to work on and/or discuss. \newline
- 
-\noindent\textbf{Purpose:} To find and view projects relevant to the user's search parameters \newline 
+
+\noindent\textbf{Purpose:} To find and view projects relevant to the user's search parameters \newline
 
 \noindent\textbf{Preconditions:} User is signed in \newline
 
@@ -1777,9 +1776,9 @@ Project Browsing Feature 1: Project Browsing Use Case Description}
 	\item Actor selects Browse Project Ideas button
 	\item Actor refines search by selecting from list of project categories as desired
 	\item Actor enters terms into search field as desired and views a list of top projects
-	\item Actor selects desired project 
+	\item Actor selects desired project
 	\item System displays detailed project information
-\end{enumerate} 
+\end{enumerate}
 \noindent\textbf{Alternative 1:} None \newline
 
 
@@ -1811,16 +1810,16 @@ Project Browsing Feature 2: Project Creation Use Case Description}
 \textbf{Actors:} User \newline
 
 \noindent\textbf{Summary:} User will create a project. \newline
- 
-\noindent\textbf{Purpose:} To allow users to create projects and make them accessible to other users \newline 
+
+\noindent\textbf{Purpose:} To allow users to create projects and make them accessible to other users \newline
 
 \noindent\textbf{Preconditions:} User is signed in \newline
 
 \noindent\textbf{Steps:} \begin{enumerate}
 	\item User selects Create Project button
-	\item User will enter the information on the project, including its name, goals, and identifying tags. 
+	\item User will enter the information on the project, including its name, goals, and identifying tags.
 	\item If project name does not match any existing project, the system will create a project with the specified parameters and set user as an admin for the project.
-\end{enumerate} 
+\end{enumerate}
 \noindent\textbf{Alternative 1:} Project name matches the name of an existing project and will ask the user to rename it. \newline
 
 
@@ -1852,8 +1851,8 @@ Project Browsing Feature 3: Project Commenting Use Case Description}
 \textbf{Actors:} User \newline
 
 \noindent\textbf{Summary:} Provide detailed feedback on project ideas  \newline
- 
-\noindent\textbf{Purpose:} To allow users to write longform feedback on projects as necessary. \newline 
+
+\noindent\textbf{Purpose:} To allow users to write longform feedback on projects as necessary. \newline
 
 \noindent\textbf{Preconditions:} User is signed in \newline
 
@@ -1862,7 +1861,7 @@ Project Browsing Feature 3: Project Commenting Use Case Description}
 	\item User types feedback into field
 	\item User clicks Submit button
 	\item System shows confirmation that feedback was received
-\end{enumerate} 
+\end{enumerate}
 \noindent\textbf{Alternative 1:} If the project requires comments to be made by project members only and the user is not a project member, the user will be shown an error message. \newline
 
 
@@ -1893,8 +1892,8 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 \textbf{Actors:} User \newline
 
 \noindent\textbf{Summary:} Support promising project ideas or offer criticism to unfavorable ones  \newline
- 
-\noindent\textbf{Purpose:} Allow for feedback and help users search for well received projects \newline 
+
+\noindent\textbf{Purpose:} Allow for feedback and help users search for well received projects \newline
 
 \noindent\textbf{Preconditions:} User is signed in \newline
 
@@ -1902,11 +1901,11 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 	\item User selects Browse Project Ideas button
 	\item User refines search by selecting from list of project categories as desired
 	\item User enters terms into search field as desired and views a list of top projects
-	\item User selects desired project 
+	\item User selects desired project
 	\item System displays detailed project information
 	\item User selects Up Vote or Down Vote button
 	\item Project receives the vote and updates its total score
-\end{enumerate} 
+\end{enumerate}
 \noindent\textbf{Alternative 1:} None \newline
 
 
@@ -1946,7 +1945,7 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 
 \noindent\textbf{Summary:} Open a window to view the conversation in a project  \newline
 
-\noindent\textbf{Purpose:} Allow users to communicate quickly without permanently taking up screen space in a project \newline 
+\noindent\textbf{Purpose:} Allow users to communicate quickly without permanently taking up screen space in a project \newline
 
 \noindent\textbf{Preconditions:} User is signed in and viewing a project \newline
 
@@ -1954,7 +1953,7 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 	\item User selects the "Open Chat" button
 	\item System opens the chat window, and notifies the other users in the project of the new arrival
 	\item System displays any messages from other users in the project in that window until it is closed/left.
-\end{enumerate} 
+\end{enumerate}
 \noindent\textbf{Alternative 1:} None \newline
 
 
@@ -1979,7 +1978,7 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 
 \noindent\textbf{Summary:} Contribute to the conversation in a project  \newline
 
-\noindent\textbf{Purpose:} Allow users to communicate quickly without permanently taking up screen space in a project \newline 
+\noindent\textbf{Purpose:} Allow users to communicate quickly without permanently taking up screen space in a project \newline
 
 \noindent\textbf{Preconditions:} User is signed in and has joined the project chat \newline
 
@@ -1987,7 +1986,7 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 	\item User types a message in the project chat window and presses Send
 	\item System sends that message to the project server, which delivers it to the other users in the project chat
 	\item Other users may read and/or respond to the message at their leisure
-\end{enumerate} 
+\end{enumerate}
 \noindent\textbf{Alternative 1:} None \newline
 
 
@@ -2012,7 +2011,7 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 
 \noindent\textbf{Summary:} Start talking an individual user \newline
 
-\noindent\textbf{Purpose:} Allow users to communicate outside of a project, or in private \newline 
+\noindent\textbf{Purpose:} Allow users to communicate outside of a project, or in private \newline
 
 \noindent\textbf{Preconditions:} At least one of the users are signed in \newline
 
@@ -2020,7 +2019,7 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 	\item User selects "Send PM" from the chat menu and types or selects the other user's ID
 	\item System checks to see if the user exists and is online, and if so creates a chat channel for the two users
 	\item Both users then use the chat as normal
-\end{enumerate} 
+\end{enumerate}
 \noindent\textbf{Alternative 1:} If the second user exists but is offline, the first user is notified and the second user gets the message from the server the next time they're online. \newline
 
 
@@ -2045,15 +2044,15 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 
 \noindent\textbf{Summary:} Communicate more important info about a project  \newline
 
-\noindent\textbf{Purpose:} Allow users to record and semi-permanently attach messages to be displayed alongside a project \newline 
+\noindent\textbf{Purpose:} Allow users to record and semi-permanently attach messages to be displayed alongside a project \newline
 
 \noindent\textbf{Preconditions:} User is signed in and has joined the project \newline
 
 \noindent\textbf{Steps:} \begin{enumerate}
 	\item In a section of the window seperate from temporary chat, the user writes a comment and presses Post
-	\item System sends that message to the project server, which attaches it to the project. The message is then displayed with previous comments in the post. 
+	\item System sends that message to the project server, which attaches it to the project. The message is then displayed with previous comments in the post.
 	\item Other users may read and/or respond to the message at their leisure
-\end{enumerate} 
+\end{enumerate}
 \noindent\textbf{Alternative 1:} A project administrator may remove the post. \newline
 
 
@@ -2078,20 +2077,20 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 
 \noindent\textbf{Summary:} Clean up when a user leaves a project chat \newline
 
-\noindent\textbf{Purpose:} Close the window and remove the user from the list of active users in the project chat so they don't receive more messages \newline 
+\noindent\textbf{Purpose:} Close the window and remove the user from the list of active users in the project chat so they don't receive more messages \newline
 
 \noindent\textbf{Preconditions:} User is signed in and has joined the project chat \newline
 
 \noindent\textbf{Steps:} \begin{enumerate}
 	\item User clicks "close" on the project chat window
 	\item System minimizes the window, and removes the user from the list of active users in the project chat
-\end{enumerate} 
-\noindent\textbf{Alternatives: Step one is skipped if one of the following happen: } 
+\end{enumerate}
+\noindent\textbf{Alternatives: Step one is skipped if one of the following happen: }
 \begin{enumerate}
 	\item The user closes the entire project or program windows
 	\item The user is idle for too long
 	\item An administrator removes them from the project or project chat
-\end{enumerate}  
+\end{enumerate}
 
 
 \noindent\textbf{Relevant Classes:}
@@ -2221,18 +2220,18 @@ Need picture here.
 \textbf{Actors:} User \newline
 
 \noindent\textbf{Summary:} The user selects a file to open based on a filename, which is then opened by the software. \newline
- 
-\noindent\textbf{Purpose:} To open a file in the program. \newline 
+
+\noindent\textbf{Purpose:} To open a file in the program. \newline
 
 \noindent\textbf{Preconditions:} The desired file must already exist. \newline
 
-\noindent\textbf{Steps:} 
+\noindent\textbf{Steps:}
 \begin{enumerate}
 	\item User clicks Open File button.
-	\item System prompts the user to select file to open from a list of existing files. 
+	\item System prompts the user to select file to open from a list of existing files.
 	\item User selects desired file and clicks Submit button.
-	\item System opens selected file and displays it.	
-\end{enumerate} 
+	\item System opens selected file and displays it.
+\end{enumerate}
 \noindent\textbf{Alternative 1:} The User decides they don't want to open a file and presses Cancel at step 3. \newline
 
 \noindent\textbf{Relevant Classes:}
@@ -2265,16 +2264,16 @@ Need picture here.
 \textbf{Actors:} User \newline
 
 \noindent\textbf{Summary:} The user chooses to close the file they are working on. \newline
- 
-\noindent\textbf{Purpose:} To close a file in the program. \newline 
+
+\noindent\textbf{Purpose:} To close a file in the program. \newline
 
 \noindent\textbf{Preconditions:} The desired file must already exist, and be already opened by the User. \newline
 
-\noindent\textbf{Steps:} 
+\noindent\textbf{Steps:}
 \begin{enumerate}
 	\item User clicks Close File button.
-	\item System closes the file and updates the Controller's status on the file being open.	
-\end{enumerate} 
+	\item System closes the file and updates the Controller's status on the file being open.
+\end{enumerate}
 
 \noindent\textbf{Alternative 1:} The file cannot be closed for some reason. \newline
 
@@ -2308,18 +2307,18 @@ Need picture here.
 \textbf{Actors:} User \newline
 
 \noindent\textbf{Summary:} The user chooses to save the file they are currently working on. \newline
- 
-\noindent\textbf{Purpose:} To save a file in the program. \newline 
+
+\noindent\textbf{Purpose:} To save a file in the program. \newline
 
 \noindent\textbf{Preconditions:} The desired file must already exist, and be opened by the user. \newline
 
 \noindent\textbf{Steps:} \begin{enumerate}
 	\item User clicks Save File button.
-	\item System prompts the user to choose a name to save the file under. 
+	\item System prompts the user to choose a name to save the file under.
 	\item User selects desired name and clicks Submit button.
-	\item System saves selected file and allows the user to keep working. 
-	
-\end{enumerate} 
+	\item System saves selected file and allows the user to keep working.
+
+\end{enumerate}
 \noindent\textbf{Alternative 1:} The User decides they don't want to save the file and presses Cancel at step 3. \newline
 
 \noindent\textbf{Relevant Classes:}
@@ -2352,20 +2351,20 @@ Need picture here.
 \textbf{Actors:} User \newline
 
 \noindent\textbf{Summary:} The user chooses to add a file to the directory. \newline
- 
-\noindent\textbf{Purpose:} To add a file to a directory. \newline 
+
+\noindent\textbf{Purpose:} To add a file to a directory. \newline
 
 \noindent\textbf{Preconditions:} The desired file must already exist. \newline
 
 \noindent\textbf{Steps:} \begin{enumerate}
 	\item User clicks Add File button.
-	\item System prompts the user to choose a file to add to a directory.. 
+	\item System prompts the user to choose a file to add to a directory..
 	\item User selects desired file and clicks Submit button.
 	\item System prompts the user to choose a directory to add the file to.
 	\item User selects directory to add the file to and click Submit button.
 	\item System adds the file to the selected directory and lets the user return to their work.
-	
-\end{enumerate} 
+
+\end{enumerate}
 \noindent\textbf{Alternative 1:} The User decides they don't want to add the file and presses Cancel at step 3. \newline
 \noindent\textbf{Alternative 2:} The User decides, after they chose a file, not to add it to a directory and clicks Cancel at step 5. \newline
 
@@ -2397,21 +2396,125 @@ Need picture here.
 
 \newpage
 
-\subsubsection[Project User Management Feature 1: Use Case Description 1]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Project User Management Feature 1: Use Case Description 1}
+\subsubsection[Project User Management Feature 1: Add User to Project Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project User Management Feature 1: Add User to Project Use Case Description}
 \hypertarget{RefHeading22059017292}{}
-\bigskip
 
-{\selectlanguage{english}\color{black}
-	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
-		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
-		whichever is more appropriate.}}}
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Add a user to project \newline
+ \textbf{Pre-conditions:} User has admin rights to project. \newline
+ \textbf{Summary:} User adds a user to a project \newline
+\textbf{Related use cases:} Kick User \newline
+\textbf{Steps:} \begin{enumerate}
+  \item User clicks add user button.
+  \item System prompts user to enter the username of the user they wish to invite.
+  \item User enters username.
+  \item System adds the specified user to the project, and notifies them.
+ \end{enumerate}
+ \textbf{Alternatives:} \begin{enumerate}
+  \item User enters an invalid username, in which case an error is reported
+ \end{enumerate}
+ \textbf{Post-conditions:} None. \newline
+\vspace{8pt}
+\textbf{Relevant Classes:}
+\begin{itemize}
+	\item \textbf{User}
+	\item \textbf{Project}
+	\item \textbf{UserManager}
+	\item \textbf{Permissions}
+	\item \textbf{Email}
+\end{itemize}
+\hrule
 \newpage
 
-\subsubsection[Project User Management Feature 2: Use Case Description 2]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Project User Management Feature 2: Use Case Description 2}
+\subsubsection[Project User Management Feature 1: Add User Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project User Management Feature 1: Add User Sequence Diagram}
 \hypertarget{RefHeading22059017292}{}
-\bigskip
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/ProjectUserManagementAddUser}
+
+\newpage
+\subsubsection[Project User Management Feature 2: Kick User Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project User Management Feature 2: Kick User Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Kick a user from project. \newline
+ \textbf{Pre-conditions:} User is an admin, and the user they wish to kick is a membor of the project. \newline
+ \textbf{Summary:} User removes a selected user from the Project \newline
+\textbf{Related use cases:} Add User \newline
+\textbf{Steps:} \begin{enumerate}
+  \item User clicks Kick User button.
+  \item System displays list of Members of the project.
+  \item User selects one or more other users from the list and presses Remove.
+  \item System prompts User for verification.
+  \item User presses Confirm.
+  \item System removes the selected users from the project.
+ \end{enumerate}
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
+\begin{itemize}
+	\item \textbf{User}
+	\item \textbf{Project}
+	\item \textbf{UserManager}
+	\item \textbf{Permissions}
+\end{itemize}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[Project User Management Feature 2: Kick User Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project User Management Feature 2: Kick User Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/ProjectUserManagementKickUser}
+\newpage
+
+\subsubsection[Project User Management Feature 3: Set User Permissions Use Case Description ]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project User Management Feature 3: Set User Permissions Use Case Description}
+\hypertarget{RefHeading22059017292}{}
+
+\vspace{2pt}
+\hrule
+\vspace{8pt}
+ \textbf{Actors:} User \newline
+\textbf{Goals:} Modify a user\'s permissions. \newline
+ \textbf{Pre-conditions:} User has admin permissions, and the user whose permissions they wish to change is a member of the project\newline
+ \textbf{Summary:} User modifies another User\'s permissions to the project. \newline
+ \textbf{Related use cases:} None. \newline
+\textbf{Steps:} \begin{enumerate}
+  \item User clicks Permissions Management button.
+  \item System displays permissions management window.
+  \item User selects the user whose permissions they want to edit.
+  \item System displays a list of toggles for the users's permissions.
+  \item User makes changes to the user's permissions.
+  \item System modifes the target User\'s permissions.
+ \end{enumerate}
+ \textbf{Alternatives:} None. \newline
+ \textbf{Post-conditions:} None. \newline
+\begin{itemize}
+	\item \textbf{User}
+	\item \textbf{Project}
+	\item \textbf{UserManager}
+	\item \textbf{Permissions}
+\end{itemize}
+\vspace{8pt}
+\hrule
+\newpage
+
+\subsubsection[Project User Management Feature 3: Set User Permissions Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Project User Management Feature 3: Set User Permissions Sequence Diagram}
+\hypertarget{RefHeading22059017292}{}
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/ProjectUserManagementSetPermission}
+\newpage
+
+
+
 
 {\selectlanguage{english}\color{black}
 	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
@@ -2521,9 +2624,9 @@ I organized this one into a separate package because that's how I'm pretty sure 
 \textbf{Classes:}
 \begin{itemize}
 
-       \item \textbf{User:} Represents the human user of the program. It will hold the user's profile information so that it can be validated later. 
+       \item \textbf{User:} Represents the human user of the program. It will hold the user's profile information so that it can be validated later.
        \item \textbf{Preferences:} Holds all the user's account preferences. This includes profile picture, chat font, chat color, ect.
-       \item \textbf{ModifyPref:} Allows the user to modify his or her's preferences. 
+       \item \textbf{ModifyPref:} Allows the user to modify his or her's preferences.
        \item \textbf{Authentication:} Authenticates the user's username and password to allow access to make changes on their account.
 \end{itemize}
 
@@ -2549,7 +2652,7 @@ I organized this one into a separate package because that's how I'm pretty sure 
 	\item \textbf{Message:} Messages sent by users to TextChat, contain a string, timestamp, and sender/receiver data.
 	\item \textbf{Timestamp:} Recorded time of when message was sent.
 \end{itemize}
-\newpage	
+\newpage
 
 \subsubsection[Class Diagram 6: Project Browsing]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Class Diagram 6: Project Browsing}
@@ -2577,32 +2680,32 @@ I organized this one into a separate package because that's how I'm pretty sure 
 \begin{itemize}
 	\item The \textbf{User} class will be the class, shared across many of the class diagrams, that stores information about a user. The User class will have not only the methods and fields shown in this diagram, but a concatenation of the ones shown here and all other methods and fields from the other diagrams. Here, the User class implements the ReceivesFeedback interface so that other users may leave comments/reviews of a User object, and so that they may receive an accompanying rating from one to five stars. In relation to browsing projects, a User is the agent who searches a ProjectBrower object and works on a Project object.
 	\item The \textbf{Project} class will also have the methods and fields of other class diagrams, similar to the User class above. Here, the Project class implements the ReceivesFeedback interface so that users may leave comments/reviews on projects, as well as vote up or down on projects that they come across. Projects are displayed in the ProjectBroswer class and worked on by users.
-	\item The \textbf{ProjectBrowser} class contains a search-able list of zero or more projects tailored to a user's search. Users browse the list in order to find projects of interest. 
+	\item The \textbf{ProjectBrowser} class contains a search-able list of zero or more projects tailored to a user's search. Users browse the list in order to find projects of interest.
 \end{itemize}
 
 \newpage
-\subsubsection[Class Diagram 7: Project Member Management]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram 7: Project Member Management}
+\subsubsection[Class Diagram 7: Project User Management]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram 7: Project User Management}
 \hypertarget{RefHeading22059017292}{}
 \bigskip
 
-\includegraphics[width=\textwidth]{images/ClassDiagrams/ProjectMemberManagement}
+\includegraphics[width=\textwidth]{images/ClassDiagrams/ProjectUserManagement}
 
 \newpage
 
-\subsubsection[Class Diagram Description 7: Project Member Management Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
-	Class Diagram Description 7: Project Member Management Description}
+\subsubsection[Class Diagram Description 7: Project User Management Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
+	Class Diagram Description 7: Project User Management Description}
 \hypertarget{RefHeading22059017292}{}
 
 \textbf{Classes:}
 \begin{itemize}
 
-	\item The \textbf{User} class contains the profiles of everyone who uses sQuire, and identifies anyone who tries to access a board.  
+	\item The \textbf{User} class contains the profiles of everyone who uses sQuire, and identifies anyone who tries to access a board.
 	\item The \textbf{Project} class contains all of the information pertinent to an individual project, including one UserManager, which the client uses to control what kind of access each user has to that specific project.
-	\item The \textbf{UserManager} class is referenced to check if a user has permission to read, modify, or run a project, or invite, ban, or change the permissions of another user. It does this by updating and checking against a HashMap of Permissions idexed by User. It records the User profile of the project creator to prevent the creator being demoted by another admin. It also contains a set of Permissions to use by default, before users are manually added to the project. 
+	\item The \textbf{UserManager} class is referenced to check if a user has permission to read, modify, or run a project, or invite, ban, or change the permissions of another user. It does this by updating and checking against a HashMap of Permissions idexed by User. It records the User profile of the project creator to prevent the creator being demoted by another admin. It also contains a set of Permissions to use by default, before users are manually added to the project.
 	The functions AddUser, KickUser, and SetPerms all modify the permissions HashMap after checking against it to make sure the active user has the authority to change the permissions of the target user.
 	\item The \textbf{HashMap} class, in this case, functions as a permissions lookup table. It's indexed by User, and for each User in it there's one set of Permissions that it returns.
-	\item The \textbf{Permissions} class is a set of bools that store whether each User has permission (within the instance's parent project) to read, write, execute the project, invite users, and/or modify the permissions of other users regarding the project. 
+	\item The \textbf{Permissions} class is a set of bools that store whether each User has permission (within the instance's parent project) to read, write, execute the project, invite users, and/or modify the permissions of other users regarding the project.
 \end{itemize}
 
 \newpage
