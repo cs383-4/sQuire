@@ -10,7 +10,7 @@ User o-right- Preferences
 
 class Authentication{
 
-bool AcessGranted
+bool AccessGranted
 
 GetUserInformation()
 }
