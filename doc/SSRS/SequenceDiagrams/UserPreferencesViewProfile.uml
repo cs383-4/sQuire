@@ -3,22 +3,21 @@ title User Preferences: View Profile
 
 Activate UI
 Activate Project
-Activate ViewProfile
+Activate UserPreference
 
-UI -> Project: ViewProfile()
-ModifyPref -> Authentication: Validate
-alt AccessGranted true
-	Authentication -> ModifyPref: AccessGranted
-	ModifyPref -> ModifyPref: Apply()
+UI -> Project: UserPreference(actor, target)
+Project -> Project: UserLookup(target)
+alt Username exists in project
+	Project -> UserPreference: ViewProfile(actor)
+	UserPreference -> UserPreference: Check privacy settings
+	UserPreference -> UI: Return viewable profile fields
 else false
-	Authentication -> ModifyPref: Access Denied
+	Project -> UI: Error Invalid Username
 end
 
-ModifyPref -> UI: Force Refresh
-
 Deactivate UI
-Deactivate ModifyPref
-Deactivate Authentication
+Deactivate Project
+Deactivate UserPreference
 
 
 legend right
