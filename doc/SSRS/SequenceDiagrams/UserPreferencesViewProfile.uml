@@ -1,0 +1,28 @@
+@startuml
+title User Preferences: View Profile
+
+Activate UI
+Activate Project
+Activate ViewProfile
+
+UI -> Project: ViewProfile()
+ModifyPref -> Authentication: Validate
+alt AccessGranted true
+	Authentication -> ModifyPref: AccessGranted
+	ModifyPref -> ModifyPref: Apply()
+else false
+	Authentication -> ModifyPref: Access Denied
+end
+
+ModifyPref -> UI: Force Refresh
+
+Deactivate UI
+Deactivate ModifyPref
+Deactivate Authentication
+
+
+legend right
+Author: Robert Carlson (carl7595)
+Reviewed by: Team ICY
+end legend
+@enduml
