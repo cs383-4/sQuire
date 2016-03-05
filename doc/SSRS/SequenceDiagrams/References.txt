@@ -1,0 +1,31 @@
+@startuml
+
+
+User -> ColabFile: GetReference()
+
+
+activate ColabFile
+
+
+ColabFile -> LineHistory: GetLineNumber()
+
+
+activate LineHistory
+
+
+LineHistory --> ColabFile: LineNumber
+
+
+deactivate LineHistory
+
+
+ColabFile -> ColabFile: FindNumReferenes()
+
+
+ColabFile -> Project: NumberOfReferences(LineNumber)
+
+
+deactivate ColabFile
+
+
+@enduml

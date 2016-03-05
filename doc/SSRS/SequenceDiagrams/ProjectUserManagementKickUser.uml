@@ -1,0 +1,20 @@
+@startuml
+Activate UI
+Activate UserManager
+UI -> UserManager: kickUser(targetUser)
+UserManager -> UserManager: isAdmin(user)
+
+alt Admin
+UserManager -> UserManager: kickUser(targetUser)
+UserManager --> UI : Success
+else Not Admin
+UserManager --> UI: Permission Denied
+Deactivate UserManager
+end
+Deactivate UI
+
+legend center
+Author: Brandon Ratcliff
+Reviewed by: Entire Group
+end legend
+@enduml

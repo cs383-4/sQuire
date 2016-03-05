@@ -1,0 +1,52 @@
+@startuml
+
+
+User -> ColabFile: GetUserPosition()
+
+
+activate ColabFile
+
+
+ColabFile -> Cursor: GetPosition()
+
+
+activate Cursor
+
+
+Cursor --> ColabFile: Position
+
+
+ColabFile -> Cursor: GetUser()
+
+
+Cursor --> ColabFile: User
+
+
+deactivate Cursor
+
+
+ColabFile -> Project: UserPosition
+
+
+deactivate ColabFile
+
+
+activate Project
+
+
+Project -> Project: DisplayUserPosition()
+
+
+
+legend right
+
+    
+<b>Author:</b> Eric Gentile-Quant
+
+    <b>Reviewed by:</b> Everyone
+
+
+endlegend
+
+
+@enduml

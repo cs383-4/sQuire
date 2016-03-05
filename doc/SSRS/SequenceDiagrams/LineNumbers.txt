@@ -1,0 +1,52 @@
+@startuml
+
+activate Program
+
+Program -> Server: LineNumbers(Choice)
+
+activate Server
+
+activate Database
+
+Server -> Database: LineNumbers(Choice)
+
+
+
+
+alt Enable
+
+
+
+Database --> Server: Enable
+
+deactivate Database
+
+Server --> Program: EnableLineNumbers
+
+deactivate Server
+
+
+
+else Disable
+
+
+
+activate Database
+
+Database --> Server: Disable
+
+activate Server
+
+deactivate Database
+
+Server --> Program: DisableLineNumbers
+
+deactivate Server
+
+
+
+end
+
+deactivate Program
+
+@enduml
