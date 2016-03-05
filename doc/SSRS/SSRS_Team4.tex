@@ -137,7 +137,7 @@ Version 1.0
 \par}
 
 {\centering\bfseries
-February 09, 2016
+March 4, 2016
 \par}
 
 
@@ -2194,6 +2194,9 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
 		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
 		whichever is more appropriate.}}}
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/UserPreferencesModifyPref.png}
+
 \newpage
 
 \subsubsection[User Preferences Feature 2: Use Case Description 2]{\selectlanguage{english}\rmfamily\bfseries\color{black}
@@ -2205,6 +2208,9 @@ Project Browsing Feature 4: Project Voting Use Case Description}
 	\foreignlanguage{english}{\textit{For each feature, you should either provide a Use Case Description
 		}}\foreignlanguage{english}{\textbf{\textit{or}}}\foreignlanguage{english}{\textit{ a Non-task feature description,
 		whichever is more appropriate.}}}
+
+\includegraphics[width=\textwidth]{images/SequenceDiagrams/UserPreferencesViewProfile.png}
+
 \newpage
 
 \subsubsection[Use Case Diagram 5: Project Management (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
@@ -3582,6 +3588,19 @@ I organized this one into a separate package because that's how I'm pretty sure 
 \bigskip
 
 \includegraphics[width=\textwidth]{images/ClassDiagrams/ProjectManagement}
+
+\textbf{Classes:}
+\begin{itemize}
+
+	\item The \textbf{User} class contains the profiles of everyone who uses sQuire, and identifies anyone who tries to access a board.
+	\item The \textbf{Project} class contains all of the information pertinent to an individual project, including one UserManager, which the client uses to control what kind of access each user has to that specific project.
+	\item The \textbf{UserManager} class is referenced to check if a user has permission to read, modify, or run a project, or invite, ban, or change the permissions of another user. It does this by updating and checking against a HashMap of Permissions indexed by User. It records the User profile of the project creator to prevent the creator being demoted by another admin. It also contains a set of Permissions to use by default, before users are manually added to the project.
+	The functions AddUser, KickUser, and SetPerms all modify the permissions HashMap after checking against it to make sure the active user has the authority to change the permissions of the target user.
+	\item The \textbf{HashMap} class, in this case, functions as a permissions lookup table. It's indexed by User, and for each User in it there's one set of Permissions that it returns.
+	\item The \textbf{Permissions} class is a set of bools that store whether each User has permission (within the instance's parent project) to read, write, execute the project, invite users, and/or modify the permissions of other users regarding the project.
+\end{itemize}
+
+\newpage
 
 \subparagraph[]{\selectlanguage{english}\rmfamily\color{black} }
 \clearpage\setcounter{page}{1}\pagestyle{Convertvi}
