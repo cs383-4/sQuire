@@ -958,28 +958,29 @@ These requirements involve the ability for users to find and learn about project
 \end{enumerate}
 
 \subsubsection{Authentication}
+These requirements involve the ability for users to have individual accounts and the security that comes from that. Users shall be able to: \newline
+\noindent Use case diagram: \ref{a:ucd}
 
-These requirements involve the ability for users to have individual accounts and the security that comes from that. Users shall be able to:
 
 \begin{enumerate}
 	\item Sign up for a sQuire user account.
-		\subitem Use Case Description: \textbf{S3.3.2}
-		\subitem Sequence Diagram: \textbf{S3.3.3}
+		\subitem Use Case Description: \ref{a:uc1}
+		\subitem Sequence Diagram:  \ref{a:sd1}
 	\item Log in to the program using their user account.
-		\subitem Use Case Description: \textbf{S3.3.4}
-		\subitem Sequence Diagram: \textbf{S3.3.5}
+		\subitem Use Case Description: \ref{a:uc2}
+		\subitem Sequence Diagram: \ref{a:sd2}
 	\item Log out of the program using their user account.
-		\subitem Use Case Description: \textbf{S3.3.6}
-		\subitem Sequence Diagram: \textbf{S3.3.7}
+		\subitem Use Case Description: \ref{a:uc3}
+		\subitem Sequence Diagram: \ref{a:sd3}
 	\item Change their password.
-		\subitem Use Case Description: \textbf{S3.3.8}
-		\subitem Sequence Diagram: \textbf{S3.3.9}
+		\subitem Use Case Description: \ref{a:uc4}
+		\subitem Sequence Diagram: \ref{a:sd4}
 	\item Change their email.
-		\subitem Use Case Description: \textbf{S3.3.10}
-		\subitem Sequence Diagram: \textbf{S3.3.11}
+		\subitem Use Case Description: \ref{a:uc5}
+		\subitem Sequence Diagram: \ref{a:sd5}
 	\item Change their username.
-		\subitem Use Case Description: \textbf{S3.3.12}
-		\subitem Sequence Diagram: \textbf{S3.3.13}
+		\subitem Use Case Description: \ref{a:uc6}
+		\subitem Sequence Diagram: \ref{a:sd6}
 \end{enumerate}
 
 \subsubsection{Communication}
@@ -1440,16 +1441,17 @@ decomposition (here) does not imply that the software design will also be partit
 subsections 3.3.i for every specified feature defined for the system or software.}
 
 \subsubsection[Use Case Diagram 1: Authentication]{\foreignlanguage{english}{\ Use Case Diagram 1: Authentication}}
+\label{a:ucd}
 \hypertarget{RefHeading21859017292}{}{\selectlanguage{english}\color{black}
 }
 
 \includegraphics[width=\textwidth]{images/UseCaseDiagrams/Authentication}
-
 \newpage
 
 \subsubsection[Authentication Feature 1: Sign Up Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 Authentication Feature 1: Sign Up Use Case Description}
 \hypertarget{RefHeading22059017292}{}
+\label{a:uc1}
 
 \vspace{2pt}
 \hrule
@@ -1489,6 +1491,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \subsubsection[Authentication Feature 1: Sign Up Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 1: Sign Up Sequence Diagram}
+	\label{a:sd1}
 \hypertarget{RefHeading22059017292}{}
 
 \bigskip
@@ -1499,6 +1502,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \subsubsection[Authentication Feature 2: Log In Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 2: Log In Use Case Description}
+	\label{a:uc2}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1543,11 +1547,12 @@ Authentication Feature 1: Sign Up Use Case Description}
 \bigskip
 
 \includegraphics[width=\textwidth]{images/SequenceDiagrams/AuthenticationLogIn}
-
+\label{a:sd2}
 \newpage
 
 \subsubsection[Authentication Feature 3: Log Out Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 3: Log Out Use Case Description}
+	\label{a:uc3}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1584,6 +1589,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \subsubsection[Authentication Feature 3: Log Out Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 3: Log Out Sequence Diagram}
+	\label{a:sd3}
 \hypertarget{RefHeading22059017292}{}
 
 \bigskip
@@ -1594,6 +1600,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \subsubsection[Authentication Feature 4: Change Password Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 4: Change Password Use Case Description}
+	\label{a:uc4}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1646,15 +1653,17 @@ Authentication Feature 1: Sign Up Use Case Description}
 \subsubsection[Authentication Feature 4: Change Password Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 4: Change Password Sequence Diagram}
 \hypertarget{RefHeading22059017292}{}
-
+\label{a:sd4}
 \bigskip
 
 \includegraphics[width=\textwidth]{images/SequenceDiagrams/AuthenticationChangePassword}
+
 
 \newpage
 
 \subsubsection[Authentication Feature 5: Change Email Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 5: Change Email Use Case Description}
+	\label{a:uc5}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1707,7 +1716,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 \subsubsection[Authentication Feature 5: Change Email Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 5: Change Email Sequence Diagram}
 \hypertarget{RefHeading22059017292}{}
-
+\label{a:sd5}
 \bigskip
 
 \includegraphics[width=\textwidth]{images/SequenceDiagrams/AuthenticationChangeEmail}
@@ -1716,6 +1725,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \subsubsection[Authentication Feature 6: Change Username Use Case Description] {\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 6: Change Username Use Case Description}
+	\label{a:uc6}
 \hypertarget{RefHeading22059017292}{}
 
 \hrule
@@ -1765,6 +1775,7 @@ Authentication Feature 1: Sign Up Use Case Description}
 
 \subsubsection[Authentication Feature 6: Change Username Sequence Diagram]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Authentication Feature 6: Change Username Sequence Diagram}
+	\label{a:sd6}
 \hypertarget{RefHeading22059017292}{}
 
 \bigskip
