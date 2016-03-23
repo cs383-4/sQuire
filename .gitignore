@@ -20,3 +20,11 @@ doc/src/*.png
 *.toc
 *.gz
 *.out
+
+#configuration
+*.xml
+*.iml
+
+*.iml
+
+*.iml

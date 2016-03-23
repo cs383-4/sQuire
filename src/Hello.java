@@ -9,7 +9,8 @@ import javafx.stage.Stage;
 public class Hello extends Application implements EventHandler<ActionEvent>
 {
     private Button button;
-
+    int clicked = 0;
+    double rotate = 0.0;
     public static void main(String[] args)
     {
         // From the 'Application' class.
@@ -34,16 +35,28 @@ public class Hello extends Application implements EventHandler<ActionEvent>
         // Anonymous inner class.
         button.setOnAction(new EventHandler<ActionEvent>()
         {
+
             @Override
             public void handle(ActionEvent event)
             {
-                button.setText("Clicked.");
+
+                if (clicked == 0) {
+                    rotate += 45.0;
+                    button.setText("Clicked.");
+                    button.setRotate(rotate);
+                    clicked = 1;
+                }
+                else if (clicked == 1)
+                {
+                    button.setText("Click Me!");
+                    clicked = 0;
+                }
             }
         });
 
         // Option 3:
         // Lambda!
-        button.setOnAction(e -> button.setText("Clicked."));
+//        button.setOnAction(e -> button.setText("Clicked."));
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
