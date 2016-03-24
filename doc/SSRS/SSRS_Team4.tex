@@ -950,11 +950,23 @@ These requirements involve the ability for users to find and learn about project
 
 \begin{enumerate}
 	\item See a list of open projects.
+		\subitem Use Case Description: \ref{pb:uc1}
+		\subitem Sequence Diagram:  \ref{pb:sd1}
 	\item Filter or search projects.
+		\subitem Use Case Description: \ref{pb:uc2}
+		\subitem Sequence Diagram:  \ref{pb:sd2}
 	\item View more information about a specific project.
+		\subitem Use Case Description: \ref{pb:uc3}
+		\subitem Sequence Diagram:  \ref{pb:sd3}
 	\item Upvote and downvote projects.
+		\subitem Use Case Description: \ref{pb:uc4}
+		\subitem Sequence Diagram:  \ref{pb:sd4}
 	\item Comment on projects and interact with its contributors.
+		\subitem Use Case Description: \ref{pb:uc5}
+		\subitem Sequence Diagram:  \ref{pb:sd5}
 	\item Request to join a specific project.
+		\subitem Use Case Description: \ref{pb:uc6}
+		\subitem Sequence Diagram:  \ref{pb:sd6}
 \end{enumerate}
 
 \subsubsection{Authentication}
@@ -1050,13 +1062,27 @@ These requirements involve the collaborative editor part of sQuire. Users shall 
 These requirements involve the management of entire projects. Users shall be able to:
 
 \begin{enumerate}
-	\item Compile a project.  See use case description and sequence diagram \textbf{Project Management Feature 1: Compile and Execute Project}
-	\item Execute a compiled project. See use case description and sequence diagram \textbf{Project Management Feature 1: Compile and Execute Project Use Case Description}
-	\item Create a new project. See use case description and sequence diagram \textbf{Project Management Feature 2: Create project}
-	\item Delete a project. See use case description and sequence diagram \textbf{Project Management Feature 3: Delete project}
-	\item Invite a user to a project. See use case description and sequence diagram \textbf{Project Management Feature 7/8: Invite/Respond to Project Invite}
-	\item Join a project. See use case description and sequence diagram \textbf{Project Management Feature 4/5: Request/Manage Request to Join Project}
-	\item Leave a project. See use case description and sequence diagram \textbf{Project Management Feature 6: Leave Project}
+	\item Compile a project.  
+		\subitem Use Case Description: \ref{pm:uc1}
+		\subitem Sequence Diagram:  \ref{pm:sd1}
+	\item Execute a compiled project. 
+		\subitem Use Case Description: \ref{pm:uc1}
+		\subitem Sequence Diagram:  \ref{pm:sd1}
+	\item Create a new project. 
+		\subitem Use Case Description: \ref{pm:uc3}
+		\subitem Sequence Diagram:  \ref{pm:sd3}
+	\item Delete a project. 
+		\subitem Use Case Description: \ref{pm:uc4}
+		\subitem Sequence Diagram:  \ref{pm:sd4}
+	\item Invite a user to a project. 	
+		\subitem Use Case Description: \ref{pm:uc5}
+		\subitem Sequence Diagram:  \ref{pm:sd5}
+	\item Join a project. 
+		\subitem Use Case Description: \ref{pm:uc6}
+		\subitem Sequence Diagram:  \ref{pm:sd6}
+	\item Leave a project.
+		\subitem Use Case Description: \ref{pm:uc7}
+		\subitem Sequence Diagram:  \ref{pm:sd7}
 \end{enumerate}
 
 \subsubsection{Project User Management}
@@ -1794,6 +1820,7 @@ Use Case Diagram 2: Project Browsing}
 \subsubsection[Project Browsing Feature 1: Project Browsing Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 Project Browsing Feature 1: Project Browsing Use Case Description}
 \hypertarget{RefHeading22059017292}{}
+\label{pb:uc1}
 
 \vspace{2pt}
 \hrule
@@ -1832,6 +1859,7 @@ Project Browsing Feature 1: Project Browsing Use Case Description}
 \bigskip
 
 \includegraphics[width=\textwidth]{images/SequenceDiagrams/ProjectBrowsingProjectBrowsing}
+\label{pb:sd1}
 
 \newpage
 \subsubsection[Project Browsing Feature 2: Project Creation Use Case Description]{\selectlanguage{english}\rmfamily\bfseries\color{black}
@@ -2241,6 +2269,9 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 \subsubsection[Project Management Feature 1: Use Case Description 1: Compile and execute project (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Project Management Feature 1: Compile and Execute Project Use Case Description (dani2918) }
 \hypertarget{RefHeading22059017292}{}
+\label{pm:uc1}
+
+
 \bigskip
 \vspace{2pt}
 \hrule
@@ -2274,6 +2305,7 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 \bigskip
 
 \includegraphics[width=\textwidth]{images/SequenceDiagrams/PMCompile}
+\label{pm:sd1}
 
 \newpage
 
@@ -2283,6 +2315,7 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 \subsubsection[Project Management Feature 2: Create project Use Case Description (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Project Management Feature 2: Create project Use Case Description(dani2918)}
 \hypertarget{RefHeading22059017292}{}
+\label{pm:uc3}
 \bigskip
 
 \vspace{2pt}
@@ -2323,13 +2356,15 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 \bigskip
 
 \includegraphics[width=\textwidth]{images/SequenceDiagrams/PMCreateProject.png}
-
+\label{pm:sd3}
 \newpage
 
 
 \subsubsection[Project Management Feature 3: Delete Project Use Case Description (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Project Management Feature 3: Delete Project Use Case Description (dani2918)}
+	\ref{pm:uc3}
 \hypertarget{RefHeading22059017292}{}
+\label{pm:uc4}
 \bigskip
 
 \vspace{2pt}
@@ -2364,7 +2399,7 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 	Project Management Feature 3: Delete Project Sequence Diagram  (dani2918)}
 
 \bigskip
-
+\label{pm:sd4}
 \includegraphics[width=\textwidth]{images/SequenceDiagrams/PMDeleteProject}
 
 
@@ -2376,6 +2411,7 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 	Project Management Feature 4: Request to Join Project Use Case Description (dani2918)}
 \hypertarget{RefHeading22059017292}{}
 \bigskip
+\label{pm:uc6}
 
 \vspace{2pt}
 \hrule
@@ -2444,7 +2480,7 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 \bigskip
 
 \includegraphics[width=\textwidth]{images/SequenceDiagrams/PMJoinProject}
-
+\label{pm:sd6}
 
 \newpage
 
@@ -2454,6 +2490,7 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 \subsubsection[Project Management Feature 6: Leave Project Use Case Description (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Project Management Feature 6: Leave Project Use Case Description  (dani2918)}
 \hypertarget{RefHeading22059017292}{}
+\label{pm:uc7}
 \bigskip
 
 \vspace{2pt}
@@ -2486,6 +2523,7 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 
 \subsubsection[Project Management Feature 6: Leave Project Sequence Diagram (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Project Management Feature 6: Leave Project Sequence Diagram  (dani2918)}
+	\label{pm:sd7}
 
 \bigskip
 
@@ -2498,6 +2536,7 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 
 \subsubsection[Project Management Feature 7: Invite to Project Use Case Description (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Project Management Feature 7: Invite to Project Use Case Description  (dani2918)}
+	\label{pm:uc5}
 \hypertarget{RefHeading22059017292}{}
 \bigskip
 
@@ -2565,7 +2604,7 @@ Relevant classes are found in \textbf{Project Management} section and include \t
 
 \subsubsection[Project Management Feature 7/8: Invite/Respond to Project Invite Sequence Diagram (dani2918)]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	Project Management Feature 7/8:  Invite/Respond to Project Invite Sequence Diagram (dani2918)}
-
+\label{pm:sd5}
 \bigskip
 
 \includegraphics[width=\textwidth]{images/SequenceDiagrams/PMInviteToProject}
