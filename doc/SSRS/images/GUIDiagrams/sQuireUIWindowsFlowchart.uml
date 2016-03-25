@@ -1,0 +1,48 @@
+@startuml
+title UI Window Flowchart (Generic Error Handling)
+
+state "Desktop" as desktop
+state "Splash Screen" as splash
+state "Home Page" as home
+state "Login Screen" as login
+state "Project Creation" as newproject
+state "Editor" as editor
+state "User Preferences Form" as userpref
+state "Create File Form" as newfile
+state "Import File Form" as import
+state "Export File Form" as export
+state "Compile Project Form" as compile
+state "Error" as error
+
+[*] -> desktop
+desktop --> splash : Launch
+splash --> home : Load
+splash --> error : Error message
+home --> newproject : New Project
+home --> login : Click on Avatar
+home --> editor : Open Project
+home --> desktop : Close sQuire
+newproject --> editor : Project Created
+editor --> home : Close Project
+editor --> userpref : Edit Profile
+editor --> desktop : Close sQuire
+editor --> login : Click on Avatar
+editor --> newfile : Create New File
+editor --> import : Import File
+editor --> export : Export File
+editor --> compile : Compile project
+editor --> error : Error
+login --> home : Return
+login --> editor : Return
+newfile --> editor : Return
+userpref --> editor : Return
+import --> editor : Return
+export --> editor : Return
+error --> desktop : Exit
+
+
+legend center
+Author: Robert Carlson (carl7595)
+end legend
+
+@enduml
