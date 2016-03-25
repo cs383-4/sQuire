@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <TreeView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="29.0" prefWidth="111.0" text="Info1" />
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="29.0" prefWidth="111.0" text="Info2" />
+            <Label alignment="CENTER" layoutX="121.0" layoutY="10.0" prefHeight="29.0" prefWidth="111.0" text="Info3" />
+            <Label alignment="CENTER" layoutX="232.0" layoutY="10.0" prefHeight="29.0" prefWidth="111.0" text="Info4" />
+         </children></HBox>
    </bottom>
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox BorderPane.alignment="CENTER">
          <children>
-            <VBox>
+            <VBox prefHeight="46.0" prefWidth="1858.0" HBox.hgrow="ALWAYS">
                <children>
                   <MenuBar>
                     <menus>
@@ -36,22 +45,81 @@
                           <MenuItem mnemonicParsing="false" text="Delete" />
                         </items>
                       </Menu>
-                      <Menu mnemonicParsing="false" text="Help">
+                      <Menu mnemonicParsing="false" text="Debug">
                         <items>
                           <MenuItem mnemonicParsing="false" text="About" />
                         </items>
                       </Menu>
+                        <Menu mnemonicParsing="false" text="Tools">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Delete" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Delete" />
+                           </items>
+                        </Menu>
                     </menus>
                   </MenuBar>
-                  <ToolBar prefHeight="40.0" prefWidth="530.0">
-                    <items>
-                      <Button mnemonicParsing="false" text="ToolBarButton1" />
-                    </items>
+                  <ToolBar>
+                     <items>
+                        <ToggleButton mnemonicParsing="false" text="ToolBarButton1" />
+                        <ToggleButton mnemonicParsing="false" text="ToolBarButton2" />
+                        <ToggleButton mnemonicParsing="false" text="ToolBarButton3" />
+                     </items>
                   </ToolBar>
                </children>
             </VBox>
-            <ImageView fitHeight="66.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="61.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url('http://brandonmathis.com/projects/fancy-avatars/demo/images/avatar_male_dark_on_clear_200x200.png');" HBox.hgrow="NEVER" />
          </children>
       </HBox>
    </top>
+   <left>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="249.0" style="-fx-border-color: gray;" text="File Explorer" textAlignment="CENTER" />
+            <TreeView editable="true" prefHeight="980.0" prefWidth="249.0" style="-fx-border-color: gray;" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <HBox prefHeight="987.0" prefWidth="1488.0" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane prefHeight="989.0" prefWidth="1613.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="CodeFile1">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="960.0" prefWidth="1466.0">
+                           <children>
+                              <TextArea layoutX="-1.0" prefHeight="970.0" prefWidth="1495.0" promptText="Type some code here" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="CodeFile2">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea prefHeight="973.0" prefWidth="1497.0" promptText="Type more code here..." />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </HBox>
+   </center>
+   <right>
+      <VBox prefHeight="981.0" prefWidth="177.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="177.0" style="-fx-border-color: gray;" text="Friends" />
+            <TextField promptText="Search" />
+            <ListView prefHeight="704.0" prefWidth="177.0" />
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="177.0" style="-fx-border-color: gray;" text="Chat" />
+            <TextArea prefHeight="229.0" prefWidth="177.0" promptText="Send a message" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
