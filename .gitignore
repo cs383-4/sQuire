@@ -20,6 +20,7 @@ doc/src/*.png
 *.toc
 *.gz
 *.out
+/SplashScreen.pdn
 
 #configuration
 *.xml
@@ -27,4 +28,3 @@ doc/src/*.png
 
 *.iml
 
-*.iml
