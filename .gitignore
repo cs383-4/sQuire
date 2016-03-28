@@ -22,9 +22,6 @@ doc/src/*.png
 *.out
 /SplashScreen.pdn
 
-#configuration
-*.xml
-*.iml
-
-*.iml
-
+#personal idea config files
+.idea/workspace.xml
+.idea/tasks.xml
