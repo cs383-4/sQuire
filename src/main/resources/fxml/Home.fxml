@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.38294314381270905" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<SplitPane dividerPositions="0.38294314381270905" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="200.0">
          <children>
@@ -60,7 +60,7 @@
                         <Font size="14.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink id="browseProjectsHyperlink" fx:id="browseProjectsHyperlink" alignment="CENTER" layoutX="10.0" layoutY="278.0" prefHeight="23.0" prefWidth="374.0" text="Browse Projects">
+                  <Hyperlink id="browseProjectsHyperlink" fx:id="browseProjectsHyperlink" alignment="CENTER" layoutX="10.0" layoutY="278.0" onAction="#onBrowseProjectsHyperlinkClick" prefHeight="23.0" prefWidth="374.0" text="Browse Projects">
                      <font>
                         <Font size="14.0" />
                      </font>

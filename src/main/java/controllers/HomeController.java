@@ -67,4 +67,35 @@ public class HomeController
             System.out.println("Null scene.");
         }
     }
+
+    @FXML
+    private void onBrowseProjectsHyperlinkClick(ActionEvent event)
+    {
+        Stage stage = null;
+        Parent root = null;
+        if (event.getSource() == browseProjectsHyperlink)
+        {
+            FXMLLoader loader = new FXMLLoader();
+            stage = (Stage) newProjectHyperlink.getScene().getWindow();
+            try
+            {
+                root = loader.load(getClass().getResource("/fxml/ProjectBrowsing.fxml"));
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        if (root != null)
+        {
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else
+        {
+            System.out.println("Null scene.");
+        }
+    }
 }
