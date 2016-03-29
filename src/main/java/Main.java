@@ -20,7 +20,8 @@ public class Main extends Application
         try
         {
             // This is returning null, thus the catch block is executing.
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("resources/fxml/Home.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("sQuire Home");
             stage.setScene(scene);
