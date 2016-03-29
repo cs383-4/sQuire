@@ -29,7 +29,7 @@ public class Main extends Application
         }
         catch (Exception exception)
         {
-            System.out.println(exception.toString());
+            exception.printStackTrace();
         }
     }
 }
