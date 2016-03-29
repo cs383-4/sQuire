@@ -1,6 +1,6 @@
 PLANTUML = vendor/plantuml.jar
 SSRS = doc/SSRS/
-SSRS_images = $(SSRS)images/
+SSRS_images = $(SSRS)resources.fxml.images/
 SSRS_doc = $(SSRS)SSRS_Team4.pdf
 
 use_casedescriptions = doc/use-case-descriptions/hw2-team4.pdf
