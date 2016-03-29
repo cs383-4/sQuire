@@ -25,7 +25,7 @@ public class Hello extends Application implements EventHandler<ActionEvent>
         primaryStage.setTitle("sQuire");
 
         button = new Button();
-        button.setText("Click me!");
+        button.setText("Click Me!");
 
         // Option 1:
         // Whenever the user clicks this button, the code to handle it is in this class.
@@ -74,7 +74,7 @@ public class Hello extends Application implements EventHandler<ActionEvent>
 
         if (source == button)
         {
-            button.setText("Clicked.");
+            button.setText("yo.");
         }
     }
 }
