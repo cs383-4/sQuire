@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.38294314381270905" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="200.0">
+         <children>
+            <VBox layoutY="-2.0" prefHeight="400.0" prefWidth="226.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="226.0" text="Recent Projects">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ListView prefHeight="422.0" prefWidth="226.0" />
+               </children>
+            </VBox>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <VBox prefHeight="398.0" prefWidth="366.0" style="-fx-background-color: azure;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox prefHeight="80.0" prefWidth="366.0">
+                     <children>
+                        <Region prefHeight="79.0" prefWidth="285.0" HBox.hgrow="ALWAYS" />
+                        <ImageView fitHeight="93.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="NEVER">
+                           <image>
+                              <Image url="@../images/avatar.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="158.0" fitWidth="385.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/sQuire-logo-transparent.png" />
+                     </image>
+                  </ImageView>
+                  <Hyperlink id="newProjectHyperlink" fx:id="newProjectHyperlink" alignment="CENTER" onAction="#onNewProjectHyperlinkClick" prefHeight="23.0" prefWidth="374.0" text="New Project">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink id="openProjectHyperlink" fx:id="openProjectHyperlink" alignment="CENTER" layoutX="10.0" layoutY="169.0" prefHeight="23.0" prefWidth="374.0" text="Open Project">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink id="browseProjectsHyperlink" fx:id="browseProjectsHyperlink" alignment="CENTER" layoutX="10.0" layoutY="278.0" onAction="#onBrowseProjectsHyperlinkClick" prefHeight="23.0" prefWidth="374.0" text="Browse Projects">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Hyperlink>
+                  <Region prefHeight="53.0" prefWidth="366.0" VBox.vgrow="NEVER" />
+                  <HBox prefHeight="0.0" prefWidth="366.0">
+                     <children>
+                        <Hyperlink id="settingsHyperlink" fx:id="settingsHyperlink" prefHeight="23.0" prefWidth="66.0" text="Settings">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Hyperlink>
+                        <Region prefHeight="29.0" prefWidth="196.0" />
+                        <Hyperlink id="registerHyperlink" fx:id="registerHyperlink" text="Register">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Hyperlink>
+                        <Hyperlink id="logInHyperlink" fx:id="logInHyperlink" layoutX="10.0" layoutY="10.0" text="Log In">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Hyperlink>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+  </items>
+</SplitPane>
