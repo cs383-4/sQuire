@@ -48,7 +48,7 @@ public class HomeController
             stage = (Stage) newProjectHyperlink.getScene().getWindow();
             try
             {
-                root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+                root = loader.load(getClass().getResource("/fxml/NewProject.fxml"));
             }
             catch (IOException e)
             {
