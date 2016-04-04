@@ -22,11 +22,11 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextArea prefHeight="32.0" prefWidth="640.0">
+                        <TextField>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
-                        </TextArea>
+                        </TextField>
                         <Label text="Organization Name">
                            <font>
                               <Font size="18.0" />
@@ -35,11 +35,11 @@
                               <Insets left="20.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <TextArea prefHeight="32.0" prefWidth="640.0">
+                        <TextField>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
-                        </TextArea>
+                        </TextField>
                         <Label text="Organization Identifier">
                            <font>
                               <Font size="18.0" />
@@ -48,11 +48,11 @@
                               <Insets left="20.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <TextArea prefHeight="32.0" prefWidth="640.0">
+                        <TextField>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
-                        </TextArea>
+                        </TextField>
                         <HBox prefHeight="169.0" prefWidth="640.0" />
                         <HBox alignment="CENTER" prefHeight="31.0" prefWidth="640.0">
                            <children>
