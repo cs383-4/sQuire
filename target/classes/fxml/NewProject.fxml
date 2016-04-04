@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NewProjectController">
+<TabPane id="tabPane" fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NewProjectController">
   <tabs>
-    <Tab text="Project Details">
+    <Tab fx:id="projectDetailsTab" text="Project Details">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -22,11 +22,11 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextArea prefHeight="32.0" prefWidth="640.0">
+                        <TextField>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
-                        </TextArea>
+                        </TextField>
                         <Label text="Organization Name">
                            <font>
                               <Font size="18.0" />
@@ -35,11 +35,11 @@
                               <Insets left="20.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <TextArea prefHeight="32.0" prefWidth="640.0">
+                        <TextField>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
-                        </TextArea>
+                        </TextField>
                         <Label text="Organization Identifier">
                            <font>
                               <Font size="18.0" />
@@ -48,16 +48,16 @@
                               <Insets left="20.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <TextArea prefHeight="32.0" prefWidth="640.0">
+                        <TextField>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
-                        </TextArea>
+                        </TextField>
                         <HBox prefHeight="169.0" prefWidth="640.0" />
                         <HBox alignment="CENTER" prefHeight="31.0" prefWidth="640.0">
                            <children>
                               <Button fx:id="nextButton" alignment="CENTER" mnemonicParsing="false" onAction="#nextButtonClicked" style="-fx-background-color: lightblue;" text="Next" />
-                              <Button alignment="CENTER" cancelButton="true" mnemonicParsing="false" text="Cancel" />
+                              <Button fx:id="cancelButton1" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
                            </children>
                         </HBox>
                      </children>
@@ -65,10 +65,71 @@
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Project Settings">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
-    </Tab>
+      <Tab fx:id="projectSettingsTab" text="Project Settings">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox layoutX="169.0" layoutY="54.0" prefHeight="447.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label text="Field1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Field2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label text="Field3">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="15.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <HBox prefHeight="169.0" prefWidth="640.0" />
+                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="640.0">
+                           <children>
+                              <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#backButtonClicked" style="-fx-background-color: lightyellow;" text="Back">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <HBox.margin>
+                                    <Insets right="50.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="finishButton" alignment="CENTER" mnemonicParsing="false" onAction="#finishButtonClicked" style="-fx-background-color: lightblue;" text="Finish" />
+                              <Button fx:id="cancelButton2" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
   </tabs>
 </TabPane>
