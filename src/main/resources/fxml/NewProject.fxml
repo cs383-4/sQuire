@@ -54,10 +54,22 @@
                            </VBox.margin>
                         </TextField>
                         <HBox prefHeight="169.0" prefWidth="640.0" />
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="640.0">
+                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="640.0" />
+                        <HBox prefHeight="88.0" prefWidth="640.0">
                            <children>
-                              <Button fx:id="nextButton" alignment="CENTER" mnemonicParsing="false" onAction="#nextButtonClicked" style="-fx-background-color: lightblue;" text="Next" />
-                              <Button fx:id="cancelButton1" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                              <HBox alignment="CENTER" prefHeight="52.0" prefWidth="100.0" />
+                              <HBox alignment="CENTER" prefHeight="52.0" prefWidth="542.0">
+                                 <children>
+                                    <Button fx:id="nextButton" alignment="CENTER" mnemonicParsing="false" onAction="#nextButtonClicked" style="-fx-background-color: lightblue;" text="Next" />
+                                    <Button fx:id="cancelButton1" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                                 </children>
+                                 <padding>
+                                    <Insets right="80.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </HBox>
                            </children>
                         </HBox>
                      </children>
@@ -111,18 +123,32 @@
                            </VBox.margin>
                         </TextField>
                         <HBox prefHeight="169.0" prefWidth="640.0" />
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="640.0">
+                        <HBox prefHeight="88.0" prefWidth="640.0">
                            <children>
-                              <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#backButtonClicked" style="-fx-background-color: lightyellow;" text="Back">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
+                              <HBox alignment="CENTER" prefHeight="52.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backButtonClicked" style="-fx-background-color: lightyellow;" text="Back">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="52.0" prefWidth="542.0">
+                                 <children>
+                                    <Button fx:id="finishButton" alignment="CENTER" mnemonicParsing="false" onAction="#finishButtonClicked" style="-fx-background-color: lightblue;" text="Finish" />
+                                    <Button fx:id="cancelButton2" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                                 </children>
                                  <HBox.margin>
-                                    <Insets right="50.0" />
+                                    <Insets />
                                  </HBox.margin>
-                              </Button>
-                              <Button fx:id="finishButton" alignment="CENTER" mnemonicParsing="false" onAction="#finishButtonClicked" style="-fx-background-color: lightblue;" text="Finish" />
-                              <Button fx:id="cancelButton2" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                                 <padding>
+                                    <Insets right="80.0" />
+                                 </padding>
+                              </HBox>
                            </children>
                         </HBox>
                      </children>

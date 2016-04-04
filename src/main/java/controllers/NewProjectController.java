@@ -28,6 +28,8 @@ public class NewProjectController
     @FXML public Tab projectSettingsTab;
 
 
+
+
     @FXML
     private void nextButtonClicked(ActionEvent event)
     {

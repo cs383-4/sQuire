@@ -47,9 +47,11 @@ public class HomeController
         {
             FXMLLoader loader = new FXMLLoader();
             stage = (Stage) newProjectHyperlink.getScene().getWindow();
+            stage.setResizable(false);
             try
             {
                 root = loader.load(getClass().getResource("/fxml/NewProject.fxml"));
+
             }
             catch (IOException e)
             {
