@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -99,6 +100,24 @@ public class HomeController
         }
     }
 
+    @FXML
+    private void onLogInHyperlinkClick(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/LogInDialog.fxml"));
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Log in to sQuire");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene((Parent)loader.getRoot());
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
 
 
