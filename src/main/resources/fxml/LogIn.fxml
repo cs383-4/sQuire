@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -12,14 +17,13 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="380.0" style="-fx-background-color: azure;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="380.0" style="-fx-background-color: azure;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="14.0" prefHeight="486.0" prefWidth="399.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="61.0" prefWidth="380.0">
                <children>
-                  <Region prefHeight="100.0" prefWidth="379.0" />
+                  <Region prefHeight="100.0" prefWidth="379.0" HBox.hgrow="ALWAYS" />
                   <ImageView fitHeight="102.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/avatar.png" />
@@ -27,40 +31,55 @@
                   </ImageView>
                </children>
             </HBox>
-            <ImageView fitHeight="163.0" fitWidth="382.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/sQuire-logo-transparent.png" />
-               </image>
-               <VBox.margin>
-                  <Insets right="10.0" top="10.0" />
-               </VBox.margin>
-            </ImageView>
-            <VBox prefHeight="109.0" prefWidth="230.0">
-               <VBox.margin>
-                  <Insets left="75.0" right="75.0" />
-               </VBox.margin>
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextArea prefHeight="16.0" prefWidth="230.0" promptText="Username">
+                  <ImageView fitHeight="163.0" fitWidth="382.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/sQuire-logo-transparent.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <padding>
+                  <Insets left="80.0" right="80.0" />
+               </padding>
+               <children>
+                  <TextField promptText="Username/Email">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
-                  </TextArea>
-                  <TextArea prefHeight="22.0" prefWidth="230.0" promptText="Password">
+                  </TextField>
+                  <PasswordField promptText="Password">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
-                  </TextArea>
-                  <CheckBox mnemonicParsing="false" text="Keep me logged in">
+                  </PasswordField>
+                  <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="251.0" text="Keep Me Logged in">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </CheckBox>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="246.0" text="Log in" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Cancel">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" text="Log in">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" />
             <Hyperlink prefHeight="38.0" prefWidth="72.0" text="Register">
                <padding>
-                  <Insets left="10.0" />
+                  <Insets bottom="10.0" left="10.0" />
                </padding>
             </Hyperlink>
          </children>
