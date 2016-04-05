@@ -111,13 +111,14 @@ public class HomeController
             FXMLLoader loader = new FXMLLoader();
             Stage dialogStage = new Stage();
             Parent root = null;
+            dialogStage.setTitle("Log in to sQuire");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(logInHyperlink.getScene().getWindow());
+            dialogStage.setResizable(false);
             try
             {
-                dialogStage.setTitle("Log in to sQuire");
-                dialogStage.initModality(Modality.WINDOW_MODAL);
-                dialogStage.initOwner(logInHyperlink.getScene().getWindow());
-                dialogStage.setResizable(false);
                 root = loader.load(getClass().getResource("/fxml/LogInDialog.fxml"));
+                LogInDialogController logInDialogController = (LogInDialogController)loader.getController();
                 Scene scene = new Scene(root);
                 dialogStage.setScene(scene);
                 dialogStage.showAndWait();
