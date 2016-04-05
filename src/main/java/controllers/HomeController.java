@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sun.applet.Main;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
@@ -79,7 +80,7 @@ public class HomeController
         if (event.getSource() == browseProjectsHyperlink)
         {
             FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) newProjectHyperlink.getScene().getWindow();
+            stage = (Stage) browseProjectsHyperlink.getScene().getWindow();
             try
             {
                 root = loader.load(getClass().getResource("/fxml/ProjectBrowsing.fxml"));
@@ -105,19 +106,26 @@ public class HomeController
     @FXML
     private void onLogInHyperlinkClick(ActionEvent event)
     {
-        try
+        if (event.getSource() == logInHyperlink)
         {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/LogInDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader();
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Log in to sQuire");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            Scene scene = new Scene((Parent)loader.getRoot());
-            dialogStage.setScene(scene);
-            dialogStage.showAndWait();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
+            Parent root = null;
+            try
+            {
+                dialogStage.setTitle("Log in to sQuire");
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                dialogStage.initOwner(logInHyperlink.getScene().getWindow());
+                dialogStage.setResizable(false);
+                root = loader.load(getClass().getResource("/fxml/LogInDialog.fxml"));
+                Scene scene = new Scene(root);
+                dialogStage.setScene(scene);
+                dialogStage.showAndWait();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 

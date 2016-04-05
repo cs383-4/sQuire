@@ -39,13 +39,19 @@ public class LogInDialogController
         return okClicked;
     }
 
-    @FXML private void okButtonClicked(ActionEvent event)
+    @FXML private void onOkButtonClicked(ActionEvent event)
     {
         System.out.println("Ok Button Clicked.");
     }
 
-    @FXML private void cancelButtonClicked(ActionEvent event)
+    @FXML private void onCancelButtonClick(ActionEvent event)
     {
+        dialogStage.close();
+    }
+
+    @FXML private void onLogInButtonClicked(ActionEvent event)
+    {
+        System.out.println("Log in button clicked.");
         dialogStage.close();
     }
 }
