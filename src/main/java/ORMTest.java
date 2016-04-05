@@ -3,11 +3,10 @@ import com.avaje.ebean.Ebean;
 import com.avaje.ebean.EbeanServer;
 
 public class ORMTest {
-    private static EbeanServer server = Ebean.getDefaultServer();
-
-    public void main() {
+    public static void main(String[] args) {
         User u = new User();
         u.setUsername("HELLO");
         u.save();
+        System.out.println(u.getUsername());
     }
 }
