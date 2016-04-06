@@ -25,3 +25,6 @@ doc/src/*.png
 #personal idea config files
 .idea/workspace.xml
 .idea/tasks.xml
+
+#database
+squire.db
