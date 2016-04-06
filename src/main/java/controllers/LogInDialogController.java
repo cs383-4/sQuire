@@ -20,7 +20,6 @@ public class LogInDialogController
     @FXML private Hyperlink registerHyperlink;
     @FXML private Hyperlink forgotPasswordHyperlink;
 
-
     private Stage thisStage;
 
     @FXML private void initialize()

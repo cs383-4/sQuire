@@ -3,18 +3,11 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sun.applet.Main;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Created by Domn Werner on 3/28/2016.
@@ -49,7 +42,7 @@ public class HomeController
                 stage.show();
 
             }
-            catch (IOException e)
+            catch (Exception e)
             {
                 e.printStackTrace();
             }
