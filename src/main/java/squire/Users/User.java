@@ -1,35 +1,22 @@
 package squire.Users;
 
 import javax.persistence.*;
-import com.avaje.ebean.Model;
+import squire.BaseModel;
 
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 
 @Entity
 //some databases have user as a reserved word, so following ebean examples, prefix tables with "o_"
 @Table(name = "o_user")
-public class User extends Model {
-    @Id
-    Long id;
-
-    @Version
-    Long version;
-
-    @Column(length = 200)
+public class User extends BaseModel {
+    public static final UserFinder find = new UserFinder();
+    
+    @Column(nullable = false) //field cannot be empty
     private String username;
 
-    @Column(length = 200)
+    @Column(nullable = false)
     private String password;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
 
     public String getUsername() {
         return username;
