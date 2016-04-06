@@ -19,6 +19,7 @@
                 </configuration>
             </plugin>
 
+            <!-- plugins to enhance models for ebean -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -27,6 +28,23 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.avaje.ebeanorm</groupId>
+                <artifactId>querybean-maven-plugin</artifactId>
+                <version>2.1.1</version>
+                <executions>
+                    <execution>
+                        <id>main</id>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <transformArgs>debug=1</transformArgs>
+                        </configuration>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -39,7 +57,7 @@
                         <phase>process-classes</phase>
                         <configuration>
                             <classSource>target/classes</classSource>
-                            <packages>org.example.domain.**</packages>
+                            <!--<packages>org.example.domain.**</packages>-->
                             <transformArgs>debug=1</transformArgs>
                         </configuration>
                         <goals>
@@ -48,11 +66,42 @@
                     </execution>
                 </executions>
             </plugin>
+
+
         </plugins>
     </build>
 
     <dependencies>
         <!--ORM dependencies-->
+        <dependency>
+            <groupId>org.avaje.ebeanorm</groupId>
+            <artifactId>avaje-ebeanorm</artifactId>
+            <version>7.5.1</version>
+        </dependency>
+
+        <!-- Generate query beans (java annotation processor) -->
+        <dependency>
+            <groupId>org.avaje.ebeanorm</groupId>
+            <artifactId>querybean-generator</artifactId>
+            <version>2.1.2</version>
+            <scope>provided</scope> <!-- provided scope to keep out of artifact -->
+        </dependency>
+
+        <!-- The generated query beans require avaje-ebeanorm-querybean -->
+        <dependency>
+            <groupId>org.avaje.ebeanorm</groupId>
+            <artifactId>avaje-ebeanorm-querybean</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <!-- Used to generate the query beans manually -->
+        <dependency>
+            <groupId>org.avaje.ebeanorm</groupId>
+            <artifactId>avaje-ebeanorm-typequery-generator</artifactId>
+            <version>1.4.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Optional ebeans dependencies for validating data/logging -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -64,31 +113,18 @@
             <version>1.1.7</version>
         </dependency>
         <dependency>
-            <groupId>org.avaje.ebeanorm</groupId>
-            <artifactId>avaje-ebeanorm</artifactId>
-            <version>7.5.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.21</version>
         </dependency>
-        <dependency>
-            <groupId>org.avaje</groupId>
-            <artifactId>avaje-agentloader</artifactId>
-            <version>2.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.avaje.ebeanorm</groupId>
-            <artifactId>avaje-ebeanorm-agent</artifactId>
-            <version>4.9.2</version>
-        </dependency>
+        <!-- JDBC connector for sqlite -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.8.11.2</version>
         </dependency>
 
+        <!-- JavaFX controlsfx -->
         <dependency>
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>

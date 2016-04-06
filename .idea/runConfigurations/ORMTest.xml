@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ORMTest" type="Application" factoryName="Application">
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-    <option name="MAIN_CLASS_NAME" value="ORMTest" />
+    <option name="MAIN_CLASS_NAME" value="squire.ORMTest" />
     <option name="VM_PARAMETERS" value="" />
     <option name="PROGRAM_PARAMETERS" value="" />
     <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -12,10 +12,6 @@
     <option name="PASS_PARENT_ENVS" value="true" />
     <module name="sQuire" />
     <envs />
-    <method>
-      <option name="Make" enabled="false" />
-      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="compile" />
-      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="avaje-ebeanormenhancer:enhance" />
-    </method>
+    <method />
   </configuration>
 </component>

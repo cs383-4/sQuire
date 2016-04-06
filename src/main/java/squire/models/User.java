@@ -1,10 +1,10 @@
-package models;
+package squire.models;
 
 import javax.persistence.*;
 import com.avaje.ebean.Model;
 
 @Entity
-@Table(name = "user")
+@Table(name = "o_user")
 public class User extends Model {
     @Id
     Long id;

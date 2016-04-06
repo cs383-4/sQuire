@@ -1,4 +1,5 @@
-import controllers.LogInDialogController;
+package squire;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
