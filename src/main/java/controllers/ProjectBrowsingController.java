@@ -15,37 +15,25 @@ import java.io.IOException;
  */
 public class ProjectBrowsingController
 {
-    @FXML
-    private Button backButton;
+    @FXML private Button backButton;
 
-    @FXML
-    private void onBackButtonClick(ActionEvent event)
+    @FXML private void onBackButtonClick(ActionEvent event)
     {
-        Stage stage = null;
-        Parent root = null;
         if (event.getSource() == backButton)
         {
             FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) backButton.getScene().getWindow();
+            Stage stage = (Stage) backButton.getScene().getWindow();
             try
             {
-                root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+                Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
-            catch (IOException e)
+            catch (Exception e)
             {
                 e.printStackTrace();
             }
-        }
-
-        if (root != null)
-        {
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        else
-        {
-            System.out.println("Null scene.");
         }
     }
 }

@@ -21,85 +21,59 @@ import java.util.ResourceBundle;
  */
 public class HomeController
 {
-    @FXML
-    private Hyperlink newProjectHyperlink;
+    @FXML private Hyperlink newProjectHyperlink;
 
-    @FXML
-    private Hyperlink openProjectHyperlink;
+    @FXML private Hyperlink openProjectHyperlink;
 
-    @FXML
-    private Hyperlink browseProjectsHyperlink;
+    @FXML private Hyperlink browseProjectsHyperlink;
 
-    @FXML
-    private Hyperlink settingsHyperlink;
+    @FXML private Hyperlink settingsHyperlink;
 
-    @FXML
-    private Hyperlink registerHyperlink;
+    @FXML private Hyperlink registerHyperlink;
 
-    @FXML
-    private Hyperlink logInHyperlink;
+    @FXML private Hyperlink logInHyperlink;
 
     @FXML
     private void onNewProjectHyperlinkClick(ActionEvent event)
     {
-        Stage stage = null;
-        Parent root = null;
         if (event.getSource() == newProjectHyperlink)
         {
             FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) newProjectHyperlink.getScene().getWindow();
+            Stage stage = (Stage) newProjectHyperlink.getScene().getWindow();
             stage.setResizable(false);
             try
             {
-                root = loader.load(getClass().getResource("/fxml/NewProject.fxml"));
+                Parent root = loader.load(getClass().getResource("/fxml/NewProject.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
 
             }
             catch (IOException e)
             {
                 e.printStackTrace();
             }
-        }
-
-        if (root != null)
-        {
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        else
-        {
-            System.out.println("Null scene.");
         }
     }
 
     @FXML
     private void onBrowseProjectsHyperlinkClick(ActionEvent event)
     {
-        Stage stage = null;
-        Parent root = null;
         if (event.getSource() == browseProjectsHyperlink)
         {
             FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) browseProjectsHyperlink.getScene().getWindow();
+            Stage stage = (Stage) browseProjectsHyperlink.getScene().getWindow();
             try
             {
-                root = loader.load(getClass().getResource("/fxml/ProjectBrowsing.fxml"));
+                Parent root = loader.load(getClass().getResource("/fxml/ProjectBrowsing.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
-            catch (IOException e)
+            catch (Exception e)
             {
                 e.printStackTrace();
             }
-        }
-
-        if (root != null)
-        {
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        else
-        {
-            System.out.println("Null scene.");
         }
     }
 
@@ -118,7 +92,6 @@ public class HomeController
             try
             {
                 root = loader.load(getClass().getResource("/fxml/LogInDialog.fxml"));
-                LogInDialogController logInDialogController = (LogInDialogController)loader.getController();
                 Scene scene = new Scene(root);
                 dialogStage.setScene(scene);
                 dialogStage.showAndWait();
@@ -129,8 +102,4 @@ public class HomeController
             }
         }
     }
-
-
-
-
 }
