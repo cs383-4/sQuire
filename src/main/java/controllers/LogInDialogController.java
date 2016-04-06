@@ -20,32 +20,24 @@ public class LogInDialogController
     @FXML private Hyperlink registerHyperlink;
     @FXML private Hyperlink forgotPasswordHyperlink;
 
-    private boolean okClicked = false;
-
-    private Stage dialogStage;
+    private Stage thisStage;
 
     @FXML private void initialize()
     {
-
+        // Initialize anything here if needed.
     }
 
-    public void setDialogStage(Stage dialogStage)
+    @FXML private void onCancelButtonClick(ActionEvent event)
     {
-        this.dialogStage = dialogStage;
+        thisStage = (Stage)cancelButton.getScene().getWindow();
+        System.out.println("Cancel button clicked.");
+        thisStage.close();
     }
 
-    public boolean isOkClicked()
+    @FXML private void onLogInButtonClicked(ActionEvent event)
     {
-        return okClicked;
-    }
-
-    @FXML private void okButtonClicked(ActionEvent event)
-    {
-        System.out.println("Ok Button Clicked.");
-    }
-
-    @FXML private void cancelButtonClicked(ActionEvent event)
-    {
-        dialogStage.close();
+        thisStage = (Stage)logInButton.getScene().getWindow();
+        System.out.println("Log in button clicked.");
+        thisStage.close();
     }
 }

@@ -28,6 +28,8 @@ public class NewProjectController
     @FXML public Tab projectSettingsTab;
 
 
+
+
     @FXML
     private void nextButtonClicked(ActionEvent event)
     {
@@ -58,6 +60,7 @@ public class NewProjectController
         {
             FXMLLoader loader = new FXMLLoader();
             stage = (Stage) finishButton.getScene().getWindow();
+            stage.setResizable(true);
             try
             {
                 root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
