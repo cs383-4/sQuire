@@ -17,14 +17,14 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="380.0" style="-fx-background-color: azure;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="380.0" style="-fx-background-color: azure;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.LogInDialogController">
    <children>
       <VBox layoutX="14.0" prefHeight="486.0" prefWidth="399.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="61.0" prefWidth="380.0">
                <children>
                   <Region prefHeight="100.0" prefWidth="379.0" HBox.hgrow="ALWAYS" />
-                  <ImageView fitHeight="102.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="avatarImageView" fx:id="avatarImageView" fitHeight="102.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/avatar.png" />
                      </image>
@@ -45,29 +45,29 @@
                   <Insets left="80.0" right="80.0" />
                </padding>
                <children>
-                  <TextField promptText="Username/Email">
+                  <TextField id="usernameTextField" fx:id="usernameTextField" promptText="Username/Email">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField promptText="Password">
+                  <PasswordField id="passwordPasswordField" fx:id="passwordPasswordField" promptText="Password">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="251.0" text="Keep Me Logged in">
+                  <CheckBox id="keepMeLoggedInCheckBox" fx:id="keepMeLoggedInCheckBox" mnemonicParsing="false" prefHeight="17.0" prefWidth="251.0" text="Keep Me Logged in">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </CheckBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Cancel">
+                        <Button id="cancelButton" fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Log in">
+                        <Button id="loginButton" fx:id="logInButton" mnemonicParsing="false" onAction="#onLogInButtonClicked" text="Log in">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
@@ -77,11 +77,20 @@
                </children>
             </VBox>
             <Region prefHeight="200.0" prefWidth="200.0" />
-            <Hyperlink prefHeight="38.0" prefWidth="72.0" text="Register">
-               <padding>
-                  <Insets bottom="10.0" left="10.0" />
-               </padding>
-            </Hyperlink>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Hyperlink id="registerHyperlink" fx:id="registerHyperlink" prefHeight="38.0" prefWidth="72.0" text="Register">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" />
+                     </padding>
+                  </Hyperlink>
+                  <Hyperlink fx:id="forgotPasswordHyperlink" text="Forgot Password?">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Hyperlink>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>
