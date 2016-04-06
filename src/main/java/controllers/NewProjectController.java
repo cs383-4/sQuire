@@ -1,17 +1,21 @@
 package controllers;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created by MattDaniel on 3/31/16.
  */
-
 public class NewProjectController
 {
     @FXML private Button nextButton;
@@ -23,13 +27,19 @@ public class NewProjectController
     @FXML public Tab projectDetailsTab;
     @FXML public Tab projectSettingsTab;
 
-    @FXML private void nextButtonClicked(ActionEvent event)
+
+
+
+    @FXML
+    private void nextButtonClicked(ActionEvent event)
     {
         //System.out.println(event.getSource());
         if (event.getSource() == nextButton) {
             tabPane.getSelectionModel().select(projectSettingsTab);
         }
     }
+
+
 
     @FXML private void backButtonClicked(ActionEvent event)
     {
@@ -44,43 +54,66 @@ public class NewProjectController
 
     @FXML private void finishButtonClicked(ActionEvent event)
     {
-
+        Stage stage = null;
+        Parent root = null;
         if (event.getSource() == finishButton)
         {
             FXMLLoader loader = new FXMLLoader();
-            Stage stage = (Stage) finishButton.getScene().getWindow();
+            stage = (Stage) finishButton.getScene().getWindow();
+            stage.setResizable(true);
             try
             {
-                Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
             }
-            catch (Exception e)
+            catch (IOException e)
             {
                 e.printStackTrace();
             }
         }
+
+        if (root != null)
+        {
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else
+        {
+            System.out.println("Null scene.");
+        }
+
     }
+
 
     @FXML private void cancelButtonClicked(ActionEvent event)
     {
+        Stage stage = null;
+        Parent root = null;
         if (event.getSource() == cancelButton1 || event.getSource() == cancelButton2)
         {
             FXMLLoader loader = new FXMLLoader();
-            Stage stage = (Stage) cancelButton1.getScene().getWindow();
+            stage = (Stage) cancelButton1.getScene().getWindow();
             try
             {
-                Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                root = loader.load(getClass().getResource("/fxml/Home.fxml"));
             }
-            catch (Exception e)
+            catch (IOException e)
             {
                 e.printStackTrace();
             }
         }
+
+        if (root != null)
+        {
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else
+        {
+            System.out.println("Null scene.");
+        }
+
     }
 //    @FXML
 //    private void onNewProjectHyperlinkClick(ActionEvent event)
@@ -112,4 +145,5 @@ public class NewProjectController
 //            System.out.println("Null scene.");
 //        }
 //    }
+
 }
