@@ -6,9 +6,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,12 +25,26 @@ public class NewProjectController
     @FXML private Button finishButton;
     @FXML private Button cancelButton1;
     @FXML private Button cancelButton2;
+    @FXML private Button importFilesButton;
     @FXML public TabPane tabPane;
     @FXML public Tab projectDetailsTab;
     @FXML public Tab projectSettingsTab;
+    @FXML Parent root;
 
 
-
+    @FXML
+    private void importFilesButtonClicked(ActionEvent event)
+    {
+        Stage stage = null;
+        stage = (Stage) importFilesButton.getScene().getWindow();
+        //System.out.println(event.getSource());
+        if (event.getSource() == importFilesButton) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Import File(s)");
+           File selectedFile = fileChooser.showOpenDialog(stage);
+            System.out.println(selectedFile.getName());
+        }
+    }
 
     @FXML
     private void nextButtonClicked(ActionEvent event)
@@ -115,35 +131,5 @@ public class NewProjectController
         }
 
     }
-//    @FXML
-//    private void onNewProjectHyperlinkClick(ActionEvent event)
-//    {
-//        Stage stage = null;
-//        Parent root = null;
-//        if (event.getSource() == newProjectHyperlink)
-//        {
-//            FXMLLoader loader = new FXMLLoader();
-//            stage = (Stage) newProjectHyperlink.getScene().getWindow();
-//            try
-//            {
-//                root = loader.load(getClass().getResource("/fxml/NewProject.fxml"));
-//            }
-//            catch (IOException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        if (root != null)
-//        {
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        }
-//        else
-//        {
-//            System.out.println("Null scene.");
-//        }
-//    }
 
 }

@@ -53,7 +53,18 @@
                               <Insets left="20.0" right="20.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <HBox prefHeight="169.0" prefWidth="640.0" />
+                        <HBox prefHeight="169.0" prefWidth="640.0">
+                           <children>
+                              <HBox prefHeight="0.0" prefWidth="640.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="145.0" prefWidth="642.0">
+                                       <children>
+                                          <Button fx:id="importFilesButton" alignment="CENTER" mnemonicParsing="false" onAction="#importFilesButtonClicked" text="Import" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children></HBox>
                         <HBox alignment="CENTER" prefHeight="31.0" prefWidth="640.0" />
                         <HBox prefHeight="88.0" prefWidth="640.0">
                            <children>
