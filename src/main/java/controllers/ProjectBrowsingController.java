@@ -8,11 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 /**
  * Created by Domn on 4/4/2016.
  */
+
 public class ProjectBrowsingController
 {
     @FXML private Button backButton;
