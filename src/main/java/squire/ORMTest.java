@@ -2,10 +2,6 @@ package squire;
 
 import squire.Users.Session;
 import squire.Users.User;
-import squire.Users.query.QSession;
-import squire.Users.query.QUser;
-
-import java.util.UUID;
 
 public class ORMTest {
     public static void main(String[] args) {
@@ -18,13 +14,14 @@ public class ORMTest {
         System.out.println(u.getUsername());
 
         //get the first user with the username equal to hello
-        User y = new QUser().username.equalTo("HELLO").findList().get(0);
+        User y = User.find.where().username.equalTo("HELLO").findList().get(0);
         //check the password, should print true
         System.out.println(y.checkPassword("password123"));
 
+        //create a session, get the token, and then retrieve the session
         Session s = new Session(y);
         String token = s.getToken();
 
-        System.out.println(Session.getActiveSession(token));
+        System.out.println(Session.find.activeSession(token).getUser().getUsername());
     }
 }

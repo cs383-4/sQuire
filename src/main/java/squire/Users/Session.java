@@ -15,6 +15,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "o_session")
 public class Session extends BaseModel {
+    public static final SessionFinder find = new SessionFinder();
     private static final long SESSION_LENGTH = 7 * 24 * 60 * 60 * 1000; //1wk
 
     @Column(nullable = false)
@@ -44,7 +45,7 @@ public class Session extends BaseModel {
 
     public boolean isExpired() {
         Timestamp now = new Timestamp(new Date().getTime());
-        return expires.after(now);
+        return now.after(expires);
     }
 
     private void updateExpires() {
@@ -57,15 +58,5 @@ public class Session extends BaseModel {
         updateExpires();
         generateToken();
         this.save();
-    }
-
-    public static Session getActiveSession(String token) {
-        System.out.println(new QUser().username);
-        Session s = new QSession().token.equalTo(UUID.fromString(token)).findUnique();
-        if (s.isExpired()) {
-            return null;
-        } else {
-            return s;
-        }
     }
 }

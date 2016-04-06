@@ -48,7 +48,7 @@ public class User extends BaseModel {
      * @param password the password to check
      * @return a boolean value, true if the password matches the stored one, else false
      */
-    public boolean checkPassword(String password) {
+    private boolean checkPassword(String password) {
         try {
             return PasswordHash.validatePassword(password, this.password);
         } catch(NoSuchAlgorithmException | InvalidKeySpecException ex) {
@@ -57,5 +57,13 @@ public class User extends BaseModel {
         }
         //a return statement to keep intellij happy
         return false;
+    }
+
+    /**
+     * Create a new session for the user
+      * @return the new session
+     */
+    private Session createSession() {
+        return new Session(this);
     }
 }
