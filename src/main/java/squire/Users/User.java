@@ -77,8 +77,8 @@ public class User extends BaseModel {
 
     public User(String username, String password) {
         super();
-        this.username = username;
-        this.password = password;
+        setUsername(username);
+        setPassword(password);
         this.save();
     }
 }

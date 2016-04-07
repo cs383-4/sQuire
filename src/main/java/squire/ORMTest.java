@@ -8,10 +8,9 @@ import java.util.Random;
 public class ORMTest {
     public static void main(String[] args) {
         //create a new user with the name hello
-        User u = new User();
         String username = "user" + new Random().nextInt();
-        u.setUsername(username);
-        u.setPassword("password123");
+        User u = new User(username, "password123");
+
         //we need to save it to write the changes to the database
         u.save();
         System.out.println(u.getUsername());
