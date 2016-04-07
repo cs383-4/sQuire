@@ -1,6 +1,21 @@
 package squire.Users;
 
+/**
+ * Implements a user model containing the username and password, as well as any other information associated with a user
+ *
+ * The usage is as such:
+ * Create a new user:
+ * User u = new User(username, password;
+ *
+ * Authenticate a user:
+ * User u = User.find.authenticate(username, password)
+ *
+ * The user can now be logged in with
+ * Session.find.login(u)
+ */
+
 import javax.persistence.*;
+
 import squire.BaseModel;
 
 import java.security.NoSuchAlgorithmException;
@@ -11,8 +26,8 @@ import java.security.spec.InvalidKeySpecException;
 @Table(name = "o_user")
 public class User extends BaseModel {
     public static final UserFinder find = new UserFinder();
-    
-    @Column(nullable = false) //field cannot be empty
+
+    @Column(nullable = false, unique = true) //field cannot be empty, and must be unique
     private String username;
 
     @Column(nullable = false)
@@ -28,12 +43,13 @@ public class User extends BaseModel {
 
     /**
      * Sets the given password for the user. Hashes it, and stores it in the database
+     *
      * @param password the password to set
      */
     public void setPassword(String password) {
         try {
             this.password = PasswordHash.createHash(password);
-        } catch(NoSuchAlgorithmException | InvalidKeySpecException ex) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             /* this will only happen if the correct crypto libraries aren't installed,
                no reason to keep going then, so quit the program
              */
@@ -48,10 +64,10 @@ public class User extends BaseModel {
      * @param password the password to check
      * @return a boolean value, true if the password matches the stored one, else false
      */
-    private boolean checkPassword(String password) {
+    public boolean checkPassword(String password) {
         try {
             return PasswordHash.validatePassword(password, this.password);
-        } catch(NoSuchAlgorithmException | InvalidKeySpecException ex) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             ex.printStackTrace();
             System.exit(0);
         }
@@ -59,11 +75,10 @@ public class User extends BaseModel {
         return false;
     }
 
-    /**
-     * Create a new session for the user
-      * @return the new session
-     */
-    private Session createSession() {
-        return new Session(this);
+    public User(String username, String password) {
+        super();
+        this.username = username;
+        this.password = password;
+        this.save();
     }
 }

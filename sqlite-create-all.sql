@@ -18,6 +18,7 @@ create table o_user (
   version                       integer not null,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,
+  constraint uq_o_user_username unique (username),
   constraint pk_o_user primary key (id)
 );
 
