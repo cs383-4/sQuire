@@ -1,5 +1,4 @@
-package controllers;
-
+package squire.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +35,8 @@ public class NewProjectController
        // System.out.println(event.getSource());
         if (event.getSource() == backButton)
         {
-            if (event.getSource() == backButton) {
+            if (event.getSource() == backButton)
+            {
                 tabPane.getSelectionModel().select(projectDetailsTab);
             }
         }
@@ -48,12 +48,10 @@ public class NewProjectController
         {
             FXMLLoader loader = new FXMLLoader();
             Stage stage = (Stage) finishButton.getScene().getWindow();
+            stage.setResizable(true);
             try
             {
                 Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
             }
             catch (Exception e)
             {
@@ -71,9 +69,6 @@ public class NewProjectController
             try
             {
                 Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
             }
             catch (Exception e)
             {
@@ -81,34 +76,4 @@ public class NewProjectController
             }
         }
     }
-//    @FXML
-//    private void onNewProjectHyperlinkClick(ActionEvent event)
-//    {
-//        Stage stage = null;
-//        Parent root = null;
-//        if (event.getSource() == newProjectHyperlink)
-//        {
-//            FXMLLoader loader = new FXMLLoader();
-//            stage = (Stage) newProjectHyperlink.getScene().getWindow();
-//            try
-//            {
-//                root = loader.load(getClass().getResource("/fxml/NewProject.fxml"));
-//            }
-//            catch (IOException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        if (root != null)
-//        {
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        }
-//        else
-//        {
-//            System.out.println("Null scene.");
-//        }
-//    }
 }
