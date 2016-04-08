@@ -80,6 +80,10 @@ public class NewProjectController
             try
             {
                 root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                System.out.println(event.getSource());
             }
             catch (IOException e)
             {
@@ -87,16 +91,15 @@ public class NewProjectController
             }
         }
 
-        if (root != null)
-        {
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        else
-        {
-            System.out.println("Null scene.");
-        }
+//        if (root != null)
+//        {
+//
+//
+//        }
+//        else
+//        {
+//            System.out.println("Null scene.");
+//        }
 
     }
 
