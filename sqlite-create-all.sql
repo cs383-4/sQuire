@@ -21,4 +21,3 @@ create table o_user (
   constraint uq_o_user_username unique (username),
   constraint pk_o_user primary key (id)
 );
-
