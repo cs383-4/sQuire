@@ -44,7 +44,6 @@ public class NewProjectController
 
     @FXML private void finishButtonClicked(ActionEvent event)
     {
-
         if (event.getSource() == finishButton)
         {
             FXMLLoader loader = new FXMLLoader();
