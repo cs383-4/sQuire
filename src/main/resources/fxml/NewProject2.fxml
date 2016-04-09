@@ -67,7 +67,7 @@
                         </Label>
                         <HBox alignment="CENTER" layoutX="199.0" layoutY="288.0" prefHeight="34.0" prefWidth="200.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="199.0">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" text="Cancel">
+                              <Button fx:id="cancelButton" alignment="CENTER" mnemonicParsing="false" onAction="#onBackButtonClick" text="Cancel">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
@@ -84,12 +84,12 @@
                               <Font size="12.0" />
                            </font>
                         </Label>
-                        <TextField alignment="CENTER" layoutX="150.0" layoutY="232.0" prefHeight="28.0" prefWidth="350.0" AnchorPane.topAnchor="232.0">
+                        <TextField fx:id="browseDisplay" editable="false" layoutX="150.0" layoutY="232.0" prefHeight="28.0" prefWidth="350.0" AnchorPane.topAnchor="232.0">
                            <font>
                               <Font size="12.0" />
                            </font>
                         </TextField>
-                        <Button alignment="CENTER" layoutX="513.0" layoutY="232.0" mnemonicParsing="false" text="Browse" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="232.0" />
+                        <Button fx:id="browseButton" alignment="CENTER" layoutX="513.0" layoutY="232.0" mnemonicParsing="false" onAction="#browseButtonClicked" text="Browse" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="232.0" />
                         <Button fx:id="importFilesButton" alignment="CENTER" layoutX="270.0" layoutY="272.0" mnemonicParsing="false" onAction="#importFilesButtonClicked" text="Import" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="269.0" />
                      </children>
                   </AnchorPane>
