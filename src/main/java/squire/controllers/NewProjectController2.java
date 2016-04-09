@@ -1,26 +1,24 @@
 package squire.controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class NewProjectController
+public class NewProjectController2
 {
     @FXML private Button nextButton;
     @FXML private Button backButton;
@@ -31,7 +29,7 @@ public class NewProjectController
     @FXML public TabPane tabPane;
     @FXML public Tab projectDetailsTab;
     @FXML public Tab projectSettingsTab;
-    @FXML public TextField productName;
+    @FXML public TextField projectTitle;
     @FXML Parent root;
 
 
@@ -50,28 +48,28 @@ public class NewProjectController
         }
     }
 
-    // Sends to second tab
-    @FXML
-    private void nextButtonClicked(ActionEvent event)
-    {
-        //System.out.println(event.getSource());
-        if (event.getSource() == nextButton) {
-            tabPane.getSelectionModel().select(projectSettingsTab);
-        }
-    }
+//    // Sends to second tab
+//    @FXML
+//    private void nextButtonClicked(ActionEvent event)
+//    {
+//        //System.out.println(event.getSource());
+//        if (event.getSource() == nextButton) {
+//            tabPane.getSelectionModel().select(projectSettingsTab);
+//        }
+//    }
 
 
-    //Sends back to first tab
-    @FXML private void backButtonClicked(ActionEvent event)
-    {
-       // System.out.println(event.getSource());
-        if (event.getSource() == backButton)
-        {
-            if (event.getSource() == backButton) {
-                tabPane.getSelectionModel().select(projectDetailsTab);
-            }
-        }
-    }
+//    //Sends back to first tab
+//    @FXML private void backButtonClicked(ActionEvent event)
+//    {
+//       // System.out.println(event.getSource());
+//        if (event.getSource() == backButton)
+//        {
+//            if (event.getSource() == backButton) {
+//                tabPane.getSelectionModel().select(projectDetailsTab);
+//            }
+//        }
+//    }
 
     // Sends to editor
     @FXML private void finishButtonClicked(ActionEvent event)
@@ -86,18 +84,24 @@ public class NewProjectController
             stage.setResizable(true);
             try
             {
-                // Create the project
-                String filename;
-                filename = productName.getText();
-                System.out.println(filename);
-
-                File testdir = new File(filename);
-                if(!testdir.exists())
+                if (projectTitle.getText().isEmpty())
                 {
-                    testdir.mkdir();
-                    testdir.delete();
+
                 }
 
+                else
+                {
+                    // Create the project
+                    String filename;
+                    filename = projectTitle.getText();
+                    System.out.println(filename);
+
+                    File testdir = new File(filename);
+                    if (!testdir.exists()) {
+                        testdir.mkdir();
+                        testdir.delete();
+                    }
+                }
                 root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
@@ -113,14 +117,14 @@ public class NewProjectController
 
 
     //Sends back to home screen
-    @FXML private void cancelButtonClicked(ActionEvent event)
+    @FXML private void onBackButtonClick(ActionEvent event)
     {
         Stage stage = null;
         Parent root = null;
-        if (event.getSource() == cancelButton1 || event.getSource() == cancelButton2)
+        if (event.getSource() == backButton)
         {
             FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) cancelButton1.getScene().getWindow();
+            stage = (Stage) backButton.getScene().getWindow();
             try
             {
                 root = loader.load(getClass().getResource("/fxml/Home.fxml"));
