@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="453.0" prefWidth="380.0" style="-fx-background-color: azure;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.RegisterDialogController">
+    <children>
+        <VBox layoutX="14.0" prefHeight="486.0" prefWidth="399.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox prefHeight="61.0" prefWidth="380.0">
+                    <children>
+                        <Region prefHeight="100.0" prefWidth="379.0" HBox.hgrow="ALWAYS" />
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                              <ImageView id="avatarImageView" fx:id="avatarImageView" fitHeight="102.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../images/avatar.png" />
+                                  </image>
+                              </ImageView>
+                        <Button fx:id="changeAvatarButton" mnemonicParsing="false" onAction="#onChangeAvatarButtonClick" prefHeight="25.0" prefWidth="96.0" text="Change" />
+                     </children>
+                  </VBox>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="181.0" fitWidth="381.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/sQuire-logo-transparent.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </HBox>
+                <VBox prefHeight="181.0" prefWidth="380.0">
+                    <padding>
+                        <Insets left="80.0" right="80.0" />
+                    </padding>
+                    <children>
+                        <TextField id="usernameTextField" fx:id="emailTextField" promptText="Email">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                  <TextField id="usernameTextField" fx:id="usernameTextField" layoutX="90.0" layoutY="10.0" promptText="Username">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <PasswordField id="passwordPasswordField" fx:id="passwordPasswordField1" promptText="Password">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </PasswordField>
+                  <PasswordField id="passwordPasswordField" fx:id="passwordPasswordField2" layoutX="90.0" layoutY="45.0" promptText="Retype password">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Button id="cancelButton" fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel">
+                                    <HBox.margin>
+                                        <Insets left="5.0" right="5.0" />
+                                    </HBox.margin>
+                                </Button>
+                                <Button id="registerButton" fx:id="registerButton" mnemonicParsing="false" onAction="#onRegisterButtonClicked" text="Register">
+                                    <HBox.margin>
+                                        <Insets left="5.0" right="5.0" />
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <Region prefHeight="200.0" prefWidth="380.0" />
+                <HBox prefHeight="100.0" prefWidth="200.0" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
