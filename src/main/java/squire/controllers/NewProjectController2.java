@@ -3,6 +3,7 @@ package squire.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
+import squire.FileList;
+
 
 import java.net.URL;
 import java.nio.file.CopyOption;
@@ -26,7 +30,7 @@ import java.nio.file.StandardCopyOption;
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class NewProjectController2
+public class NewProjectController2 
 {
     @FXML private Button browseButton;
     @FXML private Button backButton;
@@ -49,7 +53,7 @@ public class NewProjectController2
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Import File(s)");
            File selectedFile = fileChooser.showOpenDialog(stage);
-            System.out.println(selectedFile.getName());
+          //  System.out.println(selectedFile.getName());
         }
     }
 
@@ -99,6 +103,11 @@ public class NewProjectController2
                         };
                         Files.copy(from, to, options);
 
+                        FileList fl = new FileList();
+                        fl.addFile(to.toString());
+
+                        fl.print();
+
                      //   testdir.delete();
                     }
 
@@ -107,8 +116,13 @@ public class NewProjectController2
                 root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
+
+                //TODO: set more 'proper' dimensions
+                stage.setWidth(1000);
+                stage.setHeight(800);
+
                 stage.show();
-                System.out.println(event.getSource());
+             //   System.out.println(event.getSource());
             }
             catch (IOException e)
             {
