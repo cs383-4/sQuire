@@ -38,11 +38,12 @@ public class NewProjectController
         Stage stage = null;
         stage = (Stage) importFilesButton.getScene().getWindow();
         //System.out.println(event.getSource());
-        if (event.getSource() == importFilesButton) {
+        if (event.getSource() == importFilesButton)
+        {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Import File(s)");
-           File selectedFile = fileChooser.showOpenDialog(stage);
-            System.out.println(selectedFile.getName());
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            //System.out.println(selectedFile.getName());
         }
     }
 
@@ -50,7 +51,8 @@ public class NewProjectController
     private void nextButtonClicked(ActionEvent event)
     {
         //System.out.println(event.getSource());
-        if (event.getSource() == nextButton) {
+        if (event.getSource() == nextButton)
+        {
             tabPane.getSelectionModel().select(projectSettingsTab);
         }
     }
@@ -70,68 +72,43 @@ public class NewProjectController
 
     @FXML private void finishButtonClicked(ActionEvent event)
     {
-        Stage stage = null;
-        Parent root = null;
         if (event.getSource() == finishButton)
         {
             FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) finishButton.getScene().getWindow();
+            Stage stage = (Stage) finishButton.getScene().getWindow();
             stage.setResizable(true);
             try
             {
-                root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+                Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
                 System.out.println(event.getSource());
             }
-            catch (IOException e)
+            catch (Exception e)
             {
                 e.printStackTrace();
             }
         }
-
-//        if (root != null)
-//        {
-//
-//
-//        }
-//        else
-//        {
-//            System.out.println("Null scene.");
-//        }
-
     }
-
 
     @FXML private void cancelButtonClicked(ActionEvent event)
     {
-        Stage stage = null;
-        Parent root = null;
         if (event.getSource() == cancelButton1 || event.getSource() == cancelButton2)
         {
             FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) cancelButton1.getScene().getWindow();
+            Stage stage = (Stage) cancelButton1.getScene().getWindow();
             try
             {
-                root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+                Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
-            catch (IOException e)
+            catch (Exception e)
             {
                 e.printStackTrace();
             }
         }
-
-        if (root != null)
-        {
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        else
-        {
-            System.out.println("Null scene.");
-        }
-
     }
 }

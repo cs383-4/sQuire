@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -8,11 +7,11 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.TreeView?>
@@ -21,8 +20,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <top>
@@ -87,28 +84,37 @@
       <VBox BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="249.0" style="-fx-border-color: gray;" text="File Explorer" textAlignment="CENTER" />
-            <TreeView editable="true" prefHeight="991.0" prefWidth="249.0" style="-fx-border-color: gray;" />
+            <TreeView editable="true" prefHeight="999.0" prefWidth="249.0" style="-fx-border-color: gray;" />
          </children>
       </VBox>
    </left>
    <center>
-      <HBox prefHeight="987.0" prefWidth="1488.0" BorderPane.alignment="CENTER">
+      <HBox BorderPane.alignment="CENTER">
          <children>
-            <TabPane prefHeight="989.0" prefWidth="1613.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="1016.0" prefWidth="1423.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="CodeFile1">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="625.0" prefWidth="1475.0">
                            <children>
-                              <ScrollPane prefHeight="628.0" prefWidth="1422.0">
+                              <ScrollPane prefHeight="689.0" prefWidth="1422.0">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="613.0" prefWidth="1421.0">
                                        <children>
-                                          <TextArea prefHeight="614.0" prefWidth="1417.0" promptText="Type some code here" />
+                                          <TextArea prefHeight="674.0" prefWidth="1421.0" promptText="Type some code here" AnchorPane.bottomAnchor="-61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>
                               </ScrollPane>
+                              <HBox layoutX="2.0" layoutY="689.0" prefHeight="301.0" prefWidth="1420.0">
+                                 <children>
+                                    <TitledPane animated="false" prefHeight="310.0" prefWidth="1432.0" text="Output">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </TitledPane>
+                                 </children>
+                              </HBox>
                            </children>
                         </AnchorPane>
                   </content>
@@ -132,10 +138,10 @@
          <children>
             <Label alignment="CENTER" prefHeight="19.0" prefWidth="252.0" style="-fx-border-color: gray;" text="Friends" />
             <TextField promptText="Search" />
-            <ListView prefHeight="523.0" prefWidth="177.0" />
+            <ListView prefHeight="701.0" prefWidth="248.0" />
             <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="19.0" prefWidth="253.0" style="-fx-border-color: gray;" text="Chat" />
             <TextArea prefHeight="229.0" prefWidth="177.0" promptText="Messages " />
-            <HBox prefHeight="44.0" prefWidth="177.0">
+            <HBox prefHeight="27.0" prefWidth="248.0">
                <children>
                   <TextField prefHeight="25.0" prefWidth="202.0" promptText="Write a message" />
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" text="Send" />
@@ -144,26 +150,4 @@
          </children>
       </VBox>
    </right>
-   <bottom>
-      <VBox prefHeight="365.0" prefWidth="1920.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
-         <children>
-            <Label prefHeight="17.0" prefWidth="1933.0" style="-fx-background-color: rgb(208,208,208);" text="Output">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="2.0" left="10.0" right="2.0" top="2.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <SplitPane>
-               <items>
-                  <TextFlow prefHeight="370.0" prefWidth="1918.0" style="-fx-background-color: black; -fx-border: gray; -fx-border-width: 5;" />
-               </items>
-            </SplitPane>
-         </children>
-      </VBox>
-   </bottom>
 </BorderPane>
