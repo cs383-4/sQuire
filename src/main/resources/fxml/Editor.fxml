@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.EditorController">
    <top>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -64,7 +64,7 @@
                   </MenuBar>
                   <ToolBar>
                      <items>
-                        <Button mnemonicParsing="false" text="Home" />
+                        <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" text="Home" />
                         <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="2.0" />
                         <ToggleButton mnemonicParsing="false" text="Open" />
                         <ToggleButton mnemonicParsing="false" text="Save" />
@@ -80,7 +80,7 @@
                   </ToolBar>
                </children>
             </VBox>
-            <ImageView fitHeight="61.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url('http://brandonmathis.com/projects/fancy-avatars/demo/images/avatar_male_dark_on_clear_200x200.png');" HBox.hgrow="NEVER" />
+            <ImageView fx:id="avatarImageView" fitHeight="61.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url('http://brandonmathis.com/projects/fancy-avatars/demo/images/avatar_male_dark_on_clear_200x200.png');" HBox.hgrow="NEVER" />
          </children>
       </HBox>
    </top>

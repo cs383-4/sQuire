@@ -3,25 +3,73 @@ package squire.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class EditorController
+public class EditorController implements Initializable
 {
+    @FXML private ImageView avatarImageView;
+    @FXML private Button homeButton;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
+    }
 
+    private void onAvatarImageViewClick()
+    {
+        FXMLLoader loader = new FXMLLoader();
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("User Profile");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(avatarImageView.getScene().getWindow());
+        dialogStage.setResizable(false);
+        try
+        {
+            Parent root = loader.load(getClass().getResource("/fxml/Preferences2.fxml"));
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML private void onHomeButtonClick(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+            Stage stage = (Stage) homeButton.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setHeight(400);
+            stage.setWidth(600);
+            stage.setTitle("sQuire Home");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception exception)
+        {
+            exception.printStackTrace();
+        }
+    }
 
 //    @FXML private Button nextButton;
 //    @FXML private Button backButton;
