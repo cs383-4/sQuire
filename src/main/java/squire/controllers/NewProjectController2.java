@@ -59,7 +59,10 @@ public class NewProjectController2 implements Initializable
             File selectedFile = fileChooser.showOpenDialog(stage);
 
             //Adds file to list
-            fl.addFile(selectedFile.toString());
+            if (selectedFile != null)
+            {
+                fl.addFile(selectedFile.toString());
+            }
 
             //TODO: make multiple files selectable, copy files over
           //  System.out.println(selectedFile.getName());
@@ -127,8 +130,8 @@ public class NewProjectController2 implements Initializable
                 stage.setScene(scene);
 
                 //TODO: set more 'proper' dimensions
-                stage.setWidth(1000);
-                stage.setHeight(800);
+                stage.setWidth(1920);
+                stage.setHeight(1080);
 
                 stage.show();
              //   System.out.println(event.getSource());
@@ -164,6 +167,9 @@ public class NewProjectController2 implements Initializable
         {
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setHeight(400);
+            stage.setWidth(600);
+            stage.setTitle("sQuire Home");
             stage.show();
         }
         else
@@ -181,11 +187,10 @@ public class NewProjectController2 implements Initializable
             DirectoryChooser dirChoose = new DirectoryChooser();
             dirChoose.setTitle("Import File(s)");
             File selectedDir = dirChoose.showDialog(stage);
-            browseDisplay.setText(selectedDir.getPath());
-
-
+            if (selectedDir != null)
+            {
+                browseDisplay.setText(selectedDir.getPath());
+            }
         }
     }
-
-
 }

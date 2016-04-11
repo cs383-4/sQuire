@@ -50,6 +50,9 @@ public class HomeController implements Initializable
                // Parent root = loader.load(getClass().getResource("/fxml/NewProject.fxml"));
                 Parent root = loader.load(getClass().getResource("/fxml/NewProject2.fxml"));
                 Scene scene = new Scene(root);
+                stage.setTitle("New Project");
+                stage.setHeight(460);
+                stage.setWidth(610);
                 stage.setScene(scene);
                 stage.show();
 
@@ -72,6 +75,7 @@ public class HomeController implements Initializable
             {
                 Parent root = loader.load(getClass().getResource("/fxml/ProjectBrowsing.fxml"));
                 Scene scene = new Scene(root);
+                stage.setTitle("Browse Projects");
                 stage.setScene(scene);
                 stage.show();
             }
@@ -99,6 +103,7 @@ public class HomeController implements Initializable
                 root = loader.load(getClass().getResource("/fxml/LogInDialog.fxml"));
                 Scene scene = new Scene(root);
                 dialogStage.setScene(scene);
+                dialogStage.setTitle("Log in to sQuire");
                 dialogStage.showAndWait();
             }
             catch (Exception e)

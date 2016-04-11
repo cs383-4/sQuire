@@ -8,15 +8,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import squire.FileList;
 
+
 import java.io.File;
 import java.io.IOException;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,19 +26,63 @@ import java.util.ResourceBundle;
  */
 public class EditorController implements Initializable
 {
+    @FXML private ImageView avatarImageView;
+    @FXML private Button homeButton;
 
-    FileList fl = new FileList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        // Context.getInstance().currentFileList();
+        avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
+
     }
 
+    private void onAvatarImageViewClick()
+    {
+        FXMLLoader loader = new FXMLLoader();
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("User Profile");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(avatarImageView.getScene().getWindow());
+        dialogStage.setResizable(false);
+        try
+        {
+            Parent root = loader.load(getClass().getResource("/fxml/Preferences2.fxml"));
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML private void onHomeButtonClick(ActionEvent event)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+            Stage stage = (Stage) homeButton.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setHeight(400);
+            stage.setWidth(600);
+            stage.setTitle("sQuire Home");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception exception)
+        {
+            exception.printStackTrace();
+        }
+    }
 
 public void getFileList(FileList fileList)
 {
-    fl.copy(fileList);
-    fl.print();
+   // fl.copy(fileList);
+   // fl.print();
 }
 
 //    @FXML private Button nextButton;

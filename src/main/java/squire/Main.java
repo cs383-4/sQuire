@@ -37,6 +37,8 @@ public class Main extends Application implements Initializable
             Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("sQuire Home");
+            stage.setHeight(400);
+            stage.setWidth(600);
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
