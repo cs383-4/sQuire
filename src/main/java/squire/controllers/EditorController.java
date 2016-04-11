@@ -1,8 +1,10 @@
 package squire.controllers;
 
+import com.sun.org.apache.xml.internal.security.Init;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,17 +13,32 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import squire.FileList;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class EditorController
+public class EditorController implements Initializable
 {
 
+    FileList fl = new FileList();
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        // Context.getInstance().currentFileList();
+    }
 
+
+public void getFileList(FileList fileList)
+{
+    fl.copy(fileList);
+    fl.print();
+}
 
 //    @FXML private Button nextButton;
 //    @FXML private Button backButton;
