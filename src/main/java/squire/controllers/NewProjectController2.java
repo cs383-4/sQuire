@@ -41,6 +41,7 @@ public class NewProjectController2
     @FXML public TextField browseDisplay;
     @FXML Parent root;
 
+    FileList fl = new FileList();
 
     // Opens file chooser, currently not functional
     @FXML
@@ -48,11 +49,16 @@ public class NewProjectController2
     {
         Stage stage = null;
         stage = (Stage) importFilesButton.getScene().getWindow();
-        //System.out.println(event.getSource());
+
         if (event.getSource() == importFilesButton) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Import File(s)");
-           File selectedFile = fileChooser.showOpenDialog(stage);
+            File selectedFile = fileChooser.showOpenDialog(stage);
+
+            //Adds file to list
+            fl.addFile(selectedFile.toString());
+
+            //TODO: make multiple files selectable, copy files over
           //  System.out.println(selectedFile.getName());
         }
     }
@@ -103,7 +109,7 @@ public class NewProjectController2
                         };
                         Files.copy(from, to, options);
 
-                        FileList fl = new FileList();
+
                         fl.addFile(to.toString());
 
                         fl.print();
