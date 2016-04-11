@@ -1,0 +1,26 @@
+String urlStr = "http://www.someserver.com/getdata?param1=abc¶m2=xyz"; // some URL
+URI uri = new URI( urlStr); 
+String host = uri.getHost( ); 
+String path = uri.getRawPath( ); 
+if (path == null || path.length( ) == 0) {
+    path = "/";
+} 
+ 
+String query = uri.getRawQuery( ); 
+if (query != null && query.length( ) > 0) {
+    path += "?" + query;
+} 
+
+String protocol = uri.getScheme( ); 
+int port = uri.getPort( ); 
+if (port == -1) {
+    if (protocol.equals("http")) { 
+        port = 80; // http port 
+    }
+    else if (protocol.equals("https")) {
+        port = 443; // https port 
+    }
+    else {
+        return null;
+    }
+}
