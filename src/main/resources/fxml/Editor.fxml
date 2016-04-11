@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -64,11 +65,14 @@
                   <ToolBar>
                      <items>
                         <Button mnemonicParsing="false" text="Home" />
+                        <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="2.0" />
                         <ToggleButton mnemonicParsing="false" text="Open" />
                         <ToggleButton mnemonicParsing="false" text="Save" />
                         <ToggleButton mnemonicParsing="false" text="Save All" />
+                        <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
                         <ToggleButton layoutX="105.0" layoutY="10.0" mnemonicParsing="false" text="Undo" />
                         <ToggleButton layoutX="167.0" layoutY="10.0" mnemonicParsing="false" text="Redo" />
+                        <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
                         <ToggleButton layoutX="217.0" layoutY="10.0" mnemonicParsing="false" text="Copy" />
                         <ToggleButton layoutX="265.0" layoutY="10.0" mnemonicParsing="false" text="Cut" />
                         <ToggleButton layoutX="313.0" layoutY="10.0" mnemonicParsing="false" text="Paste" />
@@ -97,11 +101,11 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="625.0" prefWidth="1475.0">
                            <children>
-                              <ScrollPane prefHeight="689.0" prefWidth="1422.0">
+                              <ScrollPane prefHeight="990.0" prefWidth="1423.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="613.0" prefWidth="1421.0">
                                        <children>
-                                          <TextArea prefHeight="674.0" prefWidth="1421.0" promptText="Type some code here" AnchorPane.bottomAnchor="-61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextArea prefHeight="689.0" prefWidth="1421.0" promptText="Type some code here" AnchorPane.bottomAnchor="-76.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>

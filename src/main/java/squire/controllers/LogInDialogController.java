@@ -3,17 +3,25 @@ package squire.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.util.ResourceBundle;
+import java.net.URL;
+
 /**
  * Created by Domn on 4/4/2016.
  */
-public class LogInDialogController
+public class LogInDialogController implements Initializable
 {
     @FXML private ImageView avatarImageView;
     @FXML private TextField usernameTextField;
@@ -26,9 +34,11 @@ public class LogInDialogController
 
     private Stage thisStage;
 
-    @FXML private void initialize()
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
     {
-        // Initialize anything here if needed.
+        // Perform any initialization steps here.
+
     }
 
     @FXML private void onCancelButtonClick(ActionEvent event)
