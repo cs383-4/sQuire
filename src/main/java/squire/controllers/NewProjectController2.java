@@ -184,11 +184,10 @@ public class NewProjectController2
             DirectoryChooser dirChoose = new DirectoryChooser();
             dirChoose.setTitle("Import File(s)");
             File selectedDir = dirChoose.showDialog(stage);
-            browseDisplay.setText(selectedDir.getPath());
-
-
+            if (selectedDir != null)
+            {
+                browseDisplay.setText(selectedDir.getPath());
+            }
         }
     }
-
-
 }
