@@ -37,6 +37,7 @@ public class EditorController implements Initializable
 
     }
 
+
     private void onAvatarImageViewClick()
     {
         FXMLLoader loader = new FXMLLoader();
