@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.PreferencesDialogController">
    <top>
       <HBox prefHeight="0.0" prefWidth="640.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="116.0" prefWidth="145.0">
-               <children>
-                  <ImageView fitHeight="112.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/avatar.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
             <VBox prefHeight="116.0" prefWidth="496.0">
                <children>
-                  <ImageView fitHeight="116.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="79.0" fitWidth="953.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/sQuire-logo-transparent.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="94.0" prefWidth="496.0" text="Account Settings">
+                  <Label alignment="CENTER" prefHeight="58.0" prefWidth="278.0" text="Account Settings">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -38,13 +33,23 @@
                   </Label>
                </children>
             </VBox>
+            <VBox alignment="CENTER" prefHeight="116.0" prefWidth="145.0">
+               <children>
+                  <ImageView fx:id="avatarImageView" fitHeight="112.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/avatar.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="changePictureButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Change Picture" />
+               </children>
+            </VBox>
          </children>
       </HBox>
    </top>
    <left>
-      <VBox prefHeight="368.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="343.0" prefWidth="208.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="0.0" prefWidth="150.0" text="USERNAME" textAlignment="CENTER">
+            <Label fx:id="usernameLabel" prefHeight="0.0" prefWidth="150.0" text="USERNAME" textAlignment="CENTER">
                <padding>
                   <Insets left="10.0" top="10.0" />
                </padding>
@@ -52,7 +57,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label prefHeight="0.0" prefWidth="150.0" text="email@example.com" textAlignment="CENTER" textFill="#6f6f6f">
+            <Label fx:id="emailLabel" prefHeight="0.0" prefWidth="150.0" text="email@example.com" textAlignment="CENTER" textFill="#6f6f6f">
                <font>
                   <Font size="14.0" />
                </font>
@@ -61,37 +66,40 @@
                </padding>
             </Label>
          </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="364.0" prefWidth="563.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="343.0" prefWidth="441.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Change Password:">
                <padding>
                   <Insets top="20.0" />
                </padding>
             </Label>
-            <TextField promptText="Enter new password">
+            <PasswordField id="newPasswordPasswordField1" fx:id="newPasswordField" promptText="Enter new password">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
-            </TextField>
-            <TextField promptText="Confirm new password">
+            </PasswordField>
+            <PasswordField id="newPasswordPasswordField1" fx:id="confirmPasswordField" layoutX="40.0" layoutY="47.0" promptText="Confirm new password">
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
-            </TextField>
+            </PasswordField>
             <Label text="Change Email Address:">
                <padding>
                   <Insets top="25.0" />
                </padding>
             </Label>
-            <TextField promptText="Enter new email">
+            <TextField fx:id="newEmailTextField" promptText="Enter new email">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField promptText="Confirm new email">
+            <TextField fx:id="confirmEmailTextField" promptText="Confirm new email">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
@@ -101,14 +109,14 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="356.0">
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="374.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Close">
+                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onCloseButtonClick" text="Close">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" text="Submit">
+                        <Button fx:id="submitButton" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmitButtonClick" text="Submit">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -124,6 +132,6 @@
       </VBox>
    </center>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="343.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>
