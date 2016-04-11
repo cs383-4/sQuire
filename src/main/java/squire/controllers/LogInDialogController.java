@@ -38,7 +38,6 @@ public class LogInDialogController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         // Perform any initialization steps here.
-
     }
 
     @FXML private void onCancelButtonClick(ActionEvent event)
