@@ -38,6 +38,33 @@ public class HomeController implements Initializable
     }
 
     @FXML
+    private void onLogInHyperlinkClick(ActionEvent event)
+    {
+        if (event.getSource() == logInHyperlink)
+        {
+            FXMLLoader loader = new FXMLLoader();
+            Stage dialogStage = new Stage();
+            Parent root = null;
+            dialogStage.setTitle("Log in to sQuire");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(logInHyperlink.getScene().getWindow());
+            dialogStage.setResizable(false);
+            try
+            {
+                root = loader.load(getClass().getResource("/fxml/LogInDialog.fxml"));
+                Scene scene = new Scene(root);
+                dialogStage.setScene(scene);
+                dialogStage.setTitle("Log in to sQuire");
+                dialogStage.showAndWait();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
     private void onNewProjectHyperlinkClick(ActionEvent event)
     {
         if (event.getSource() == newProjectHyperlink)
@@ -86,32 +113,7 @@ public class HomeController implements Initializable
         }
     }
 
-    @FXML
-    private void onLogInHyperlinkClick(ActionEvent event)
-    {
-        if (event.getSource() == logInHyperlink)
-        {
-            FXMLLoader loader = new FXMLLoader();
-            Stage dialogStage = new Stage();
-            Parent root = null;
-            dialogStage.setTitle("Log in to sQuire");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(logInHyperlink.getScene().getWindow());
-            dialogStage.setResizable(false);
-            try
-            {
-                root = loader.load(getClass().getResource("/fxml/LogInDialog.fxml"));
-                Scene scene = new Scene(root);
-                dialogStage.setScene(scene);
-                dialogStage.setTitle("Log in to sQuire");
-                dialogStage.showAndWait();
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
+
 
     @FXML private void onAvatarImageViewClick()
     {
