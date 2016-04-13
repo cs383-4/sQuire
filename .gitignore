@@ -35,3 +35,5 @@ squire.db
 
 #generated files
 target/
+
+src/main/resources/ebean.properties

@@ -7,15 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Screen;
 import squire.FileList;
-
 
 import java.net.URL;
 import java.nio.file.CopyOption;
@@ -26,11 +22,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ResourceBundle;
 
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class NewProjectController2 
+public class NewProjectController2 implements Initializable
 {
     @FXML private Button browseButton;
     @FXML private Button backButton;
@@ -42,6 +39,12 @@ public class NewProjectController2
     @FXML Parent root;
 
     FileList fl = new FileList();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+       // Context.getInstance().currentFileList();
+    }
 
     // Opens file chooser, currently not functional
     @FXML
@@ -67,16 +70,13 @@ public class NewProjectController2
     }
 
     // Sends to editor
-    @FXML private void finishButtonClicked(ActionEvent event)
-    {
+    @FXML private void finishButtonClicked(ActionEvent event) throws IOException {
         Stage stage = null;
         Parent root = null;
 
         if (event.getSource() == finishButton)
         {
-            FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) finishButton.getScene().getWindow();
-            stage.setResizable(true);
+
             try
             {
                 if (projectTitle.getText().isEmpty())
@@ -92,7 +92,7 @@ public class NewProjectController2
                     directoryName = browseDisplay.getText();
                     projectName = projectTitle.getText();
                     String fullPath = directoryName + "/" + projectName;
-                    System.out.println(fullPath);
+                   // System.out.println(fullPath);
 
                     //Make the directory for the project at specified path and add
                     File testdir = new File(fullPath);
@@ -115,14 +115,23 @@ public class NewProjectController2
 
                         fl.addFile(to.toString());
 
-                        fl.print();
+                      //  fl.print();
 
                      //   testdir.delete();
                     }
 
                     //TODO: handle the case if the directory exists
                 }
-                root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+                //root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+
+                // Set the next scene and pass the file object
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Editor.fxml"));
+                root = loader.load();
+                EditorController controller = loader.<EditorController>getController();
+                controller.getFileList(fl);
+                stage = (Stage) finishButton.getScene().getWindow();
+                stage.setResizable(true);
+
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
 

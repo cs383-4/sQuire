@@ -2,6 +2,7 @@ package squire;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,10 +23,19 @@ public class FileList
 
     }
 
+    public void copy(FileList fl)
+    {
+        fileList = fl.getFileList();
+    }
+
     public void print()
     {
         System.out.println(fileList);
     }
 
+    public ArrayList<String> getFileList()
+    {
+        return fileList;
+    }
 
 }

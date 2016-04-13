@@ -1,5 +1,6 @@
 package squire.controllers;
 
+import com.sun.org.apache.xml.internal.security.Init;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import squire.FileList;
+
+
+import java.io.File;
+import java.io.IOException;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,12 +28,15 @@ public class EditorController implements Initializable
 {
     @FXML private ImageView avatarImageView;
     @FXML private Button homeButton;
+    FileList fl = new FileList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
+
     }
+
 
     private void onAvatarImageViewClick()
     {
@@ -70,6 +79,13 @@ public class EditorController implements Initializable
             exception.printStackTrace();
         }
     }
+
+public void getFileList(FileList fileList)
+{
+    fl.copy(fileList);
+   // fileList.print();
+    fl.print();
+}
 
 //    @FXML private Button nextButton;
 //    @FXML private Button backButton;
