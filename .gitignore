@@ -26,10 +26,9 @@ doc/src/*.png
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries
-/squire.db
+squire.db
 
 #database
-squire.db
 .idea/dataSources.local.xml
 .idea/dataSources.ids
 .idea/dataSources.xml
