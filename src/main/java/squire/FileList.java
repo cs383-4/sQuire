@@ -25,7 +25,7 @@ public class FileList
 
     public void copy(FileList fl)
     {
-        Collections.copy(fl.getFileList(), this.getFileList());
+        fileList = fl.getFileList();
     }
 
     public void print()

@@ -28,7 +28,7 @@ public class EditorController implements Initializable
 {
     @FXML private ImageView avatarImageView;
     @FXML private Button homeButton;
-
+    FileList fl = new FileList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -82,8 +82,9 @@ public class EditorController implements Initializable
 
 public void getFileList(FileList fileList)
 {
-   // fl.copy(fileList);
-   // fl.print();
+    fl.copy(fileList);
+   // fileList.print();
+    fl.print();
 }
 
 //    @FXML private Button nextButton;

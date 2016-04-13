@@ -70,16 +70,13 @@ public class NewProjectController2 implements Initializable
     }
 
     // Sends to editor
-    @FXML private void finishButtonClicked(ActionEvent event)
-    {
+    @FXML private void finishButtonClicked(ActionEvent event) throws IOException {
         Stage stage = null;
         Parent root = null;
 
         if (event.getSource() == finishButton)
         {
-            FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) finishButton.getScene().getWindow();
-            stage.setResizable(true);
+
             try
             {
                 if (projectTitle.getText().isEmpty())
@@ -95,7 +92,7 @@ public class NewProjectController2 implements Initializable
                     directoryName = browseDisplay.getText();
                     projectName = projectTitle.getText();
                     String fullPath = directoryName + "/" + projectName;
-                    System.out.println(fullPath);
+                   // System.out.println(fullPath);
 
                     //Make the directory for the project at specified path and add
                     File testdir = new File(fullPath);
@@ -118,14 +115,23 @@ public class NewProjectController2 implements Initializable
 
                         fl.addFile(to.toString());
 
-                        fl.print();
+                      //  fl.print();
 
                      //   testdir.delete();
                     }
 
                     //TODO: handle the case if the directory exists
                 }
-                root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+                //root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+
+                // Set the next scene and pass the file object
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Editor.fxml"));
+                root = loader.load();
+                EditorController controller = loader.<EditorController>getController();
+                controller.getFileList(fl);
+                stage = (Stage) finishButton.getScene().getWindow();
+                stage.setResizable(true);
+
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
 
