@@ -1,5 +1,7 @@
 package squire;
 
+import com.avaje.ebeaninternal.server.lib.util.Str;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,6 +13,8 @@ import java.util.List;
 public class FileList
 {
     private ArrayList<String> fileList = new ArrayList<String>();
+    private String projectPath;
+    private String projectName;
 
     public FileList()
     {
@@ -20,12 +24,33 @@ public class FileList
     public void addFile(String f)
     {
         fileList.add(f);
-
     }
 
     public void copy(FileList fl)
     {
         fileList = fl.getFileList();
+        projectPath = fl.getProjectPath();
+        projectName = fl.getProjectName();
+    }
+
+    public void setProjectPath(String s)
+    {
+        projectPath = s;
+    }
+
+    public String getProjectPath()
+    {
+        return projectPath;
+    }
+
+    public void setProjectName(String s)
+    {
+        projectPath = s;
+    }
+
+    public String getProjectName()
+    {
+        return projectPath;
     }
 
     public void print()

@@ -37,6 +37,7 @@ public class NewProjectController2 implements Initializable
     @FXML public TextField projectTitle;
     @FXML public TextField browseDisplay;
     @FXML Parent root;
+    String fullPath;
 
     FileList fl = new FileList();
 
@@ -91,15 +92,18 @@ public class NewProjectController2 implements Initializable
                     String projectName;
                     directoryName = browseDisplay.getText();
                     projectName = projectTitle.getText();
-                    String fullPath = directoryName + "/" + projectName;
+                    fullPath = directoryName + "/" + projectName;
                    // System.out.println(fullPath);
 
                     //Make the directory for the project at specified path and add
-                    File testdir = new File(fullPath);
-                    if (!testdir.exists()) {
+                    File projectDir = new File(fullPath);
+                    if (!projectDir.exists()) {
 
-                        //Make the directory if it doesn't exist
-                        testdir.mkdir();
+                        //Make the directory if it doesn't exist, and add path to FileList object
+                        projectDir.mkdir();
+                        fl.setProjectPath(fullPath);
+                        fl.setProjectName(projectName);
+
 
                         //Find the dummy Main.java file and copy it over
                         URL url = this.getClass().getResource("/Test_Files/Main.java");
@@ -128,7 +132,10 @@ public class NewProjectController2 implements Initializable
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Editor.fxml"));
                 root = loader.load();
                 EditorController controller = loader.<EditorController>getController();
-                controller.getFileList(fl);
+
+                // call setup methods in editor
+                controller.setupFileList(fl);
+
                 stage = (Stage) finishButton.getScene().getWindow();
                 stage.setResizable(true);
 

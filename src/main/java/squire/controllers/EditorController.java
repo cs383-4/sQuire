@@ -1,5 +1,6 @@
 package squire.controllers;
 
+import com.avaje.ebeaninternal.server.lib.util.Str;
 import com.sun.org.apache.xml.internal.security.Init;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,8 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import squire.FileList;
@@ -28,12 +32,15 @@ public class EditorController implements Initializable
 {
     @FXML private ImageView avatarImageView;
     @FXML private Button homeButton;
+    @FXML private TreeView fileExplorer;
     FileList fl = new FileList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
+
+
 
     }
 
@@ -80,12 +87,26 @@ public class EditorController implements Initializable
         }
     }
 
-public void getFileList(FileList fileList)
-{
-    fl.copy(fileList);
-   // fileList.print();
-    fl.print();
-}
+    public void setupFileList(FileList fileList)
+    {
+        fl.copy(fileList);
+     // fileList.print();
+        fl.print();
+
+
+        TreeItem<String> rootItem = new TreeItem<>(fl.getProjectName());
+        rootItem.setExpanded(true);
+
+        for (String file: fl.getFileList())
+        {
+            file = file.substring(file.lastIndexOf("/")+1);
+            TreeItem<String> item = new TreeItem<>(file);
+            rootItem.getChildren().add(item);
+        }
+
+         fileExplorer.setRoot(rootItem);
+
+    }
 
 //    @FXML private Button nextButton;
 //    @FXML private Button backButton;
