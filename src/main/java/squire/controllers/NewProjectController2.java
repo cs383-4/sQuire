@@ -4,12 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import squire.FileList;
 
@@ -119,14 +121,10 @@ public class NewProjectController2 implements Initializable
 
                         fl.addFile(to.toString());
 
-                      //  fl.print();
-
-                     //   testdir.delete();
                     }
 
                     //TODO: handle the case if the directory exists
                 }
-                //root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
 
                 // Set the next scene and pass the file object
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Editor.fxml"));
@@ -143,11 +141,20 @@ public class NewProjectController2 implements Initializable
                 stage.setScene(scene);
 
                 //TODO: set more 'proper' dimensions
-                stage.setWidth(1920);
-                stage.setHeight(1080);
+//                stage.setWidth(1920);
+//                stage.setHeight(1080);
+
+                Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
+                int fromEdge = 50;
+
+                //set Stage boundaries to visible bounds of the main screen
+                stage.setX(primaryScreenBounds.getMinX() + fromEdge/2);
+                stage.setY(primaryScreenBounds.getMinY() + fromEdge/2);
+                stage.setWidth(primaryScreenBounds.getWidth() - fromEdge);
+                stage.setHeight(primaryScreenBounds.getHeight() - fromEdge);
 
                 stage.show();
-             //   System.out.println(event.getSource());
             }
             catch (IOException e)
             {

@@ -92,7 +92,6 @@ public class EditorController implements Initializable
     public void setupFileList(FileList fileList)
     {
         fl.copy(fileList);
-     // fileList.print();
         fl.print();
 
         //Set up tree view cell factory
@@ -102,6 +101,7 @@ public class EditorController implements Initializable
 
         for (String file: fl.getFileList())
         {
+            // Get just the filename
             file = file.substring(file.lastIndexOf("/")+1);
             TreeItem<String> item = new TreeItem<>(file);
             rootItem.getChildren().add(item);
@@ -112,6 +112,7 @@ public class EditorController implements Initializable
 //        fileExplorer.setCellFactory(new Callback<TreeView<String>,TreeCell<String>>()
 //                                    {
 //                                        @Override public TreeCell<String> call(TreeView<String> p) {
+                                                // Name used for class in oracle online demo
 //                                            return new TextFieldTreeCellImpl();
 //                                        }
 //                                    }
@@ -121,6 +122,8 @@ public class EditorController implements Initializable
 
 
     }
+
+
 
 
     @FXML private void openItem(ActionEvent event)
