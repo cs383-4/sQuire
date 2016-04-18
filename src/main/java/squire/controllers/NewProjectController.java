@@ -1,39 +1,53 @@
 package squire.controllers;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.FileChooser;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import squire.FileList;
 
+import java.net.URL;
+import java.nio.file.CopyOption;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class NewProjectController
+public class NewProjectController implements Initializable
 {
-    @FXML private Button nextButton;
+    @FXML private Button browseButton;
     @FXML private Button backButton;
+    @FXML private Button cancelButton;
     @FXML private Button finishButton;
-    @FXML private Button cancelButton1;
-    @FXML private Button cancelButton2;
     @FXML private Button importFilesButton;
-    @FXML public TabPane tabPane;
-    @FXML public Tab projectDetailsTab;
-    @FXML public Tab projectSettingsTab;
-    @FXML public TextField productName;
+    @FXML public TextField projectTitle;
+    @FXML public TextField browseDisplay;
     @FXML Parent root;
+    String fullPath;
 
+    FileList fl = new FileList();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+       // Context.getInstance().currentFileList();
+    }
 
     // Opens file chooser, currently not functional
     @FXML
@@ -41,68 +55,106 @@ public class NewProjectController
     {
         Stage stage = null;
         stage = (Stage) importFilesButton.getScene().getWindow();
-        //System.out.println(event.getSource());
+
         if (event.getSource() == importFilesButton) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Import File(s)");
-           File selectedFile = fileChooser.showOpenDialog(stage);
-            System.out.println(selectedFile.getName());
-        }
-    }
+            File selectedFile = fileChooser.showOpenDialog(stage);
 
-    // Sends to second tab
-    @FXML
-    private void nextButtonClicked(ActionEvent event)
-    {
-        //System.out.println(event.getSource());
-        if (event.getSource() == nextButton) {
-            tabPane.getSelectionModel().select(projectSettingsTab);
-        }
-    }
-
-
-    //Sends back to first tab
-    @FXML private void backButtonClicked(ActionEvent event)
-    {
-       // System.out.println(event.getSource());
-        if (event.getSource() == backButton)
-        {
-            if (event.getSource() == backButton) {
-                tabPane.getSelectionModel().select(projectDetailsTab);
+            //Adds file to list
+            if (selectedFile != null)
+            {
+                fl.addFile(selectedFile.toString());
             }
+
+            //TODO: make multiple files selectable, copy files over
+          //  System.out.println(selectedFile.getName());
         }
     }
 
     // Sends to editor
-    @FXML private void finishButtonClicked(ActionEvent event)
-    {
+    @FXML private void finishButtonClicked(ActionEvent event) throws IOException {
         Stage stage = null;
         Parent root = null;
 
         if (event.getSource() == finishButton)
         {
-            FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) finishButton.getScene().getWindow();
-            stage.setResizable(true);
+
             try
             {
-                // Create the project
-                String filename;
-                filename = productName.getText();
-                System.out.println(filename);
-
-                File testdir = new File(filename);
-                if(!testdir.exists())
+                if (projectTitle.getText().isEmpty())
                 {
-                    testdir.mkdir();
-                    testdir.delete();
+
                 }
 
-                root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+                else
+                {
+                    // Create the project
+                    String directoryName;
+                    String projectName;
+                    directoryName = browseDisplay.getText();
+                    projectName = projectTitle.getText();
+                    fullPath = directoryName + "/" + projectName;
+                   // System.out.println(fullPath);
+
+                    //Make the directory for the project at specified path and add
+                    File projectDir = new File(fullPath);
+                    if (!projectDir.exists()) {
+
+                        //Make the directory if it doesn't exist, and add path to FileList object
+                        projectDir.mkdir();
+                        fl.setProjectPath(fullPath);
+                        fl.setProjectName(projectName);
+
+
+                        //Find the dummy Main.java file and copy it over
+                        URL url = this.getClass().getResource("/Test_Files/Main.java");
+                        File mainFile = new File(url.getPath());
+                        Path from = mainFile.toPath();
+                        Path to = Paths.get(fullPath + "/main.java");
+                        CopyOption[] options = new CopyOption[]{
+                                StandardCopyOption.REPLACE_EXISTING,
+                                StandardCopyOption.COPY_ATTRIBUTES
+                        };
+                        Files.copy(from, to, options);
+
+
+                        fl.addFile(to.toString());
+
+                    }
+
+                    //TODO: handle the case if the directory exists
+                }
+
+                // Set the next scene and pass the file object
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Editor.fxml"));
+                root = loader.load();
+                EditorController controller = loader.<EditorController>getController();
+
+                // call setup methods in editor
+                controller.setupFileList(fl);
+
+                stage = (Stage) finishButton.getScene().getWindow();
+                stage.setResizable(true);
+
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
+
+                //TODO: set more 'proper' dimensions
+//                stage.setWidth(1920);
+//                stage.setHeight(1080);
+
+                Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
+                int fromEdge = 50;
+
+                //set Stage boundaries to visible bounds of the main screen
+                stage.setX(primaryScreenBounds.getMinX() + fromEdge/2);
+                stage.setY(primaryScreenBounds.getMinY() + fromEdge/2);
+                stage.setWidth(primaryScreenBounds.getWidth() - fromEdge);
+                stage.setHeight(primaryScreenBounds.getHeight() - fromEdge);
+
                 stage.show();
-                System.out.println(event.getSource());
             }
             catch (IOException e)
             {
@@ -113,14 +165,14 @@ public class NewProjectController
 
 
     //Sends back to home screen
-    @FXML private void cancelButtonClicked(ActionEvent event)
+    @FXML private void onBackButtonClick(ActionEvent event)
     {
         Stage stage = null;
         Parent root = null;
-        if (event.getSource() == cancelButton1 || event.getSource() == cancelButton2)
+        if (event.getSource() == backButton || event.getSource() == cancelButton)
         {
             FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) cancelButton1.getScene().getWindow();
+            stage = (Stage) backButton.getScene().getWindow();
             try
             {
                 root = loader.load(getClass().getResource("/fxml/Home.fxml"));
@@ -135,12 +187,30 @@ public class NewProjectController
         {
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setHeight(400);
+            stage.setWidth(600);
+            stage.setTitle("sQuire Home");
             stage.show();
         }
         else
         {
             System.out.println("Null scene.");
         }
+    }
 
+    @FXML private void browseButtonClicked(ActionEvent event)
+    {
+        if (event.getSource() == browseButton)
+        {
+            Stage stage = null;
+            stage = (Stage) browseButton.getScene().getWindow();
+            DirectoryChooser dirChoose = new DirectoryChooser();
+            dirChoose.setTitle("Import File(s)");
+            File selectedDir = dirChoose.showDialog(stage);
+            if (selectedDir != null)
+            {
+                browseDisplay.setText(selectedDir.getPath());
+            }
+        }
     }
 }

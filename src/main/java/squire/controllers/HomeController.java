@@ -48,7 +48,7 @@ public class HomeController implements Initializable
             try
             {
                // Parent root = loader.load(getClass().getResource("/fxml/NewProject.fxml"));
-                Parent root = loader.load(getClass().getResource("/fxml/NewProject2.fxml"));
+                Parent root = loader.load(getClass().getResource("/fxml/NewProject.fxml"));
                 Scene scene = new Scene(root);
                 stage.setTitle("New Project");
                 stage.setHeight(460);
@@ -123,7 +123,7 @@ public class HomeController implements Initializable
         dialogStage.setResizable(false);
         try
         {
-            Parent root = loader.load(getClass().getResource("/fxml/Preferences2.fxml"));
+            Parent root = loader.load(getClass().getResource("/fxml/Preferences.fxml"));
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
