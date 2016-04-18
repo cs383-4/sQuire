@@ -22,3 +22,18 @@ create table o_user (
   constraint pk_o_user primary key (id)
 );
 
+create table o_project_info (
+  id                            integer not null,
+  author_username               varchar(255) not null,
+  version                       integer not null,
+  file                          blob,
+  when_created                  timestamp not null,
+  when_updated                  timestamp not null,
+  constraint pk_o_project_info primary key (id)
+);
+
+create table o_project_file (
+  id                            integer not null,
+  file                          blob,
+  constraint pk_o_project_file primary key (id)
+);
