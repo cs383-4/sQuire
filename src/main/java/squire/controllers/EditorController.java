@@ -1,18 +1,21 @@
 package squire.controllers;
 
+import com.avaje.ebean.event.changelog.ChangeLogListener;
 import com.avaje.ebeaninternal.server.lib.util.Str;
 import com.sun.org.apache.xml.internal.security.Init;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TreeCell;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
@@ -26,6 +29,7 @@ import java.io.IOException;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 /**
  * Created by MattDaniel on 3/31/16.
@@ -35,6 +39,8 @@ public class EditorController implements Initializable
     @FXML private ImageView avatarImageView;
     @FXML private Button homeButton;
     @FXML private TreeView fileExplorer;
+    @FXML private TextArea editorTextArea;
+
     FileList fl = new FileList();
 
     @Override
@@ -109,16 +115,40 @@ public class EditorController implements Initializable
 
         fileExplorer.setRoot(rootItem);
         fileExplorer.setEditable(true);
-//        fileExplorer.setCellFactory(new Callback<TreeView<String>,TreeCell<String>>()
-//                                    {
-//                                        @Override public TreeCell<String> call(TreeView<String> p) {
-                                                // Name used for class in oracle online demo
-//                                            return new TextFieldTreeCellImpl();
-//                                        }
-//                                    }
-//        );
+        fileExplorer.setCellFactory(p -> {
+                // Name used for class in oracle online demo
+            return new TextFieldTreeCellImpl();
+        }
+        );
 
 
+
+        // One way to get the clicked on cell
+        fileExplorer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
+        {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue)
+            {
+                TreeItem<String> selectedItem = (TreeItem<String>) newValue;
+                try {
+                    Scanner input = new Scanner(System.in);
+                    String filePath = fl.getMatchingFile(selectedItem.getValue());
+                    File file = new File(filePath);
+                    input = new Scanner(file);
+
+
+                    while (input.hasNextLine()) {
+                        String line = input.nextLine();
+                        editorTextArea.appendText(line + "\n");
+                    }
+                    input.close();
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+        });
 
 
     }
@@ -126,130 +156,94 @@ public class EditorController implements Initializable
 
 
 
-    @FXML private void openItem(ActionEvent event)
-    {
+    // Using example at http://docs.oracle.com/javafx/2/ui_controls/tree-view.htm
+    private final class TextFieldTreeCellImpl extends TreeCell<String> {
 
+        private TextField textField;
+
+        public TextFieldTreeCellImpl()
+        {
+
+        }
+
+//TODO: See if we can work with TreeCell objects of FileList items? Instead of strings
+        @Override
+        public void startEdit()
+        {
+            super.startEdit();
+
+            if (textField == null)
+            {
+                createTextField();
+            }
+            setText(null);
+            setGraphic(textField);
+            textField.selectAll();
+        }
+
+        @Override
+        public void cancelEdit()
+        {
+            super.cancelEdit();
+            setText((String) getItem());
+            setGraphic(getTreeItem().getGraphic());
+        }
+
+        @Override
+        public void updateItem(String item, boolean empty)
+        {
+            super.updateItem(item, empty);
+
+            if (empty)
+            {
+                setText(null);
+                setGraphic(null);
+            }
+            else
+            {
+                if (isEditing())
+                {
+                    if (textField != null)
+                    {
+                        textField.setText(getString());
+                    }
+                    setText(null);
+                    setGraphic(textField);
+                }
+                else
+                {
+                    setText(getString());
+                    setGraphic(getTreeItem().getGraphic());
+                }
+            }
+        }
+
+        private void createTextField()
+        {
+            textField = new TextField(getString());
+            textField.setOnKeyReleased(new EventHandler<KeyEvent>()
+            {
+
+                @Override
+                public void handle(KeyEvent t)
+                {
+                    if (t.getCode() == KeyCode.ENTER)
+                    {
+                        commitEdit(textField.getText());
+                    }
+                    else if (t.getCode() == KeyCode.ESCAPE)
+                    {
+                        cancelEdit();
+                    }
+                }
+            });
+        }
+
+        private String getString()
+        {
+            return getItem() == null ? "" : getItem().toString();
+        }
     }
 
-//    @FXML private Button nextButton;
-//    @FXML private Button backButton;
-//    @FXML private Button finishButton;
-//    @FXML private Button cancelButton1;
-//    @FXML private Button cancelButton2;
-//    @FXML private Button importFilesButton;
-//    @FXML public TabPane tabPane;
-//    @FXML public Tab projectDetailsTab;
-//    @FXML public Tab projectSettingsTab;
-//    @FXML public TextField productName;
-//    @FXML Parent root;
-//
-//
-//    // Opens file chooser, currently not functional
-//    @FXML
-//    private void importFilesButtonClicked(ActionEvent event)
-//    {
-//        Stage stage = null;
-//        stage = (Stage) importFilesButton.getScene().getWindow();
-//        //System.out.println(event.getSource());
-//        if (event.getSource() == importFilesButton) {
-//            FileChooser fileChooser = new FileChooser();
-//            fileChooser.setTitle("Import File(s)");
-//           File selectedFile = fileChooser.showOpenDialog(stage);
-//            System.out.println(selectedFile.getName());
-//        }
-//    }
-//
-//    // Sends to second tab
-//    @FXML
-//    private void nextButtonClicked(ActionEvent event)
-//    {
-//        //System.out.println(event.getSource());
-//        if (event.getSource() == nextButton) {
-//            tabPane.getSelectionModel().select(projectSettingsTab);
-//        }
-//    }
-//
-//
-//    //Sends back to first tab
-//    @FXML private void backButtonClicked(ActionEvent event)
-//    {
-//       // System.out.println(event.getSource());
-//        if (event.getSource() == backButton)
-//        {
-//            if (event.getSource() == backButton) {
-//                tabPane.getSelectionModel().select(projectDetailsTab);
-//            }
-//        }
-//    }
-//
-//    // Sends to editor
-//    @FXML private void finishButtonClicked(ActionEvent event)
-//    {
-//        Stage stage = null;
-//        Parent root = null;
-//
-//        if (event.getSource() == finishButton)
-//        {
-//            FXMLLoader loader = new FXMLLoader();
-//            stage = (Stage) finishButton.getScene().getWindow();
-//            stage.setResizable(true);
-//            try
-//            {
-//                // Create the project
-//                String filename;
-//                filename = productName.getText();
-//                System.out.println(filename);
-//
-//                File testdir = new File(filename);
-//                if(!testdir.exists())
-//                {
-//                    testdir.mkdir();
-//                    testdir.delete();
-//                }
-//
-//                root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
-//                Scene scene = new Scene(root);
-//                stage.setScene(scene);
-//                stage.show();
-//                System.out.println(event.getSource());
-//            }
-//            catch (IOException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
-//
-//    //Sends back to home screen
-//    @FXML private void cancelButtonClicked(ActionEvent event)
-//    {
-//        Stage stage = null;
-//        Parent root = null;
-//        if (event.getSource() == cancelButton1 || event.getSource() == cancelButton2)
-//        {
-//            FXMLLoader loader = new FXMLLoader();
-//            stage = (Stage) cancelButton1.getScene().getWindow();
-//            try
-//            {
-//                root = loader.load(getClass().getResource("/fxml/Home.fxml"));
-//            }
-//            catch (IOException e)
-//            {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        if (root != null)
-//        {
-//            Scene scene = new Scene(root);
-//            stage.setScene(scene);
-//            stage.show();
-//        }
-//        else
-//        {
-//            System.out.println("Null scene.");
-//        }
-//
-//    }
+
 }

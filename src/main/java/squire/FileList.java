@@ -63,4 +63,22 @@ public class FileList
         return fileList;
     }
 
+    public String getMatchingFile(String s)
+    {
+        String file = "";
+        String t;
+        for (String fileName: this.getFileList())
+        {
+           t = fileName.substring(fileName.lastIndexOf("/")+1);
+
+            if (s.equals(t))
+            {
+           //     System.out.println(fileName.substring(file.lastIndexOf("/")+1));
+                file = fileName;
+            }
+        }
+     //   System.out.println(file);
+        return file;
+    }
+
 }
