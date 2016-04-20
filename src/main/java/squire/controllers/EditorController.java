@@ -155,14 +155,18 @@ public class EditorController implements Initializable
                 TreeItem<String> selectedItem = (TreeItem<String>) newValue;
                 try {
                     Scanner input = new Scanner(System.in);
-                    String filePath = fl.getMatchingFile(selectedItem.getValue());
+
+                    // TODO: get this string to be the actual path of the file
+                    String filePath = currentProject.getProjectPath() + File.separator + selectedItem
+                            .getValue();
+                   System.out.println(filePath);
                     File file = new File(filePath);
                     input = new Scanner(file);
 
 
                     while (input.hasNextLine()) {
                         String line = input.nextLine();
-                        editorTextArea.appendText(line + "\n");
+                        sourceCodeTextArea.appendText(line + "\n");
                     }
                     input.close();
 
@@ -189,7 +193,6 @@ public class EditorController implements Initializable
 
         }
 
-//TODO: See if we can work with TreeCell objects of FileList items? Instead of strings
         @Override
         public void startEdit()
         {

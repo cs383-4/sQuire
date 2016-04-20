@@ -21,6 +21,7 @@ import squire.Users.User;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.*;
 import java.util.ResourceBundle;
 
 /**
@@ -121,6 +122,20 @@ public class NewProjectController3 implements Initializable
             {
                 System.out.println("File created: " + fileLocation);
                 JavaSourceFromString sourceCode = new JavaSourceFromString(entryPointClassName, fileLocation, "");
+
+                // Copies the dummy file over
+                URL url = this.getClass().getResource("/Test_Files/Main.java");
+                File mainFile = new File(url.getPath());
+                Path from = mainFile.toPath();
+                File toFile = new File(fileLocation);
+                Path to = toFile.toPath();
+                CopyOption[] options = new CopyOption[]{
+                        StandardCopyOption.REPLACE_EXISTING,
+                        StandardCopyOption.COPY_ATTRIBUTES
+                };
+                Files.copy(from, to, options);
+
+
                 createdProject = new Project(projectName, currentUser, projectLocation, projectDescription, sourceCode);
                 currentUser.addProject(createdProject);
                 currentUser.setCurrentProject(createdProject);

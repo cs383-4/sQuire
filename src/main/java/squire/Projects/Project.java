@@ -64,4 +64,22 @@ public class Project extends BaseModel
     public String getEntryPointClassName() { return entryPointClassName; }
     public ArrayList<JavaSourceFromString> getFileList() { return fileList;}
 
+    public String getMatchingFile(String s)
+    {
+        String file = "";
+        String t;
+        for (JavaSourceFromString fileName: this.getFileList())
+        {
+            t = fileName.getFileName();
+
+            if (s.equals(t))
+            {
+                //     System.out.println(fileName.substring(file.lastIndexOf("/")+1));
+                file = file.toString();
+            }
+        }
+        //   System.out.println(file);
+        return file;
+    }
+
 }

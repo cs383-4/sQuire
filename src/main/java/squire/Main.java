@@ -15,6 +15,7 @@ import java.io.File;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable
@@ -95,6 +96,7 @@ public class Main extends Application implements Initializable
 
     private static void fakeLogin()
     {
-        currentUser = new User("username", "password");
+        String username = "username" + new Random().nextInt();
+        currentUser = new User(username, "password");
     }
 }
