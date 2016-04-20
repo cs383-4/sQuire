@@ -24,16 +24,18 @@ create table o_user (
 
 create table o_project_info (
   id                            integer not null,
-  author_username               varchar(255) not null,
+  author_id                     integer not null,
   version                       integer not null,
-  files                         varchar(255) not null,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,
+  FOREIGN KEY (author_id)       REFERENCES o_user(id),
   constraint pk_o_project_info primary key (id)
 );
 
 create table o_project_file (
   id                            integer not null,
-  file                          blob,
+  project_id                    integer not null,
+  data                          blob,
+  FOREIGN KEY(project_id)       REFERENCES o_project_info(id),
   constraint pk_o_project_file primary key (id)
 );
