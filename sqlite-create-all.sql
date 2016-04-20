@@ -32,10 +32,19 @@ create table o_project_info (
   constraint pk_o_project_info primary key (id)
 );
 
+create table o_project_folder (
+  id                            integer not null,
+  project_id                    integer not null,
+  parent_folder_id              integer,
+  FOREIGN KEY(project_id)       REFERENCES o_project_info(id),
+);
+
 create table o_project_file (
   id                            integer not null,
   project_id                    integer not null,
+  parent_folder_id              integer,
   data                          blob,
   FOREIGN KEY(project_id)       REFERENCES o_project_info(id),
-  constraint pk_o_project_file primary key (id)
+  FOREIGN KEY(parent_folder_id) REFERENCES o_project_folder(id),
+  constraint pk_o_project_file  primary key (id)
 );
