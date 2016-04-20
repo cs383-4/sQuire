@@ -281,7 +281,7 @@ public class EditorController implements Initializable
         System.out.println(compileCode());
 
         try {
-            Process p = Runtime.getRuntime().exec("cmd /c java");
+            Process p = Runtime.getRuntime().exec("java " + currentProject.getEntryPointClassName());
 
             new Thread(() -> {
                 BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
