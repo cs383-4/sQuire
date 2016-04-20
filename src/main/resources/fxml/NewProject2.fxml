@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.NewProjectController2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.NewProjectController3">
    <children>
       <BorderPane layoutX="128.0" layoutY="68.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -38,9 +38,9 @@
                 <AnchorPane prefHeight="354.0" prefWidth="598.0">
                      <children>
                         <VBox layoutX="343.0" layoutY="14.0" prefHeight="55.0" prefWidth="61.0" />
-                        <TextArea layoutX="103.0" layoutY="72.0" prefHeight="148.0" prefWidth="286.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="72.0" />
+                        <TextArea fx:id="projectDescriptionTextArea" layoutX="103.0" layoutY="72.0" prefHeight="148.0" prefWidth="286.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="72.0" />
                         <ImageView fitHeight="59.0" fitWidth="81.0" layoutX="14.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: url('http://static1.squarespace.com/static/52d03994e4b0431c4901495a/t/52d194fae4b06f651ac0a8df/1389466875249/Connect+Global+Projects+Icon.006.png');" AnchorPane.bottomAnchor="23.68000030517578" AnchorPane.rightAnchor="503.0" />
-                        <TextField fx:id="projectTitle" alignment="CENTER" layoutX="109.0" layoutY="14.0" prefHeight="45.0" prefWidth="281.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                        <TextField fx:id="projectTitleTextField" alignment="CENTER" layoutX="109.0" layoutY="14.0" prefHeight="45.0" prefWidth="281.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -67,7 +67,7 @@
                                     <Insets right="5.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="finishButton" alignment="CENTER" mnemonicParsing="false" onAction="#finishButtonClicked" text="Finish">
+                              <Button fx:id="finishButton" alignment="CENTER" mnemonicParsing="false" onAction="#onFinishButtonClick" text="Finish">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -79,12 +79,12 @@
                               <Font size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="browseDisplay" editable="false" layoutX="150.0" layoutY="232.0" prefHeight="28.0" prefWidth="350.0" AnchorPane.topAnchor="232.0">
+                        <TextField fx:id="locationTextField" editable="false" layoutX="150.0" layoutY="232.0" prefHeight="28.0" prefWidth="350.0" AnchorPane.topAnchor="232.0">
                            <font>
                               <Font size="12.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="browseButton" alignment="CENTER" layoutX="513.0" layoutY="232.0" mnemonicParsing="false" onAction="#browseButtonClicked" text="Browse" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="232.0" />
+                        <Button fx:id="browseButton" alignment="CENTER" layoutX="513.0" layoutY="232.0" mnemonicParsing="false" onAction="#onBrowseButtonClick" text="Browse" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="232.0" />
                      </children>
                   </AnchorPane>
               </content>

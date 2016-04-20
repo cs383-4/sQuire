@@ -81,7 +81,7 @@ public class NewProjectController2 implements Initializable
             {
                 if (projectTitle.getText().isEmpty())
                 {
-
+                    //TODO: Display an error dialog.
                 }
 
                 else
@@ -128,7 +128,7 @@ public class NewProjectController2 implements Initializable
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Editor.fxml"));
                 root = loader.load();
                 EditorController controller = loader.<EditorController>getController();
-                controller.getFileList(fl);
+                //controller.getFileList(fl);
                 stage = (Stage) finishButton.getScene().getWindow();
                 stage.setResizable(true);
 

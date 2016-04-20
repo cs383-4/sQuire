@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -15,9 +16,12 @@ import javafx.stage.Stage;
 import squire.FileList;
 
 
+import javax.tools.*;
 import java.io.File;
 import java.io.IOException;
 
+import java.io.PrintStream;
+import java.io.Writer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,13 +32,26 @@ public class EditorController implements Initializable
 {
     @FXML private ImageView avatarImageView;
     @FXML private Button homeButton;
-    FileList fl = new FileList();
+
+    // Compilation vars.
+    @FXML private TextArea compilationOutputTextArea;
+    @FXML private TextArea sourceCodeTextArea;
+    PrintStream compilationOutputStream;
+    private JavaCompiler compiler;
+    private DiagnosticCollector<JavaFileObject> diagnostics;
+    StandardJavaFileManager fileManager;
+    Iterable<? extends JavaFileObject> compilationUnits;
+    JavaCompiler.CompilationTask task;
+    // Compilation vars.
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
-
+        compiler = ToolProvider.getSystemJavaCompiler();
+        diagnostics = new DiagnosticCollector<JavaFileObject>();
+        fileManager = compiler.getStandardFileManager(diagnostics, null, null);
+        JavaCompiler.CompilationTask task;
     }
 
 
@@ -80,12 +97,10 @@ public class EditorController implements Initializable
         }
     }
 
-public void getFileList(FileList fileList)
-{
-    fl.copy(fileList);
-   // fileList.print();
-    fl.print();
-}
+    @FXML private void onRunButtonClick(ActionEvent event)
+    {
+
+    }
 
 //    @FXML private Button nextButton;
 //    @FXML private Button backButton;

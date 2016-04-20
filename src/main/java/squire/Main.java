@@ -8,15 +8,25 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.naming.spi.DirectoryManager;
+import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable
 {
+    // The location of the directory that stores all the user's projects.
+    private static String projectsDir = System.getProperty("user.dir") + File.separator + "Projects";
+    public static String getProjectsDir() { return projectsDir; }
+
     public static void main(String[] args)
     {
         // From the 'Application' class.
         // Sets up program as a javafx application.
+        System.out.println(System.getProperty("user.dir"));
+        generateProjectsDir();
         launch(args);
     }
 
@@ -46,6 +56,34 @@ public class Main extends Application implements Initializable
         catch (Exception exception)
         {
             exception.printStackTrace();
+        }
+    }
+
+    /**
+     * Generates a folder for storing user projects if doesn't already exist.
+     */
+    private static void generateProjectsDir()
+    {
+        File f = new File(projectsDir);
+        if (!f.exists())
+        {
+            System.out.println("Creating directory: " + projectsDir);
+            boolean success = false;
+
+            try
+            {
+                f.mkdir();
+                success = true;
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.toString());
+                // Handle...
+            }
+            if (success)
+            {
+                System.out.println("Projects dir created at " + projectsDir);
+            }
         }
     }
 }
