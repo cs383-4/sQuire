@@ -1,6 +1,5 @@
 package squire.controllers;
 
-import com.sun.org.apache.xml.internal.security.Init;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,21 +7,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import squire.FileList;
+import squire.Main;
+import squire.Projects.JavaSourceFromString;
+import squire.Projects.Project;
+import squire.Users.User;
+import sun.tools.jar.CommandLine;
 
 
 import javax.tools.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
-import java.io.PrintStream;
-import java.io.Writer;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -34,8 +36,11 @@ public class EditorController implements Initializable
     @FXML private Button homeButton;
 
     // Compilation vars.
-    @FXML private TextArea compilationOutputTextArea;
+    @FXML private Label compilationOutputLabel;
     @FXML private TextArea sourceCodeTextArea;
+    private Project currentProject;
+    private User currentUser;
+
     PrintStream compilationOutputStream;
     private JavaCompiler compiler;
     private DiagnosticCollector<JavaFileObject> diagnostics;
@@ -48,12 +53,10 @@ public class EditorController implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
-        compiler = ToolProvider.getSystemJavaCompiler();
-        diagnostics = new DiagnosticCollector<JavaFileObject>();
-        fileManager = compiler.getStandardFileManager(diagnostics, null, null);
-        JavaCompiler.CompilationTask task;
+        currentUser = Main.getCurrentUser();
+        currentProject = currentUser.getCurrentProject();
+        compilationOutputLabel.setWrapText(true);
     }
-
 
     private void onAvatarImageViewClick()
     {
@@ -99,7 +102,82 @@ public class EditorController implements Initializable
 
     @FXML private void onRunButtonClick(ActionEvent event)
     {
+        System.out.println(compileCode());
 
+        try
+        {
+            Process p = Runtime.getRuntime().exec("cmd /c java");
+
+            new Thread(() -> {
+                BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                String line = null;
+
+                try
+                {
+                    while ((line = input.readLine()) != null)
+                    {
+                        System.out.println(line);
+                    }
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }).start();
+
+            p.waitFor();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private String compileCode()
+    {
+        compilationOutputLabel.setText("Compiling...");
+        String compilationResult = null;
+        String entryPointName = "";
+
+        if (compiler == null)
+        {
+            compiler = ToolProvider.getSystemJavaCompiler();
+        }
+
+        if (compiler != null)
+        {
+            String code = sourceCodeTextArea.getText();
+            // Placeholder name.
+            String sourceName = "Main.java";
+            if (sourceName.toLowerCase().endsWith(".java"))
+            {
+                entryPointName = sourceName.substring(0, sourceName.length() - 5);
+            }
+            JavaSourceFromString javaString = new JavaSourceFromString(entryPointName, code);
+            ArrayList<JavaSourceFromString> compilationFiles = new ArrayList<JavaSourceFromString>();
+            compilationFiles.add(javaString);
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            OutputStreamWriter outputWriter = new OutputStreamWriter(outputStream);
+
+            JavaCompiler.CompilationTask task = compiler.getTask(outputWriter, null, null, null, null, compilationFiles);
+
+            boolean success = task.call();
+
+            compilationOutputLabel.setText(outputStream.toString().replaceAll("\t", "  "));
+            compilationResult = "Compiled without errors: " + success;
+            compilationOutputLabel.setText(compilationResult);
+        }
+        else
+        {
+            compilationOutputLabel.setText("Compilation failed.");
+        }
+
+        return compilationResult;
     }
 
 //    @FXML private Button nextButton;

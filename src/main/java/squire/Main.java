@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import squire.Users.User;
+import squire.Users.Session;
 
 import javax.naming.spi.DirectoryManager;
 import java.io.File;
@@ -19,7 +21,10 @@ public class Main extends Application implements Initializable
 {
     // The location of the directory that stores all the user's projects.
     private static String projectsDir = System.getProperty("user.dir") + File.separator + "Projects";
+    private static User currentUser = null;
+
     public static String getProjectsDir() { return projectsDir; }
+    public static User getCurrentUser() { return currentUser; }
 
     public static void main(String[] args)
     {
@@ -27,6 +32,7 @@ public class Main extends Application implements Initializable
         // Sets up program as a javafx application.
         System.out.println(System.getProperty("user.dir"));
         generateProjectsDir();
+        fakeLogin();
         launch(args);
     }
 
@@ -85,5 +91,10 @@ public class Main extends Application implements Initializable
                 System.out.println("Projects dir created at " + projectsDir);
             }
         }
+    }
+
+    private static void fakeLogin()
+    {
+        currentUser = new User("username", "password");
     }
 }
