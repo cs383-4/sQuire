@@ -80,6 +80,8 @@
                         <ToggleButton layoutX="217.0" layoutY="10.0" mnemonicParsing="false" text="Copy" />
                         <ToggleButton layoutX="265.0" layoutY="10.0" mnemonicParsing="false" text="Cut" />
                         <ToggleButton layoutX="313.0" layoutY="10.0" mnemonicParsing="false" text="Paste" />
+                        <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+                        <Button fx:id="runButton" mnemonicParsing="false" onAction="#onRunButtonClick" text="Run" />
                      </items>
                   </ToolBar>
                </children>
@@ -126,16 +128,19 @@
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="613.0" prefWidth="1421.0">
                                        <children>
-                                          <TextArea fx:id="editorTextArea" layoutX="263.0" layoutY="1.0" prefHeight="669.0" prefWidth="1422.0" promptText="Type some code here" AnchorPane.bottomAnchor="-57.0" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="-264.0" AnchorPane.topAnchor="0.0" />
+                                          <TextArea fx:id="sourceCodeTextArea" prefHeight="689.0" prefWidth="1421.0" promptText="Type some code here" AnchorPane.bottomAnchor="-76.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>
                               </ScrollPane>
                               <HBox layoutX="2.0" layoutY="689.0" prefHeight="301.0" prefWidth="1420.0">
                                  <children>
-                                    <TitledPane animated="false" prefHeight="310.0" prefWidth="1432.0" text="Output">
+                                    <TitledPane animated="false" prefHeight="310.0" prefWidth="1420.0" text="Output">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="compilationOutputLabel" alignment="TOP_LEFT" layoutX="43.0" layoutY="32.0" prefHeight="275.0" prefWidth="1418.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children></AnchorPane>
                                       </content>
                                     </TitledPane>
                                  </children>

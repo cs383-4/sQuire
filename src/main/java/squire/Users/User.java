@@ -17,9 +17,11 @@ package squire.Users;
 import javax.persistence.*;
 
 import squire.BaseModel;
+import squire.Projects.Project;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 
 @Entity
 //some databases have user as a reserved word, so following ebean examples, prefix tables with "o_"
@@ -33,6 +35,8 @@ public class User extends BaseModel {
     @Column(nullable = false)
     private String password;
 
+    private Project currentProject = null;
+
     public String getUsername() {
         return username;
     }
@@ -40,6 +44,11 @@ public class User extends BaseModel {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    private ArrayList<Project> projects = new ArrayList<Project>();
+    public void addProject(Project p) { projects.add(p); }
+    public void setCurrentProject(Project p) { currentProject = p; }
+    public Project getCurrentProject() { return currentProject; }
 
     /**
      * Sets the given password for the user. Hashes it, and stores it in the database

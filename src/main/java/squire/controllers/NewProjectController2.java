@@ -4,14 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import squire.FileList;
 
@@ -29,7 +27,7 @@ import java.util.ResourceBundle;
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class NewProjectController implements Initializable
+public class NewProjectController2 implements Initializable
 {
     @FXML private Button browseButton;
     @FXML private Button backButton;
@@ -39,7 +37,6 @@ public class NewProjectController implements Initializable
     @FXML public TextField projectTitle;
     @FXML public TextField browseDisplay;
     @FXML Parent root;
-    String fullPath;
 
     FileList fl = new FileList();
 
@@ -84,7 +81,7 @@ public class NewProjectController implements Initializable
             {
                 if (projectTitle.getText().isEmpty())
                 {
-
+                    //TODO: Display an error dialog.
                 }
 
                 else
@@ -94,18 +91,15 @@ public class NewProjectController implements Initializable
                     String projectName;
                     directoryName = browseDisplay.getText();
                     projectName = projectTitle.getText();
-                    fullPath = directoryName + "/" + projectName;
+                    String fullPath = directoryName + "/" + projectName;
                    // System.out.println(fullPath);
 
                     //Make the directory for the project at specified path and add
-                    File projectDir = new File(fullPath);
-                    if (!projectDir.exists()) {
+                    File testdir = new File(fullPath);
+                    if (!testdir.exists()) {
 
-                        //Make the directory if it doesn't exist, and add path to FileList object
-                        projectDir.mkdir();
-                        fl.setProjectPath(fullPath);
-                        fl.setProjectName(projectName);
-
+                        //Make the directory if it doesn't exist
+                        testdir.mkdir();
 
                         //Find the dummy Main.java file and copy it over
                         URL url = this.getClass().getResource("/Test_Files/Main.java");
@@ -121,19 +115,20 @@ public class NewProjectController implements Initializable
 
                         fl.addFile(to.toString());
 
+                      //  fl.print();
+
+                     //   testdir.delete();
                     }
 
                     //TODO: handle the case if the directory exists
                 }
+                //root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
 
                 // Set the next scene and pass the file object
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Editor.fxml"));
                 root = loader.load();
                 EditorController controller = loader.<EditorController>getController();
-
-                // call setup methods in editor
-               // controller.setupFileList();
-
+                //controller.getFileList(fl);
                 stage = (Stage) finishButton.getScene().getWindow();
                 stage.setResizable(true);
 
@@ -141,20 +136,11 @@ public class NewProjectController implements Initializable
                 stage.setScene(scene);
 
                 //TODO: set more 'proper' dimensions
-//                stage.setWidth(1920);
-//                stage.setHeight(1080);
-
-                Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-
-                int fromEdge = 50;
-
-                //set Stage boundaries to visible bounds of the main screen
-                stage.setX(primaryScreenBounds.getMinX() + fromEdge/2);
-                stage.setY(primaryScreenBounds.getMinY() + fromEdge/2);
-                stage.setWidth(primaryScreenBounds.getWidth() - fromEdge);
-                stage.setHeight(primaryScreenBounds.getHeight() - fromEdge);
+                stage.setWidth(1920);
+                stage.setHeight(1080);
 
                 stage.show();
+             //   System.out.println(event.getSource());
             }
             catch (IOException e)
             {
