@@ -164,7 +164,7 @@ public class NewProjectController3 implements Initializable
             stage.setY(primaryScreenBounds.getMinY() + fromEdge/2);
             stage.setWidth(primaryScreenBounds.getWidth() - fromEdge);
             stage.setHeight(primaryScreenBounds.getHeight() - fromEdge);
-
+            stage.setResizable(true);
             stage.show();
 
         }
