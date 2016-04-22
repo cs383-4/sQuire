@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -28,6 +29,7 @@ import squire.Users.User;
 
 
 import javax.tools.*;
+import java.awt.*;
 import java.io.*;
 
 import java.net.URL;
@@ -158,7 +160,7 @@ public class EditorController implements Initializable
                     File file = new File(filePath);
                     input = new Scanner(file);
 
-                    sourceCodeTextArea.setText("");
+                    sourceCodeTextArea.positionCaret(0);
                     while (input.hasNextLine()) {
                         String line = input.nextLine();
                         sourceCodeTextArea.appendText(line + "\n");
