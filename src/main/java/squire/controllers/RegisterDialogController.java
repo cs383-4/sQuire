@@ -24,6 +24,7 @@ public class RegisterDialogController
     @FXML private void initialize()
     {
         // Initialize anything here if needed.
+
     }
 
     @FXML private void onCancelButtonClick(ActionEvent event)

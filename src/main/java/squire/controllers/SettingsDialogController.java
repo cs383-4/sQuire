@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +21,7 @@ public class SettingsDialogController implements Initializable
     @FXML private Button browseButton;
     @FXML private Button cancelButton;
     @FXML private Button finishButton;
+    private Stage thisStage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -34,7 +36,8 @@ public class SettingsDialogController implements Initializable
 
     @FXML private void onCancelButtonClick(ActionEvent event)
     {
-
+        thisStage = (Stage)cancelButton.getScene().getWindow();
+        thisStage.close();
     }
 
     @FXML private void onSaveButtonClick(ActionEvent event)

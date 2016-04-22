@@ -115,7 +115,23 @@ public class HomeController implements Initializable
 
     @FXML private void onSettingsHyperlinkClick(ActionEvent event)
     {
-
+        FXMLLoader loader = new FXMLLoader();
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(logInHyperlink.getScene().getWindow());
+        dialogStage.setResizable(false);
+        try
+        {
+            Parent root = loader.load(getClass().getResource("/fxml/SettingsDialog.fxml"));
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+            dialogStage.setTitle("Settings");
+            dialogStage.showAndWait();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @FXML private void onAvatarImageViewClick()
@@ -128,7 +144,7 @@ public class HomeController implements Initializable
         dialogStage.setResizable(false);
         try
         {
-            Parent root = loader.load(getClass().getResource("/fxml/Preferences.fxml"));
+            Parent root = loader.load(getClass().getResource("/fxml/Preferences2.fxml"));
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
