@@ -202,7 +202,7 @@ public class MobWriteClient {
       return;
     }
 
-    this.logger.log(Level.INFO, "TO server:\n" + data);
+    //this.logger.log(Level.INFO, "TO server:\n" + data);
     // Add terminating blank line.
     data.append('\n');
 
@@ -247,7 +247,7 @@ public class MobWriteClient {
   private void syncRun2_(String text) {
     // Initialize serverChange_, to be checked at the end of syncRun2_.
     this.serverChange_ = false;
-    this.logger.log(Level.INFO, "FROM server:\n" + text);
+    //this.logger.log(Level.INFO, "FROM server:\n" + text);
     // There must be a linefeed followed by a blank line.
     if (!text.endsWith("\n\n")) {
       text = "";

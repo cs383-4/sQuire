@@ -12,6 +12,7 @@ import javax.swing.text.JTextComponent;
 import google.mobwrite.diff_match_patch.Diff;
 import google.mobwrite.diff_match_patch.Operation;
 import google.mobwrite.diff_match_patch.Patch;
+import javafx.application.Platform;
 import org.fxmisc.richtext.CodeArea;
 
 public class ShareJTextComponent extends ShareObj {
@@ -49,7 +50,9 @@ public class ShareJTextComponent extends ShareObj {
      * @param text New text
      */
     public void setClientText(String text) {
-        this.codeArea.replaceText(text);
+        Platform.runLater(() -> {
+            this.codeArea.replaceText(text);
+        });
         // TODO: Fire synthetic change events.
     }
 
@@ -59,6 +62,7 @@ public class ShareJTextComponent extends ShareObj {
      * @param patches Array of Patch objects.
      */
     public void patchClientText(LinkedList<Patch> patches) {
+        System.out.print(getClientText());
         if (!this.codeArea.isVisible()) {
             // If the field is not visible, there's no need to preserve the cursor.
             super.patchClientText(patches);
@@ -66,11 +70,11 @@ public class ShareJTextComponent extends ShareObj {
         }
         Vector<Integer> offsets = new Vector<Integer>();
         offsets.add(this.codeArea.getCaretPosition());
-        this.mobwrite.logger.log(Level.INFO, "Cursor get: " + offsets.firstElement());
+        //this.mobwrite.logger.log(Level.INFO, "Cursor get: " + offsets.firstElement());
         offsets.add(this.codeArea.getSelection().getStart());
         offsets.add(this.codeArea.getSelection().getEnd());
         this.patch_apply_(patches, offsets);
-        this.mobwrite.logger.log(Level.INFO, "Cursor set: " + offsets.firstElement());
+        //this.mobwrite.logger.log(Level.INFO, "Cursor set: " + offsets.firstElement());
         this.codeArea.positionCaret(offsets.get(0));
         //getting the selection to work will take a little bit of trial and error
         //this.codeArea.setSelectionStart(offsets.get(1));
