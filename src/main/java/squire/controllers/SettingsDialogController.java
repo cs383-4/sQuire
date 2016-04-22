@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import squire.Projects.Settings;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,6 +43,6 @@ public class SettingsDialogController implements Initializable
 
     @FXML private void onSaveButtonClick(ActionEvent event)
     {
-
+        Settings.setSettings("jdkLocation", jdkLocationTextField.getText());
     }
 }
