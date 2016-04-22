@@ -136,7 +136,7 @@ public class EditorController implements Initializable
 
 
         fileExplorer.setRoot(rootItem);
-        fileExplorer.setEditable(true);
+        fileExplorer.setEditable(false);
         fileExplorer.setCellFactory(p -> {
                 // Name used for class in oracle online demo
             return new TextFieldTreeCellImpl();
