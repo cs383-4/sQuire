@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import org.fxmisc.richtext.*;
 /**
  * Created by MattDaniel on 3/31/16.
  */
@@ -60,7 +61,7 @@ public class EditorController implements Initializable
     @FXML
     private Label compilationOutputLabel;
     @FXML
-    private TextArea sourceCodeTextArea;
+    private CodeArea sourceCodeTextArea;
     private Project currentProject;
     private User currentUser;
 

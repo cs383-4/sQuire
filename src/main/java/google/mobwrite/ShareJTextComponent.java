@@ -9,6 +9,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 
+import javafx.scene.control.TextArea;
+
 import google.mobwrite.diff_match_patch.Diff;
 import google.mobwrite.diff_match_patch.Operation;
 import google.mobwrite.diff_match_patch.Patch;
