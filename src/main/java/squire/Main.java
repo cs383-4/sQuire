@@ -1,5 +1,6 @@
 package squire;
 
+import google.mobwrite.MobWriteClient;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +19,8 @@ import java.nio.file.Path;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+
+
 public class Main extends Application implements Initializable
 {
     // The location of the directory that stores all the user's projects.
@@ -26,6 +29,8 @@ public class Main extends Application implements Initializable
 
     public static String getProjectsDir() { return projectsDir; }
     public static User getCurrentUser() { return currentUser; }
+
+    public static MobWriteClient mobwrite = null;
 
     public static void main(String[] args)
     {
@@ -98,5 +103,17 @@ public class Main extends Application implements Initializable
     {
         String username = "username" + new Random().nextInt();
         currentUser = new User(username, "password");
+    }
+
+    /**
+     * Returns the mobwrite project, initilizing it if it hasn't been used yet
+     */
+    public static MobWriteClient getMobwriteClient() {
+        if(mobwrite == null) {
+            mobwrite = new MobWriteClient("http://squireserver.westus.cloudapp.azure.com/py/q.py");
+            mobwrite.maxSyncInterval = 1000;
+            mobwrite.minSyncInterval = 500;
+        }
+        return mobwrite;
     }
 }
