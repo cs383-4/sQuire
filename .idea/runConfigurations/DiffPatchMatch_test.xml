@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="DiffPatchMatch test" type="Applet" factoryName="Applet">
+    <option name="HTML_USED" value="false" />
+    <option name="MAIN_CLASS_NAME" value="squire.DemoEditorApplet" />
+    <option name="WIDTH" value="400" />
+    <option name="HEIGHT" value="300" />
+    <option name="POLICY_FILE" value="file://$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+    <module name="sQuire" />
+    <method />
+  </configuration>
+</component>

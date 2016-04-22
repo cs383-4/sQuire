@@ -1,8 +1,6 @@
 package squire.controllers;
 
-import com.avaje.ebean.event.changelog.ChangeLogListener;
-import com.avaje.ebeaninternal.server.lib.util.Str;
-import com.sun.org.apache.xml.internal.security.Init;
+import google.mobwrite.ShareJTextComponent;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -20,16 +18,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import squire.FileList;
 import squire.Main;
 import squire.Projects.JavaSourceFromString;
 import squire.Projects.Project;
 import squire.Users.User;
-import sun.tools.jar.CommandLine;
 
 
 import javax.tools.*;
@@ -40,6 +35,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import org.fxmisc.richtext.*;
 /**
  * Created by MattDaniel on 3/31/16.
  */
@@ -60,9 +56,11 @@ public class EditorController implements Initializable
     @FXML
     private Label compilationOutputLabel;
     @FXML
-    private TextArea sourceCodeTextArea;
+    private CodeArea sourceCodeTextArea;
     private Project currentProject;
     private User currentUser;
+
+    private ShareJTextComponent mobwriteComponent;
 
     PrintStream compilationOutputStream;
     private JavaCompiler compiler;
@@ -79,6 +77,7 @@ public class EditorController implements Initializable
         currentProject = currentUser.getCurrentProject();
         compilationOutputLabel.setWrapText(true);
         setupFileList();
+        setupMobWrite();
     }
 
     private void onAvatarImageViewClick() {
@@ -175,6 +174,13 @@ public class EditorController implements Initializable
         });
     }
 
+
+    public void setupMobWrite() {
+        mobwriteComponent = new ShareJTextComponent(sourceCodeTextArea, currentProject.getProjectName());
+        Main.getMobwriteClient().share(mobwriteComponent);
+    }
+
+
     // Using example at http://docs.oracle.com/javafx/2/ui_controls/tree-view.htm
     private final class TextFieldTreeCellImpl extends TreeCell<String> {
 
@@ -262,6 +268,11 @@ public class EditorController implements Initializable
             return getItem() == null ? "" : getItem().toString();
         }
     }
+
+
+
+
+
 
     @FXML
     private void onRunButtonClick(ActionEvent event) {
