@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.*;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -108,6 +109,7 @@ public class NewProjectController3 implements Initializable
         projectName = projectTitleTextField.getText();
         projectDescription = projectDescriptionTextArea.getText();
         projectLocation = locationTextField.getText() + File.separator + projectName;
+        ArrayList<File> projectFiles = new ArrayList<File>();
         // Placeholder.
         String entryPointClassName = "Main.java";
         String fileLocation = projectLocation + File.separator + entryPointClassName;
@@ -121,7 +123,6 @@ public class NewProjectController3 implements Initializable
             if (file.createNewFile())
             {
                 System.out.println("File created: " + fileLocation);
-                JavaSourceFromString sourceCode = new JavaSourceFromString(entryPointClassName, fileLocation, "");
 
                 // Copies the dummy file over
                 URL url = this.getClass().getResource("/Test_Files/Main.java");
@@ -134,14 +135,14 @@ public class NewProjectController3 implements Initializable
                         StandardCopyOption.COPY_ATTRIBUTES
                 };
                 Files.copy(from, to, options);
+                projectFiles.add(toFile);
 
-
-                createdProject = new Project(projectName, currentUser, projectLocation, projectDescription, sourceCode);
+                createdProject = new Project(projectName, currentUser, projectLocation, projectDescription, projectFiles, toFile);
                 currentUser.addProject(createdProject);
                 currentUser.setCurrentProject(createdProject);
             }
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }

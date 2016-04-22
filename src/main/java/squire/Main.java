@@ -22,6 +22,7 @@ public class Main extends Application implements Initializable
 {
     // The location of the directory that stores all the user's projects.
     private static String projectsDir = System.getProperty("user.dir") + File.separator + "Projects";
+    public static String settingsFilePath = System.getProperty("user.dir") + File.separator + "sQuireSettings";
     private static User currentUser = null;
 
     public static String getProjectsDir() { return projectsDir; }

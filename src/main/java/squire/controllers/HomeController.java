@@ -113,7 +113,10 @@ public class HomeController implements Initializable
         }
     }
 
+    @FXML private void onSettingsHyperlinkClick(ActionEvent event)
+    {
 
+    }
 
     @FXML private void onAvatarImageViewClick()
     {

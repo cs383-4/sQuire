@@ -116,7 +116,8 @@ public class EditorController implements Initializable
         }
     }
 
-    public void setupFileList() {
+    public void setupFileList()
+    {
 
 
         //Set up tree view cell factory
@@ -124,16 +125,12 @@ public class EditorController implements Initializable
         TreeItem<String> rootItem = new TreeItem<>(currentProject.getProjectName());
         rootItem.setExpanded(true);
 
-        for (JavaSourceFromString file : currentProject.getFileList()) {
+        for (File file : currentProject.getFileList()) {
             // Get just the filename
-            String fileName = file.getFileName();
+            String fileName = file.getName();
             TreeItem<String> item = new TreeItem<>(fileName);
             rootItem.getChildren().add(item);
         }
-
-
-
-
 
 
         fileExplorer.setRoot(rootItem);
@@ -141,8 +138,7 @@ public class EditorController implements Initializable
         fileExplorer.setCellFactory(p -> {
                 // Name used for class in oracle online demo
             return new TextFieldTreeCellImpl();
-        }
-        );
+        });
 
 
 
@@ -159,29 +155,25 @@ public class EditorController implements Initializable
                     // TODO: get this string to be the actual path of the file
                     String filePath = currentProject.getProjectPath() + File.separator + selectedItem
                             .getValue();
-                   System.out.println(filePath);
+                    System.out.println(filePath);
                     File file = new File(filePath);
                     input = new Scanner(file);
 
-
+                    sourceCodeTextArea.setText("");
                     while (input.hasNextLine()) {
                         String line = input.nextLine();
                         sourceCodeTextArea.appendText(line + "\n");
                     }
                     input.close();
 
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     ex.printStackTrace();
                 }
             }
-
         });
-
-
     }
-
-
-
 
     // Using example at http://docs.oracle.com/javafx/2/ui_controls/tree-view.htm
     private final class TextFieldTreeCellImpl extends TreeCell<String> {
@@ -271,78 +263,26 @@ public class EditorController implements Initializable
         }
     }
 
-
-
-
-
-
     @FXML
     private void onRunButtonClick(ActionEvent event) {
-        System.out.println(compileCode());
-
-        try {
-            Process p = Runtime.getRuntime().exec("java " + currentProject.getEntryPointClassName());
-
-            new Thread(() -> {
-                BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                String line = null;
-
-                try {
-                    while ((line = input.readLine()) != null) {
-                        System.out.println(line);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }).start();
-
-            p.waitFor();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        compileCode();
     }
 
-    private String compileCode()
+    private void compileCode()
     {
         compilationOutputLabel.setText("Compiling...");
-        String compilationResult = null;
-        String entryPointName = "";
+        File entryPoint = currentProject.getEntryPointClassFile();
 
-        if (compiler == null) {
-            compiler = ToolProvider.getSystemJavaCompiler();
-        }
-
-        if (compiler != null) {
-            String code = sourceCodeTextArea.getText();
-            // Placeholder name.
-            String sourceName = "Main.java";
-            if (sourceName.toLowerCase().endsWith(".java")) {
-                entryPointName = sourceName.substring(0, sourceName.length() - 5);
-            }
-            JavaSourceFromString javaString = new JavaSourceFromString(entryPointName, code);
-            ArrayList<JavaSourceFromString> compilationFiles = new ArrayList<JavaSourceFromString>();
-            compilationFiles.add(javaString);
-
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            OutputStreamWriter outputWriter = new OutputStreamWriter(outputStream);
-
-            JavaCompiler.CompilationTask task = compiler.getTask(outputWriter, null, null, null, null, compilationFiles);
-
-            boolean success = task.call();
-
-            compilationOutputLabel.setText(outputStream.toString().replaceAll("\t", "  "));
-            compilationResult = "Compiled without errors: " + success;
-            compilationOutputLabel.setText(compilationResult);
-        }
-        else
+        try
         {
-            compilationOutputLabel.setText("Compilation failed.");
+            Process p = Runtime.getRuntime().exec("javac " + entryPoint.getName());
+            p.waitFor();
+            Process p2 = Runtime.getRuntime().exec("java " + entryPoint.getName().replace(".java", ""));
+            p2.waitFor();
         }
-
-        return compilationResult;
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
-
-
 }

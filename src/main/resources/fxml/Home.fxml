@@ -68,7 +68,7 @@
                   <Region prefHeight="53.0" prefWidth="366.0" VBox.vgrow="NEVER" />
                   <HBox prefHeight="0.0" prefWidth="366.0">
                      <children>
-                        <Hyperlink id="settingsHyperlink" fx:id="settingsHyperlink" prefHeight="23.0" prefWidth="66.0" text="Settings">
+                        <Hyperlink id="settingsHyperlink" fx:id="settingsHyperlink" onAction="#onSettingsHyperlinkClick" prefHeight="23.0" prefWidth="66.0" text="Settings">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
