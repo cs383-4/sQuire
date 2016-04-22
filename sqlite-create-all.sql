@@ -26,6 +26,7 @@ create table o_project_info (
   id                            integer not null,
   author_id                     integer not null,
   version                       integer not null,
+  primary_file_id               integer,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,
   FOREIGN KEY (author_id)       REFERENCES o_user(id),
