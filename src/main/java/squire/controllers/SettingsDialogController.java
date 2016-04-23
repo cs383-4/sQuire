@@ -24,7 +24,7 @@ public class SettingsDialogController implements Initializable
     @FXML private TextField jdkLocationTextBox;
     @FXML private Button browseButton;
     @FXML private Button cancelButton;
-    @FXML private Button finishButton;
+    @FXML private Button saveButton;
     private Stage thisStage;
 
     @Override
@@ -38,13 +38,11 @@ public class SettingsDialogController implements Initializable
         Stage stage = null;
         stage = (Stage) browseButton.getScene().getWindow();
         DirectoryChooser dirChoose = new DirectoryChooser();
-        dirChoose.setInitialDirectory(new File(Main.getProjectsDir()));
         dirChoose.setTitle("Choose Project Location");
         File selectedDir = dirChoose.showDialog(stage);
         if (selectedDir != null)
         {
             jdkLocationTextBox.setText(selectedDir.getPath());
-
         }
     }
 
@@ -57,5 +55,7 @@ public class SettingsDialogController implements Initializable
     @FXML private void onSaveButtonClick(ActionEvent event)
     {
         Settings.setSettings("jdkLocation", jdkLocationTextBox.getText());
+        thisStage = (Stage) saveButton.getScene().getWindow();
+        thisStage.close();
     }
 }

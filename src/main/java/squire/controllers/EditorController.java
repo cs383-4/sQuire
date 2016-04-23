@@ -1,5 +1,6 @@
 package squire.controllers;
 
+import com.sun.scenario.Settings;
 import google.mobwrite.ShareJTextComponent;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -322,17 +323,19 @@ public class EditorController implements Initializable
     {
         compilationOutputTextArea.appendText("Compiling...\n");
         File entryPoint = currentProject.getEntryPointClassFile();
+        String javacPath = squire.Projects.Settings.getSettingsMap().get("jdkLocation") + File.separator + "javac";
+        String javaExePath = squire.Projects.Settings.getSettingsMap().get("jdkLocation") + File.separator + "java";
 
         try
         {
-            ProcessBuilder compilation = new ProcessBuilder("I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\javac", entryPoint.getName());
+            ProcessBuilder compilation = new ProcessBuilder(javacPath, entryPoint.getName());
             compilation.directory(new File(currentProject.getProjectPath()));
             Process p = compilation.start();
             int errorCode = p.waitFor();
             System.out.println("p1 Error Code: " + errorCode);
 
 
-            ProcessBuilder execution = new ProcessBuilder("I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\java", entryPoint.getName().replace(".java", ""));
+            ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.getName().replace(".java", ""));
             execution.directory(new File(currentProject.getProjectPath()));
             Process p2 = execution.start();
             p2.waitFor(5, TimeUnit.SECONDS);
