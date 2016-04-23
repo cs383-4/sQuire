@@ -63,24 +63,22 @@ public class ShareJTextComponent extends ShareObj {
      * @param patches Array of Patch objects.
      */
     public void patchClientText(LinkedList<Patch> patches) {
-        if (!this.codeArea.isVisible()) {
-            // If the field is not visible, there's no need to preserve the cursor.
-            super.patchClientText(patches);
-            return;
-        }
-        Vector<Integer> offsets = new Vector<Integer>();
-        offsets.add(this.codeArea.getCaretPosition());
-        System.out.println(this.codeArea.getCaretPosition());
-        //this.mobwrite.logger.log(Level.INFO, "Cursor get: " + offsets.firstElement());
-        offsets.add(this.codeArea.getSelection().getStart());
-        offsets.add(this.codeArea.getSelection().getEnd());
         Platform.runLater(() -> {
+            if (!this.codeArea.isVisible()) {
+                // If the field is not visible, there's no need to preserve the cursor.
+                super.patchClientText(patches);
+                return;
+            }
+            Vector<Integer> offsets = new Vector<Integer>();
+            offsets.add(this.codeArea.getCaretPosition());
+            System.out.println(this.codeArea.getCaretPosition());
+            //this.mobwrite.logger.log(Level.INFO, "Cursor get: " + offsets.firstElement());
+            offsets.add(this.codeArea.getSelection().getStart());
+            offsets.add(this.codeArea.getSelection().getEnd());
             this.patch_apply_(patches, offsets);
+            this.codeArea.positionCaret(offsets.get(0));
         });
         //this.mobwrite.logger.log(Level.INFO, "Cursor set: " + offsets.firstElement());
-        this.codeArea.positionCaret(offsets.get(0));
-        System.out.println(offsets.get(0));
-        System.out.println("-----");
         //getting the selection to work will take a little bit of trial and error
         //this.codeArea.setSelectionStart(offsets.get(1));
         //this.codeArea.setSelectionEnd(offsets.get(2));
