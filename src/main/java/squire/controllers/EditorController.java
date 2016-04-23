@@ -279,10 +279,17 @@ public class EditorController implements Initializable
 
         try
         {
-            Process p = Runtime.getRuntime().exec("javac " + entryPoint.getName());
-            p.waitFor();
-            Process p2 = Runtime.getRuntime().exec("java " + entryPoint.getName().replace(".java", ""));
-            p2.waitFor();
+            ProcessBuilder compilation = new ProcessBuilder("I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\javac ", entryPoint.getName());
+            Process p = compilation.start();
+            int pReturnVal = p.waitFor();
+            System.out.println("pReturnVal = " + pReturnVal);
+
+//            Process p = Runtime.getRuntime().exec("\"I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\javac\" " + entryPoint.getName());
+//
+//
+//            Process p2 = Runtime.getRuntime().exec("\"I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\java\" " + entryPoint.getName().replace(".java", ""));
+//            int p2ReturnVal = p2.waitFor();
+//            System.out.println("p2ReturnVal = " + p2ReturnVal);
         }
         catch (Exception e)
         {
