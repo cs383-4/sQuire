@@ -180,7 +180,7 @@ public class ShareJTextComponent extends ShareObj {
                                     int del_end = start_loc + dmp.diff_xIndex(diffs,
                                             index1 + aDiff.text.length());
                                     text = text.substring(0, del_start) + text.substring(del_end);
-                                    this.codeArea.deleteText(del_start - nullPadding.length(), del_end);
+                                    this.codeArea.deleteText(del_start - nullPadding.length(), del_end - nullPadding.length());
 
                                     for (int i = 0; i < offsets.size(); i++) {
                                         if (offsets.get(i) + nullPadding.length() > del_start) {
