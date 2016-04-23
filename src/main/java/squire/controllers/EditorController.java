@@ -119,8 +119,6 @@ public class EditorController implements Initializable
 
     public void setupFileList()
     {
-
-
         //Set up tree view cell factory
 
         TreeItem<String> rootItem = new TreeItem<>(currentProject.getProjectName());
@@ -140,7 +138,6 @@ public class EditorController implements Initializable
                 // Name used for class in oracle online demo
             return new TextFieldTreeCellImpl();
         });
-
 
 
         // One way to get the clicked on cell
@@ -181,7 +178,6 @@ public class EditorController implements Initializable
         mobwriteComponent = new ShareJTextComponent(sourceCodeTextArea, currentProject.getProjectName());
         Main.getMobwriteClient().share(mobwriteComponent);
     }
-
 
     // Using example at http://docs.oracle.com/javafx/2/ui_controls/tree-view.htm
     private final class TextFieldTreeCellImpl extends TreeCell<String> {
@@ -270,11 +266,6 @@ public class EditorController implements Initializable
             return getItem() == null ? "" : getItem().toString();
         }
     }
-
-
-
-
-
 
     @FXML
     private void onRunButtonClick(ActionEvent event) {

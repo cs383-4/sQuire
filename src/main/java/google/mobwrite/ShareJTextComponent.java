@@ -40,7 +40,7 @@ public class ShareJTextComponent extends ShareObj {
     public String getClientText() {
         String text = this.codeArea.getText();
         // Numeric data should use overwrite mode.
-        this.mergeChanges = !this.isEnum(text);
+        this.mergeChanges = true;
         return text;
     }
 
@@ -50,6 +50,7 @@ public class ShareJTextComponent extends ShareObj {
      * @param text New text
      */
     public void setClientText(String text) {
+        System.out.println("here");
         Platform.runLater(() -> {
             this.codeArea.replaceText(text);
         });
@@ -62,20 +63,23 @@ public class ShareJTextComponent extends ShareObj {
      * @param patches Array of Patch objects.
      */
     public void patchClientText(LinkedList<Patch> patches) {
-        System.out.print(getClientText());
-        if (!this.codeArea.isVisible()) {
-            // If the field is not visible, there's no need to preserve the cursor.
-            super.patchClientText(patches);
-            return;
-        }
-        Vector<Integer> offsets = new Vector<Integer>();
-        offsets.add(this.codeArea.getCaretPosition());
-        //this.mobwrite.logger.log(Level.INFO, "Cursor get: " + offsets.firstElement());
-        offsets.add(this.codeArea.getSelection().getStart());
-        offsets.add(this.codeArea.getSelection().getEnd());
-        this.patch_apply_(patches, offsets);
+        Platform.runLater(() -> {
+            if (!this.codeArea.isVisible()) {
+                // If the field is not visible, there's no need to preserve the cursor.
+                super.patchClientText(patches);
+                return;
+            }
+            Vector<Integer> offsets = new Vector<Integer>();
+            offsets.add(this.codeArea.getCaretPosition());
+            System.out.println(this.codeArea.getCaretPosition());
+            //this.mobwrite.logger.log(Level.INFO, "Cursor get: " + offsets.firstElement());
+            //offsets.add(this.codeArea.getSelection().getStart());
+            //offsets.add(this.codeArea.getSelection().getEnd());
+            this.patch_apply_(patches, offsets);
+            this.codeArea.moveTo(offsets.get(0));
+            System.out.println(offsets.get(0));
+        });
         //this.mobwrite.logger.log(Level.INFO, "Cursor set: " + offsets.firstElement());
-        this.codeArea.positionCaret(offsets.get(0));
         //getting the selection to work will take a little bit of trial and error
         //this.codeArea.setSelectionStart(offsets.get(1));
         //this.codeArea.setSelectionEnd(offsets.get(2));
@@ -163,8 +167,7 @@ public class ShareJTextComponent extends ShareObj {
                                     // Insertion
                                     text = text.substring(0, start_loc + index2) + aDiff.text
                                             + text.substring(start_loc + index2);
-                                    this.codeArea.insertText(start_loc + index2 - nullPadding.length(),
-                                            aDiff.text);
+                                    this.codeArea.insertText(start_loc + index2 - nullPadding.length(), aDiff.text);
                                     for (int i = 0; i < offsets.size(); i++) {
                                         if (offsets.get(i) + nullPadding.length()
                                                 > start_loc + index2) {
@@ -177,8 +180,8 @@ public class ShareJTextComponent extends ShareObj {
                                     int del_end = start_loc + dmp.diff_xIndex(diffs,
                                             index1 + aDiff.text.length());
                                     text = text.substring(0, del_start) + text.substring(del_end);
-                                    this.codeArea.deleteText(del_start - nullPadding.length(),
-                                            del_end);
+                                    this.codeArea.deleteText(del_start - nullPadding.length(), del_end - nullPadding.length());
+
                                     for (int i = 0; i < offsets.size(); i++) {
                                         if (offsets.get(i) + nullPadding.length() > del_start) {
                                             if (offsets.get(i) + nullPadding.length() < del_end) {
