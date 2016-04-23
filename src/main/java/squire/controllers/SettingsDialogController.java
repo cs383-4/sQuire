@@ -5,9 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import squire.Main;
 import squire.Projects.Settings;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,7 +21,7 @@ import java.util.ResourceBundle;
  */
 public class SettingsDialogController implements Initializable
 {
-    @FXML private TextField jdkLocationTextField;
+    @FXML private TextField jdkLocationTextBox;
     @FXML private Button browseButton;
     @FXML private Button cancelButton;
     @FXML private Button finishButton;
@@ -32,7 +35,17 @@ public class SettingsDialogController implements Initializable
 
     @FXML private void onBrowseButtonClick(ActionEvent event)
     {
+        Stage stage = null;
+        stage = (Stage) browseButton.getScene().getWindow();
+        DirectoryChooser dirChoose = new DirectoryChooser();
+        dirChoose.setInitialDirectory(new File(Main.getProjectsDir()));
+        dirChoose.setTitle("Choose Project Location");
+        File selectedDir = dirChoose.showDialog(stage);
+        if (selectedDir != null)
+        {
+            jdkLocationTextBox.setText(selectedDir.getPath());
 
+        }
     }
 
     @FXML private void onCancelButtonClick(ActionEvent event)
@@ -43,6 +56,6 @@ public class SettingsDialogController implements Initializable
 
     @FXML private void onSaveButtonClick(ActionEvent event)
     {
-        Settings.setSettings("jdkLocation", jdkLocationTextField.getText());
+        Settings.setSettings("jdkLocation", jdkLocationTextBox.getText());
     }
 }
