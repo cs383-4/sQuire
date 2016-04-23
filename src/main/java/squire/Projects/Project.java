@@ -22,6 +22,7 @@ public class Project extends BaseModel
     private UUID projectUuid = UUID.randomUUID();
     private User projectOwner;
     private String projectPath;
+
     /**
      * Project class constructor.
      * @param name The string name of the Project.

@@ -72,6 +72,11 @@ public class Main extends Application implements Initializable
         }
     }
 
+    @Override public void stop()
+    {
+        System.exit(0);
+    }
+
     /**
      * Generates a folder for storing user projects if doesn't already exist.
      */
