@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import squire.FileList;
@@ -59,6 +60,8 @@ public class EditorController implements Initializable
     private Label compilationOutputLabel;
     @FXML
     private CodeArea sourceCodeTextArea;
+    @FXML
+    private TabPane editorTabPane;
     private Project currentProject;
     private User currentUser;
 
@@ -157,10 +160,42 @@ public class EditorController implements Initializable
                     File file = new File(filePath);
                     input = new Scanner(file);
 
+                    Tab tab = new Tab();
+                    tab.setText(file.getName());
+                    CodeArea newTabCodeArea = new CodeArea();
+                    newTabCodeArea.setLayoutX(167.0);
+                    newTabCodeArea.setLayoutY(27.0);
+                    newTabCodeArea.setPrefHeight(558.0);
+                    newTabCodeArea.setPrefWidth(709.0);
+
+                    AnchorPane ap = new AnchorPane(newTabCodeArea);
+
+//                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+//                    <children>
+//                    <CodeArea fx:id="sourceCodeTextArea" layoutX="167.0" layoutY="27.0" prefHeight="558.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+//                    </children>
+//                    </AnchorPane>
+                    ap.setMinHeight(0.0);
+                    ap.setMinWidth(0.0);
+                    ap.setPrefHeight(180.0);
+                    ap.setPrefWidth(200.0);
+
+
+                    ap.setBottomAnchor(newTabCodeArea, 0.0);
+                    ap.setTopAnchor(newTabCodeArea, 0.0);
+                    ap.setRightAnchor(newTabCodeArea, 0.0);
+                    ap.setLeftAnchor(newTabCodeArea, 0.0);
+
+                    tab.setContent(ap);
+
+
+                    editorTabPane.getTabs().add(tab);
+
+                    // Open the file on click
                     sourceCodeTextArea.positionCaret(0);
                     while (input.hasNextLine()) {
                         String line = input.nextLine();
-                        sourceCodeTextArea.appendText(line + "\n");
+                        newTabCodeArea.appendText(line + "\n");
                     }
                     input.close();
 
