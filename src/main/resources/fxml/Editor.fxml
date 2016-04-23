@@ -128,7 +128,7 @@
                <children>
                   <VBox layoutX="52.0" layoutY="89.0" prefHeight="780.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TabPane prefHeight="472.0" prefWidth="383.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane fx:id="editorTabPane" prefHeight="472.0" prefWidth="383.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
                             <Tab text="Untitled Tab 1">
                               <content>
