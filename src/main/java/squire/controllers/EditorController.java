@@ -160,6 +160,8 @@ public class EditorController implements Initializable
                     File file = new File(filePath);
                     input = new Scanner(file);
 
+
+                    //Create new tab programatically
                     Tab tab = new Tab();
                     tab.setText(file.getName());
                     CodeArea newTabCodeArea = new CodeArea();
@@ -170,11 +172,14 @@ public class EditorController implements Initializable
 
                     AnchorPane ap = new AnchorPane(newTabCodeArea);
 
+
+                    //Setup information from FXML
 //                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 //                    <children>
 //                    <CodeArea fx:id="sourceCodeTextArea" layoutX="167.0" layoutY="27.0" prefHeight="558.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 //                    </children>
 //                    </AnchorPane>
+
                     ap.setMinHeight(0.0);
                     ap.setMinWidth(0.0);
                     ap.setPrefHeight(180.0);
@@ -192,7 +197,7 @@ public class EditorController implements Initializable
                     editorTabPane.getTabs().add(tab);
 
                     // Open the file on click
-                    sourceCodeTextArea.positionCaret(0);
+                    newTabCodeArea.positionCaret(0);
                     while (input.hasNextLine()) {
                         String line = input.nextLine();
                         newTabCodeArea.appendText(line + "\n");
