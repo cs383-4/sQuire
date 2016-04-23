@@ -65,6 +65,7 @@ public class Project extends BaseModel
     public String getProjectPath() { return projectPath; }
     public File getEntryPointClassFile() { return entryPointClassFile; }
     public ArrayList<File> getFileList() { return fileList;}
+    public UUID getProjectUuid() {return projectUuid;};
 
     public String getMatchingFile(String s)
     {
