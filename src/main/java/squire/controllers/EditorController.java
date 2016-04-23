@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -144,76 +145,82 @@ public class EditorController implements Initializable
 
 
         // One way to get the clicked on cell
-        fileExplorer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
+
+        fileExplorer.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue)
-            {
-                TreeItem<String> selectedItem = (TreeItem<String>) newValue;
-                try {
-                    Scanner input = new Scanner(System.in);
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2) {
+                    TreeItem<String> selectedItem = (TreeItem<String>) fileExplorer.getSelectionModel().getSelectedItem();
 
-                    // TODO: get this string to be the actual path of the file
-                    String filePath = currentProject.getProjectPath() + File.separator + selectedItem
-                            .getValue();
-                    System.out.println(filePath);
-                    File file = new File(filePath);
-                    input = new Scanner(file);
+                    //  TreeItem<String> selectedItem = (TreeItem<String>) newValue;
+                    try {
+                        Scanner input = new Scanner(System.in);
 
-
-                    //Create new tab programatically
-                    Tab tab = new Tab();
-                    tab.setText(file.getName());
-                    CodeArea newTabCodeArea = new CodeArea();
-                    newTabCodeArea.setLayoutX(167.0);
-                    newTabCodeArea.setLayoutY(27.0);
-                    newTabCodeArea.setPrefHeight(558.0);
-                    newTabCodeArea.setPrefWidth(709.0);
-
-                    AnchorPane ap = new AnchorPane(newTabCodeArea);
+                        // TODO: get this string to be the actual path of the file
+                        String filePath = currentProject.getProjectPath() + File.separator + selectedItem
+                                .getValue();
+                        System.out.println(filePath);
+                        File file = new File(filePath);
+                        input = new Scanner(file);
 
 
-                    //Setup information from FXML
+                        //Create new tab programatically
+                        Tab tab = new Tab();
+                        tab.setText(file.getName());
+                        CodeArea newTabCodeArea = new CodeArea();
+                        newTabCodeArea.setLayoutX(167.0);
+                        newTabCodeArea.setLayoutY(27.0);
+                        newTabCodeArea.setPrefHeight(558.0);
+                        newTabCodeArea.setPrefWidth(709.0);
+
+                        AnchorPane ap = new AnchorPane(newTabCodeArea);
+
+
+                        //Setup information from FXML
 //                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 //                    <children>
 //                    <CodeArea fx:id="sourceCodeTextArea" layoutX="167.0" layoutY="27.0" prefHeight="558.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 //                    </children>
 //                    </AnchorPane>
 
-                    ap.setMinHeight(0.0);
-                    ap.setMinWidth(0.0);
-                    ap.setPrefHeight(180.0);
-                    ap.setPrefWidth(200.0);
+                        ap.setMinHeight(0.0);
+                        ap.setMinWidth(0.0);
+                        ap.setPrefHeight(180.0);
+                        ap.setPrefWidth(200.0);
 
 
-                    ap.setBottomAnchor(newTabCodeArea, 0.0);
-                    ap.setTopAnchor(newTabCodeArea, 0.0);
-                    ap.setRightAnchor(newTabCodeArea, 0.0);
-                    ap.setLeftAnchor(newTabCodeArea, 0.0);
+                        ap.setBottomAnchor(newTabCodeArea, 0.0);
+                        ap.setTopAnchor(newTabCodeArea, 0.0);
+                        ap.setRightAnchor(newTabCodeArea, 0.0);
+                        ap.setLeftAnchor(newTabCodeArea, 0.0);
 
-                    tab.setContent(ap);
+                        tab.setContent(ap);
 
 
-                    editorTabPane.getTabs().add(tab);
+                        editorTabPane.getTabs().add(tab);
 
-                    // Open the file on click
-                    newTabCodeArea.positionCaret(0);
-                    while (input.hasNextLine()) {
-                        String line = input.nextLine();
-                        newTabCodeArea.appendText(line + "\n");
+                        // Open the file on click
+                        newTabCodeArea.positionCaret(0);
+                        while (input.hasNextLine()) {
+                            String line = input.nextLine();
+                            newTabCodeArea.appendText(line + "\n");
+                        }
+                        input.close();
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
-                    input.close();
-
-                }
-                catch (Exception ex)
-                {
-                    ex.printStackTrace();
                 }
             }
+
         });
     }
 
 
+
+    //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
+    // every time we switch tabs
     public void setupMobWrite() {
         mobwriteComponent = new ShareJTextComponent(sourceCodeTextArea, currentProject.getProjectName());
         Main.getMobwriteClient().share(mobwriteComponent);
