@@ -73,10 +73,11 @@ public class ShareJTextComponent extends ShareObj {
             offsets.add(this.codeArea.getCaretPosition());
             System.out.println(this.codeArea.getCaretPosition());
             //this.mobwrite.logger.log(Level.INFO, "Cursor get: " + offsets.firstElement());
-            offsets.add(this.codeArea.getSelection().getStart());
-            offsets.add(this.codeArea.getSelection().getEnd());
+            //offsets.add(this.codeArea.getSelection().getStart());
+            //offsets.add(this.codeArea.getSelection().getEnd());
             this.patch_apply_(patches, offsets);
-            this.codeArea.positionCaret(offsets.get(0));
+            this.codeArea.moveTo(offsets.get(0));
+            System.out.println(offsets.get(0));
         });
         //this.mobwrite.logger.log(Level.INFO, "Cursor set: " + offsets.firstElement());
         //getting the selection to work will take a little bit of trial and error

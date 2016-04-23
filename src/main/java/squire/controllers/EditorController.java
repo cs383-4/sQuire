@@ -175,7 +175,7 @@ public class EditorController implements Initializable
 
 
     public void setupMobWrite() {
-        mobwriteComponent = new ShareJTextComponent(sourceCodeTextArea, /*currentProject.getProjectName()*/ "test12345");
+        mobwriteComponent = new ShareJTextComponent(sourceCodeTextArea, currentProject.getProjectName());
         Main.getMobwriteClient().share(mobwriteComponent);
     }
 
