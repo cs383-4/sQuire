@@ -24,7 +24,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import squire.FileList;
 import squire.Main;
-import squire.Projects.JavaSourceFromString;
 import squire.Projects.Project;
 import squire.Users.User;
 
@@ -34,9 +33,9 @@ import java.awt.*;
 import java.io.*;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import org.fxmisc.richtext.*;
 /**
@@ -57,7 +56,7 @@ public class EditorController implements Initializable
 
     // Compilation vars.
     @FXML
-    private Label compilationOutputLabel;
+    private TextArea compilationOutputTextArea;
     @FXML
     private CodeArea sourceCodeTextArea;
     @FXML
@@ -80,7 +79,7 @@ public class EditorController implements Initializable
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
         currentUser = Main.getCurrentUser();
         currentProject = currentUser.getCurrentProject();
-        compilationOutputLabel.setWrapText(true);
+        compilationOutputTextArea.setWrapText(true);
         setupFileList();
         setupMobWrite();
     }
@@ -314,22 +313,33 @@ public class EditorController implements Initializable
 
     private void compileCode()
     {
-        compilationOutputLabel.setText("Compiling...");
+        compilationOutputTextArea.appendText("Compiling...\n");
         File entryPoint = currentProject.getEntryPointClassFile();
 
         try
         {
-            ProcessBuilder compilation = new ProcessBuilder("I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\javac ", entryPoint.getName());
+            ProcessBuilder compilation = new ProcessBuilder("I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\javac", entryPoint.getName());
+            compilation.directory(new File(currentProject.getProjectPath()));
             Process p = compilation.start();
-            int pReturnVal = p.waitFor();
-            System.out.println("pReturnVal = " + pReturnVal);
+            int errorCode = p.waitFor();
+            System.out.println("p1 Error Code: " + errorCode);
 
-//            Process p = Runtime.getRuntime().exec("\"I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\javac\" " + entryPoint.getName());
-//
-//
-//            Process p2 = Runtime.getRuntime().exec("\"I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\java\" " + entryPoint.getName().replace(".java", ""));
-//            int p2ReturnVal = p2.waitFor();
-//            System.out.println("p2ReturnVal = " + p2ReturnVal);
+
+            ProcessBuilder execution = new ProcessBuilder("I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin\\java", entryPoint.getName().replace(".java", ""));
+            execution.directory(new File(currentProject.getProjectPath()));
+            Process p2 = execution.start();
+            p2.waitFor(5, TimeUnit.SECONDS);
+            int errorCode2 = p2.exitValue();
+            System.out.println("p2 Error Code: " + errorCode2);
+
+            String line;
+            BufferedReader input = new BufferedReader(new InputStreamReader(p2.getInputStream()));
+            while ((line = input.readLine()) != null)
+            {
+                compilationOutputTextArea.appendText(line);
+                compilationOutputTextArea.appendText("\n");
+            }
+            input.close();
         }
         catch (Exception e)
         {
