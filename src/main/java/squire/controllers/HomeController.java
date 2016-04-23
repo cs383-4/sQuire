@@ -10,9 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import squire.Main;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -91,6 +94,26 @@ public class HomeController implements Initializable
         }
     }
 
+
+
+    @FXML
+    private void onOpenProjectHyperlinkClick(ActionEvent event)
+    {
+        if (event.getSource() == openProjectHyperlink)
+        {
+            Stage stage = null;
+            stage = (Stage) openProjectHyperlink.getScene().getWindow();
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            directoryChooser.setInitialDirectory(new File(Main.getProjectsDir()));
+            directoryChooser.setTitle("Choose Project Location");
+            File selectedDir = directoryChooser.showDialog(stage);
+            if (selectedDir != null)
+            {
+
+                System.out.println(selectedDir);
+            }
+        }
+    }
     @FXML
     private void onBrowseProjectsHyperlinkClick(ActionEvent event)
     {

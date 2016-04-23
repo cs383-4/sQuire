@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.38294314381270905" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.HomeController">
+<SplitPane dividerPositions="0.38294314381270905" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.HomeController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="200.0">
          <children>
@@ -55,7 +61,7 @@
                         <Font size="14.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink id="openProjectHyperlink" fx:id="openProjectHyperlink" alignment="CENTER" layoutX="10.0" layoutY="169.0" prefHeight="23.0" prefWidth="374.0" text="Open Project">
+                  <Hyperlink id="openProjectHyperlink" fx:id="openProjectHyperlink" alignment="CENTER" layoutX="10.0" layoutY="169.0" onAction="#onOpenProjectHyperlinkClick" prefHeight="23.0" prefWidth="374.0" text="Open Project">
                      <font>
                         <Font size="14.0" />
                      </font>
