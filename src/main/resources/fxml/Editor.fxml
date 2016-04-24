@@ -125,7 +125,7 @@
                      <children>
                         <TabPane fx:id="editorTabPane" prefHeight="472.0" prefWidth="383.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
-                            <Tab text="Untitled Tab 1">
+                            <Tab text="Main.java">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>

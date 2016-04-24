@@ -30,4 +30,12 @@ public class NewProjectController3Test
     {
 
     }
+
+    @Test
+    public void testOnBrowseButtonClick() throws Exception
+    {
+       // npc.onBrowseButtonClick();
+    }
+
 }
+

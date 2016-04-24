@@ -24,7 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import squire.FileList;
+//import squire.FileList;
 import squire.Main;
 import squire.Projects.Project;
 import squire.Users.User;
@@ -54,7 +54,7 @@ public class EditorController implements Initializable
     @FXML
     private TextArea editorTextArea;
 
-    FileList fl = new FileList();
+ //   FileList fl = new FileList();
 
     // Compilation vars.
     @FXML
@@ -65,6 +65,8 @@ public class EditorController implements Initializable
     private TabPane editorTabPane;
     private Project currentProject;
     private User currentUser;
+
+    private File oldFile;
 
     private ShareJTextComponent mobwriteComponent;
 
@@ -154,21 +156,45 @@ public class EditorController implements Initializable
                     TreeItem<String> selectedItem = (TreeItem<String>) fileExplorer.getSelectionModel().getSelectedItem();
 
                     //  TreeItem<String> selectedItem = (TreeItem<String>) newValue;
-                    try {
+                    try
+                    {
                         Scanner input = new Scanner(System.in);
+                        CodeArea newTabCodeArea = new CodeArea();
+
+
 
                         // TODO: get this string to be the actual path of the file
-                        String filePath = currentProject.getProjectPath() + File.separator + selectedItem
+                        String newFilePath = currentProject.getProjectPath() + File.separator + selectedItem
                                 .getValue();
-                        System.out.println(filePath);
-                        File file = new File(filePath);
+                        String oldFilePath = "";
+
+
+
+//                        // Basic way to write files back
+//                        Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
+//                        oldFilePath = currentProject.getProjectPath() + File.separator + curTab.getText();
+//                        oldFile = new File (oldFilePath);
+//                        try
+//                        {
+//                            BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath )); //+ ".tmp"));
+//                            bf.write(newTabCodeArea.getText());
+//                            bf.flush();
+//                            bf.close();
+//                        }
+//                        catch (IOException e)
+//                        {
+//                            e.printStackTrace();
+//                        }
+
+
+                        File file = new File(newFilePath);
                         input = new Scanner(file);
 
 
                         //Create new tab programatically
-                        Tab tab = new Tab();
-                        tab.setText(file.getName());
-                        CodeArea newTabCodeArea = new CodeArea();
+                        Tab newTab = new Tab();
+                        newTab.setText(file.getName());
+
                         newTabCodeArea.setLayoutX(167.0);
                         newTabCodeArea.setLayoutY(27.0);
                         newTabCodeArea.setPrefHeight(558.0);
@@ -195,10 +221,10 @@ public class EditorController implements Initializable
                         ap.setRightAnchor(newTabCodeArea, 0.0);
                         ap.setLeftAnchor(newTabCodeArea, 0.0);
 
-                        tab.setContent(ap);
+                        newTab.setContent(ap);
 
 
-                        editorTabPane.getTabs().add(tab);
+                        editorTabPane.getTabs().add(newTab);
 
                         // Open the file on click
                         newTabCodeArea.positionCaret(0);
@@ -221,7 +247,8 @@ public class EditorController implements Initializable
 
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
     // every time we switch tabs
-    public void setupMobWrite() {
+    public void setupMobWrite()
+    {
         mobwriteComponent = new ShareJTextComponent(sourceCodeTextArea, currentProject.getProjectName());
         Main.getMobwriteClient().share(mobwriteComponent);
     }
