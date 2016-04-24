@@ -151,26 +151,94 @@ public class EditorController implements Initializable
         fileExplorer.setOnMouseClicked(new EventHandler<MouseEvent>()
         {
             @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (mouseEvent.getClickCount() == 2) {
+            public void handle(MouseEvent mouseEvent)
+            {
+                if (mouseEvent.getClickCount() == 2)
+                {
                     TreeItem<String> selectedItem = (TreeItem<String>) fileExplorer.getSelectionModel().getSelectedItem();
 
-                    //  TreeItem<String> selectedItem = (TreeItem<String>) newValue;
                     try
                     {
                         Scanner input = new Scanner(System.in);
-                        CodeArea newTabCodeArea = new CodeArea();
-
-
-
                         // TODO: get this string to be the actual path of the file
                         String newFilePath = currentProject.getProjectPath() + File.separator + selectedItem
                                 .getValue();
-                        String oldFilePath = "";
+                        //String oldFilePath = "";
+
+                        File file = new File(newFilePath);
+                        CodeArea newTabCodeArea = new CodeArea();
+
+                     //   writeFileBackOnSwitchTab();
+                        createNewTab(file, newTabCodeArea);
+                        input = new Scanner(file);
+                        writeFile(input, newTabCodeArea);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+
+        });
+    }
 
 
 
-//                        // Basic way to write files back
+    //Create new tab programatically
+    public void createNewTab(File file, CodeArea newTabCodeArea)
+    {
+
+        Tab newTab = new Tab();
+        newTab.setText(file.getName());
+
+        newTabCodeArea.setLayoutX(167.0);
+        newTabCodeArea.setLayoutY(27.0);
+        newTabCodeArea.setPrefHeight(558.0);
+        newTabCodeArea.setPrefWidth(709.0);
+
+        AnchorPane ap = new AnchorPane(newTabCodeArea);
+
+
+        //Setup information from FXML
+//                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+//                    <children>
+//                    <CodeArea fx:id="sourceCodeTextArea" layoutX="167.0" layoutY="27.0" prefHeight="558.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+//                    </children>
+//                    </AnchorPane>
+
+        ap.setMinHeight(0.0);
+        ap.setMinWidth(0.0);
+        ap.setPrefHeight(180.0);
+        ap.setPrefWidth(200.0);
+
+
+        ap.setBottomAnchor(newTabCodeArea, 0.0);
+        ap.setTopAnchor(newTabCodeArea, 0.0);
+        ap.setRightAnchor(newTabCodeArea, 0.0);
+        ap.setLeftAnchor(newTabCodeArea, 0.0);
+
+        newTab.setContent(ap);
+        editorTabPane.getTabs().add(newTab);
+    }
+
+    // Write the file to the CodeArea
+    public void writeFile(Scanner input, CodeArea newTabCodeArea)
+    {
+        // Open the file on click
+        newTabCodeArea.positionCaret(0);
+        while (input.hasNextLine())
+        {
+            String line = input.nextLine();
+            newTabCodeArea.appendText(line + "\n");
+        }
+        input.close();
+    }
+
+    public void writeFileBackOnSwitchTab()
+    {
+        //                        // Basic way to write files back
 //                        Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
 //                        oldFilePath = currentProject.getProjectPath() + File.separator + curTab.getText();
 //                        oldFile = new File (oldFilePath);
@@ -185,68 +253,11 @@ public class EditorController implements Initializable
 //                        {
 //                            e.printStackTrace();
 //                        }
-
-
-                        File file = new File(newFilePath);
-                        input = new Scanner(file);
-
-
-                        //Create new tab programatically
-                        Tab newTab = new Tab();
-                        newTab.setText(file.getName());
-
-                        newTabCodeArea.setLayoutX(167.0);
-                        newTabCodeArea.setLayoutY(27.0);
-                        newTabCodeArea.setPrefHeight(558.0);
-                        newTabCodeArea.setPrefWidth(709.0);
-
-                        AnchorPane ap = new AnchorPane(newTabCodeArea);
-
-
-                        //Setup information from FXML
-//                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-//                    <children>
-//                    <CodeArea fx:id="sourceCodeTextArea" layoutX="167.0" layoutY="27.0" prefHeight="558.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-//                    </children>
-//                    </AnchorPane>
-
-                        ap.setMinHeight(0.0);
-                        ap.setMinWidth(0.0);
-                        ap.setPrefHeight(180.0);
-                        ap.setPrefWidth(200.0);
-
-
-                        ap.setBottomAnchor(newTabCodeArea, 0.0);
-                        ap.setTopAnchor(newTabCodeArea, 0.0);
-                        ap.setRightAnchor(newTabCodeArea, 0.0);
-                        ap.setLeftAnchor(newTabCodeArea, 0.0);
-
-                        newTab.setContent(ap);
-
-
-                        editorTabPane.getTabs().add(newTab);
-
-                        // Open the file on click
-                        newTabCodeArea.positionCaret(0);
-                        while (input.hasNextLine()) {
-                            String line = input.nextLine();
-                            newTabCodeArea.appendText(line + "\n");
-                        }
-                        input.close();
-
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-
-        });
     }
 
 
-
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
-    // every time we switch tabs
+    // TODO: every time we switch tabs
     public void setupMobWrite()
     {
         mobwriteComponent = new ShareJTextComponent(sourceCodeTextArea, currentProject.getProjectName());
