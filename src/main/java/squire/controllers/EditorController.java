@@ -68,7 +68,7 @@ public class EditorController implements Initializable
 
     private File oldFile;
 
-    private ShareJTextComponent mobwriteComponent;
+//    private ShareJTextComponent mobwriteComponent;
 
     PrintStream compilationOutputStream;
     private JavaCompiler compiler;
@@ -85,7 +85,6 @@ public class EditorController implements Initializable
         currentProject = currentUser.getCurrentProject();
         compilationOutputTextArea.setWrapText(true);
         setupFileList();
-        setupMobWrite();
     }
 
     private void onAvatarImageViewClick() {
@@ -198,6 +197,7 @@ public class EditorController implements Initializable
         newTabCodeArea.setPrefHeight(558.0);
         newTabCodeArea.setPrefWidth(709.0);
 
+        setupMobWrite(newTabCodeArea, currentProject.getProjectName() + ":" + file.getName());
         AnchorPane ap = new AnchorPane(newTabCodeArea);
 
 
@@ -258,9 +258,8 @@ public class EditorController implements Initializable
 
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
     // TODO: every time we switch tabs
-    public void setupMobWrite()
-    {
-        mobwriteComponent = new ShareJTextComponent(sourceCodeTextArea, currentProject.getProjectName());
+    public void setupMobWrite(CodeArea ca, String name) {
+        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, name);
         Main.getMobwriteClient().share(mobwriteComponent);
     }
 
