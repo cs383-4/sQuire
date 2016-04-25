@@ -17,6 +17,7 @@ import squire.Projects.Project;
 import squire.Users.User;
 import squire.controllers.NewProjectController3;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static org.testfx.api.FxAssert.verifyThat;
@@ -26,8 +27,8 @@ import static org.testfx.api.FxAssert.verifyThat;
  */
 public class EditorTest extends ApplicationTest
 {
-    @Rule
-    JavaFxThreadingRule threadingRule = new JavaFxThreadingRule();
+    //@Rule
+   // public JavaFxThreadingRule threadingRule = new JavaFxThreadingRule();
 
     // The parent node of the scene.
     Node rootNode;
@@ -42,6 +43,8 @@ public class EditorTest extends ApplicationTest
     private User currentUser;
     private NewProjectController3 npc;
 
+    private Project p;
+
 
     /**
      * Add the name of nodes you want to test here.
@@ -49,9 +52,14 @@ public class EditorTest extends ApplicationTest
     @Before
     public void setUpNodesToTest()
     {
-        currentUser = Main.getCurrentUser();
-        npc = new NewProjectController3();
 
+        currentUser = new User("test", "test");
+        npc = new NewProjectController3();
+        File dummyFile = new File(System.getProperty("user.dir") + "src/main/resources/Test_Files");
+
+        p = new Project("test", currentUser,"test","test",dummyFile);
+
+        currentUser.setCurrentProject(p);
 
         nodeNamesToTest.add("#avatarImageView");
         nodeNamesToTest.add("#homeButton");
@@ -62,7 +70,7 @@ public class EditorTest extends ApplicationTest
         nodeNamesToTest.add("#sourceCodeTextArea");
         nodeNamesToTest.add("#editorTabPane");
 
-        Platform.setImplicitExit(false);
+        Platform.setImplicitExit(true);
 
         // Added a bogus name to prove that it catches failures.
        // nodeNamesToTest.add("#sampleFail");
@@ -82,14 +90,18 @@ public class EditorTest extends ApplicationTest
     @Override
     public void start(Stage stage) throws Exception
     {
-        String fileLocation = npc.initProjectFields("","","");
-        npc.copyMainFile(fileLocation);
+//        String name = "test";
+//        String description = "";
+//        String testLocation = System.getProperty("user.dir") + "/src/gui-tests/java/TestDir";
+//        String fileLocation = npc.initProjectFields(name, description, testLocation);
+
+       // npc.copyMainFile(fileLocation);
 
 
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("sQuire Editor - Project " + currentUser.getCurrentProject().toString());
+     //   stage.setTitle("sQuire Editor - Project " + currentUser.getCurrentProject().toString());
         stage.setScene(scene);
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 

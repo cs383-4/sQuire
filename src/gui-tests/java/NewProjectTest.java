@@ -33,6 +33,7 @@ public class NewProjectTest extends ApplicationTest
     @Before
     public void setUpNodesToTest()
     {
+
         nodeNamesToTest.add("#projectTitleTextField");
         nodeNamesToTest.add("#projectDescriptionTextArea");
         nodeNamesToTest.add("#locationTextField");
@@ -44,7 +45,7 @@ public class NewProjectTest extends ApplicationTest
         // Added a bogus name to prove that it catches failures.
         //nodeNamesToTest.add("#sampleFail");
 
-        Platform.setImplicitExit(false);
+        Platform.setImplicitExit(true);
     }
 
     @After

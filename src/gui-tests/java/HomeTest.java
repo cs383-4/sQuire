@@ -43,7 +43,7 @@ public class HomeTest extends ApplicationTest
         // Added a bogus name to prove that it catches failures.
         //nodeNamesToTest.add("#sampleFail");
 
-        Platform.setImplicitExit(false);
+        Platform.setImplicitExit(true);
     }
 
     @After
