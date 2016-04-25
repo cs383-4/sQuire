@@ -2,13 +2,12 @@ import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import squire.Users.Project;
-import squire.Users.ProjectFinder;
-import squire.Users.ProjectFile;
-import squire.Users.ProjectFileFinder;
+import squire.Users.*;
 
 import javax.validation.constraints.AssertTrue;
 import java.io.File;
+
+import static sun.misc.MessageUtils.where;
 
 public class ProjectDatabaseTest extends TestCase
 {
@@ -33,7 +32,7 @@ public class ProjectDatabaseTest extends TestCase
     }
 
     @Test
-    public void testOneEqOne() throws Exception
+    public void testTrueBaseline() throws Exception
     {
         assertEquals(1,1);
     }
@@ -44,6 +43,18 @@ public class ProjectDatabaseTest extends TestCase
         Project testproject = new Project();
 
         testproject.save();
+
+    }
+
+    @Test
+    public void testGetSetOwner() throws Exception
+    {
+        Project testproject = new Project();
+        testproject.setOwner(new User("testowner","testpassword"));
+
+        testproject.save();
+
+        assertEquals("testowner", User.class.getOwner().getUsername());
     }
 
 
