@@ -67,6 +67,28 @@ public class HomeController implements Initializable
         }
     }
 
+    @FXML private void onRegisterHyperlinkClick(ActionEvent event)
+    {
+        FXMLLoader loader = new FXMLLoader();
+        Stage dialogStage = new Stage();
+        Parent root = null;
+        dialogStage.setTitle("Register for sQuire");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(registerHyperlink.getScene().getWindow());
+        dialogStage.setResizable(false);
+        try
+        {
+            root = loader.load(getClass().getResource("/fxml/RegisterDialog.fxml"));
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
+            dialogStage.showAndWait();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void onNewProjectHyperlinkClick(ActionEvent event)
     {

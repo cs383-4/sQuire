@@ -80,7 +80,7 @@
                            </padding>
                         </Hyperlink>
                         <Region prefHeight="29.0" prefWidth="196.0" />
-                        <Hyperlink id="registerHyperlink" fx:id="registerHyperlink" text="Register">
+                        <Hyperlink id="registerHyperlink" fx:id="registerHyperlink" text="Register" onAction="#onRegisterHyperlinkClick">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
