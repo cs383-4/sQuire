@@ -56,7 +56,7 @@ public class ProjectDatabaseTest extends TestCase
 
         testproject.save();
 
-        assertEquals("testowner", User.class.getOwner().getUsername());
+        assertEquals("testowner", testproject.getOwner().getUsername());
     }
 
 
