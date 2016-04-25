@@ -1,12 +1,17 @@
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.junit.Before;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
+import squire.Main;
+import squire.Projects.Project;
+import squire.Users.User;
 
 import java.util.ArrayList;
 
@@ -23,12 +28,19 @@ public class EditorTest extends ApplicationTest
     //A list of the names of the nodes to test.
     private static ArrayList<String> nodeNamesToTest = new ArrayList<String>();
 
+    private String projectName;
+    private String projectLocation;
+    private String projectDescription;
+    private Project createdProject;
+    private User currentUser;
+
     /**
      * Add the name of nodes you want to test here.
      */
     @Before
     public void setUpNodesToTest()
     {
+        currentUser = Main.getCurrentUser();
 
         nodeNamesToTest.add("#avatarImageView");
         nodeNamesToTest.add("#homeButton");
@@ -51,15 +63,25 @@ public class EditorTest extends ApplicationTest
     @Override
     public void start(Stage stage) throws Exception
     {
-        // This is returning null, thus the catch block is executing.
+      //  createdProject = new Project(projectName, currentUser, projectLocation, projectDescription, projectFiles,
+           // toFile);
+        currentUser.addProject(createdProject);
+        currentUser.setCurrentProject(createdProject);
+
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/fxml/NewProject2.fxml"));
+        Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
         rootNode = root;
         Scene scene = new Scene(root);
-        stage.setTitle("New Project");
-        stage.setHeight(460);
-        stage.setWidth(610);
-        stage.setResizable(false);
+        stage.setTitle("sQuire Editor - Project " + currentUser.getCurrentProject().toString());
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
+        int fromEdge = 50;
+        //set Stage boundaries to visible bounds of the main screen
+        stage.setX(primaryScreenBounds.getMinX() + fromEdge/2);
+        stage.setY(primaryScreenBounds.getMinY() + fromEdge/2);
+        stage.setWidth(primaryScreenBounds.getWidth() - fromEdge);
+        stage.setHeight(primaryScreenBounds.getHeight() - fromEdge);
+        stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
     }
