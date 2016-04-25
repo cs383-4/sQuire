@@ -22,7 +22,7 @@ import org.junit.runners.model.Statement;
  * @author Andy Till
  *
  */
-public class JavaFXThreadingRule implements TestRule
+public class JavaFxThreadingRule implements TestRule
 {
 
     /**

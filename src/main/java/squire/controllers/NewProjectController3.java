@@ -37,12 +37,12 @@ public class NewProjectController3 implements Initializable
     @FXML private Button cancelButton;
     @FXML private Button backButton;
 
-    private String projectName;
-    private String projectLocation;
-    private String projectDescription;
-    private Project createdProject;
-    private User currentUser;
-    private ArrayList<File> projectFiles = new ArrayList<File>();
+    public String projectName;
+    public String projectLocation;
+    public String projectDescription;
+    public Project createdProject;
+    public User currentUser;
+    public ArrayList<File> projectFiles = new ArrayList<File>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -74,8 +74,12 @@ public class NewProjectController3 implements Initializable
 
     @FXML private void onFinishButtonClick(ActionEvent event)
     {
+        projectName = projectTitleTextField.getText();
+        projectDescription = projectDescriptionTextArea.getText();
+        projectLocation = locationTextField.getText() + File.separator + projectName;
 
-        String fileLocation = initProjectFields();
+        String fileLocation = initProjectFields(projectName, projectDescription, projectLocation);
+
         copyMainFile(fileLocation);
         loadEditorScene();
 
@@ -85,12 +89,8 @@ public class NewProjectController3 implements Initializable
 
     //__________________________________________________________________________________________
 //Helper functions
-    public String initProjectFields()
+    public String initProjectFields(String projectName, String projectDescription, String projectLocation)
     {
-        projectName = projectTitleTextField.getText();
-        projectDescription = projectDescriptionTextArea.getText();
-        projectLocation = locationTextField.getText() + File.separator + projectName;
-
         // Placeholder.
         String entryPointClassName = "Main.java";
         String fileLocation = projectLocation + File.separator + entryPointClassName;
