@@ -7,11 +7,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by MattDaniel on 4/24/16.
+ * Created by MattDaniel on 4/25/16.
  */
 public class NewProjectController3Test
 {
-    private  NewProjectController3 npc;
+
+    private NewProjectController3 npc;
 
     @Before
     public void setUp() throws Exception
@@ -32,10 +33,32 @@ public class NewProjectController3Test
     }
 
     @Test
-    public void testOnBrowseButtonClick() throws Exception
+    public void testInitProjectFields() throws Exception
     {
-       // npc.onBrowseButtonClick();
+        
     }
 
-}
+    @Test
+    public void testCopyMainFile() throws Exception
+    {
 
+    }
+
+    @Test
+    public void testLoadEditorScene() throws Exception
+    {
+
+    }
+
+    @Test
+    public void testLoadHomeScene() throws Exception
+    {
+
+    }
+
+    @Test
+    public void testLoadBrowser() throws Exception
+    {
+
+    }
+}
