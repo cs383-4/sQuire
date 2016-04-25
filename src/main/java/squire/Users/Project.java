@@ -18,6 +18,8 @@ import java.util.UUID;
 public class Project extends BaseModel {
     public static final ProjectFinder find = new ProjectFinder();
 
+// Database code
+
     @Column(nullable = false, unique = true)
     private UUID token;
 
@@ -40,6 +42,7 @@ public class Project extends BaseModel {
     @Column()
     private Integer primaryFileID;
 
+// Legacy code from the non-db Project class, just in case
 
     public String getToken() {
         return token.toString();
@@ -55,6 +58,27 @@ public class Project extends BaseModel {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+
+    public ArrayList<JavaSourceFromString> getFileList() { return importedFiles;}
+
+    public String getMatchingFile(String s)
+    {
+        String file = "";
+        String t;
+        for (JavaSourceFromString fileName: this.getFileList())
+        {
+            t = fileName.getFileName();
+
+            if (s.equals(t))
+            {
+                //     System.out.println(fileName.substring(file.lastIndexOf("/")+1));
+                file = file.toString();
+            }
+        }
+        //   System.out.println(file);
+        return file;
     }
 
 }
