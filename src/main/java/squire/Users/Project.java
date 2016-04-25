@@ -6,10 +6,7 @@ package squire.Users;
 import squire.BaseModel;
 import squire.Projects.JavaSourceFromString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -38,7 +35,8 @@ public class Project extends BaseModel {
     private ArrayList<JavaSourceFromString> importedFiles;
 
     @Column()
-    private Integer primaryFileID;
+    @OneToOne
+    private ProjectFile primaryFile;
 
 
 
