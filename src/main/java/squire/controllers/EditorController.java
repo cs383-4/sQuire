@@ -55,6 +55,8 @@ public class EditorController implements Initializable
     @FXML
     private TextArea editorTextArea;
 
+    @FXML private Button saveButton;
+
     // Compilation vars.
     @FXML
     private TextArea compilationOutputTextArea;
@@ -67,6 +69,8 @@ public class EditorController implements Initializable
 
     private File oldFile;
     private ArrayList<Tab> openTabs = new ArrayList<>();
+
+    private CodeArea currentCodeArea;
 
 //    private ShareJTextComponent mobwriteComponent;
 
@@ -175,7 +179,8 @@ public class EditorController implements Initializable
                         input = new Scanner(file);
 
                         //Write the dummy file if it does not exist
-                        if(newTabCodeArea.getText().isEmpty())
+                        String getText = getText(newTabCodeArea);
+                        if(getText.isEmpty())
                         {
                             writeFile(input, newTabCodeArea);
                         }
@@ -243,7 +248,10 @@ public class EditorController implements Initializable
 
             newTab.setContent(ap);
             editorTabPane.getTabs().add(newTab);
+
         }
+        //TODO: Fix this!
+        currentCodeArea = newTabCodeArea;
     }
 
 
@@ -255,33 +263,43 @@ public class EditorController implements Initializable
     // Write the file to the CodeArea
     public void writeFile(Scanner input, CodeArea newTabCodeArea)
     {
+        String fullText = "";
         // Open the file on click
         newTabCodeArea.positionCaret(0);
         while (input.hasNextLine())
         {
             String line = input.nextLine();
-            newTabCodeArea.appendText(line + "\n");
+            fullText += (line + "\n");
         }
+
+        //TODO: COMMENT THIS OUT FOR DEMO
+        newTabCodeArea.replaceText(fullText);
         input.close();
     }
 
-    public void writeFileBackOnSwitchTab()
+    public String getText(CodeArea ca)
     {
-        //                        // Basic way to write files back
-//                        Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
-//                        oldFilePath = currentProject.getProjectPath() + File.separator + curTab.getText();
-//                        oldFile = new File (oldFilePath);
-//                        try
-//                        {
-//                            BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath )); //+ ".tmp"));
-//                            bf.write(newTabCodeArea.getText());
-//                            bf.flush();
-//                            bf.close();
-//                        }
-//                        catch (IOException e)
-//                        {
-//                            e.printStackTrace();
-//                        }
+        return ca.getText();
+    }
+
+    @FXML private void onSaveButtonClick(ActionEvent event)
+    {
+                                // Basic way to write files back
+        String oldFilePath;
+        Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
+        oldFilePath = currentProject.getProjectPath() + File.separator + curTab.getText();
+        oldFile = new File (oldFilePath);
+        try
+        {
+            BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath )); //+ ".tmp"));
+            bf.write(currentCodeArea.getText());
+            bf.flush();
+            bf.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 

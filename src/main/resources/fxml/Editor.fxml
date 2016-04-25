@@ -74,7 +74,8 @@
                               <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" text="Home" />
                               <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="2.0" />
                               <ToggleButton mnemonicParsing="false" text="Open" />
-                              <ToggleButton mnemonicParsing="false" text="Save" />
+                              <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonClick"
+                                  text="Save" />
                               <ToggleButton mnemonicParsing="false" text="Save All" />
                               <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
                               <ToggleButton layoutX="105.0" layoutY="10.0" mnemonicParsing="false" text="Undo" />
