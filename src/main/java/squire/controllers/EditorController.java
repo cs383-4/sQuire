@@ -35,6 +35,7 @@ import java.awt.*;
 import java.io.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -65,6 +66,7 @@ public class EditorController implements Initializable
     private User currentUser;
 
     private File oldFile;
+    private ArrayList<Tab> openTabs = new ArrayList<>();
 
 //    private ShareJTextComponent mobwriteComponent;
 
@@ -168,6 +170,7 @@ public class EditorController implements Initializable
                         CodeArea newTabCodeArea = new CodeArea();
 
                      //   writeFileBackOnSwitchTab();
+
                         createNewTab(file, newTabCodeArea);
                         input = new Scanner(file);
 
@@ -194,38 +197,59 @@ public class EditorController implements Initializable
     public void createNewTab(File file, CodeArea newTabCodeArea)
     {
 
+        Boolean isInList = false;
         Tab newTab = new Tab();
         newTab.setText(file.getName());
 
-        newTabCodeArea.setLayoutX(167.0);
-        newTabCodeArea.setLayoutY(27.0);
-        newTabCodeArea.setPrefHeight(558.0);
-        newTabCodeArea.setPrefWidth(709.0);
+         for (Tab t : editorTabPane.getTabs())
+         {
+             if (t.getText().equals( newTab.getText()))
+             {
 
-        setupMobWrite(newTabCodeArea, currentProject.getProjectName() + ":" + file.getName());
-        AnchorPane ap = new AnchorPane(newTabCodeArea);
+                 isInList = true;
+                 switchToTab(t);
+             }
+
+         }
+        if (isInList == false)
+         {
+
+            newTabCodeArea.setLayoutX(167.0);
+            newTabCodeArea.setLayoutY(27.0);
+            newTabCodeArea.setPrefHeight(558.0);
+            newTabCodeArea.setPrefWidth(709.0);
+
+            setupMobWrite(newTabCodeArea, currentProject.getProjectName() + ":" + file.getName());
+            AnchorPane ap = new AnchorPane(newTabCodeArea);
 
 
-        //Setup information from FXML
-//                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-//                    <children>
-//                    <CodeArea fx:id="sourceCodeTextArea" layoutX="167.0" layoutY="27.0" prefHeight="558.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-//                    </children>
-//                    </AnchorPane>
+            //Setup information from FXML
+            //                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            //                    <children>
+            //                    <CodeArea fx:id="sourceCodeTextArea" layoutX="167.0" layoutY="27.0" prefHeight="558.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            //                    </children>
+            //                    </AnchorPane>
 
-        ap.setMinHeight(0.0);
-        ap.setMinWidth(0.0);
-        ap.setPrefHeight(180.0);
-        ap.setPrefWidth(200.0);
+            ap.setMinHeight(0.0);
+            ap.setMinWidth(0.0);
+            ap.setPrefHeight(180.0);
+            ap.setPrefWidth(200.0);
 
 
-        ap.setBottomAnchor(newTabCodeArea, 0.0);
-        ap.setTopAnchor(newTabCodeArea, 0.0);
-        ap.setRightAnchor(newTabCodeArea, 0.0);
-        ap.setLeftAnchor(newTabCodeArea, 0.0);
+            ap.setBottomAnchor(newTabCodeArea, 0.0);
+            ap.setTopAnchor(newTabCodeArea, 0.0);
+            ap.setRightAnchor(newTabCodeArea, 0.0);
+            ap.setLeftAnchor(newTabCodeArea, 0.0);
 
-        newTab.setContent(ap);
-        editorTabPane.getTabs().add(newTab);
+            newTab.setContent(ap);
+            editorTabPane.getTabs().add(newTab);
+        }
+    }
+
+
+    public void switchToTab(Tab t)
+    {
+        editorTabPane.getSelectionModel().select(t);
     }
 
     // Write the file to the CodeArea
