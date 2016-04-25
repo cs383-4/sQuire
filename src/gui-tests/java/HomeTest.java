@@ -63,18 +63,6 @@ public class HomeTest extends ApplicationTest
     }
 
     /**
-     * Copy/paste this test case and replace 'Element' in the function name with
-     * the UI element being tested and 'elementNameHere' in the body of the function
-     * with the fx:id assigned to the testee element in the .fxml file.
-     * @throws Exception
-     */
-//    @Test
-//    public void verifyElementLoaded() throws Exception
-//    {
-//        verifyThat("#elementNameHere", NodeMatchers.isNotNull());
-//    }
-
-    /**
      * Verifies that all of the important scene nodes have loaded properly
      * by asserting that they are not null.
      * @throws Exception
