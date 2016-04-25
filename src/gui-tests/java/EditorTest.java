@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
@@ -5,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
@@ -56,8 +58,16 @@ public class EditorTest extends ApplicationTest
         nodeNamesToTest.add("#sourceCodeTextArea");
         nodeNamesToTest.add("#editorTabPane");
 
+        Platform.setImplicitExit(false);
+
         // Added a bogus name to prove that it catches failures.
        // nodeNamesToTest.add("#sampleFail");
+    }
+
+    @After
+    public void close() throws Exception
+    {
+        this.stop();
     }
 
     /**
@@ -90,6 +100,8 @@ public class EditorTest extends ApplicationTest
         stage.show();
 
     }
+
+
 
     /**
      * Verifies that all of the important scene nodes have loaded properly

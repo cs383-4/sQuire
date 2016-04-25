@@ -1,6 +1,7 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import squire.Users.PasswordHashTest;
+import squire.Users.ProjectDatabaseTest;
 import squire.controllers.EditorControllerTest;
 import google.mobwrite.MobWriteClientTest;
 
@@ -13,9 +14,10 @@ import google.mobwrite.MobWriteClientTest;
         EditorControllerTest.class,
         MobWriteClientTest.class,
         ProjectDatabaseTest.class,
+        PasswordHashTest.class,
         HomeTest.class,
         NewProjectTest.class,
-        PasswordHashTest.class
+        EditorTest.class,
 }) // Add your test classes here.
 public class TestSuite
 {
