@@ -58,49 +58,17 @@ public class NewProjectController3 implements Initializable
         {
             Stage stage = null;
             stage = (Stage) browseButton.getScene().getWindow();
-            DirectoryChooser dirChoose = new DirectoryChooser();
-            dirChoose.setInitialDirectory(new File(Main.getProjectsDir()));
-            dirChoose.setTitle("Choose Project Location");
-            File selectedDir = dirChoose.showDialog(stage);
-            if (selectedDir != null)
-            {
-                locationTextField.setText(selectedDir.getPath());
-                projectLocation = selectedDir.getAbsolutePath();
-            }
+            loadBrowser(stage);
         }
     }
 
     //Sends back to home screen
     @FXML private void onBackButtonClick(ActionEvent event)
     {
-        Stage stage = null;
-        Parent root = null;
+
         if (event.getSource() == backButton || event.getSource() == cancelButton)
         {
-            FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) backButton.getScene().getWindow();
-            try
-            {
-                root = loader.load(getClass().getResource("/fxml/Home.fxml"));
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        if (root != null)
-        {
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setHeight(400);
-            stage.setWidth(600);
-            stage.setTitle("sQuire Home");
-            stage.show();
-        }
-        else
-        {
-            System.out.println("Null scene.");
+            loadHomeScene();
         }
     }
 
@@ -109,10 +77,13 @@ public class NewProjectController3 implements Initializable
 
         String fileLocation = initProjectFields();
         copyMainFile(fileLocation);
-        loadScene();
+        loadEditorScene();
 
     }
 
+
+
+    //__________________________________________________________________________________________
 //Helper functions
     public String initProjectFields()
     {
@@ -168,7 +139,7 @@ public class NewProjectController3 implements Initializable
     }
 
 
-    public void loadScene()
+    public void loadEditorScene()
     {
         FXMLLoader loader = new FXMLLoader();
         Stage stage = (Stage) finishButton.getScene().getWindow();
@@ -195,6 +166,52 @@ public class NewProjectController3 implements Initializable
         catch (Exception e)
         {
             e.printStackTrace();
+        }
+    }
+
+
+    //Go back to the home screen
+    public void loadHomeScene()
+    {
+        Stage stage = null;
+        Parent root = null;
+            FXMLLoader loader = new FXMLLoader();
+            stage = (Stage) backButton.getScene().getWindow();
+            try
+            {
+                root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+        if (root != null)
+        {
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setHeight(400);
+            stage.setWidth(600);
+            stage.setTitle("sQuire Home");
+            stage.show();
+        }
+        else
+        {
+            System.out.println("Null scene.");
+        }
+    }
+
+    //Load a directory browser
+    public void loadBrowser(Stage stage)
+    {
+        DirectoryChooser dirChoose = new DirectoryChooser();
+        dirChoose.setInitialDirectory(new File(Main.getProjectsDir()));
+        dirChoose.setTitle("Choose Project Location");
+        File selectedDir = dirChoose.showDialog(stage);
+        if (selectedDir != null)
+        {
+            locationTextField.setText(selectedDir.getPath());
+            projectLocation = selectedDir.getAbsolutePath();
         }
     }
 
