@@ -54,8 +54,6 @@ public class EditorController implements Initializable
     @FXML
     private TextArea editorTextArea;
 
- //   FileList fl = new FileList();
-
     // Compilation vars.
     @FXML
     private TextArea compilationOutputTextArea;
@@ -105,8 +103,10 @@ public class EditorController implements Initializable
     }
 
     @FXML
-    private void onHomeButtonClick(ActionEvent event) {
-        try {
+    private void onHomeButtonClick(ActionEvent event)
+    {
+        try
+        {
             FXMLLoader loader = new FXMLLoader();
             Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
             Stage stage = (Stage) homeButton.getScene().getWindow();
