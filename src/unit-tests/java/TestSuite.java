@@ -4,6 +4,7 @@ import squire.Users.PasswordHashTest;
 import squire.Users.ProjectDatabaseTest;
 import squire.controllers.EditorControllerTest;
 import google.mobwrite.MobWriteClientTest;
+import squire.controllers.NewProjectController3Test;
 
 /**
  * Created by Domn Werner on 4/23/2016.
@@ -14,6 +15,7 @@ import google.mobwrite.MobWriteClientTest;
 @Suite.SuiteClasses({
         EditorControllerTest.class,
         MobWriteClientTest.class,
+        NewProjectController3Test.class,
         ProjectDatabaseTest.class,
         PasswordHashTest.class,
         HomeTest.class,

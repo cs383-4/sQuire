@@ -56,6 +56,9 @@ public class NewProjectController3Test
                 testLocation = testLocationRoot + File.separator + name;
                 fileLoc = npc.initProjectFields(name, description, testLocation);
                 File fileFromLoc = new File(fileLoc);
+
+                // For all combinations of names and descriptions, see if a new project directory was created in the
+                // parent directory
                 assertTrue("No file location!: " + testNames, fileFromLoc.getParentFile().getParent().equals
                         (testLocationRoot));
 
