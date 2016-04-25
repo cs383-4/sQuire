@@ -1,10 +1,14 @@
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.omg.CORBA.Environment;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 
@@ -38,7 +42,15 @@ public class NewProjectTest extends ApplicationTest
         nodeNamesToTest.add("#backButton");
 
         // Added a bogus name to prove that it catches failures.
-        nodeNamesToTest.add("#sampleFail");
+        //nodeNamesToTest.add("#sampleFail");
+
+        Platform.setImplicitExit(false);
+    }
+
+    @After
+    public void close() throws Exception
+    {
+        this.stop();
     }
 
     /**
@@ -61,6 +73,8 @@ public class NewProjectTest extends ApplicationTest
         stage.setScene(scene);
         stage.show();
     }
+
+
 
     /**
      * Verifies that all of the important scene nodes have loaded properly

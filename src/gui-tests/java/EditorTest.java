@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
@@ -5,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
@@ -23,6 +26,9 @@ import static org.testfx.api.FxAssert.verifyThat;
  */
 public class EditorTest extends ApplicationTest
 {
+    @Rule
+    JavaFxThreadingRule threadingRule = new JavaFxThreadingRule();
+
     // The parent node of the scene.
     Node rootNode;
 
@@ -56,8 +62,16 @@ public class EditorTest extends ApplicationTest
         nodeNamesToTest.add("#sourceCodeTextArea");
         nodeNamesToTest.add("#editorTabPane");
 
+        Platform.setImplicitExit(false);
+
         // Added a bogus name to prove that it catches failures.
        // nodeNamesToTest.add("#sampleFail");
+    }
+
+    @After
+    public void close() throws Exception
+    {
+        this.stop();
     }
 
     /**
@@ -68,7 +82,7 @@ public class EditorTest extends ApplicationTest
     @Override
     public void start(Stage stage) throws Exception
     {
-        String fileLocation = npc.initProjectFields();
+        String fileLocation = npc.initProjectFields("","","");
         npc.copyMainFile(fileLocation);
 
 
@@ -90,6 +104,8 @@ public class EditorTest extends ApplicationTest
         stage.show();
 
     }
+
+
 
     /**
      * Verifies that all of the important scene nodes have loaded properly
