@@ -1,6 +1,7 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import squire.Users.PasswordHashTest;
+import squire.Users.SessionTest;
 import squire.Users.UserTest;
 import squire.Users.ProjectDatabaseTest;
 import squire.controllers.EditorControllerTest;
@@ -22,6 +23,7 @@ import squire.controllers.NewProjectController3Test;
         EditorTest.class,
         ProjectDatabaseTest.class,
         UserTest.class,
+        SessionTest.class,
         PasswordHashTest.class,
 }) // Add your test classes here.
 public class TestSuite
