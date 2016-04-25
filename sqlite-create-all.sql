@@ -1,6 +1,5 @@
 create table o_project (
   id                            integer not null,
-  token                         varchar(40) not null,
   owner_id                      integer,
   name                          varchar(255),
   path                          varchar(255),
@@ -9,7 +8,6 @@ create table o_project (
   version                       integer not null,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,
-  constraint uq_o_project_token unique (token),
   constraint pk_o_project primary key (id),
   foreign key (owner_id) references o_user (id) on delete restrict on update restrict
 );

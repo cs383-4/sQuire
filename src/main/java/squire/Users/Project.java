@@ -20,8 +20,6 @@ public class Project extends BaseModel {
 
 // Database code
 
-    @Column(nullable = false, unique = true)
-    private UUID token;
 
     @Column(nullable = false)
     @ManyToOne
@@ -42,15 +40,9 @@ public class Project extends BaseModel {
     @Column()
     private Integer primaryFileID;
 
+
+
 // Legacy code from the non-db Project class, just in case
-
-    public String getToken() {
-        return token.toString();
-    }
-
-    private void generateToken() {
-        this.token = UUID.randomUUID();
-    }
 
     public User getOwner() {
         return owner;
