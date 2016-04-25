@@ -8,7 +8,9 @@ import google.mobwrite.MobWriteClientTest;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({EditorControllerTest.class, MobWriteClientTest.class, ProjectDatabaseTest.class, HomeTest.class}) // Add your test classes here.
+@Suite.SuiteClasses({EditorControllerTest.class, MobWriteClientTest.class, ProjectDatabaseTest.class, HomeTest.class,
+        NewProjectTest.class
+}) // Add your test classes here.
 public class TestSuite
 {
 
