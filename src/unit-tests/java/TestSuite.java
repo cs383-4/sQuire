@@ -12,6 +12,7 @@ import squire.controllers.NewProjectController3Test;
  */
 
 //TODO: We need to modify this to run the JavaFX tests in separate suites I think.
+    // Not sure how...
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         EditorControllerTest.class,
