@@ -12,6 +12,7 @@ import org.testfx.matcher.base.NodeMatchers;
 import squire.Main;
 import squire.Projects.Project;
 import squire.Users.User;
+import squire.controllers.NewProjectController3;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,8 @@ public class EditorTest extends ApplicationTest
     private String projectDescription;
     private Project createdProject;
     private User currentUser;
+    private NewProjectController3 npc;
+
 
     /**
      * Add the name of nodes you want to test here.
@@ -41,6 +44,8 @@ public class EditorTest extends ApplicationTest
     public void setUpNodesToTest()
     {
         currentUser = Main.getCurrentUser();
+        npc = new NewProjectController3();
+
 
         nodeNamesToTest.add("#avatarImageView");
         nodeNamesToTest.add("#homeButton");
@@ -63,27 +68,27 @@ public class EditorTest extends ApplicationTest
     @Override
     public void start(Stage stage) throws Exception
     {
-      //  createdProject = new Project(projectName, currentUser, projectLocation, projectDescription, projectFiles,
-           // toFile);
-        currentUser.addProject(createdProject);
-        currentUser.setCurrentProject(createdProject);
+        String fileLocation = npc.initProjectFields();
+        npc.copyMainFile(fileLocation);
+
 
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
-        rootNode = root;
         Scene scene = new Scene(root);
         stage.setTitle("sQuire Editor - Project " + currentUser.getCurrentProject().toString());
+        stage.setScene(scene);
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
         int fromEdge = 50;
+
         //set Stage boundaries to visible bounds of the main screen
         stage.setX(primaryScreenBounds.getMinX() + fromEdge/2);
         stage.setY(primaryScreenBounds.getMinY() + fromEdge/2);
         stage.setWidth(primaryScreenBounds.getWidth() - fromEdge);
         stage.setHeight(primaryScreenBounds.getHeight() - fromEdge);
         stage.setResizable(true);
-        stage.setScene(scene);
         stage.show();
+
     }
 
     /**

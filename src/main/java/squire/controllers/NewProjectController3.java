@@ -108,9 +108,7 @@ public class NewProjectController3 implements Initializable
     {
 
         String fileLocation = initProjectFields();
-
         copyMainFile(fileLocation);
-        // Placeholder.
         loadScene();
 
     }
@@ -174,7 +172,7 @@ public class NewProjectController3 implements Initializable
     {
         FXMLLoader loader = new FXMLLoader();
         Stage stage = (Stage) finishButton.getScene().getWindow();
-        stage.setResizable(false);
+        //stage.setResizable(false);
         try
         {
             Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
