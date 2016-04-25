@@ -26,8 +26,8 @@ import static org.testfx.api.FxAssert.verifyThat;
  */
 public class EditorTest extends ApplicationTest
 {
-    @Rule
-    JavaFxThreadingRule threadingRule = new JavaFxThreadingRule();
+    //@Rule
+    //public JavaFxThreadingRule threadingRule = new JavaFxThreadingRule();
 
     // The parent node of the scene.
     Node rootNode;
@@ -82,6 +82,7 @@ public class EditorTest extends ApplicationTest
     @Override
     public void start(Stage stage) throws Exception
     {
+
         String fileLocation = npc.initProjectFields("","","");
         npc.copyMainFile(fileLocation);
 
