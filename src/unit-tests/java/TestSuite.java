@@ -15,14 +15,14 @@ import squire.controllers.NewProjectController3Test;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         EditorControllerTest.class,
-        MobWriteClientTest.class,
         NewProjectController3Test.class,
-        ProjectDatabaseTest.class,
-        PasswordHashTest.class,
         HomeTest.class,
         NewProjectTest.class,
-        UserTest.class
+        MobWriteClientTest.class,
         EditorTest.class,
+        ProjectDatabaseTest.class,
+        UserTest.class,
+        PasswordHashTest.class,
 }) // Add your test classes here.
 public class TestSuite
 {
