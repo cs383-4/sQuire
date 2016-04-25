@@ -1,3 +1,5 @@
+package squire.Users;
+
 import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;

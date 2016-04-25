@@ -14,7 +14,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import squire.Main;
-import squire.Projects.JavaSourceFromString;
 import squire.Projects.Project;
 import squire.Users.User;
 
@@ -38,11 +37,12 @@ public class NewProjectController3 implements Initializable
     @FXML private Button cancelButton;
     @FXML private Button backButton;
 
-    private String projectName;
-    private String projectLocation;
-    private String projectDescription;
-    private Project createdProject;
-    private User currentUser;
+    public String projectName;
+    public String projectLocation;
+    public String projectDescription;
+    public Project createdProject;
+    public User currentUser;
+    public ArrayList<File> projectFiles = new ArrayList<File>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -58,49 +58,17 @@ public class NewProjectController3 implements Initializable
         {
             Stage stage = null;
             stage = (Stage) browseButton.getScene().getWindow();
-            DirectoryChooser dirChoose = new DirectoryChooser();
-            dirChoose.setInitialDirectory(new File(Main.getProjectsDir()));
-            dirChoose.setTitle("Choose Project Location");
-            File selectedDir = dirChoose.showDialog(stage);
-            if (selectedDir != null)
-            {
-                locationTextField.setText(selectedDir.getPath());
-                projectLocation = selectedDir.getAbsolutePath();
-            }
+            loadBrowser(stage);
         }
     }
 
     //Sends back to home screen
     @FXML private void onBackButtonClick(ActionEvent event)
     {
-        Stage stage = null;
-        Parent root = null;
+
         if (event.getSource() == backButton || event.getSource() == cancelButton)
         {
-            FXMLLoader loader = new FXMLLoader();
-            stage = (Stage) backButton.getScene().getWindow();
-            try
-            {
-                root = loader.load(getClass().getResource("/fxml/Home.fxml"));
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        if (root != null)
-        {
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setHeight(400);
-            stage.setWidth(600);
-            stage.setTitle("sQuire Home");
-            stage.show();
-        }
-        else
-        {
-            System.out.println("Null scene.");
+            loadHomeScene();
         }
     }
 
@@ -109,20 +77,38 @@ public class NewProjectController3 implements Initializable
         projectName = projectTitleTextField.getText();
         projectDescription = projectDescriptionTextArea.getText();
         projectLocation = locationTextField.getText() + File.separator + projectName;
-        ArrayList<File> projectFiles = new ArrayList<File>();
+
+        String fileLocation = initProjectFields(projectName, projectDescription, projectLocation);
+
+        copyMainFile(fileLocation);
+        loadEditorScene();
+
+    }
+
+
+
+    //__________________________________________________________________________________________
+//Helper functions
+    public String initProjectFields(String projectName, String projectDescription, String projectLocation)
+    {
         // Placeholder.
         String entryPointClassName = "Main.java";
         String fileLocation = projectLocation + File.separator + entryPointClassName;
         File projectDirectory = new File(projectLocation);
         projectDirectory.mkdir();
 
-        // Placeholder.
+        return fileLocation;
+    }
+
+    public void copyMainFile(String fileLocation)
+    {
         File file = new File(fileLocation);
         try
         {
             if (file.createNewFile())
             {
-                System.out.println("File created: " + fileLocation);
+
+                //System.out.println("File created: " + fileLocation);
 
                 // Copies the dummy file over
                 URL url = this.getClass().getResource("/Test_Files/Main.java");
@@ -150,10 +136,14 @@ public class NewProjectController3 implements Initializable
         {
             e.printStackTrace();
         }
+    }
 
+
+    public void loadEditorScene()
+    {
         FXMLLoader loader = new FXMLLoader();
         Stage stage = (Stage) finishButton.getScene().getWindow();
-        stage.setResizable(false);
+        //stage.setResizable(false);
         try
         {
             Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
@@ -178,5 +168,52 @@ public class NewProjectController3 implements Initializable
             e.printStackTrace();
         }
     }
+
+
+    //Go back to the home screen
+    public void loadHomeScene()
+    {
+        Stage stage = null;
+        Parent root = null;
+            FXMLLoader loader = new FXMLLoader();
+            stage = (Stage) backButton.getScene().getWindow();
+            try
+            {
+                root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+        if (root != null)
+        {
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setHeight(400);
+            stage.setWidth(600);
+            stage.setTitle("sQuire Home");
+            stage.show();
+        }
+        else
+        {
+            System.out.println("Null scene.");
+        }
+    }
+
+    //Load a directory browser
+    public void loadBrowser(Stage stage)
+    {
+        DirectoryChooser dirChoose = new DirectoryChooser();
+        dirChoose.setInitialDirectory(new File(Main.getProjectsDir()));
+        dirChoose.setTitle("Choose Project Location");
+        File selectedDir = dirChoose.showDialog(stage);
+        if (selectedDir != null)
+        {
+            locationTextField.setText(selectedDir.getPath());
+            projectLocation = selectedDir.getAbsolutePath();
+        }
+    }
+
 }
 
