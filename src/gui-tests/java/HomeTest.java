@@ -1,13 +1,14 @@
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.junit.Before;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
 
 import static org.testfx.api.FxAssert.verifyThat;
 
@@ -16,6 +17,30 @@ import static org.testfx.api.FxAssert.verifyThat;
  */
 public class HomeTest extends ApplicationTest
 {
+    // The parent node of the scene.
+    Node rootNode;
+
+    //A list of the names of the nodes to test.
+    private static ArrayList<String> nodeNamesToTest = new ArrayList<String>();
+
+    /**
+     * Add the name of nodes you want to test here.
+     */
+    @Before
+    public void setUpNodesToTest()
+    {
+        nodeNamesToTest.add("#recentProjectsListView");
+        nodeNamesToTest.add("#avatarImageView");
+        nodeNamesToTest.add("#newProjectHyperlink");
+        nodeNamesToTest.add("#openProjectHyperlink");
+        nodeNamesToTest.add("#browseProjectsHyperlink");
+        nodeNamesToTest.add("#settingsHyperlink");
+        nodeNamesToTest.add("#registerHyperlink");
+        nodeNamesToTest.add("#logInHyperlink");
+        // Added a bogus name to prove that it catches failures.
+        nodeNamesToTest.add("#sampleFail");
+    }
+
     /**
      * Starts the GUI application for testing.
      * @param stage
@@ -27,6 +52,7 @@ public class HomeTest extends ApplicationTest
         // This is returning null, thus the catch block is executing.
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+        rootNode = root;
         Scene scene = new Scene(root);
         stage.setTitle("sQuire Home");
         stage.setHeight(400);
@@ -48,45 +74,19 @@ public class HomeTest extends ApplicationTest
 //        verifyThat("#elementNameHere", NodeMatchers.isNotNull());
 //    }
 
+    /**
+     * Verifies that all of the important scene nodes have loaded properly
+     * by asserting that they are not null.
+     * @throws Exception
+     */
     @Test
-    public void verifyRecentProjectsListViewLoaded() throws Exception
+    public void verifyUiElementsLoaded() throws Exception
     {
-        verifyThat("#recentProjectsListView", NodeMatchers.isNotNull());
-    }
+        verifyThat(rootNode, NodeMatchers.isNotNull());
 
-    @Test
-    public void verifyAvatarImageViewLoaded() throws Exception
-    {
-        verifyThat("#avatarImageView", NodeMatchers.isNotNull());
-    }
-
-    @Test
-    public void verifyNewProjectHyperlinkLoaded() throws Exception
-    {
-        verifyThat("#newProjectHyperlink", NodeMatchers.isNotNull());
-    }
-
-    @Test
-    public void verifyOpenProjectHyperlinkLoaded() throws Exception
-    {
-        verifyThat("#openProjectHyperlink", NodeMatchers.isNotNull());
-    }
-
-    @Test
-    public void verifyRegisterHyperlinkLoaded() throws Exception
-    {
-        verifyThat("#registerHyperlink", NodeMatchers.isNotNull());
-    }
-
-    @Test
-    public void verifyLogInHyperlinkLoaded() throws Exception
-    {
-        verifyThat("#logInHyperlink", NodeMatchers.isNotNull());
-    }
-
-    @Test
-    public void verifySettingsHyperlinkLoaded() throws Exception
-    {
-        verifyThat("#settingsHyperlink", NodeMatchers.isNotNull());
+        for (String nodeName : nodeNamesToTest)
+        {
+            verifyThat(nodeName, NodeMatchers.isNotNull());
+        }
     }
 }
