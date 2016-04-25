@@ -1,3 +1,4 @@
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -6,8 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
+import org.omg.CORBA.Environment;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 
@@ -16,9 +17,9 @@ import java.util.ArrayList;
 import static org.testfx.api.FxAssert.verifyThat;
 
 /**
- * Created by Domn Werner on 4/25/2016.
+ * Created by Matthew Daniel on 4/26/2016.
  */
-public class HomeTest extends ApplicationTest
+public class NewProjectTest extends ApplicationTest
 {
     // The parent node of the scene.
     Node rootNode;
@@ -32,14 +33,15 @@ public class HomeTest extends ApplicationTest
     @Before
     public void setUpNodesToTest()
     {
-        nodeNamesToTest.add("#recentProjectsListView");
-        nodeNamesToTest.add("#avatarImageView");
-        nodeNamesToTest.add("#newProjectHyperlink");
-        nodeNamesToTest.add("#openProjectHyperlink");
-        nodeNamesToTest.add("#browseProjectsHyperlink");
-        nodeNamesToTest.add("#settingsHyperlink");
-        nodeNamesToTest.add("#registerHyperlink");
-        nodeNamesToTest.add("#logInHyperlink");
+
+        nodeNamesToTest.add("#projectTitleTextField");
+        nodeNamesToTest.add("#projectDescriptionTextArea");
+        nodeNamesToTest.add("#locationTextField");
+        nodeNamesToTest.add("#browseButton");
+        nodeNamesToTest.add("#finishButton");
+        nodeNamesToTest.add("#cancelButton");
+        nodeNamesToTest.add("#backButton");
+
         // Added a bogus name to prove that it catches failures.
         //nodeNamesToTest.add("#sampleFail");
 
@@ -62,16 +64,18 @@ public class HomeTest extends ApplicationTest
     {
         // This is returning null, thus the catch block is executing.
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
+        Parent root = loader.load(getClass().getResource("/fxml/NewProject2.fxml"));
         rootNode = root;
         Scene scene = new Scene(root);
-        stage.setTitle("sQuire Home");
-        stage.setHeight(400);
-        stage.setWidth(600);
+        stage.setTitle("New Project");
+        stage.setHeight(460);
+        stage.setWidth(610);
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
+
+
 
     /**
      * Verifies that all of the important scene nodes have loaded properly
