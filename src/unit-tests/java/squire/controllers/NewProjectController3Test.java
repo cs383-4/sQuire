@@ -73,10 +73,14 @@ public class NewProjectController3Test
     @Test
     public void testCopyMainFile() throws Exception
     {
+
         String filepath = (System.getProperty("user.dir") +
-                "/src/unit-tests/java/squire/controllers/ProjectLocationTest/CopyTestProject");
+                "/src/unit-tests/java/squire/controllers/ProjectLocationTest");
         File fileAtPath = new File(filepath);
         fileAtPath.mkdir();
+        filepath += "/CopyTestProject";
+        File fileAtPath2 = new File(filepath);
+        fileAtPath2.mkdir();
         filepath += "/Main.java";
         npc.copyMainFile(filepath);
 
