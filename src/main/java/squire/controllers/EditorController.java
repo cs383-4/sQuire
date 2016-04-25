@@ -170,7 +170,12 @@ public class EditorController implements Initializable
                      //   writeFileBackOnSwitchTab();
                         createNewTab(file, newTabCodeArea);
                         input = new Scanner(file);
-                        writeFile(input, newTabCodeArea);
+
+                        //Write the dummy file if it does not exist
+                        if(newTabCodeArea.getText().isEmpty())
+                        {
+                            writeFile(input, newTabCodeArea);
+                        }
 
                     }
                     catch (Exception ex)
@@ -258,7 +263,8 @@ public class EditorController implements Initializable
 
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
     // TODO: every time we switch tabs
-    public void setupMobWrite(CodeArea ca, String name) {
+    public void setupMobWrite(CodeArea ca, String name)
+    {
         ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, name);
         Main.getMobwriteClient().share(mobwriteComponent);
     }

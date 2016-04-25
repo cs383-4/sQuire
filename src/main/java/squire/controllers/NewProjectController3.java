@@ -137,6 +137,10 @@ public class NewProjectController3 implements Initializable
                 Files.copy(from, to, options);
                 projectFiles.add(toFile);
 
+
+
+
+
                 createdProject = new Project(projectName, currentUser, projectLocation, projectDescription, projectFiles, toFile);
                 currentUser.addProject(createdProject);
                 currentUser.setCurrentProject(createdProject);
