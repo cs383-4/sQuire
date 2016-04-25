@@ -8,6 +8,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
@@ -25,6 +26,8 @@ import static org.testfx.api.FxAssert.verifyThat;
  */
 public class EditorTest extends ApplicationTest
 {
+    @Rule JavaFXThreadingRule threadingRule = new JavaFXThreadingRule();
+
     // The parent node of the scene.
     Node rootNode;
 
