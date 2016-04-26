@@ -25,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 //import squire.FileList;
+import org.junit.Ignore;
 import squire.Main;
 import squire.Projects.Project;
 import squire.Users.User;

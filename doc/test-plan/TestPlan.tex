@@ -17,7 +17,7 @@
 \noindent Author: Domn Werner (wern0096) \\
 Class: CS383-01 \\
 Date:04/25/2016 \\
-Assignment: HW\#7 Test Plan
+Assignment: HW\#7 Test Plan Group Submission
 
 \title{sQuire Test Plan}
 
@@ -48,7 +48,7 @@ The purpose of this section of tests is to list and describe logic tests in the 
 
 \begin{table}[h]
 	\centering	
-	\caption{PasswordHashTest}
+	\caption{PasswordHashTest (wern0096)}
 	\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|} 
 		\hline
 		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
@@ -57,13 +57,15 @@ The purpose of this section of tests is to list and describe logic tests in the 
 	\end{tabular}
 \end{table}
 
-Other logic test tables here...
-
 \newpage
 
 \subsection{Results}
 
-The result of these tests should go here.
+\subsubsection{PasswordHashTest (wern0096)}
+
+\includegraphics[width=\textwidth]{PasswordHashTest} \\ \\
+
+This passed test indicates that we our hashing algorithm successfully validates a user's entered password with their hashed password, and properly creates non-colliding hashes. It also shows us that the createHash method takes 5 seconds to run, indicating a possible place for better optimization.
 
 \newpage
 
@@ -89,7 +91,7 @@ This section governs our GUI unit tests and the required output deemed as a ``pa
 	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|} 
 		\hline
 		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
-		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+		verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
 	\end{tabular}
 \end{table}
 
@@ -100,7 +102,20 @@ Other GUI Test tables here...\\
 \newpage
 \subsection{Results}
 
-The result of these tests should go here.
+\subsubsection{HomeTest}
+
+\includegraphics[width=\textwidth]{HomeTest} \\ \\
+
+This passed test indicates that all UI elements are loading properly. It does create a warning message about a mismatch of the JavaFX API and the runtime, however, and wee will remedy that next sprint.
+
+\newpage
+\subsubsection{EditorTest}
+
+\noindent\includegraphics[width=\textwidth]{EditorTest} \\
+
+This test currently fails due to it requiring initialization with data from another class. This will be better tested with an automation script, but it is still useful to know what data it requires to successfully initialize. Here is the following exception it throws:
+
+\includegraphics[width=\textwidth]{EditorTestException}
 
 
 \newpage
@@ -167,17 +182,32 @@ The result of these tests should go here.
 
 \newpage
 
-\section{Coverage Testing}
+\section{Coverage Testing (wern0096)}
 
 \subsection{Methodology}
 
-How are we doing it? We should just "Run with coverage" in IntelliJ and go through the program manually.
-
-\newpage
+The coverage test of sQuire was performed by running the program with the coverage testing option enabled in IntelliJ IDEA and a developer manually navigating through all of the functionality in the program. 
 
 \subsection{Results}
 
-Figure out a way of exporting the results from IntelliJ.
+The following report was then generated, showing usability per package: \\ \\
+
+\noindent\includegraphics[width=\textwidth]{CoverageTest}
+
+As indicated, most of the squire.controllers package was hit by our coverage test, indicating very little extraneous UI code. The chat server was not tested with this run, and the rest of the packages had about half of their functionalities hit, due to being heavily in development at the moment. As an example of the granularity of this report, let's examine the squire.controllers package to see what code didn't run during this test: \\ \\
+
+\noindent\includegraphics[width=\textwidth]{ControllerCoverageTest} 
+
+\newpage
+
+\noindent Delving further, let's see what code in the EditorController didn't run: \\ \\
+
+\noindent\includegraphics[width=\textwidth]{EditorControllerCoverage} \\ \\
+
+\noindent Lastly, we can get very granular and see exactly which lines of code didn't run. Here's an example of the updateItem() function's code and how the IntelliJ Coverage Report displays code that was hit with a green outline and code that wasn't hit with a red outline: \\ \\
+
+\noindent\includegraphics[width=\textwidth]{EditorControllerCoverageFunction}
+
 
 \newpage
 \section{Software Risk Issues (wern0096)}
@@ -224,17 +254,5 @@ The following items are deemed low risk to the security of users and to the usab
 	\item \textbf{Program Settings} \\ \\
 	This module involves settable user preferences that should persist between runs of sQuire. We plan to have the user's settings be saved locally as well as on the database, so that upon login, sQuire will update to conform to the user's preferences. Since there is redundancy to this module and its breakdown does not constitute a large hit to the functionality of sQuire, we deem it low risk.
 \end{itemize}
-
-\newpage
-\section{Features To Be Tested}
-
-Take the intersection of the SSRS document and what we are testing in our current tests.
-
-\newpage
-\section{Features Not To Be Tested}
-
-
-Take the intersection of the SSRS document and what we ARENT testing in our current tests. Make sure to explain WHY we aren't testing those pieces of functionality.
-
 
 \end{document}
