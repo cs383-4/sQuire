@@ -1,6 +1,5 @@
 create table o_project (
   id                            integer not null,
-  token                         varchar(40) not null,
   owner_id                      integer,
   name                          varchar(255),
   path                          varchar(255),
@@ -9,22 +8,23 @@ create table o_project (
   version                       integer not null,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,
-  constraint uq_o_project_token unique (token),
+  constraint uq_o_project_primary_file_id unique (primary_file_id),
   constraint pk_o_project primary key (id),
-  foreign key (owner_id) references o_user (id) on delete restrict on update restrict
+  foreign key (owner_id) references o_user (id) on delete restrict on update restrict,
+  foreign key (primary_file_id) references o_project_file (id) on delete restrict on update restrict
 );
 
 create table o_project_file (
   id                            integer not null,
-  file_id                       integer not null,
+  project_id                    integer,
   file                          longvarbinary,
   path                          varchar(255),
   description                   varchar(255),
   version                       integer not null,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,
-  constraint uq_o_project_file_file_id unique (file_id),
-  constraint pk_o_project_file primary key (id)
+  constraint pk_o_project_file primary key (id),
+  foreign key (project_id) references o_project (id) on delete restrict on update restrict
 );
 
 create table o_session (

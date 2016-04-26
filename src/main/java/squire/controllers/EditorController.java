@@ -35,6 +35,7 @@ import java.awt.*;
 import java.io.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -54,7 +55,7 @@ public class EditorController implements Initializable
     @FXML
     private TextArea editorTextArea;
 
- //   FileList fl = new FileList();
+    @FXML private Button saveButton;
 
     // Compilation vars.
     @FXML
@@ -67,8 +68,11 @@ public class EditorController implements Initializable
     private User currentUser;
 
     private File oldFile;
+    private ArrayList<Tab> openTabs = new ArrayList<>();
 
-    private ShareJTextComponent mobwriteComponent;
+    private CodeArea currentCodeArea;
+
+//    private ShareJTextComponent mobwriteComponent;
 
     PrintStream compilationOutputStream;
     private JavaCompiler compiler;
@@ -85,7 +89,6 @@ public class EditorController implements Initializable
         currentProject = currentUser.getCurrentProject();
         compilationOutputTextArea.setWrapText(true);
         setupFileList();
-        setupMobWrite();
     }
 
     private void onAvatarImageViewClick() {
@@ -106,8 +109,10 @@ public class EditorController implements Initializable
     }
 
     @FXML
-    private void onHomeButtonClick(ActionEvent event) {
-        try {
+    private void onHomeButtonClick(ActionEvent event)
+    {
+        try
+        {
             FXMLLoader loader = new FXMLLoader();
             Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
             Stage stage = (Stage) homeButton.getScene().getWindow();
@@ -169,9 +174,16 @@ public class EditorController implements Initializable
                         CodeArea newTabCodeArea = new CodeArea();
 
                      //   writeFileBackOnSwitchTab();
+
                         createNewTab(file, newTabCodeArea);
                         input = new Scanner(file);
-                        writeFile(input, newTabCodeArea);
+
+                        //Write the dummy file if it does not exist
+                        String getText = getText(newTabCodeArea);
+                        if(getText.isEmpty())
+                        {
+                            writeFile(input, newTabCodeArea);
+                        }
 
                     }
                     catch (Exception ex)
@@ -190,77 +202,112 @@ public class EditorController implements Initializable
     public void createNewTab(File file, CodeArea newTabCodeArea)
     {
 
+        Boolean isInList = false;
         Tab newTab = new Tab();
         newTab.setText(file.getName());
 
-        newTabCodeArea.setLayoutX(167.0);
-        newTabCodeArea.setLayoutY(27.0);
-        newTabCodeArea.setPrefHeight(558.0);
-        newTabCodeArea.setPrefWidth(709.0);
+         for (Tab t : editorTabPane.getTabs())
+         {
+             if (t.getText().equals( newTab.getText()))
+             {
 
-        AnchorPane ap = new AnchorPane(newTabCodeArea);
+                 isInList = true;
+                 switchToTab(t);
+             }
+
+         }
+        if (isInList == false)
+         {
+
+            newTabCodeArea.setLayoutX(167.0);
+            newTabCodeArea.setLayoutY(27.0);
+            newTabCodeArea.setPrefHeight(558.0);
+            newTabCodeArea.setPrefWidth(709.0);
+
+            setupMobWrite(newTabCodeArea, currentProject.getProjectName() + ":" + file.getName());
+            AnchorPane ap = new AnchorPane(newTabCodeArea);
 
 
-        //Setup information from FXML
-//                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-//                    <children>
-//                    <CodeArea fx:id="sourceCodeTextArea" layoutX="167.0" layoutY="27.0" prefHeight="558.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-//                    </children>
-//                    </AnchorPane>
+            //Setup information from FXML
+            //                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            //                    <children>
+            //                    <CodeArea fx:id="sourceCodeTextArea" layoutX="167.0" layoutY="27.0" prefHeight="558.0" prefWidth="709.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            //                    </children>
+            //                    </AnchorPane>
 
-        ap.setMinHeight(0.0);
-        ap.setMinWidth(0.0);
-        ap.setPrefHeight(180.0);
-        ap.setPrefWidth(200.0);
+            ap.setMinHeight(0.0);
+            ap.setMinWidth(0.0);
+            ap.setPrefHeight(180.0);
+            ap.setPrefWidth(200.0);
 
 
-        ap.setBottomAnchor(newTabCodeArea, 0.0);
-        ap.setTopAnchor(newTabCodeArea, 0.0);
-        ap.setRightAnchor(newTabCodeArea, 0.0);
-        ap.setLeftAnchor(newTabCodeArea, 0.0);
+            ap.setBottomAnchor(newTabCodeArea, 0.0);
+            ap.setTopAnchor(newTabCodeArea, 0.0);
+            ap.setRightAnchor(newTabCodeArea, 0.0);
+            ap.setLeftAnchor(newTabCodeArea, 0.0);
 
-        newTab.setContent(ap);
-        editorTabPane.getTabs().add(newTab);
+            newTab.setContent(ap);
+            editorTabPane.getTabs().add(newTab);
+
+        }
+        //TODO: Fix this!
+        currentCodeArea = newTabCodeArea;
+    }
+
+
+    public void switchToTab(Tab t)
+    {
+        editorTabPane.getSelectionModel().select(t);
     }
 
     // Write the file to the CodeArea
     public void writeFile(Scanner input, CodeArea newTabCodeArea)
     {
+        String fullText = "";
         // Open the file on click
         newTabCodeArea.positionCaret(0);
         while (input.hasNextLine())
         {
             String line = input.nextLine();
-            newTabCodeArea.appendText(line + "\n");
+            fullText += (line + "\n");
         }
+
+        //TODO: COMMENT THIS OUT FOR DEMO
+        newTabCodeArea.replaceText(fullText);
         input.close();
     }
 
-    public void writeFileBackOnSwitchTab()
+    public String getText(CodeArea ca)
     {
-        //                        // Basic way to write files back
-//                        Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
-//                        oldFilePath = currentProject.getProjectPath() + File.separator + curTab.getText();
-//                        oldFile = new File (oldFilePath);
-//                        try
-//                        {
-//                            BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath )); //+ ".tmp"));
-//                            bf.write(newTabCodeArea.getText());
-//                            bf.flush();
-//                            bf.close();
-//                        }
-//                        catch (IOException e)
-//                        {
-//                            e.printStackTrace();
-//                        }
+        return ca.getText();
+    }
+
+    @FXML private void onSaveButtonClick(ActionEvent event)
+    {
+                                // Basic way to write files back
+        String oldFilePath;
+        Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
+        oldFilePath = currentProject.getProjectPath() + File.separator + curTab.getText();
+        oldFile = new File (oldFilePath);
+        try
+        {
+            BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath )); //+ ".tmp"));
+            bf.write(currentCodeArea.getText());
+            bf.flush();
+            bf.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
     // TODO: every time we switch tabs
-    public void setupMobWrite()
+    public void setupMobWrite(CodeArea ca, String name)
     {
-        mobwriteComponent = new ShareJTextComponent(sourceCodeTextArea, currentProject.getProjectName());
+        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, name);
         Main.getMobwriteClient().share(mobwriteComponent);
     }
 

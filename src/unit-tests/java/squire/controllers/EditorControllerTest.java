@@ -1,10 +1,13 @@
 package squire.controllers;
 
+import javafx.application.Application;
 import javafx.stage.DirectoryChooser;
 import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import squire.Main;
 
 import java.io.File;
 
@@ -54,8 +57,6 @@ public class EditorControllerTest extends TestCase
     @Test
     public void testCompileCode() throws Exception
     {
-        File jdkPath = new File(System.getenv("JAVA_HOME"));
-        assertEquals("I:\\Program Files (x86)\\Java\\jdk1.8.0_20\\bin", jdkPath.getAbsolutePath());
-    }
 
+    }
 }

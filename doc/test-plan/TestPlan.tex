@@ -1,0 +1,188 @@
+\documentclass[14pt, a4paper]{article}
+
+\usepackage{float}
+\usepackage{framed}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{tabto}
+\usepackage[a4paper]{geometry}
+\usepackage{array}
+\usepackage{tikz}
+\graphicspath{ {images/}}
+\geometry{a4paper,total={210mm,297mm},left=30mm,right=30mm,top=30mm,bottom=30mm}
+
+\begin{document}
+
+\noindent Author: Domn Werner (wern0096) \\
+Class: CS383-01 \\
+Date:04/25/2016 \\
+Assignment: HW\#7 Test Plan
+
+\title{sQuire Test Plan}
+
+\tableofcontents
+
+\newpage
+
+\section{MTP01 - sQuire Master Test Plan}
+
+\section{References}
+
+This test plan references the following documents:
+\begin{itemize}
+	\item sQuire SSRS document.
+\end{itemize}
+
+\section{Introduction}
+
+The purpose of this test plan is to provide a outline and provide reference for developers testing the complete sQuire program. This document is currently a standalone, but will be integrated with the SSRS document before the final submission. This document covers sQuire's logic tests, GUI tests, back-end tests, coverage tests, and any additional testing methods deemed necessary to ascertain that the complete sQuire software program adheres to our group's acceptable quality standard.
+
+\newpage
+
+\section{Logic Testing}
+
+The purpose of this section of tests is to list and describe logic tests in the sQuire program and the required output deemed as a ``pass''. These include algorithmic functions, arithmetic functions, validator functions, and other pieces of functionality that can easily be decoupled from the main project and/or reused as part of different projects.
+
+\subsection{Test Classes}
+
+\begin{table}[h]
+	\centering	
+	\caption{PasswordHashTest}
+	\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|} 
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		createHash() & Verifies that the hashing algorithm does not create colliding hashes. & A false assertion that all hashes created inside this function are different. \\\hline
+		validatePasswor() & Verifies that the PasswordHash.validatePassword() function correctly authenticates a user based on their hashes password. & A true assertion that the a valid password and hash were validated. A false assertion that an invalid password and hash were validated.  \\\hline
+	\end{tabular}
+\end{table}
+
+Other logic test tables here...
+
+\newpage
+
+\subsection{Results}
+
+The result of these tests should go here.
+
+\newpage
+
+\section{GUI Testing}
+
+This section governs our GUI unit tests and the required output deemed as a ``pass''. Since we are using the JavaFX framework, every test case requires an initialization step of loading the .fxml file for the GUI scene to be tested. Once it is loaded we perform tests on individual parts of the scene using the TestFX libraries that integrate with JUnit.
+
+\subsection{Test Classes}
+
+\begin{table}[h]
+	\centering	
+	\caption{HomeTest (wern0096)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|} 
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering	
+	\caption{EditorTest (wern0096)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|} 
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+	\end{tabular}
+\end{table}
+
+Other GUI Test tables here...\\
+
+
+
+\newpage
+\subsection{Results}
+
+The result of these tests should go here.
+
+
+\newpage
+\section{Back-end Testing}
+
+This section governs any tests aimed at our database(s) or server(s) and the required output deemed as a ``pass''. \\
+
+\subsection{Test Classes}
+
+\begin{table}[h]
+	\centering
+	\caption{MobWriteClientTest (ratc8795)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+	\end{tabular}
+\end{table}
+\begin{table}[h]
+	\centering
+	\caption{MobWriteServerTest (ratc8795)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+	\end{tabular}
+\end{table}
+\begin{table}[h]
+	\centering
+	\caption{SessionTest (ratc8795)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+	\end{tabular}
+\end{table}
+\begin{table}[h]
+	\centering
+	\caption{UserTest (ratc8795)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+	\end{tabular}
+\end{table}
+
+\newpage
+
+\subsection{Results}
+
+The result of these tests should go here.
+
+\newpage
+
+\section{Coverage Testing}
+
+\subsection{Methodology}
+
+How are we doing it? We should just "Run with coverage" in IntelliJ and go through the program manually.
+
+\newpage
+
+\subsection{Results}
+
+Figure out a way of exporting the results from IntelliJ.
+
+\newpage
+\section{Software Risk Issues (wern0096)}
+
+What are the critical areas of our software?
+
+
+\newpage
+\section{Features To Be Tested}
+
+Take the intersection of the SSRS document and what we are testing in our current tests.
+
+\newpage
+\section{Features Not To Be Tested}
+
+
+Take the intersection of the SSRS document and what we ARENT testing in our current tests. Make sure to explain WHY we aren't testing those pieces of functionality.
+
+
+\end{document}

@@ -9,6 +9,7 @@ import squire.Projects.Project;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
@@ -21,8 +22,9 @@ import java.util.ArrayList;
 public class ProjectFile extends BaseModel {
     public static final ProjectFileFinder find = new ProjectFileFinder();
 
-    @Column(nullable = false, unique = true) //field cannot be empty, and must be unique
-    private Integer fileID;
+    @Column()
+    @ManyToOne
+    private squire.Users.Project project;
 
     @Column()
     private File file;

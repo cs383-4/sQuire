@@ -77,6 +77,9 @@ public class Session extends BaseModel {
         this.expires = new Timestamp(new Date().getTime() + SESSION_LENGTH);
     }
 
+    public void setExpires(Timestamp t) {
+        expires = t;
+    }
     /**
      * Generate an active session for the given user
      * Note: you should check the password with User.find.authenticate first!

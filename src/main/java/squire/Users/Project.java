@@ -6,10 +6,7 @@ package squire.Users;
 import squire.BaseModel;
 import squire.Projects.JavaSourceFromString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -20,8 +17,6 @@ public class Project extends BaseModel {
 
 // Database code
 
-    @Column(nullable = false, unique = true)
-    private UUID token;
 
     @Column(nullable = false)
     @ManyToOne
@@ -40,17 +35,12 @@ public class Project extends BaseModel {
     private ArrayList<JavaSourceFromString> importedFiles;
 
     @Column()
-    private Integer primaryFileID;
+    @OneToOne
+    private ProjectFile primaryFile;
+
+
 
 // Legacy code from the non-db Project class, just in case
-
-    public String getToken() {
-        return token.toString();
-    }
-
-    private void generateToken() {
-        this.token = UUID.randomUUID();
-    }
 
     public User getOwner() {
         return owner;
