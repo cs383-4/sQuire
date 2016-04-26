@@ -38,7 +38,7 @@ public class SettingsDialogController implements Initializable
         Stage stage = null;
         stage = (Stage) browseButton.getScene().getWindow();
         DirectoryChooser dirChoose = new DirectoryChooser();
-        dirChoose.setTitle("Choose Project Location");
+        dirChoose.setTitle("Choose JDK Location");
         File selectedDir = dirChoose.showDialog(stage);
         if (selectedDir != null)
         {
