@@ -189,7 +189,41 @@ This test currently fails due to it requiring initialization with data from anot
 
 This section governs any tests aimed at our database(s) or server(s) and the required output deemed as a ``pass''. \\
 
+One of the major libraries we use on the server (MobWrite) contains a full test suite written in JUnit, however, since we use the library as-is, without any modifications, we do not integrate these tests with our test suite. Instead, we just test to see if the client can successfully connect to the server, as that should be the only variable.
 \subsection{Test Classes}
+
+
+\begin{table}[h]
+	\centering
+	\caption{MobWriteServerTest (ratc8795)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		connectToServer() & Checks to see if the server can be connected to. & No exceptions thrown by the Connection.connect() function.\\\hline
+	\end{tabular}
+\end{table}
+\begin{table}[h]
+	\centering
+	\caption{MobWriteClientTest (ratc8795)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		testComputeSyncInterval() & Tests that the sync interval is calculated correctly. & The sync interal is calculated correctly under a variety of conditions. \\\hline
+		testUniqueId() & Tests that unique IDs are created correctly. & The ID generated is 8 characters long, and two seperate IDs are unique. \\\hline
+	\end{tabular}
+\end{table}
+\begin{table}[h]
+	\centering
+	\caption{SessionTest (ratc8795)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		isExpired() & Check that the isExpired funciton works correctly. & A not-expired session returns false, and a expired session returns true. \\\hline
+		logout() & Check that logout function works correctly. & Once the logout function is called on the session, the session no longer exists. \\\hline
+		activeSession() & Check the activeSession function returns an active session given a token. & The correct session is returned for a given token, a not active session won't be returned, and a non exsistant token won't return a session. \\\hline
+	\end{tabular}
+\end{table}
+
 
 \begin{table}[h]
 	\centering
@@ -210,45 +244,6 @@ This section governs any tests aimed at our database(s) or server(s) and the req
 		VerifySocektConnection() & Verify that the client was able to connect with the specified host and and port number & No exception is thrown when connecting to the socket. \\\hline
 	\end{tabular}
 \end{table}
-
-\begin{table}[h]
-	\centering
-	\caption{MobWriteClientTest (ratc8795)}
-	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
-		\hline
-		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
-		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
-	\end{tabular}
-\end{table}
-\begin{table}[h]
-	\centering
-	\caption{MobWriteServerTest (ratc8795)}
-	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
-		\hline
-		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
-		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
-	\end{tabular}
-\end{table}
-\begin{table}[h]
-	\centering
-	\caption{SessionTest (ratc8795)}
-	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
-		\hline
-		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
-		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
-	\end{tabular}
-\end{table}
-\begin{table}[h]
-	\centering
-	\caption{UserTest (ratc8795)}
-	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
-		\hline
-		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
-		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
-	\end{tabular}
-\end{table}
-
-
 \begin{table}[h]
 	\centering
 	\caption{ProjectDatabaseTest (cart1189)}
@@ -265,6 +260,55 @@ This section governs any tests aimed at our database(s) or server(s) and the req
 
 
 \newpage
+
+\newpage
+
+\subsection{Results}
+
+\begin{table}[h]
+	\centering
+	\caption{MobWriteServerTest (ratc8795)}
+	\begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Result} & \textbf{Description}  \\\hline
+		connetToServer() & PASS & \\\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{MobWriteClientTest (ratc8795)}
+	\begin{tabular}{|p{6cm}|p{3cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Result} & \textbf{Description}  \\\hline
+		testComputeSyncInterval() & PASS & \\\hline
+		testUniqueID() & PASS & \\\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{SessionTest (ratc8795)}
+	\begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Result} & \textbf{Description}  \\\hline
+		isExpired() & PASS & \\\hline
+		logout() & PASS & \\\hline
+		activeSession() & PASS & \\\hline
+	\end{tabular}
+\end{table}
+\begin{table}[h]
+	\centering
+	\caption{UserTest (ratc8795)}
+	\begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Result} & \textbf{Description}  \\\hline
+		getSetUsername() & PASS & \\\hline
+		setCheckPassword() & PASS & \\\hline
+		authenticate() & PASS & \\\hline
+		userQuery() & PASS & \\\hline
+	\end{tabular}
+\end{table}
 
 \section{Coverage Testing (wern0096)}
 
