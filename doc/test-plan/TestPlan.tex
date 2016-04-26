@@ -99,6 +99,21 @@ Other logic test tables here...
 		  \\\hline
 	\end{tabular}
 \end{table}
+
+
+\begin{table}[h]
+	\centering	
+	\caption{NewProjectControllerTest (dani2918)}
+	\begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|} 
+		\hline
+		\textbf{Function Name} & \textbf{Result} & \textbf{Description}  \\\hline
+		testInitProjectFields() & FAILURE & The test fails when attempting to create a project based upon the empty string as a title. We will have to implement logic to ensure that a user enters a project title in the appropriate field. This is the only case of those tested which caused a failure.
+		  \\\hline
+		  testCopyMainFile() & PASS & The copied file existed with multiple attempts.
+		  \\\hline
+	\end{tabular}
+\end{table}
+
 The result of these tests should go here.
 
 \newpage
@@ -129,6 +144,17 @@ This section governs our GUI unit tests and the required output deemed as a ``pa
 	\end{tabular}
 \end{table}
 
+\begin{table}[h]
+	\centering	
+	\caption{NewProjectTest (dani2918)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|} 
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+	\end{tabular}
+\end{table}
+
+
 Other GUI Test tables here...\\
 
 
@@ -137,6 +163,16 @@ Other GUI Test tables here...\\
 \subsection{Results}
 
 The result of these tests should go here.
+
+\begin{table}[h]
+	\centering	
+	\caption{NewProjectTest (dani2918)}
+	\begin{tabular}{|p{5cm}|p{3cm}|p{4cm}|} 
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		verifyUiElementsLoaded() & PASS & No exceptions were thrown after loading all elements from the FXML file. \\\hline
+	\end{tabular}
+\end{table}
 
 
 \newpage
@@ -218,48 +254,8 @@ Figure out a way of exporting the results from IntelliJ.
 \newpage
 \section{Software Risk Issues (wern0096)}
 
-\subsection{High Risk}
+What are the critical areas of our software?
 
-The following items are deemed high risk to the security of users and to the usability and quality of the sQuire software:
-
-\begin{itemize}
-	\item \textbf{MobWrite Server and Client} \\ \\
-	Our collaborative editing relies on Google's MobWrite software library. We are rating it high risk because it is the core of the collaborative editing functionality, and it is also a third-party tool with a high impact on the functionality of our product. This module also incorporates the diff-match-patch algorithm running on clients' machines that talks to our Azure server that broadcasts text changes from one client to the rest of the clients. Since it will be sending code over the internet to and from the server, the security implications for all machines involved are very serious. As such, we plan to have extensive testing and review of code using this module.
-	\item \textbf{Chat Client} \\ \\
-	Our chat client is simply a Java application running indefinitely in the same Azure server as the MobWrite server. Nevertheless, it is broadcasting possibly confidential data through the internet and should have the proper encryption and security reviews as the rest of the high risk items.
-	\item \textbf{JavaFX} \\ \\
-	The JavaFX framework is also core to our program. Since it has been used to build most of the user interface, it will require great usability and coverage testing to make sure that it is friendly and intuitive to our users. The breakdown of the user interface would essentially render the rest of the program useless. Thus, it receives a high risk rating.
-	\item \textbf{Database Credentials} \\ \\
-	The project uses a SQLite database for storing of user credentials and project information. We rate the security of user and project credentials in the database as high risk. In order to protect the confidentiality of user credentials and integrity of user projects, we will have to adhere to database security best practices such as salting and hashing stored credentials, encrypting traffic over the internet, and ensuring SQL-injection attacks are mitigated.
-\end{itemize}
-
-\subsection{Medium Risk}
-
-The following items are deemed medium risk to the security of users and to the usability and quality of the sQuire software:
-
-\begin{itemize}
-	\item \textbf{Database Storage and Ebean ORM} \\ \\
-	The non-confidential data stored in the database is rated as medium risk. This is because project data is also stored locally, and breakdown of the database storage functionality would not severely reduce core functionality of the sQuire software. However, it would still significantly hinder collaborative functionality. To address this, we plan on extensively testing database commands with unit tests and code reviews.
-	
-	\item \textbf{Code Compilation} \\ \\
-	Whenever code compilation is involved, security becomes a concern. However, there is not code being executed remotely, so the security risks become much smaller, thus earning this module a medium rating. Compilation in sQuire will rely on the user reviewing their code for malicious intent before executing. We plan on implementing tools for the user to easily track changes to the code in order to aid in the review process if we have time. Also, we will have unit tests making sure that the user is properly notified of code errors and their location(s).
-	
-	\item \textbf{Testing Modules} \\ \\
-	We are putting testing modules themselves as a medium risk item because of the sheer complexity of testing the user interface with JavaFX and TestFX, another open source framework. Since the user interface is rated as a high-risk item, we believe that properly testing it is at least a medium risk item to the proper functionality of our program. We didn't rate it as high-risk, because there are many ways of testing the user interface that are less complex but take more time.
-\end{itemize}
-
-\subsection{Low Risk}
-
-The following items are deemed low risk to the security of users and to the usability and quality of the sQuire software:
-
-\begin{itemize}
-	\item \textbf{Editor Features} \\ \\
-	This module features some complicated code that will come from third-party open sources such as search/replace, syntax highlighting, and auto-complete. However, failure of this module does not severely endanger users' security or the core functionality of the software. As such, it earns a low risk rating. This module will require extensive unit testing, however.
-	\item \textbf{Local File Structure} \\ \\
-	The local file structure stores user's projects locally in the form of a folder for each project. We rate this module as a low risk module because even if the local files were corrupted or deleted, the user's projects/files can still be restored from the database, and the program has code to handle such a case. Nevertheless, we plan to have various unit tests documenting valid/invalid file structures that we can then create code to handle such cases.
-	\item \textbf{Program Settings} \\ \\
-	This module involves settable user preferences that should persist between runs of sQuire. We plan to have the user's settings be saved locally as well as on the database, so that upon login, sQuire will update to conform to the user's preferences. Since there is redundancy to this module and its breakdown does not constitute a large hit to the functionality of sQuire, we deem it low risk.
-\end{itemize}
 
 \newpage
 \section{Features To Be Tested}
