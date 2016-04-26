@@ -255,7 +255,7 @@ public class EditorController implements Initializable
     }
 
 
-    public void switchToTab(Tab t)
+    private void switchToTab(Tab t)
     {
         editorTabPane.getSelectionModel().select(t);
     }
