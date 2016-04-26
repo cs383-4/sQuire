@@ -168,7 +168,7 @@ public class EditorController implements Initializable
                         // TODO: get this string to be the actual path of the file
                         String newFilePath = currentProject.getProjectPath() + File.separator + selectedItem
                                 .getValue();
-                        //String oldFilePath = "";
+
 
                         File file = new File(newFilePath);
                         CodeArea newTabCodeArea = new CodeArea();

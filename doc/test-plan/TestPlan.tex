@@ -57,12 +57,48 @@ The purpose of this section of tests is to list and describe logic tests in the 
 	\end{tabular}
 \end{table}
 
+
+\begin{table}[h]
+	\centering	
+	\caption{EditorControllerTest (dani2918)}
+	\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|} 
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		testSetupMobWrite() & Verifies that we can set up mobwrite components with various names. & Successful creation of mobwrite components with various names constitutes a success. 
+		  \\\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering	
+	\caption{NewProjectControllerTest (dani2918)}
+	\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|} 
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		testInitProjectFields() & Verifies that projects with various names and descriptions (in the form of strings due to the controller class's use of strings from TextFields) are properly created. & Successful creation of project directory inside a test directory constitutes a passing test.
+		  \\\hline
+		  testCopyMainFile() & Verifies that the initial dummy Main "Hello World" class is successfully copied into a directory. & Existence of the file at the specified location constitutes a passing test.
+		  \\\hline
+	\end{tabular}
+\end{table}
+
 Other logic test tables here...
 
 \newpage
 
 \subsection{Results}
 
+
+\begin{table}[h]
+	\centering	
+	\caption{EditorControllerTest (dani2918)}
+	\begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|} 
+		\hline
+		\textbf{Function Name} & \textbf{Result} & \textbf{Description}  \\\hline
+		testSetupMobWrite() & FAILURE & Attempting to create a new CodeArea, which the setupMobWrite function requires as a parameter, was not working in the test class. Further investigation will be required to determine whether the function works properly.
+		  \\\hline
+	\end{tabular}
+\end{table}
 The result of these tests should go here.
 
 \newpage
