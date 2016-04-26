@@ -226,7 +226,11 @@ This section governs any tests aimed at our database(s) or server(s) and the req
 	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
 		\hline
 		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
-		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+		testAddProject() & Checks the ability to create and save new Project objects to their database table. & No exceptions thrown during Project initialization or database save(). The new Project entry is in the table during the test. \\\hline
+		testRemoveProject() & Checks the ability to remove Project object entries from their database table. & No exceptions thrown during Project initialization or database save(). The Project in question is removed from the table by the the end of the test. \\\hline
+		testGetSetTextFields() & Checks ability to set each string field of a Project database entry, and retrieve those fields from the database. & No exceptions thrown by the test. Each retrieved value matches the value it was set to. \\\hline
+		%func() & Desc & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+		%func() & Desc & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
 	\end{tabular}
 \end{table}
 
