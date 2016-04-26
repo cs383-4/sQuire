@@ -93,22 +93,5 @@ public class NewProjectController3Test
         assertTrue("No file!: " + filepath, fileAtPath.exists());
 
     }
-
-    @Test
-    public void testLoadEditorScene() throws Exception
-    {
-
-    }
-
-    @Test
-    public void testLoadHomeScene() throws Exception
-    {
-
-    }
-
-    @Test
-    public void testLoadBrowser() throws Exception
-    {
-
-    }
+    
 }

@@ -13,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import squire.Main;
+import squire.Users.Session;
+import squire.Users.User;
 
 import java.awt.*;
 import java.util.ResourceBundle;
@@ -50,8 +53,18 @@ public class LogInDialogController implements Initializable
     @FXML private void onLogInButtonClick(ActionEvent event)
     {
         thisStage = (Stage)logInButton.getScene().getWindow();
-        System.out.println("Log in button clicked.");
-        thisStage.close();
+
+        User u = User.find.authenticate(usernameTextField.getText(), passwordPasswordField.getText());
+
+        if(u != null) {
+
+
+            Session Sessvar = Session.login(u);
+
+            Main.SessID = Sessvar.getToken();
+
+            thisStage.close();
+        }
     }
 
     @FXML private void onRegisterHyperlinkClick(ActionEvent event)
