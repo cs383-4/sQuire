@@ -29,11 +29,11 @@ public class NewProjectController3Test
 
     }
 
-    @Test
-    public void testInitialize() throws Exception
-    {
-
-    }
+//    @Test
+//    public void testInitialize() throws Exception
+//    {
+//
+//    }
 
 
     //Fails if we enter an empty string

@@ -57,6 +57,33 @@ The purpose of this section of tests is to list and describe logic tests in the 
 	\end{tabular}
 \end{table}
 
+
+\begin{table}[h]
+	\centering
+	\caption{EditorControllerTest (dani2918)}
+	\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		testSetupMobWrite() & Verifies that we can set up mobwrite components with various names. & Successful creation of mobwrite components with various names constitutes a success.
+		  \\\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{NewProjectControllerTest (dani2918)}
+	\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		testInitProjectFields() & Verifies that projects with various names and descriptions (in the form of strings due to the controller class's use of strings from TextFields) are properly created. & Successful creation of project directory inside a test directory constitutes a passing test.
+		  \\\hline
+		  testCopyMainFile() & Verifies that the initial dummy Main "Hello World" class is successfully copied into a directory. & Existence of the file at the specified location constitutes a passing test.
+		  \\\hline
+	\end{tabular}
+\end{table}
+
+Other logic test tables here...
+
 \newpage
 
 \subsection{Results}
@@ -66,6 +93,31 @@ The purpose of this section of tests is to list and describe logic tests in the 
 \includegraphics[width=\textwidth]{PasswordHashTest} \\ \\
 
 This passed test indicates that we our hashing algorithm successfully validates a user's entered password with their hashed password, and properly creates non-colliding hashes. It also shows us that the createHash method takes 5 seconds to run, indicating a possible place for better optimization.
+
+\begin{table}[h]
+	\centering
+	\caption{EditorControllerTest (dani2918)}
+	\begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Result} & \textbf{Description}  \\\hline
+		testSetupMobWrite() & FAILURE & Attempting to create a new CodeArea, which the setupMobWrite function requires as a parameter, was not working in the test class. Further investigation will be required to determine whether the function works properly.
+		  \\\hline
+	\end{tabular}
+\end{table}
+
+
+\begin{table}[h]
+	\centering
+	\caption{NewProjectControllerTest (dani2918)}
+	\begin{tabular}{|p{3cm}|p{3cm}|p{9cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Result} & \textbf{Description}  \\\hline
+		testInitProjectFields() & FAILURE & The test fails when attempting to create a project based upon the empty string as a title. We will have to implement logic to ensure that a user enters a project title in the appropriate field. This is the only case of those tested which caused a failure.
+		  \\\hline
+		  testCopyMainFile() & PASS & The copied file existed with multiple attempts.
+		  \\\hline
+	\end{tabular}
+\end{table}
 
 \newpage
 
@@ -95,9 +147,15 @@ This section governs our GUI unit tests and the required output deemed as a ``pa
 	\end{tabular}
 \end{table}
 
-Other GUI Test tables here...\\
-
-
+\begin{table}[h]
+	\centering
+	\caption{NewProjectTest (dani2918)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+	\end{tabular}
+\end{table}
 
 \newpage
 \subsection{Results}
@@ -116,6 +174,16 @@ This passed test indicates that all UI elements are loading properly. It does cr
 This test currently fails due to it requiring initialization with data from another class. This will be better tested with an automation script, but it is still useful to know what data it requires to successfully initialize. Here is the following exception it throws:
 
 \includegraphics[width=\textwidth]{EditorTestException}
+
+\begin{table}[h]
+	\centering
+	\caption{NewProjectTest (dani2918)}
+	\begin{tabular}{|p{5cm}|p{3cm}|p{4cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		verifyUiElementsLoaded() & PASS & No exceptions were thrown after loading all elements from the FXML file. \\\hline
+	\end{tabular}
+\end{table}
 
 
 \newpage
@@ -169,10 +237,33 @@ This section governs any tests aimed at our database(s) or server(s) and the req
 	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
 		\hline
 		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
-		%verifyUiElementsLoaded() & Checks that every UI element loaded properly. & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+		testAddProject() & Checks the ability to create and save new Project objects to their database table. & No exceptions thrown during Project initialization or database save(). The new Project entry is in the table during the test. \\\hline
+		testRemoveProject() & Checks the ability to remove Project object entries from their database table. & No exceptions thrown during Project initialization or database save(). The Project in question is removed from the table by the the end of the test. \\\hline
+		testGetSetTextFields() & Checks ability to set each string field of a Project database entry, and retrieve those fields from the database. & No exceptions thrown by the test. Each retrieved value matches the value it was set to. \\\hline
+		%func() & Desc & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
+		%func() & Desc & No exceptions thrown by the verifyThat$\left(\right)$ function calls. \\\hline
 	\end{tabular}
 \end{table}
 
+\begin{table}[h]
+	\centering
+	\caption{ChatServerTest (gent7104)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		VerifyConnection() & Verify that the a connection has been made & No exception is thrown when testconnection() is called. \\\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[h]
+	\centering
+	\caption{ChatClientTest (gent7104)}
+	\begin{tabular}{|p{4cm}|p{5cm}|p{6cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Description} & \textbf{Pass Criteria}  \\\hline
+		VerifySocektConnection() & Verify that the client was able to connect with the specified host and and port number & No exception is thrown when connecting to the socket. \\\hline
+	\end{tabular}
+\end{table}
 
 \newpage
 
@@ -186,7 +277,7 @@ The result of these tests should go here.
 
 \subsection{Methodology}
 
-The coverage test of sQuire was performed by running the program with the coverage testing option enabled in IntelliJ IDEA and a developer manually navigating through all of the functionality in the program. 
+The coverage test of sQuire was performed by running the program with the coverage testing option enabled in IntelliJ IDEA and a developer manually navigating through all of the functionality in the program.
 
 \subsection{Results}
 
@@ -196,7 +287,7 @@ The following report was then generated, showing usability per package: \\ \\
 
 As indicated, most of the squire.controllers package was hit by our coverage test, indicating very little extraneous UI code. The chat server was not tested with this run, and the rest of the packages had about half of their functionalities hit, due to being heavily in development at the moment. As an example of the granularity of this report, let's examine the squire.controllers package to see what code didn't run during this test: \\ \\
 
-\noindent\includegraphics[width=\textwidth]{ControllerCoverageTest} 
+\noindent\includegraphics[width=\textwidth]{ControllerCoverageTest}
 
 \newpage
 
