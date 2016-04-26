@@ -16,7 +16,7 @@
 
 \noindent Author: Domn Werner (wern0096) \\
 Class: CS383-01 \\
-Date:04/25/2016 \\
+Date: 04/25/2016 \\
 Assignment: HW\#7 Test Plan Group Submission
 
 \title{sQuire Test Plan}
@@ -81,8 +81,6 @@ The purpose of this section of tests is to list and describe logic tests in the 
 		  \\\hline
 	\end{tabular}
 \end{table}
-
-Other logic test tables here...
 
 \newpage
 
@@ -173,7 +171,7 @@ This passed test indicates that all UI elements are loading properly. It does cr
 
 This test currently fails due to it requiring initialization with data from another class. This will be better tested with an automation script, but it is still useful to know what data it requires to successfully initialize. Here is the following exception it throws:
 
-\includegraphics[width=\textwidth]{EditorTestException}
+\includegraphics[width=\textwidth]{EditorTestException} 
 
 \begin{table}[h]
 	\centering
@@ -289,15 +287,13 @@ As indicated, most of the squire.controllers package was hit by our coverage tes
 
 \noindent\includegraphics[width=\textwidth]{ControllerCoverageTest}
 
-\newpage
-
 \noindent Delving further, let's see what code in the EditorController didn't run: \\ \\
 
 \noindent\includegraphics[width=\textwidth]{EditorControllerCoverage} \\ \\
 
 \noindent Lastly, we can get very granular and see exactly which lines of code didn't run. Here's an example of the updateItem() function's code and how the IntelliJ Coverage Report displays code that was hit with a green outline and code that wasn't hit with a red outline: \\ \\
 
-\noindent\includegraphics[width=\textwidth]{EditorControllerCoverageFunction}
+\noindent\includegraphics[scale=0.7]{EditorControllerCoverageFunction}
 
 
 \newpage
