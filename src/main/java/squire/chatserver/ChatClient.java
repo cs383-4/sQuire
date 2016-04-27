@@ -28,7 +28,7 @@ public class ChatClient implements Runnable{
         // The default port.
         int portNumber = 2222;
         // The default host.
-        String host = "localhost";
+        String host = "squireserver.westus.cloudapp.azure.com";
 
         if (args.length < 2) {
             System.out
