@@ -41,6 +41,8 @@ class Client {
         } catch (IOException ex) {
             //something wrong with the socket
             ex.printStackTrace();
+            System.out.println("Error connecting to " + address + ":" + port);
+            System.out.println("Is the server running (SquireServer)?");
         }
         return res;
     }
