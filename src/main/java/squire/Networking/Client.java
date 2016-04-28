@@ -1,9 +1,6 @@
 package squire.Networking;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -16,13 +13,20 @@ public class Client {
     static void request() {
         try {
             Socket socket = new Socket(address, port);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            out.println("hi");
-            System.out.println(in.readLine());
+            //each end needs the output stream to exist before creating the input stream, so do that, and then flush
+            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            out.flush();
+            ObjectInputStream in = new ObjectInputStream((socket.getInputStream()));
+            try {
+                out.writeObject("hi");
+                System.out.println(in.readObject());
+            } catch (ClassNotFoundException ex) {
+                //something wrong with reading the object
+                ex.printStackTrace();
+            }
             socket.close();
-
         } catch (IOException ex) {
+            //something wrong with the socket
             ex.printStackTrace();
         }
     }

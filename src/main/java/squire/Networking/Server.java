@@ -26,15 +26,18 @@ public class Server {
         while(true) {
             try {
                 Socket clientSocket = serverSocket.accept();
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                System.out.println(in.readLine());
-                out.println("got it" + i);
-                i++;
+                //each end needs the output stream to exist before creating the input stream, so do that, and then flush
+                ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+                out.flush();
+                ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
                 try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex){
-                    System.exit(0);
+                    Object a = in.readObject();
+                    System.out.println(a.getClass().getName());
+                    out.writeObject("got i" + i);
+                    i++;
+                } catch (ClassNotFoundException ex) {
+                    //something wrong with reading the object
+                    ex.printStackTrace();
                 }
                 clientSocket.close();
             } catch (IOException e) {
