@@ -4,12 +4,20 @@ import java.io.*;
 import java.net.Socket;
 
 /**
- * Created by brandon on 4/27/16.
+ * The client contains the networking logic to communicate with the server
+ * the Client.send function sends a request to the server, waits for the response, and returns it.
+ *
+ * Note: the proper way to call this function is from Request.send()
  */
-public class Client {
+class Client {
     private static final String address = "localhost";
     private static final int port = 3017;
 
+    /**
+     * Sends the given request to the server
+     * @param req the request to send to the server
+     * @return the response from the server
+     */
     static Response send(Request req) {
         Response res = null;
 
@@ -35,5 +43,10 @@ public class Client {
             ex.printStackTrace();
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        Request req = new Request("test");
+        System.out.println(req.send().get("test"));
     }
 }

@@ -5,13 +5,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by brandon on 4/27/16.
+ * Contains the logic needed to relieve requests, route them to the correct function, and return the result.
+ * It runs as a loop, listening on the port given by portNumber.
  */
 
 
 public class Server {
-    static final int portNumber = 3017;
-    static int i = 0;
+    private static final int portNumber = 3017;
+    private static Router router = new Router();
 
     static public void main(String args[]) {
         ServerSocket serverSocket = null;
@@ -23,7 +24,8 @@ public class Server {
             System.exit(1);
         }
 
-        while(true) {
+        //noinspection InfiniteLoopStatement
+        while (true) {
             try {
                 Socket clientSocket = serverSocket.accept();
                 //each end needs the output stream to exist before creating the input stream, so do that, and then flush
@@ -31,10 +33,9 @@ public class Server {
                 out.flush();
                 ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
                 try {
-                    Object a = in.readObject();
-                    System.out.println(a.getClass().getName());
-                    out.writeObject("got i" + i);
-                    i++;
+                    Request req = (Request) in.readObject();
+
+                    out.writeObject(router.route(req));
                 } catch (ClassNotFoundException ex) {
                     //something wrong with reading the object
                     ex.printStackTrace();
