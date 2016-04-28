@@ -24,6 +24,7 @@ public class Server {
             System.exit(1);
         }
 
+        System.out.println("Listening on port " + portNumber);
         //noinspection InfiniteLoopStatement
         while (true) {
             try {
