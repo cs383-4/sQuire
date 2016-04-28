@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import squire.Main;
+import squire.Networking.Request;
+import squire.Networking.Response;
 import squire.Users.Session;
 import squire.Users.User;
 
@@ -54,16 +56,17 @@ public class LogInDialogController implements Initializable
     {
         thisStage = (Stage)logInButton.getScene().getWindow();
 
-        User u = User.find.authenticate(usernameTextField.getText(), passwordPasswordField.getText());
+        Response res = new Request("user/login")
+                .set("username", usernameTextField.getText())
+                .set("password", passwordPasswordField.getText())
+                .send();
 
-        if(u != null) {
-
-
-            Session Sessvar = Session.login(u);
-
-            Main.SessID = Sessvar.getToken();
+        if(res.getSuccess()) {
+            Main.sessionID = (String) res.get("sessionID");
 
             thisStage.close();
+        } else {
+            //incorrect password
         }
     }
 

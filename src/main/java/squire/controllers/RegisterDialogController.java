@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import squire.Networking.Request;
+import squire.Networking.Response;
 import squire.Users.User;
 
 /**
@@ -46,18 +48,17 @@ public class RegisterDialogController
         System.out.println("Log in button clicked.");
 
         if(passwordPasswordField1.getText().equals(passwordPasswordField2.getText()) ) {
+            //create a new request with route register, and send it.
+            Response res = new Request("user/register")
+                    .set("username", usernameTextField.getText())
+                    .set("password", passwordPasswordField1.getText())
+                    .send();
 
-            if(User.find.where().username.equalTo(usernameTextField.getText()).findUnique() == null) {
-
-                User u = new User(usernameTextField.getText(), passwordPasswordField1.getText());
-
-                u.save();
-
+            if(res.getSuccess()) {
                 thisStage.close();
+            } else {
+                //user already exists
             }
         }
-
-
-
     }
 }

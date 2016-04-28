@@ -31,7 +31,7 @@ public class Main extends Application implements Initializable
     public static String getProjectsDir() { return projectsDir; }
     public static User getCurrentUser() { return currentUser; }
 
-    public static String SessID = null;
+    public static String sessionID = null;
 
     public static MobWriteClient mobwrite = null;
 

@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 public class Request extends NetworkObject<Request> {
     @Override protected Request getThis() {return this;}
+    public String route;
 
     /**
      * Creates a new Request with the specified query
@@ -22,14 +23,14 @@ public class Request extends NetworkObject<Request> {
      * @param route: the value to set as the query
      */
     public Request(String route) {
-        data.put("route", route);
+        this.route = route;
     }
 
     /**
      * @return the route of the request
      */
     String getRoute() {
-        return (String) get("route");
+        return route;
     }
     /**
      * Sends the request to the server

@@ -11,7 +11,7 @@ package squire.Users;
  * User u = User.find.authenticate(username, password)
  *
  * The user can now be logged in with
- * Session.find.login(u)
+ * Session.login(u)
  */
 
 import javax.persistence.*;

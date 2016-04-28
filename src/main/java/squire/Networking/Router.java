@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 /**
  * Used by the server to delegate requests to a particular class
- * All the routes need to be defined in the constructor
+ * All the getRoutes need to be defined in the constructor
  */
 
 class Router {
     private HashMap<String, RequestHandler> routes = new HashMap<>();
 
     Router() {
-        //define all the routes here
+        //define all the getRoutes here
         addRoutes(new UserRequestHandler());
     }
 
@@ -22,17 +22,22 @@ class Router {
      */
     Response route(Request req) {
         Response res = new Response();
-        routes.get(req.getRoute()).handle(req.getRoute(), req, res);
+        //get the handler
+        RequestHandler handler = routes.get(req.getRoute());
+        //strip the prefix from the route
+        String route = req.getRoute().replaceFirst(handler.getPrefix(), "");
+        //call the handler
+        handler.handle(route, req, res);
         return res;
     }
 
     /**
-     * Add all the routes a class can handle to the router
-     * @param handler an instance of the class to add the routes of
+     * Add all the getRoutes a class can handle to the router
+     * @param handler an instance of the class to add the getRoutes of
      */
     private void addRoutes(RequestHandler handler) {
-        for(String query : handler.routes()) {
-            routes.put(query, handler);
+        for(String query : handler.getRoutes()) {
+            routes.put(handler.getPrefix() + query, handler);
         }
     }
 }
