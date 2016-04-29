@@ -77,14 +77,23 @@ public class NewProjectController3 implements Initializable
 
     @FXML private void onFinishButtonClick(ActionEvent event)
     {
-        projectName = projectTitleTextField.getText();
-        projectDescription = projectDescriptionTextArea.getText();
-        projectLocation = locationTextField.getText() + File.separator + projectName;
+        // Do not allow an invalid name
+        if (projectTitleTextField.getText().isEmpty())
+        {
+            projectTitleTextField.setPromptText("Please enter a project name");
+        }
 
-        String fileLocation = initProjectFields(projectName, projectDescription, projectLocation);
+        else
+        {
+            projectName = projectTitleTextField.getText();
+            projectDescription = projectDescriptionTextArea.getText();
+            projectLocation = locationTextField.getText() + File.separator + projectName;
 
-        copyMainFile(fileLocation);
-        loadEditorScene();
+            String fileLocation = initProjectFields(projectName, projectDescription, projectLocation);
+
+            copyMainFile(fileLocation);
+            loadEditorScene();
+        }
     }
 
 
