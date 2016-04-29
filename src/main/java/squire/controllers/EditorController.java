@@ -275,16 +275,18 @@ public class EditorController implements Initializable
         return ca.getText();
     }
 
+
+
     @FXML private void onSaveButtonClick(ActionEvent event)
     {
                                 // Basic way to write files back
         String oldFilePath;
         Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
         oldFilePath = currentProject.getProjectPath() + File.separator + curTab.getText();
-        oldFile = new File (oldFilePath);
+        //oldFile = new File (oldFilePath);
         try
         {
-            BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath )); //+ ".tmp"));
+            BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath));
             bf.write(currentCodeArea.getText());
             bf.flush();
             bf.close();
@@ -293,6 +295,9 @@ public class EditorController implements Initializable
         {
             e.printStackTrace();
         }
+
+
+
     }
 
 
