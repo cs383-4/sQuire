@@ -45,7 +45,7 @@ public class RegisterDialogController
     @FXML private void onRegisterButtonClicked(ActionEvent event)
     {
         thisStage = (Stage)registerButton.getScene().getWindow();
-        System.out.println("Log in button clicked.");
+        System.out.println("Register button clicked.");
 
         if(passwordPasswordField1.getText().equals(passwordPasswordField2.getText()) ) {
             //create a new request with route register, and send it.
@@ -55,6 +55,7 @@ public class RegisterDialogController
                     .send();
 
             if(res.getSuccess()) {
+                System.out.println("Registration successful.");
                 thisStage.close();
             } else {
                 //user already exists

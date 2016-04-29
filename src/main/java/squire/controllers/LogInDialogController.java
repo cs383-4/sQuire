@@ -63,7 +63,7 @@ public class LogInDialogController implements Initializable
 
         if(res.getSuccess()) {
             Main.sessionID = (String) res.get("sessionID");
-
+            System.out.println("Login successful.");
             thisStage.close();
         } else {
             //incorrect password
