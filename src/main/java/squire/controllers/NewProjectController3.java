@@ -131,7 +131,7 @@ public class NewProjectController3 implements Initializable
 
 
                 //TODO: Make this persist, and be gettable
-                pc.setProp(projectName, createdProject.getProjectPath());
+              //  pc.setProp(projectName, createdProject.getProjectPath());
             }
         }
         catch (Exception e)
