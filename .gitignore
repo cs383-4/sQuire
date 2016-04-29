@@ -39,3 +39,6 @@ squire.db
 target/
 
 #src/main/resources/ebean.properties
+
+#squire settings file
+squire_
