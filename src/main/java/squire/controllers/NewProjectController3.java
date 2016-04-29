@@ -15,6 +15,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import squire.Main;
 import squire.Projects.Project;
+import squire.Projects.PropertiesController;
 import squire.Users.User;
 
 import java.io.File;
@@ -43,6 +44,7 @@ public class NewProjectController3 implements Initializable
     public Project createdProject;
     public User currentUser;
     public ArrayList<File> projectFiles = new ArrayList<File>();
+    private PropertiesController pc = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -50,6 +52,7 @@ public class NewProjectController3 implements Initializable
         currentUser = Main.getCurrentUser();
         projectLocation = Main.getProjectsDir();
         locationTextField.setText(projectLocation);
+        pc = PropertiesController.getPropertiesController();
     }
 
     @FXML private void onBrowseButtonClick(ActionEvent event)
@@ -82,7 +85,6 @@ public class NewProjectController3 implements Initializable
 
         copyMainFile(fileLocation);
         loadEditorScene();
-
     }
 
 
@@ -123,13 +125,13 @@ public class NewProjectController3 implements Initializable
                 Files.copy(from, to, options);
                 projectFiles.add(toFile);
 
-
-
-
-
                 createdProject = new Project(projectName, currentUser, projectLocation, projectDescription, projectFiles, toFile);
                 currentUser.addProject(createdProject);
                 currentUser.setCurrentProject(createdProject);
+
+
+                //TODO: Make this persist, and be gettable
+              //  pc.setProp(projectName, createdProject.getProjectPath());
             }
         }
         catch (Exception e)

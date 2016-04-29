@@ -30,6 +30,7 @@ public class SettingsDialogController implements Initializable
     {
         pc = PropertiesController.getPropertiesController();
         jdkLocationTextBox.setText(pc.getProp("jdkLocation"));
+        pc = PropertiesController.getPropertiesController();
     }
 
     @FXML private void onBrowseButtonClick(ActionEvent event)
