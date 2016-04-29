@@ -116,8 +116,6 @@ public class HomeController implements Initializable
         }
     }
 
-
-
     @FXML
     private void onOpenProjectHyperlinkClick(ActionEvent event)
     {
@@ -170,7 +168,7 @@ public class HomeController implements Initializable
             Parent root = loader.load(getClass().getResource("/fxml/SettingsDialog.fxml"));
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
-            dialogStage.setTitle("Settings");
+            dialogStage.setTitle("PropertiesController");
             dialogStage.showAndWait();
         }
         catch (Exception e)

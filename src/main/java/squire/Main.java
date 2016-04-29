@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import squire.Projects.PropertiesController;
 import squire.Users.User;
 import squire.Users.Session;
 
@@ -25,16 +26,13 @@ public class Main extends Application implements Initializable
 {
     // The location of the directory that stores all the user's projects.
     private static String projectsDir = System.getProperty("user.dir") + File.separator + "Projects";
-    public static String settingsFilePath = System.getProperty("user.dir") + File.separator + "sQuireSettings";
     private static User currentUser = null;
+    private static PropertiesController pc;
 
     public static String getProjectsDir() { return projectsDir; }
     public static User getCurrentUser() { return currentUser; }
-
     public static String sessionID = null;
-
     public static MobWriteClient mobwrite = null;
-
     public static void main(String[] args)
     {
         // From the 'Application' class.
@@ -48,7 +46,8 @@ public class Main extends Application implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        pc = PropertiesController.getPropertiesController();
+        pc.loadProps();
     }
 
     // Called during launch().
@@ -100,6 +99,7 @@ public class Main extends Application implements Initializable
                 System.out.println(e.toString());
                 // Handle...
             }
+
             if (success)
             {
                 System.out.println("Projects dir created at " + projectsDir);
@@ -107,6 +107,7 @@ public class Main extends Application implements Initializable
         }
     }
 
+    @Deprecated
     private static void fakeLogin()
     {
         String username = "username" + new Random().nextInt();

@@ -7,8 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import squire.Main;
-import squire.Projects.Settings;
+import squire.Projects.PropertiesController;
 
 import java.io.File;
 import java.net.URL;
@@ -25,12 +24,14 @@ public class SettingsDialogController implements Initializable
     @FXML private Button browseButton;
     @FXML private Button cancelButton;
     @FXML private Button saveButton;
+    private PropertiesController pc;
     private Stage thisStage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        pc = PropertiesController.getPropertiesController();
+        jdkLocationTextBox.setText(pc.getProp("jdkLocation"));
     }
 
     @FXML private void onBrowseButtonClick(ActionEvent event)
@@ -54,7 +55,8 @@ public class SettingsDialogController implements Initializable
 
     @FXML private void onSaveButtonClick(ActionEvent event)
     {
-        Settings.setSettings("jdkLocation", jdkLocationTextBox.getText());
+        pc.setProp("jdkLocation", jdkLocationTextBox.getText());
+        pc.saveProps();
         thisStage = (Stage) saveButton.getScene().getWindow();
         thisStage.close();
     }

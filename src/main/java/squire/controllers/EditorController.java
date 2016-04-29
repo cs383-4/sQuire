@@ -1,9 +1,6 @@
 package squire.controllers;
 
-import com.sun.scenario.Settings;
 import google.mobwrite.ShareJTextComponent;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,27 +9,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 //import squire.FileList;
-import org.junit.Ignore;
 import squire.Main;
 import squire.Projects.Project;
+import squire.Projects.PropertiesController;
 import squire.Users.User;
 
 
 import javax.tools.*;
-import java.awt.*;
 import java.io.*;
 
 import java.net.URL;
@@ -73,14 +67,11 @@ public class EditorController implements Initializable
 
     private CodeArea currentCodeArea;
 
+    private PropertiesController pc = null;
+
 //    private ShareJTextComponent mobwriteComponent;
 
-    PrintStream compilationOutputStream;
-    private JavaCompiler compiler;
-    private DiagnosticCollector<JavaFileObject> diagnostics;
-    StandardJavaFileManager fileManager;
-    Iterable<? extends JavaFileObject> compilationUnits;
-    JavaCompiler.CompilationTask task;
+
     // Compilation vars.
 
     @Override
@@ -90,6 +81,7 @@ public class EditorController implements Initializable
         currentProject = currentUser.getCurrentProject();
         compilationOutputTextArea.setWrapText(true);
         setupFileList();
+        pc = PropertiesController.getPropertiesController();
     }
 
     private void onAvatarImageViewClick() {
@@ -409,8 +401,8 @@ public class EditorController implements Initializable
     {
         compilationOutputTextArea.appendText("Compiling...\n");
         File entryPoint = currentProject.getEntryPointClassFile();
-        String javacPath = squire.Projects.Settings.getSettingsMap().get("jdkLocation") + File.separator + "javac";
-        String javaExePath = squire.Projects.Settings.getSettingsMap().get("jdkLocation") + File.separator + "java";
+        String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
+        String javaExePath = pc.getProp("jdkLocation") + File.separator + "java";
 
         try
         {
