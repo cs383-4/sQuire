@@ -1,10 +1,6 @@
-package squire.Projects;
-
-import squire.Main;
+package squire.Users;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 /**

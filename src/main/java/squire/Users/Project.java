@@ -1,18 +1,21 @@
 package squire.Users;
-/**
- * Implements a project storage model.
- */
 
 import squire.BaseModel;
-import squire.Projects.JavaSourceFromString;
 
 import javax.persistence.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Created by Domn Werner on 4/19/2016.
+ * Database functionality added by Brian Cartwright
+ */
+
 @Entity
 @Table(name = "o_project")
-public class Project extends BaseModel {
+public class Project extends BaseModel
+{
     public static final ProjectFinder find = new ProjectFinder();
 
 // Database code
@@ -39,27 +42,69 @@ public class Project extends BaseModel {
     private ProjectFile primaryFile;
 
 
+    /**
+     * The list of source code files in this project.
+     */
+    private ArrayList<File> fileList = new ArrayList<>();
+    private String projectName;
+    private String projectDescription;
+    private File entryPointClassFile;
+    private UUID projectUuid = UUID.randomUUID();
+    private User projectOwner;
+    private String projectPath;
 
-// Legacy code from the non-db Project class, just in case
-
-    public User getOwner() {
-        return owner;
+    /**
+     * Project class constructor.
+     * @param name The string name of the Project.
+     * @param owner The User owner of the Project.
+     * @param path The string fully qualified path to the project on the local machine.
+     */
+    public Project(String name, User owner, String path, String description, File initialFile)
+    {
+        projectName = name;
+        projectDescription = description;
+        projectOwner = owner;
+        projectPath = path;
+        fileList.add(initialFile);
+        entryPointClassFile = initialFile;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    /**
+     * Project class constructor.
+     * @param name The string name of the Project.
+     * @param owner The User owner of the Project.
+     * @param path The string fully qualified path to the project on the local machine.
+     * @param description The project's string description.
+     * @param importedFiles An ArrayList of JavaSourceFromString files to be imported with the project.
+     */
+    public Project(String name, User owner, String path, String description, ArrayList<File> importedFiles, File entryPointFile)
+    {
+        projectName = name;
+        projectDescription = description;
+        projectOwner = owner;
+        projectPath = path;
+        fileList = importedFiles;
+        entryPointClassFile = entryPointFile;
     }
 
-
-    public ArrayList<JavaSourceFromString> getFileList() { return importedFiles;}
+    public void setProjectName(String name) { projectName = name; }
+    public void setProjectOwner(User owner) { projectOwner = owner; }
+    public void setProjectPath(String path) { projectPath = path; }
+    public void setEntryPointClassFile(File file) { entryPointClassFile = file; }
+    public String getProjectName() { return projectName; }
+    public User getProjectOwner() { return projectOwner; }
+    public String getProjectPath() { return projectPath; }
+    public File getEntryPointClassFile() { return entryPointClassFile; }
+    public ArrayList<File> getFileList() { return fileList;}
+    public UUID getProjectUuid() {return projectUuid;};
 
     public String getMatchingFile(String s)
     {
         String file = "";
         String t;
-        for (JavaSourceFromString fileName: this.getFileList())
+        for (File fileName: this.getFileList())
         {
-            t = fileName.getFileName();
+            t = fileName.getName();
 
             if (s.equals(t))
             {
@@ -70,5 +115,4 @@ public class Project extends BaseModel {
         //   System.out.println(file);
         return file;
     }
-
 }

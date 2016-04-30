@@ -1,4 +1,4 @@
-package squire.Projects;
+package squire.Users;
 
 import javax.tools.SimpleJavaFileObject;
 import java.net.URI;

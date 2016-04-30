@@ -5,16 +5,12 @@ package squire.Users;
  */
 
 import squire.BaseModel;
-import squire.Projects.Project;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.File;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.ArrayList;
 
 @Entity
 //some databases have user as a reserved word, so following ebean examples, prefix tables with "o_"
@@ -24,7 +20,7 @@ public class ProjectFile extends BaseModel {
 
     @Column()
     @ManyToOne
-    private squire.Users.Project project;
+    private Project project;
 
     @Column()
     private File file;

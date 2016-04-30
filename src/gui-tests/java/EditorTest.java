@@ -8,12 +8,10 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
-import squire.Main;
-import squire.Projects.Project;
+import squire.Users.Project;
 import squire.Users.User;
 import squire.controllers.NewProjectController3;
 

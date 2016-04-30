@@ -5,7 +5,6 @@ package squire.Users;
 
 import com.avaje.ebean.Finder;
 import squire.Users.query.QProject;
-import squire.Users.query.QUser;
 
 public class ProjectFileFinder extends Finder<Long, ProjectFile> {
     public ProjectFileFinder() {

@@ -21,12 +21,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 //import squire.FileList;
 import squire.Main;
-import squire.Projects.Project;
-import squire.Projects.PropertiesController;
+import squire.Users.Project;
+import squire.Users.PropertiesController;
 import squire.Users.User;
 
 
-import javax.tools.*;
 import java.io.*;
 
 import java.net.URL;

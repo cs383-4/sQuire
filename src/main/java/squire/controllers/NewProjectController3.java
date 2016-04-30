@@ -14,8 +14,8 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import squire.Main;
-import squire.Projects.Project;
-import squire.Projects.PropertiesController;
+import squire.Users.Project;
+import squire.Users.PropertiesController;
 import squire.Users.User;
 
 import java.io.File;

@@ -17,7 +17,6 @@ package squire.Users;
 import javax.persistence.*;
 
 import squire.BaseModel;
-import squire.Projects.Project;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
