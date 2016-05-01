@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Server and sQuire" type="Multirun" factoryName="Multirun" separateTabs="true" startOneByOne="true" markFailedProcess="true" hideSuccessProcess="false" delayTime="0">
+    <runConfiguration name="SquireServer" type="Application" />
+    <runConfiguration name="RunHello" type="Application" />
+    <method />
+  </configuration>
+</component>
