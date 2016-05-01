@@ -50,7 +50,6 @@ public class HomeController implements Initializable
         // This event handler will be called whenever the avatarImageView is clicked.
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
 
-
         setupListView();
 
     }
@@ -254,12 +253,13 @@ public class HomeController implements Initializable
             {
                 if (mouseEvent.getClickCount() == 2)
                 {
-                    ListView<String> selectedItem = (ListView<String>) recentProjectsListView.getSelectionModel()
-                            .getSelectedItem();
+                    String selectedItem =  recentProjectsListView.getSelectionModel()
+                            .getSelectedItem().toString();
 
                     try
                     {
-
+                        //TODO: open project based on input
+                        System.out.println(selectedItem);
 
                     }
                     catch (Exception ex)
