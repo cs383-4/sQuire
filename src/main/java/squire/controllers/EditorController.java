@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-//import squire.FileList;
 import squire.Main;
 import squire.Users.Project;
 import squire.Users.PropertiesController;
