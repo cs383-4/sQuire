@@ -33,12 +33,13 @@ class UserRequestHandler
     static void login(Request req, Response res)
     {
         User u = User.find.authenticate((String)req.get("username"), (String) req.get("password"));
-        Main.setCurrentUser(u);
         if (u == null)
         {
             res.setFail();
         }
         res.set("sessionID", Session.login(u).getToken());
+        res.set("userName", u.getUsername());
+        res.set("userID", u.getId());
     }
 }
 

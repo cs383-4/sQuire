@@ -52,9 +52,16 @@ public class User extends BaseModel
         this.username = username;
     }
 
-    private ArrayList<Project> projects = new ArrayList<Project>();
+    private ArrayList<Project> projects;
 
-    public void addProject(Project p) { projects.add(p); }
+    public void addProject(Project p)
+    {
+        if (projects == null)
+        {
+            projects = new ArrayList<Project>();
+        }
+        projects.add(p);
+    }
     public void setCurrentProject(Project p) { currentProject = p; }
     public Project getCurrentProject() { return currentProject; }
 
@@ -103,6 +110,7 @@ public class User extends BaseModel
     public User(String username, String email, String password)
     {
         super();
+        projects = new ArrayList<Project>();
         setUsername(username);
         setEmail(email);
         setPassword(password);

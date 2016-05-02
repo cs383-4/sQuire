@@ -15,9 +15,12 @@ import javafx.stage.Stage;
 import squire.Main;
 import squire.Networking.Request;
 import squire.Networking.Response;
+import squire.Users.User;
 
 import java.util.ResourceBundle;
 import java.net.URL;
+
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 
 /**
  * Created by Domn on 4/4/2016.
@@ -73,6 +76,8 @@ public class LogInDialogController implements Initializable
             System.out.println("Login successful.");
             Main.userNotLoggedIn.setValue(false);
             HomeController.userName = usernameTextField.getText();
+            User u = User.find.where().id.equalTo(Integer.parseInt(res.get("userID").toString())).findUnique();
+            Main.setCurrentUser(u);
             thisStage.close();
         }
         else

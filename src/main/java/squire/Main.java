@@ -32,8 +32,16 @@ public class Main extends Application implements Initializable
     private static PropertiesController pc;
 
     public static String getProjectsDir() { return projectsDir; }
-    public static User getCurrentUser() { return currentUser; }
-    public static void setCurrentUser(User val) { currentUser = val; }
+    public static User getCurrentUser()
+    {
+        System.out.println("currentUser = " + currentUser.getUsername());
+        return currentUser;
+    }
+    public static void setCurrentUser(User val)
+    {
+        System.out.println("val: " + val.getUsername());
+        currentUser = val;
+    }
     public static String sessionID = null;
     public static MobWriteClient mobwrite = null;
 
