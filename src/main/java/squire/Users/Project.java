@@ -66,6 +66,7 @@ public class Project extends BaseModel
         projectPath = path;
         fileList.add(initialFile);
         entryPointClassFile = initialFile;
+//        this.save();
     }
 
     /**
@@ -84,6 +85,7 @@ public class Project extends BaseModel
         projectPath = path;
         fileList = importedFiles;
         entryPointClassFile = entryPointFile;
+//        this.save();
     }
 
     public void setProjectName(String name) { projectName = name; }
