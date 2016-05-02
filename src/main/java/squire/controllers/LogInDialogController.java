@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,10 +15,7 @@ import javafx.stage.Stage;
 import squire.Main;
 import squire.Networking.Request;
 import squire.Networking.Response;
-import squire.Users.Session;
-import squire.Users.User;
 
-import java.awt.*;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -75,7 +71,8 @@ public class LogInDialogController implements Initializable
         {
             Main.sessionID = (String) res.get("sessionID");
             System.out.println("Login successful.");
-            Main.loggedIn = true;
+            Main.userNotLoggedIn.setValue(false);
+            HomeController.userName = usernameTextField.getText();
             thisStage.close();
         }
         else
@@ -100,7 +97,8 @@ public class LogInDialogController implements Initializable
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             e.printStackTrace();
         }

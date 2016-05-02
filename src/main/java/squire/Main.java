@@ -2,6 +2,13 @@ package squire;
 
 import google.mobwrite.MobWriteClient;
 import javafx.application.Application;
+import javafx.beans.InvalidationListener;
+import javafx.beans.binding.BooleanExpression;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -29,7 +36,7 @@ public class Main extends Application implements Initializable
     public static String sessionID = null;
     public static MobWriteClient mobwrite = null;
 
-    public static boolean loggedIn = false;
+    public static BooleanProperty userNotLoggedIn = new SimpleBooleanProperty(true);
 
     public static void main(String[] args)
     {

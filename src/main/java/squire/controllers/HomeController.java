@@ -1,5 +1,8 @@
 package squire.controllers;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,8 +18,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -25,8 +26,6 @@ import squire.Main;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -42,6 +41,9 @@ public class HomeController implements Initializable
     @FXML private Hyperlink logInHyperlink;
     @FXML private ImageView avatarImageView;
     @FXML private ListView recentProjectsListView;
+    @FXML private Label userNameLabel;
+
+    public static String userName = "";
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -50,7 +52,6 @@ public class HomeController implements Initializable
         // This event handler will be called whenever the avatarImageView is clicked.
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
         setupListView();
-
     }
 
     @FXML
@@ -70,6 +71,9 @@ public class HomeController implements Initializable
             dialogStage.setScene(scene);
             dialogStage.setTitle("Log in to sQuire");
             dialogStage.showAndWait();
+            Platform.runLater(() -> logInHyperlink.setVisible(false));
+            Platform.runLater(() -> registerHyperlink.setVisible(false));
+            Platform.runLater(() -> userNameLabel.setText(userName));
         }
         catch (Exception e)
         {
@@ -189,7 +193,7 @@ public class HomeController implements Initializable
 
     @FXML private void onAvatarImageViewClick()
     {
-        if (!Main.loggedIn)
+        if (Main.userNotLoggedIn.getValue())
         {
             onLogInHyperlinkClick(new ActionEvent());
         }
