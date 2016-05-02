@@ -18,6 +18,7 @@ import squire.Users.PropertiesController;
 import squire.Users.User;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -53,6 +54,7 @@ public class Main extends Application implements Initializable
         // Sets up program as a javafx application.
         System.out.println(System.getProperty("user.dir"));
         generateProjectsDir();
+        createPropFileIfNeeded();
         launch(args);
     }
 
@@ -117,6 +119,19 @@ public class Main extends Application implements Initializable
             {
                 System.out.println("Projects dir created at " + projectsDir);
             }
+        }
+    }
+
+    private static void createPropFileIfNeeded()
+    {
+        File propFile = new File("squire_config.properties");
+
+        try
+        {
+            propFile.createNewFile();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
