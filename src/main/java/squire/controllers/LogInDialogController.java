@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import squire.Main;
 import squire.Networking.Request;
 import squire.Networking.Response;
+import squire.Users.PropertiesController;
 
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -42,11 +43,25 @@ public class LogInDialogController implements Initializable
     private Hyperlink forgotPasswordHyperlink;
 
     private Stage thisStage;
+    private PropertiesController pc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         // Perform any initialization steps here.
+        pc = PropertiesController.getPropertiesController();
+        usernameTextField.setText(pc.getProp("username"));
+        passwordPasswordField.setText(pc.getProp("password"));
+
+        String signIn = pc.getProp("signInCheckbox");
+        if(signIn == null)
+        {
+            signIn = "";
+        }
+        if (signIn.equals("true"))
+        {
+            keepMeLoggedInCheckBox.setSelected(true);
+        }
     }
 
     @FXML
@@ -60,11 +75,23 @@ public class LogInDialogController implements Initializable
     @FXML
     private void onLogInButtonClick(ActionEvent event)
     {
-        thisStage = (Stage) logInButton.getScene().getWindow();
 
+
+        String username = usernameTextField.getText();
+        String password = passwordPasswordField.getText();
+
+        sendRequest(username, password);
+    }
+
+
+
+    public void sendRequest(String username, String password)
+    {
+
+        thisStage = (Stage) logInButton.getScene().getWindow();
         Response res = new Request("user/login")
-                .set("username", usernameTextField.getText())
-                .set("password", passwordPasswordField.getText())
+                .set("username", username)
+                .set("password", password)
                 .send();
 
         if (res.getSuccess())
@@ -72,6 +99,16 @@ public class LogInDialogController implements Initializable
             Main.sessionID = (String)res.get("sessionID");
             System.out.println("Login successful.");
             Main.userNotLoggedIn.setValue(false);
+
+            //Save the login option if checked
+            if (keepMeLoggedInCheckBox.isSelected())
+            {
+                pc.setProp("username", usernameTextField.getText());
+                pc.setProp("password", passwordPasswordField.getText());
+                pc.setProp("signInCheckbox", "true");
+                pc.saveProps();
+            }
+
             HomeController.userName = usernameTextField.getText();
             thisStage.close();
         }
