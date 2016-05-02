@@ -34,6 +34,12 @@ public class User extends BaseModel {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    private void setEmail(String val) { email = val; }
+    private String getEmail() { return email; }
+
     private Project currentProject = null;
 
     public String getUsername() {
@@ -55,9 +61,11 @@ public class User extends BaseModel {
      * @param password the password to set
      */
     public void setPassword(String password) {
-        try {
+        try
+        {
             this.password = PasswordHash.createHash(password);
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+        }
+        catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             /* this will only happen if the correct crypto libraries aren't installed,
                no reason to keep going then, so quit the program
              */
@@ -86,6 +94,7 @@ public class User extends BaseModel {
     public User(String username, String password) {
         super();
         setUsername(username);
+        email = "test@email.com";
         setPassword(password);
         this.save();
     }

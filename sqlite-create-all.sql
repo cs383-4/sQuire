@@ -49,10 +49,12 @@ create table o_user (
   id                            integer not null,
   username                      varchar(255) not null,
   password                      varchar(255) not null,
+  email                         varchar(255) not null,
   version                       integer not null,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,
   constraint uq_o_user_username unique (username),
+  constraint uq_o_user_email unique (email),
   constraint pk_o_user primary key (id)
 );
 

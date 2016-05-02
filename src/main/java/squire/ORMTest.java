@@ -5,8 +5,10 @@ import squire.Users.User;
 
 import java.util.Random;
 
-public class ORMTest {
-    public static void main(String[] args) {
+public class ORMTest
+{
+    public static void main(String[] args)
+    {
         //create a new user with the name hello
         String username = "user" + new Random().nextInt();
         User u = new User(username, "password123");
@@ -20,10 +22,13 @@ public class ORMTest {
 
         //Check username/password
         User login_test = User.find.authenticate(username, "password123");
-        if (login_test == null) {
+        if (login_test == null)
+        {
             //bad username/password combination
             System.out.println("Bad username or password");
-        } else {
+        }
+        else
+        {
             //authentication succeed, log the user in
             Session s = Session.login(login_test);
 
@@ -35,11 +40,14 @@ public class ORMTest {
 
             //on the server, check to see if the token is active to see if the user is logged in
             Session userSession = Session.find.activeSession(authentication_token);
-            if (userSession != null) {
+            if (userSession != null)
+            {
                 //preform action that requires authentication
                 //we can get the user from the session:
                 System.out.println(userSession.getUser().getUsername() + " is logged in!");
-            } else {
+            }
+            else
+            {
                 //user is not logged in, send user to login page
             }
         }

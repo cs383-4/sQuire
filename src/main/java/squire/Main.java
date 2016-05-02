@@ -33,7 +33,7 @@ public class Main extends Application implements Initializable
         // From the 'Application' class.
         // Sets up program as a javafx application.
         System.out.println(System.getProperty("user.dir"));
-        generateProjectsDir();;
+        generateProjectsDir();
         launch(args);
     }
 
