@@ -69,7 +69,7 @@ public class LogInDialogController implements Initializable
 
         if (res.getSuccess())
         {
-            Main.sessionID = (String) res.get("sessionID");
+            Main.sessionID = (String)res.get("sessionID");
             System.out.println("Login successful.");
             Main.userNotLoggedIn.setValue(false);
             HomeController.userName = usernameTextField.getText();

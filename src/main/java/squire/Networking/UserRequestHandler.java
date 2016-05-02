@@ -1,5 +1,6 @@
 package squire.Networking;
 
+import squire.Main;
 import squire.Users.Session;
 import squire.Users.User;
 
@@ -32,6 +33,7 @@ class UserRequestHandler
     static void login(Request req, Response res)
     {
         User u = User.find.authenticate((String)req.get("username"), (String) req.get("password"));
+        Main.setCurrentUser(u);
         if (u == null)
         {
             res.setFail();

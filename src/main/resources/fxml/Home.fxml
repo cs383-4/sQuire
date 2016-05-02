@@ -45,7 +45,7 @@
                                     <Image url="@../images/avatar.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="userNameLabel" prefHeight="17.0" prefWidth="82.0" />
+                              <Label fx:id="userNameLabel" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="82.0" />
                            </children>
                         </VBox>
                      </children>
