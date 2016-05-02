@@ -1,5 +1,7 @@
 package squire.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,15 +10,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import squire.Main;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -31,6 +41,7 @@ public class HomeController implements Initializable
     @FXML private Hyperlink registerHyperlink;
     @FXML private Hyperlink logInHyperlink;
     @FXML private ImageView avatarImageView;
+    @FXML private ListView recentProjectsListView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -38,6 +49,9 @@ public class HomeController implements Initializable
         // Since ImageViews don't have their own onAction event, I created my own event/handler lambda here.
         // This event handler will be called whenever the avatarImageView is clicked.
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
+
+        setupListView();
+
     }
 
     @FXML
@@ -196,5 +210,86 @@ public class HomeController implements Initializable
         {
             e.printStackTrace();
         }
+    }
+
+
+
+    public void setupListView()
+    {
+        //Set up tree view cell factory
+        // TODO: change next line to get x number of recent projects from DB. Will likely want to do this for open as
+        // well
+        ObservableList<String> data = FXCollections.observableArrayList(
+                "chocolate", "salmon", "gold", "coral", "darkorchid",
+                "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
+                "blueviolet", "brown");
+        final Label label = new Label();
+
+        recentProjectsListView.setItems(data);
+//
+//        fileExplorer.setRoot(rootItem);
+//        fileExplorer.setEditable(false);
+
+
+        recentProjectsListView.setCellFactory(new Callback<ListView<String>,
+                        ListCell<String>>() {
+                                @Override
+                                public ListCell<String> call(ListView<String> list) {
+                                    return new ProjectName();
+                                }
+                            }
+        );
+
+
+
+
+
+        // One way to get the clicked on cell
+
+        recentProjectsListView.setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                if (mouseEvent.getClickCount() == 2)
+                {
+                    String selectedItem =  recentProjectsListView.getSelectionModel()
+                            .getSelectedItem().toString();
+
+                    try
+                    {
+                        //TODO: open project based on input
+                        System.out.println(selectedItem);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+
+        });
+    }
+
+
+    static class ProjectName extends ListCell<String>
+    {
+        @Override
+        public void updateItem(String item, boolean empty)
+        {
+            super.updateItem(item, empty);
+
+            if (item != null)
+            {
+                setText(getString());
+            }
+        }
+
+        private String getString()
+        {
+            return getItem() == null ? "" : getItem().toString();
+    }
+
     }
 }
