@@ -28,6 +28,9 @@ public class Main extends Application implements Initializable
     public static User getCurrentUser() { return currentUser; }
     public static String sessionID = null;
     public static MobWriteClient mobwrite = null;
+
+    public static boolean loggedIn = false;
+
     public static void main(String[] args)
     {
         // From the 'Application' class.

@@ -49,7 +49,6 @@ public class HomeController implements Initializable
         // Since ImageViews don't have their own onAction event, I created my own event/handler lambda here.
         // This event handler will be called whenever the avatarImageView is clicked.
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
-
         setupListView();
 
     }
@@ -57,27 +56,24 @@ public class HomeController implements Initializable
     @FXML
     private void onLogInHyperlinkClick(ActionEvent event)
     {
-        if (event.getSource() == logInHyperlink)
+        FXMLLoader loader = new FXMLLoader();
+        Stage dialogStage = new Stage();
+        Parent root = null;
+        dialogStage.setTitle("Log in to sQuire");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(logInHyperlink.getScene().getWindow());
+        dialogStage.setResizable(false);
+        try
         {
-            FXMLLoader loader = new FXMLLoader();
-            Stage dialogStage = new Stage();
-            Parent root = null;
+            root = loader.load(getClass().getResource("/fxml/LogInDialog.fxml"));
+            Scene scene = new Scene(root);
+            dialogStage.setScene(scene);
             dialogStage.setTitle("Log in to sQuire");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(logInHyperlink.getScene().getWindow());
-            dialogStage.setResizable(false);
-            try
-            {
-                root = loader.load(getClass().getResource("/fxml/LogInDialog.fxml"));
-                Scene scene = new Scene(root);
-                dialogStage.setScene(scene);
-                dialogStage.setTitle("Log in to sQuire");
-                dialogStage.showAndWait();
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            dialogStage.showAndWait();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -193,22 +189,29 @@ public class HomeController implements Initializable
 
     @FXML private void onAvatarImageViewClick()
     {
-        FXMLLoader loader = new FXMLLoader();
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("User Profile");
-        dialogStage.initModality(Modality.WINDOW_MODAL);
-        dialogStage.initOwner(avatarImageView.getScene().getWindow());
-        dialogStage.setResizable(false);
-        try
+        if (!Main.loggedIn)
         {
-            Parent root = loader.load(getClass().getResource("/fxml/Preferences2.fxml"));
-            Scene scene = new Scene(root);
-            dialogStage.setScene(scene);
-            dialogStage.showAndWait();
+            onLogInHyperlinkClick(new ActionEvent());
         }
-        catch (Exception e)
+        else
         {
-            e.printStackTrace();
+            FXMLLoader loader = new FXMLLoader();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("User Profile");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(avatarImageView.getScene().getWindow());
+            dialogStage.setResizable(false);
+            try
+            {
+                Parent root = loader.load(getClass().getResource("/fxml/Preferences2.fxml"));
+                Scene scene = new Scene(root);
+                dialogStage.setScene(scene);
+                dialogStage.showAndWait();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -239,10 +242,6 @@ public class HomeController implements Initializable
                                 }
                             }
         );
-
-
-
-
 
         // One way to get the clicked on cell
 

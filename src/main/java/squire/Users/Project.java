@@ -17,8 +17,7 @@ import java.util.UUID;
 public class Project extends BaseModel
 {
     public static final ProjectFinder find = new ProjectFinder();
-
-// Database code
+    // Database code
 
 
     @Column(nullable = false)

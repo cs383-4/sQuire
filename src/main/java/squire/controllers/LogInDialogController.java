@@ -28,14 +28,22 @@ import java.net.URL;
  */
 public class LogInDialogController implements Initializable
 {
-    @FXML private ImageView avatarImageView;
-    @FXML private TextField usernameTextField;
-    @FXML private PasswordField passwordPasswordField;
-    @FXML private CheckBox keepMeLoggedInCheckBox;
-    @FXML private Button cancelButton;
-    @FXML private Button logInButton;
-    @FXML private Hyperlink registerHyperlink;
-    @FXML private Hyperlink forgotPasswordHyperlink;
+    @FXML
+    private ImageView avatarImageView;
+    @FXML
+    private TextField usernameTextField;
+    @FXML
+    private PasswordField passwordPasswordField;
+    @FXML
+    private CheckBox keepMeLoggedInCheckBox;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button logInButton;
+    @FXML
+    private Hyperlink registerHyperlink;
+    @FXML
+    private Hyperlink forgotPasswordHyperlink;
 
     private Stage thisStage;
 
@@ -45,32 +53,39 @@ public class LogInDialogController implements Initializable
         // Perform any initialization steps here.
     }
 
-    @FXML private void onCancelButtonClick(ActionEvent event)
+    @FXML
+    private void onCancelButtonClick(ActionEvent event)
     {
-        thisStage = (Stage)cancelButton.getScene().getWindow();
+        thisStage = (Stage) cancelButton.getScene().getWindow();
         System.out.println("Cancel button clicked.");
         thisStage.close();
     }
 
-    @FXML private void onLogInButtonClick(ActionEvent event)
+    @FXML
+    private void onLogInButtonClick(ActionEvent event)
     {
-        thisStage = (Stage)logInButton.getScene().getWindow();
+        thisStage = (Stage) logInButton.getScene().getWindow();
 
         Response res = new Request("user/login")
                 .set("username", usernameTextField.getText())
                 .set("password", passwordPasswordField.getText())
                 .send();
 
-        if(res.getSuccess()) {
+        if (res.getSuccess())
+        {
             Main.sessionID = (String) res.get("sessionID");
             System.out.println("Login successful.");
+            Main.loggedIn = true;
             thisStage.close();
-        } else {
+        }
+        else
+        {
             //incorrect password
         }
     }
 
-    @FXML private void onRegisterHyperlinkClick(ActionEvent event)
+    @FXML
+    private void onRegisterHyperlinkClick(ActionEvent event)
     {
         FXMLLoader loader = new FXMLLoader();
         Stage dialogStage = new Stage();
@@ -85,8 +100,7 @@ public class LogInDialogController implements Initializable
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
             dialogStage.showAndWait();
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
