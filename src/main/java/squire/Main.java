@@ -33,8 +33,7 @@ public class Main extends Application implements Initializable
         // From the 'Application' class.
         // Sets up program as a javafx application.
         System.out.println(System.getProperty("user.dir"));
-        generateProjectsDir();
-        fakeLogin();
+        generateProjectsDir();;
         launch(args);
     }
 
@@ -100,13 +99,6 @@ public class Main extends Application implements Initializable
                 System.out.println("Projects dir created at " + projectsDir);
             }
         }
-    }
-
-    @Deprecated
-    private static void fakeLogin()
-    {
-        String username = "username" + new Random().nextInt();
-        currentUser = new User(username, "password");
     }
 
     /**
