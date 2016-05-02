@@ -17,7 +17,7 @@ class UserRequestHandler
     static void register(Request req, Response res)
     {
         // If there is no user with this username and email.
-        if (User.find.where().or().username.equalTo((String)req.get("username")).and().email.equalTo((String)req.get("email")).findUnique() == null)
+        if (User.find.where().username.equalTo((String)req.get("username")).and().email.equalTo((String)req.get("email")).findUnique() == null)
         {
             User u = new User((String)req.get("username"), (String)req.get("email"), (String)req.get("password"));
             u.save();
