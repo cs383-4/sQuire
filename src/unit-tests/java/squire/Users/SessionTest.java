@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class SessionTest {
     @Test
     public void isExpired() throws Exception {
-        User u = new User("Jim", "password");
+        User u = new User("Jim", "jim@email.com", "password");
         Session s = Session.login(u);
         s.setExpires(new Timestamp(0));
         s.save();
@@ -24,7 +24,7 @@ public class SessionTest {
     }
     @Test
     public void logout() throws Exception {
-        User u = new User("Jim2", "password");
+        User u = new User("Jim2", "jim2@email.com", "password");
         Session s = Session.login(u);
         Long sessionID = s.getId();
         s.logout();
@@ -33,7 +33,7 @@ public class SessionTest {
 
     @Test
     public void activeSession() throws Exception {
-        User u = new User("Jim3", "password");
+        User u = new User("Jim3", "jim3@email.com", "password");
         Session s = Session.login(u);
         String token = s.getToken();
 

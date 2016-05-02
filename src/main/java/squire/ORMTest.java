@@ -11,7 +11,7 @@ public class ORMTest
     {
         //create a new user with the name hello
         String username = "user" + new Random().nextInt();
-        User u = new User(username, "password123");
+        User u = new User(username, "email@email.com", "password123");
 
         //we need to save it to write the changes to the database
         u.save();

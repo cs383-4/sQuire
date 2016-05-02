@@ -2,14 +2,14 @@ package squire.Users;
 
 /**
  * Implements a user model containing the username and password, as well as any other information associated with a user
- *
+ * <p>
  * The usage is as such:
  * Create a new user:
  * User u = new User(username, password;
- *
+ * <p>
  * Authenticate a user:
  * User u = User.find.authenticate(username, password)
- *
+ * <p>
  * The user can now be logged in with
  * Session.login(u)
  */
@@ -25,7 +25,8 @@ import java.util.ArrayList;
 @Entity
 //some databases have user as a reserved word, so following ebean examples, prefix tables with "o_"
 @Table(name = "o_user")
-public class User extends BaseModel {
+public class User extends BaseModel
+{
     public static final UserFinder find = new UserFinder();
 
     @Column(nullable = false, unique = true) //field cannot be empty, and must be unique
@@ -41,16 +42,18 @@ public class User extends BaseModel {
     private String getEmail() { return email; }
 
     private Project currentProject = null;
-
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username)
+    {
         this.username = username;
     }
 
     private ArrayList<Project> projects = new ArrayList<Project>();
+
     public void addProject(Project p) { projects.add(p); }
     public void setCurrentProject(Project p) { currentProject = p; }
     public Project getCurrentProject() { return currentProject; }
@@ -60,12 +63,14 @@ public class User extends BaseModel {
      *
      * @param password the password to set
      */
-    public void setPassword(String password) {
+    public void setPassword(String password)
+    {
         try
         {
             this.password = PasswordHash.createHash(password);
         }
-        catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+        catch (NoSuchAlgorithmException | InvalidKeySpecException ex)
+        {
             /* this will only happen if the correct crypto libraries aren't installed,
                no reason to keep going then, so quit the program
              */
@@ -80,10 +85,14 @@ public class User extends BaseModel {
      * @param password the password to check
      * @return a boolean value, true if the password matches the stored one, else false
      */
-    public boolean checkPassword(String password) {
-        try {
+    public boolean checkPassword(String password)
+    {
+        try
+        {
             return PasswordHash.validatePassword(password, this.password);
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+        }
+        catch (NoSuchAlgorithmException | InvalidKeySpecException ex)
+        {
             ex.printStackTrace();
             System.exit(0);
         }
@@ -91,10 +100,11 @@ public class User extends BaseModel {
         return false;
     }
 
-    public User(String username, String password) {
+    public User(String username, String email, String password)
+    {
         super();
         setUsername(username);
-        email = "test@email.com";
+        setEmail(email);
         setPassword(password);
         this.save();
     }

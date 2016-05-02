@@ -50,7 +50,7 @@ public class EditorTest extends ApplicationTest
     @Before
     public void setUpNodesToTest()
     {
-        currentUser = new User("test", "test");
+        currentUser = new User("test", "test", "test");
         npc = new NewProjectController3();
         File dummyFile = new File(System.getProperty("user.dir") + "src/main/resources/Test_Files");
 
