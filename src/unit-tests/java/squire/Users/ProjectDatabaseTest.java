@@ -5,6 +5,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.jws.soap.SOAPBinding;
+import java.io.File;
+import java.util.ArrayList;
+
 public class ProjectDatabaseTest extends TestCase
 {
     /**
@@ -33,10 +37,13 @@ public class ProjectDatabaseTest extends TestCase
         assertEquals(1,1);
     }
 
-/*    @Test
+    @Test
     public void testAddProject() throws Exception
     {
-        Project testproject = new Project();
+        User testuser = new User("1","2","3");
+        File testFile = new File("");
+
+        Project testproject = new Project("name", testuser,"3","4",testFile);
 
         testproject.save();
 
@@ -45,13 +52,15 @@ public class ProjectDatabaseTest extends TestCase
     @Test
     public void testGetSetOwner() throws Exception
     {
-        Project testproject = new Project();
-        testproject.setProjectOwner(new User("testowner","testpassword"));
+        User testuser = new User("4","5","6");
+        File testFile = new File("");
+        Project testproject = new Project("name", testuser,"3","4",testFile);
+        testproject.setProjectOwner(new User("testowner","email@email.com","testpassword"));
 
         testproject.save();
 
         assertEquals("testowner", testproject.getProjectOwner().getUsername());
     }
-*/
+
 
 }
