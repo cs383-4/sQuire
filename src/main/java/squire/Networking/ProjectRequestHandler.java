@@ -27,9 +27,7 @@ class ProjectRequestHandler {
 
     @Route("getProjectName")
     static void getProjectName(Request req, Response res) {
-        System.out.println(req.get("projectUUID"));
-        System.out.println(Project.find.where().projectUuid.equalTo((UUID) req.get("projectUUID")).findList().size());
-        Project p = Project.find.where().projectUuid.equalTo((UUID) req.get("projectUUID")).findUnique();
+        Project p = Project.find.where().projectUuid.equalTo((String) req.get("projectUUID")).findUnique();
         if(p == null) {
             //can't find project
             res.setFail();
