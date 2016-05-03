@@ -37,21 +37,21 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import org.fxmisc.richtext.*;
+import squire.chatserver.ChatClient;
+
 /**
  * Created by MattDaniel on 3/31/16.
  */
 public class EditorController implements Initializable
 {
-    @FXML
-    private ImageView avatarImageView;
-    @FXML
-    private Button homeButton;
-    @FXML
-    private TreeView fileExplorer;
-    @FXML
-    private TextArea editorTextArea;
-
+    @FXML private ImageView avatarImageView;
+    @FXML private Button homeButton;
+    @FXML private TreeView fileExplorer;
+    @FXML private TextArea editorTextArea;
     @FXML private Button saveButton;
+    @FXML private TextArea chatTextArea;
+    @FXML private TextField chatTextField;
+    @FXML private Button sendButton;
 
     // Compilation vars.
     @FXML
@@ -442,5 +442,10 @@ public class EditorController implements Initializable
             e.printStackTrace();
         }
         */
+    }
+
+    @FXML private void onSendButtonClick(ActionEvent event)
+    {
+
     }
 }
