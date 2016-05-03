@@ -138,7 +138,7 @@ public class EditorController implements Initializable {
             rootItem.getChildren().add(item);
         }
         */
-        rootItem.getChildren().add(new TreeItem<>("main.java"));
+        rootItem.getChildren().add(new TreeItem<>("Main.java"));
 
         fileExplorer.setRoot(rootItem);
         fileExplorer.setEditable(false);
@@ -249,8 +249,6 @@ public class EditorController implements Initializable {
         // Basic way to write files back
         String oldFilePath;
         Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
-        //TODO: project path
-        String projectPath = "";
         oldFilePath = projectPath + File.separator + curTab.getText();
         //oldFile = new File (oldFilePath);
         try {
@@ -346,23 +344,23 @@ public class EditorController implements Initializable {
     }
 
     private void compileCode() {
-        /*
         compilationOutputTextArea.appendText("Compiling...\n");
-        File entryPoint = currentProject.getEntryPointClassFile();
         String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
         String javaExePath = pc.getProp("jdkLocation") + File.separator + "java";
 
         try
         {
-            ProcessBuilder compilation = new ProcessBuilder(javacPath, entryPoint.getName());
-            compilation.directory(new File(currentProject.getProjectPath()));
+            String entryPoint = "Main.java";
+            ProcessBuilder compilation = new ProcessBuilder(javacPath, entryPoint);
+            System.out.println(projectPath);
+            compilation.directory(new File(projectPath));
             Process p = compilation.start();
             int errorCode = p.waitFor();
             System.out.println("p1 Error Code: " + errorCode);
 
 
-            ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.getName().replace(".java", ""));
-            execution.directory(new File(currentProject.getProjectPath()));
+            ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.replace(".java", ""));
+            execution.directory(new File(projectPath));
             Process p2 = execution.start();
             p2.waitFor(5, TimeUnit.SECONDS);
             int errorCode2 = p2.exitValue();
@@ -381,6 +379,5 @@ public class EditorController implements Initializable {
         {
             e.printStackTrace();
         }
-        */
     }
 }

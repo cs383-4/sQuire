@@ -117,6 +117,8 @@ public class NewProjectController3 implements Initializable {
                 .set("description", projectDescription)
                 .send();
         Main.setProjectID((String) res.get("projectUUID"));
+        //make sure the project name is null, so it will be repopulated. This is needed if changing projects without restarting
+        Main.setProjectName(null);
     }
 
     public void copyMainFile(String fileLocation) {
