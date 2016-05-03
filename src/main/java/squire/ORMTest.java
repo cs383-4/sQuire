@@ -12,8 +12,8 @@ public class ORMTest
     public static void main(String[] args)
     {
         //create a new user with the name hello
-        System.out.println(Project.find.where().id.equalTo(1).findList());
-        System.out.println(Project.find.where().projectUuid.equalTo("a4af0c34-faa8-454e-9d75-cfb19f090d86").findList().size());
+        //System.out.println(Project.find.where().id.equalTo(1).findList());
+        //System.out.println(Project.find.where().projectUuid.equalTo("a4af0c34-faa8-454e-9d75-cfb19f090d86").findList().size());
         String username = "user" + new Random().nextInt();
         User u = new User(username, "email@email.com", "password123");
 

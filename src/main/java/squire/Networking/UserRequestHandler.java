@@ -41,5 +41,15 @@ class UserRequestHandler
         res.set("userName", u.getUsername());
         res.set("userID", u.getId());
     }
+
+    @Route("getUsernameFromSessionId")
+    static void getUsernameFromSessionId(Request req, Response res)
+    {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        if (u != null)
+        {
+            res.set("username", u.getUsername());
+        }
+    }
 }
 

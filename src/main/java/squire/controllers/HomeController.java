@@ -21,6 +21,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import squire.Main;
+import squire.Networking.Request;
+import squire.Networking.Response;
 
 import java.io.File;
 import java.net.URL;
@@ -49,6 +51,15 @@ public class HomeController implements Initializable
         // Since ImageViews don't have their own onAction event, I created my own event/handler lambda here.
         // This event handler will be called whenever the avatarImageView is clicked.
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
+        if (Main.getSessionID() != null)
+        {
+            Platform.runLater(() -> logInHyperlink.setVisible(false));
+            Platform.runLater(() -> registerHyperlink.setVisible(false));
+
+            Response res = new Request("user/getUsernameFromSessionId").set("sessionID", Main.getSessionID()).send();
+            String username = (String)res.get("username");
+            Platform.runLater(() -> userNameLabel.setText(username));
+        }
         setupListView();
     }
 

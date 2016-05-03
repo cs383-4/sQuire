@@ -34,19 +34,15 @@ public class Main extends Application implements Initializable {
     public static String getProjectsDir() {
         return projectsDir;
     }
-
     public static String getSessionID() {
         return sessionID;
     }
-
     public static void setSessionID(String val) {
         sessionID = val;
     }
-
     public static String getProjectID() {
         return projectID;
     }
-
     public static void setProjectID(String val) {
         projectID = val;
     }
