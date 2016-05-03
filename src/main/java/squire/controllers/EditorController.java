@@ -20,6 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import squire.Main;
+import squire.Networking.Request;
+import squire.Networking.Response;
 import squire.Users.Project;
 import squire.Users.PropertiesController;
 import squire.Users.User;
@@ -27,6 +29,7 @@ import squire.Users.User;
 
 import java.io.*;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -57,8 +60,6 @@ public class EditorController implements Initializable
     private CodeArea sourceCodeTextArea;
     @FXML
     private TabPane editorTabPane;
-    private Project currentProject;
-    private User currentUser;
 
     private File oldFile;
     private ArrayList<Tab> openTabs = new ArrayList<>();
@@ -75,8 +76,6 @@ public class EditorController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
-        currentUser = Main.getSessionID();
-        currentProject = currentUser.getCurrentProject();
         compilationOutputTextArea.setWrapText(true);
         setupFileList();
         pc = PropertiesController.getPropertiesController();
@@ -123,10 +122,13 @@ public class EditorController implements Initializable
     {
         //Set up tree view cell factory
 
-        TreeItem<String> rootItem = new TreeItem<>(currentProject.getProjectName());
+        Response res = new Request("project/getProjectName").set("projectUUID", Main.getProjectID()).send();
+        TreeItem<String> rootItem = new TreeItem<>((String) res.get("name"));
         rootItem.setExpanded(true);
 
-        for (File file : currentProject.getFileList()) {
+        //TODO:file list
+        ArrayList<File> fileList = new ArrayList<>();
+        for (File file : fileList) {
             // Get just the filename
             String fileName = file.getName();
             TreeItem<String> item = new TreeItem<>(fileName);
@@ -157,9 +159,9 @@ public class EditorController implements Initializable
                     {
                         Scanner input = new Scanner(System.in);
                         // TODO: get this string to be the actual path of the file
-                        String newFilePath = currentProject.getProjectPath() + File.separator + selectedItem
-                                .getValue();
+                        //String newFilePath = currentProject.getProjectPath() + File.separator + selectedItem.getValue();
 
+                        String newFilePath = "";
 
                         File file = new File(newFilePath);
                         CodeArea newTabCodeArea = new CodeArea();
@@ -215,7 +217,7 @@ public class EditorController implements Initializable
             newTabCodeArea.setPrefHeight(558.0);
             newTabCodeArea.setPrefWidth(709.0);
 
-            setupMobWrite(newTabCodeArea, currentProject.getProjectName() + ":" + file.getName());
+            setupMobWrite(newTabCodeArea, Main.getProjectID() + ":" + file.getName());
             AnchorPane ap = new AnchorPane(newTabCodeArea);
 
 
@@ -280,7 +282,9 @@ public class EditorController implements Initializable
                                 // Basic way to write files back
         String oldFilePath;
         Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
-        oldFilePath = currentProject.getProjectPath() + File.separator + curTab.getText();
+        //TODO: project path
+        String projectPath = "";
+        oldFilePath = projectPath + File.separator + curTab.getText();
         //oldFile = new File (oldFilePath);
         try
         {
@@ -402,6 +406,7 @@ public class EditorController implements Initializable
 
     private void compileCode()
     {
+        /*
         compilationOutputTextArea.appendText("Compiling...\n");
         File entryPoint = currentProject.getEntryPointClassFile();
         String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
@@ -436,5 +441,6 @@ public class EditorController implements Initializable
         {
             e.printStackTrace();
         }
+        */
     }
 }

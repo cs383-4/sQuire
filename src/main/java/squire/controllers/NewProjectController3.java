@@ -139,7 +139,7 @@ public class NewProjectController3 implements Initializable
                         .set("name", projectName)
                         .set("description", projectDescription)
                         .send();
-                Main.setProjectID((String) res.get("projectID"));
+                Main.setProjectID((String) res.get("projectUUID"));
 
                 //TODO: Make this persist, and be gettable
               //  pc.setProp(projectName, createdProject.getProjectPath());
@@ -161,7 +161,8 @@ public class NewProjectController3 implements Initializable
         {
             Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
             Scene scene = new Scene(root);
-            stage.setTitle("sQuire Editor - Project " + currentSession.getCurrentProject().toString());
+            Response res = new Request("project/getProjectName").set("projectUUID", Main.getProjectID()).send();
+            stage.setTitle("sQuire Editor - Project " + res.get("name"));
             stage.setScene(scene);
             Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 

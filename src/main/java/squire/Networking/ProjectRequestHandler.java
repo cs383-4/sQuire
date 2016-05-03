@@ -7,6 +7,7 @@ import squire.Users.Project;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceException;
 import java.sql.SQLException;
+import java.util.UUID;
 
 /**
  * The request handler dealing with all things Users
@@ -20,12 +21,18 @@ class ProjectRequestHandler {
         p.setProjectName((String) req.get("name"));
         p.setProjectOwner(u);
         p.setProjectDescription((String) req.get("description"));
-        u.save();
+        p.save();
+        res.set("projectID", p.getProjectUuid());
     }
 
     @Route("getProjectName")
     static void getProjectName(Request req, Response res) {
-        Project p = Project.find.
+        Project p = Project.find.where().projectUuid.equalTo(UUID.fromString((String) req.get("projectUUID"))).findUnique();
+        if(p == null) {
+            //can't find project
+            res.setFail();
+        }
+        res.set("name", p.getProjectName());
     }
 }
 

@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import squire.Main;
 import squire.Networking.Request;
 import squire.Networking.Response;
+import squire.Users.PropertiesController;
 
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -95,7 +96,7 @@ public class LogInDialogController implements Initializable
 
         if (res.getSuccess())
         {
-            Main.sessionID = (String)res.get("sessionID");
+            Main.setSessionID((String)res.get("sessionID"));
             System.out.println("Login successful.");
             Main.userNotLoggedIn.setValue(false);
 
@@ -109,8 +110,6 @@ public class LogInDialogController implements Initializable
             }
 
             HomeController.userName = usernameTextField.getText();
-            User u = User.find.where().id.equalTo(Integer.parseInt(res.get("userID").toString())).findUnique();
-            Main.setSessionID(u);
             thisStage.close();
         }
         else
