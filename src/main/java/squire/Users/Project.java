@@ -5,6 +5,7 @@ import squire.BaseModel;
 import javax.persistence.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -39,6 +40,10 @@ public class Project extends BaseModel
     @Column()
     @OneToOne
     private ProjectFile primaryFile;
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    private List<Project> workingOn;
+
 
     private String projectUuid = UUID.randomUUID().toString();
 
@@ -106,6 +111,13 @@ public class Project extends BaseModel
     public String getProjectPath() { return projectPath; }
     public ArrayList<File> getFileList() { return fileList;}
     public String getProjectUuid() {return projectUuid;};
+    public List<Project> getWorkingOn() {
+        return workingOn;
+    }
+
+    public void setWorkingOn(List<Project> workingOn) {
+        this.workingOn = workingOn;
+    }
 
     public String getMatchingFile(String s)
     {

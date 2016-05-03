@@ -21,6 +21,7 @@ import squire.BaseModel;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //some databases have user as a reserved word, so following ebean examples, prefix tables with "o_"
@@ -41,6 +42,11 @@ public class User extends BaseModel
     @OneToMany
     private ArrayList<Project> projects;
 
+    @ManyToMany(mappedBy = "workingOn",cascade=CascadeType.ALL )
+    private List<User> usersWorkingOn;
+
+
+
     private void setEmail(String val) { email = val; }
     private String getEmail() { return email; }
 
@@ -57,6 +63,14 @@ public class User extends BaseModel
     public void addProject(Project p)
     {
         projects.add(p);
+    }
+
+    public List<User> getUsersWorkingOn() {
+        return usersWorkingOn;
+    }
+
+    public void setUsersWorkingOn(List<User> usersWorkingOn) {
+        this.usersWorkingOn = usersWorkingOn;
     }
 
     /**
