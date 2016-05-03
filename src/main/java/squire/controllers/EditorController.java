@@ -432,7 +432,7 @@ public class EditorController implements Initializable
             }
         }
 
-        compilationOutputTextArea.appendText("\nCompiling...\n");
+        compilationOutputTextArea.appendText("Compiling...\n");
         File entryPoint = currentProject.getEntryPointClassFile();
         String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
         String javaExePath = pc.getProp("jdkLocation") + File.separator + "java";
