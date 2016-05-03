@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import squire.Networking.Request;
+import squire.Networking.Response;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,6 +44,22 @@ public class PreferencesDialogController implements Initializable
     {
         thisStage = (Stage)submitButton.getScene().getWindow();
         System.out.println("Close button clicked.");
-        thisStage.close();
+        if (newPasswordField.getText().equals(confirmPasswordField.getText())) {
+            Response res = new Request("user/ChangePassword")
+                    .set("password", newPasswordField.getText())
+                    .send();
+
+            if (res.getSuccess())
+            {
+                System.out.println("Password Changed.");
+                thisStage.close();
+            }
+            else
+            {
+                //user already exists
+            }
+        }
+
+        //thisStage.close();
     }
 }
