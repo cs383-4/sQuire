@@ -35,4 +35,3 @@ class ProjectRequestHandler {
         res.set("name", p.getProjectName());
     }
 }
-
