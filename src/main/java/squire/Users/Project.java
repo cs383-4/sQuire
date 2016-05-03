@@ -30,7 +30,7 @@ public class Project extends BaseModel
     @Column()
     private String path;
 
-    @Column()
+   @Column()
     private String description;
 
     @Column()
@@ -40,6 +40,7 @@ public class Project extends BaseModel
     @OneToOne
     private ProjectFile primaryFile;
 
+    @Column
 
     /**
      * The list of source code files in this project.
@@ -58,15 +59,14 @@ public class Project extends BaseModel
      * @param owner The User owner of the Project.
      * @param path The string fully qualified path to the project on the local machine.
      */
-    public Project(String name, User owner, String path, String description, File initialFile)
+    public Project(String name, User owner, String path, String description)
     {
         projectName = name;
         projectDescription = description;
         projectOwner = owner;
         projectPath = path;
-        fileList.add(initialFile);
-        entryPointClassFile = initialFile;
-//        this.save();
+        //fileList.add(initialFile);
+        //entryPointClassFile = initialFile;
     }
 
     /**
@@ -87,6 +87,19 @@ public class Project extends BaseModel
         entryPointClassFile = entryPointFile;
 //        this.save();
     }
+
+    public Project() {
+        //empty constructor
+    }
+
+    public String getProjectDescription() {
+        return description;
+    }
+
+    public void setProjectDescription(String description) {
+        this.description = description;
+    }
+
 
     public void setProjectName(String name) { projectName = name; }
     public void setProjectOwner(User owner) { projectOwner = owner; }

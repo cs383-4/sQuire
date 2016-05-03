@@ -24,32 +24,39 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 
-
-public class Main extends Application implements Initializable
-{
+public class Main extends Application implements Initializable {
     // The location of the directory that stores all the user's projects.
     private static String projectsDir = System.getProperty("user.dir") + File.separator + "Projects";
     private static User currentUser = null;
     private static PropertiesController pc;
 
-    public static String getProjectsDir() { return projectsDir; }
-    public static User getCurrentUser()
-    {
-        System.out.println("currentUser = " + currentUser.getUsername());
-        return currentUser;
-    }
-    public static void setCurrentUser(User val)
-    {
-        System.out.println("val: " + val.getUsername());
-        currentUser = val;
-    }
     public static String sessionID = null;
+    public static String projectID = null;
     public static MobWriteClient mobwrite = null;
 
     public static BooleanProperty userNotLoggedIn = new SimpleBooleanProperty(true);
 
-    public static void main(String[] args)
-    {
+    public static String getProjectsDir() {
+        return projectsDir;
+    }
+
+    public static String getSessionID() {
+        return sessionID;
+    }
+
+    public static void setSessionID(String val) {
+        sessionID = val;
+    }
+
+    public static String getProjectID() {
+        return projectID;
+    }
+
+    public static void setProjectID(String val) {
+        projectID = val;
+    }
+
+    public static void main(String[] args) {
         // From the 'Application' class.
         // Sets up program as a javafx application.
         System.out.println(System.getProperty("user.dir"));
@@ -59,18 +66,15 @@ public class Main extends Application implements Initializable
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
+    public void initialize(URL location, ResourceBundle resources) {
         pc = PropertiesController.getPropertiesController();
         pc.loadProps();
     }
 
     // Called during launch().
     @Override
-    public void start(Stage stage) throws Exception
-    {
-        try
-        {
+    public void start(Stage stage) throws Exception {
+        try {
             // This is returning null, thus the catch block is executing.
             FXMLLoader loader = new FXMLLoader();
             Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
@@ -81,56 +85,45 @@ public class Main extends Application implements Initializable
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
-        }
-        catch (Exception exception)
-        {
+        } catch (Exception exception) {
             exception.printStackTrace();
         }
     }
 
-    @Override public void stop()
-    {
+    @Override
+    public void stop() {
         System.exit(0);
     }
 
     /**
      * Generates a folder for storing user projects if doesn't already exist.
      */
-    private static void generateProjectsDir()
-    {
+    private static void generateProjectsDir() {
         File f = new File(projectsDir);
-        if (!f.exists())
-        {
+        if (!f.exists()) {
             System.out.println("Creating directory: " + projectsDir);
             boolean success = false;
 
-            try
-            {
+            try {
                 f.mkdir();
                 success = true;
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println(e.toString());
                 // Handle...
             }
 
-            if (success)
-            {
+            if (success) {
                 System.out.println("Projects dir created at " + projectsDir);
             }
         }
     }
 
-    private static void createPropFileIfNeeded()
-    {
+    private static void createPropFileIfNeeded() {
         File propFile = new File("squire_config.properties");
 
-        try
-        {
+        try {
             propFile.createNewFile();
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -139,7 +132,7 @@ public class Main extends Application implements Initializable
      * Returns the mobwrite project, initilizing it if it hasn't been used yet
      */
     public static MobWriteClient getMobwriteClient() {
-        if(mobwrite == null) {
+        if (mobwrite == null) {
             mobwrite = new MobWriteClient("http://squireserver.westus.cloudapp.azure.com/py/q.py");
             mobwrite.maxSyncInterval = 1000;
             mobwrite.minSyncInterval = 500;

@@ -14,9 +14,10 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import squire.Main;
+import squire.Networking.Request;
+import squire.Networking.Response;
 import squire.Users.Project;
 import squire.Users.PropertiesController;
-import squire.Users.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,15 +42,14 @@ public class NewProjectController3 implements Initializable
     public String projectName;
     public String projectLocation;
     public String projectDescription;
-    public Project createdProject;
-    public User currentUser;
+    public String currentSession;
     public ArrayList<File> projectFiles = new ArrayList<File>();
     private PropertiesController pc = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        currentUser = Main.getCurrentUser();
+        currentSession = Main.getSessionID();
         projectLocation = Main.getProjectsDir();
         locationTextField.setText(projectLocation);
         pc = PropertiesController.getPropertiesController();
@@ -134,10 +134,13 @@ public class NewProjectController3 implements Initializable
                 Files.copy(from, to, options);
                 projectFiles.add(toFile);
 
-                createdProject = new Project(projectName, currentUser, projectLocation, projectDescription, projectFiles, toFile);
-                currentUser.addProject(createdProject);
-                currentUser.setCurrentProject(createdProject);
-
+                Response res = new Request("project/addProject")
+                        .set("sessionID", Main.getSessionID())
+                        .set("name", projectName)
+                        .set("description", projectDescription)
+                        .send();
+                currentSession.addProject(createdProject);
+                currentSession.setCurrentProject(createdProject);
 
                 //TODO: Make this persist, and be gettable
               //  pc.setProp(projectName, createdProject.getProjectPath());
@@ -159,7 +162,7 @@ public class NewProjectController3 implements Initializable
         {
             Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
             Scene scene = new Scene(root);
-            stage.setTitle("sQuire Editor - Project " + currentUser.getCurrentProject().toString());
+            stage.setTitle("sQuire Editor - Project " + currentSession.getCurrentProject().toString());
             stage.setScene(scene);
             Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 

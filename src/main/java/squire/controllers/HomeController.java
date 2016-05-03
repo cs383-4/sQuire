@@ -1,8 +1,6 @@
 package squire.controllers;
 
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -106,7 +104,7 @@ public class HomeController implements Initializable
     @FXML
     private void onNewProjectHyperlinkClick(ActionEvent event)
     {
-        if (Main.getCurrentUser() == null)
+        if (Main.getSessionID() == null)
         {
             onLogInHyperlinkClick(new ActionEvent());
             return;

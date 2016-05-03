@@ -38,10 +38,12 @@ public class User extends BaseModel
     @Column(nullable = false, unique = true)
     private String email;
 
+    @OneToMany
+    private ArrayList<Project> projects;
+
     private void setEmail(String val) { email = val; }
     private String getEmail() { return email; }
 
-    private Project currentProject = null;
     public String getUsername()
     {
         return username;
@@ -52,18 +54,10 @@ public class User extends BaseModel
         this.username = username;
     }
 
-    private ArrayList<Project> projects;
-
     public void addProject(Project p)
     {
-        if (projects == null)
-        {
-            projects = new ArrayList<Project>();
-        }
         projects.add(p);
     }
-    public void setCurrentProject(Project p) { currentProject = p; }
-    public Project getCurrentProject() { return currentProject; }
 
     /**
      * Sets the given password for the user. Hashes it, and stores it in the database
