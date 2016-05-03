@@ -91,12 +91,9 @@ public class NewProjectController3 implements Initializable {
 
             String fileLocation = initProjectFields(projectName, projectDescription, projectLocation);
 
-            System.out.println("before");
             createProject();
-            System.out.println("created");
             copyMainFile(fileLocation);
             loadEditorScene();
-            System.out.println("loaded");
         }
     }
 

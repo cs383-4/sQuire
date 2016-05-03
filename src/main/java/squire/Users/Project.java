@@ -48,7 +48,6 @@ public class Project extends BaseModel
     private ArrayList<File> fileList = new ArrayList<>();
     private String projectName;
     private String projectDescription;
-    private File entryPointClassFile;
     private User projectOwner;
     private String projectPath;
 
@@ -83,7 +82,6 @@ public class Project extends BaseModel
         projectOwner = owner;
         projectPath = path;
         fileList = importedFiles;
-        entryPointClassFile = entryPointFile;
 //        this.save();
     }
 
@@ -103,11 +101,9 @@ public class Project extends BaseModel
     public void setProjectName(String name) { projectName = name; }
     public void setProjectOwner(User owner) { projectOwner = owner; }
     public void setProjectPath(String path) { projectPath = path; }
-    public void setEntryPointClassFile(File file) { entryPointClassFile = file; }
     public String getProjectName() { return projectName; }
     public User getProjectOwner() { return projectOwner; }
     public String getProjectPath() { return projectPath; }
-    public File getEntryPointClassFile() { return entryPointClassFile; }
     public ArrayList<File> getFileList() { return fileList;}
     public String getProjectUuid() {return projectUuid;};
 
