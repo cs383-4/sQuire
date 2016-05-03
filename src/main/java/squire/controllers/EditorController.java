@@ -57,6 +57,8 @@ public class EditorController implements Initializable
     private CodeArea sourceCodeTextArea;
     @FXML
     private TabPane editorTabPane;
+    @FXML private Button runButton;
+
     private Project currentProject;
     private User currentUser;
 
@@ -66,6 +68,7 @@ public class EditorController implements Initializable
     private CodeArea currentCodeArea;
 
     private PropertiesController pc = null;
+    private String jdkPath;
 
 //    private ShareJTextComponent mobwriteComponent;
 
@@ -73,13 +76,18 @@ public class EditorController implements Initializable
     // Compilation vars.
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
         currentUser = Main.getCurrentUser();
         currentProject = currentUser.getCurrentProject();
         compilationOutputTextArea.setWrapText(true);
         setupFileList();
         pc = PropertiesController.getPropertiesController();
+
+        jdkPath = pc.getProp("jdkLocation");
+
+
     }
 
     private void onAvatarImageViewClick() {
@@ -402,7 +410,29 @@ public class EditorController implements Initializable
 
     private void compileCode()
     {
-        compilationOutputTextArea.appendText("Compiling...\n");
+        //If user hasn't yet specified their local JDK path
+        if(jdkPath == null)
+        {
+
+            FXMLLoader loader = new FXMLLoader();
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(runButton.getScene().getWindow());
+            dialogStage.setResizable(false);
+            try
+            {
+                Parent root = loader.load(getClass().getResource("/fxml/SettingsDialog.fxml"));
+                Scene scene = new Scene(root);
+                dialogStage.setScene(scene);
+                dialogStage.setTitle("Settings");
+                dialogStage.showAndWait();
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        compilationOutputTextArea.appendText("\nCompiling...\n");
         File entryPoint = currentProject.getEntryPointClassFile();
         String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
         String javaExePath = pc.getProp("jdkLocation") + File.separator + "java";
