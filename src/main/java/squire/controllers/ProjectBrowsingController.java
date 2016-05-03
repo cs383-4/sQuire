@@ -62,7 +62,9 @@ public class ProjectBrowsingController implements Initializable
         projectNameTestList.add("Test1");
         projectNameTestList.add("Test2");
         projectNameTestList.add("Test3");
+        projectNameTestList.add("Test4");
         observableList.setAll(projectNameTestList);
+        projectsListView.setItems(observableList);
         projectsListView.setCellFactory((Callback<ListView<String>, ListCell<String>>) listVIew -> new ListViewCell());
     }
 }
