@@ -20,10 +20,6 @@ public class Project extends BaseModel
     // Database code
 
 
-    @Column()
-    @OneToOne
-    private String primaryFile;
-
     /**
      * The list of source code files in this project.
      */
@@ -35,7 +31,10 @@ public class Project extends BaseModel
     @Column()
     private String projectDescription;
 
+    @Transient
     private File entryPointClassFile;
+
+    @Column()
     private UUID projectUuid = UUID.randomUUID();
 
     @Column()

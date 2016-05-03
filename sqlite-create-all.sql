@@ -1,9 +1,7 @@
 create table o_project (
   id                            integer not null,
-  primary_file                  varchar(255),
   project_name                  varchar(255),
   project_description           varchar(255),
-  entry_point_class_file        longvarbinary,
   project_uuid                  varchar(40),
   project_owner_id              integer,
   project_path                  varchar(255),
