@@ -37,11 +37,11 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import org.fxmisc.richtext.*;
+
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class EditorController implements Initializable
-{
+public class EditorController implements Initializable {
     @FXML
     private ImageView avatarImageView;
     @FXML
@@ -51,7 +51,8 @@ public class EditorController implements Initializable
     @FXML
     private TextArea editorTextArea;
 
-    @FXML private Button saveButton;
+    @FXML
+    private Button saveButton;
 
     // Compilation vars.
     @FXML
@@ -67,8 +68,7 @@ public class EditorController implements Initializable
     private CodeArea currentCodeArea;
 
     private PropertiesController pc = null;
-
-//    private ShareJTextComponent mobwriteComponent;
+    private String projectPath = "";
 
 
     // Compilation vars.
@@ -77,7 +77,8 @@ public class EditorController implements Initializable
     public void initialize(URL location, ResourceBundle resources) {
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
         compilationOutputTextArea.setWrapText(true);
-        setupFileList();
+        //setupFileList();
+        loadProject();
         pc = PropertiesController.getPropertiesController();
     }
 
@@ -99,10 +100,8 @@ public class EditorController implements Initializable
     }
 
     @FXML
-    private void onHomeButtonClick(ActionEvent event)
-    {
-        try
-        {
+    private void onHomeButtonClick(ActionEvent event) {
+        try {
             FXMLLoader loader = new FXMLLoader();
             Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
             Stage stage = (Stage) homeButton.getScene().getWindow();
@@ -118,15 +117,19 @@ public class EditorController implements Initializable
         }
     }
 
-    public void setupFileList()
-    {
-        //Set up tree view cell factory
+    //load the project set in Main.projectID
+    public void loadProject() {
+        projectPath = Main.getProjectsDir() + File.separator + Main.getProjectName();
+        setupFileList();
+    }
 
-        Response res = new Request("project/getProjectName").set("projectUUID", Main.getProjectID()).send();
-        TreeItem<String> rootItem = new TreeItem<>((String) res.get("name"));
+    public void setupFileList() {
+        //Set up tree view cell factory
+        TreeItem<String> rootItem = new TreeItem<>(Main.getProjectName());
         rootItem.setExpanded(true);
 
-        //TODO:file list
+        //TODO:make this not hard coded
+        /*
         ArrayList<File> fileList = new ArrayList<>();
         for (File file : fileList) {
             // Get just the filename
@@ -134,90 +137,60 @@ public class EditorController implements Initializable
             TreeItem<String> item = new TreeItem<>(fileName);
             rootItem.getChildren().add(item);
         }
-
+        */
+        rootItem.getChildren().add(new TreeItem<>("main.java"));
 
         fileExplorer.setRoot(rootItem);
         fileExplorer.setEditable(false);
         fileExplorer.setCellFactory(p -> {
-                // Name used for class in oracle online demo
+            // Name used for class in oracle online demo
             return new TextFieldTreeCellImpl();
         });
 
-
         // One way to get the clicked on cell
-
-        fileExplorer.setOnMouseClicked(new EventHandler<MouseEvent>()
-        {
+        fileExplorer.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent)
-            {
-                if (mouseEvent.getClickCount() == 2)
-                {
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2) {
                     TreeItem<String> selectedItem = (TreeItem<String>) fileExplorer.getSelectionModel().getSelectedItem();
 
-                    try
-                    {
-                        Scanner input = new Scanner(System.in);
+                    try {
                         // TODO: get this string to be the actual path of the file
                         //String newFilePath = currentProject.getProjectPath() + File.separator + selectedItem.getValue();
 
-                        String newFilePath = "";
-
-                        File file = new File(newFilePath);
                         CodeArea newTabCodeArea = new CodeArea();
 
-                     //   writeFileBackOnSwitchTab();
-
-                        createNewTab(file, newTabCodeArea);
-                        input = new Scanner(file);
-
-                        //Write the dummy file if it does not exist
-                        String getText = getText(newTabCodeArea);
-                        if(getText.isEmpty())
-                        {
-                            writeFile(input, newTabCodeArea);
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
+                        createNewTab(selectedItem.getValue(), newTabCodeArea);
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
             }
-
         });
     }
 
 
-
     //Create new tab programatically
-    public void createNewTab(File file, CodeArea newTabCodeArea)
-    {
-
+    public void createNewTab(String name, CodeArea newTabCodeArea) {
         Boolean isInList = false;
         Tab newTab = new Tab();
-        newTab.setText(file.getName());
+        newTab.setText(name);
 
-         for (Tab t : editorTabPane.getTabs())
-         {
-             if (t.getText().equals( newTab.getText()))
-             {
+        for (Tab t : editorTabPane.getTabs()) {
+            if (t.getText().equals(newTab.getText())) {
 
-                 isInList = true;
-                 switchToTab(t);
-             }
+                isInList = true;
+                switchToTab(t);
+            }
 
-         }
-        if (isInList == false)
-         {
-
+        }
+        if (isInList == false) {
             newTabCodeArea.setLayoutX(167.0);
             newTabCodeArea.setLayoutY(27.0);
             newTabCodeArea.setPrefHeight(558.0);
             newTabCodeArea.setPrefWidth(709.0);
 
-            setupMobWrite(newTabCodeArea, Main.getProjectID() + ":" + file.getName());
+            setupMobWrite(newTabCodeArea, Main.getProjectID() + ":" + name);
             AnchorPane ap = new AnchorPane(newTabCodeArea);
 
 
@@ -241,26 +214,22 @@ public class EditorController implements Initializable
 
             newTab.setContent(ap);
             editorTabPane.getTabs().add(newTab);
-
         }
         //TODO: Fix this!
         currentCodeArea = newTabCodeArea;
     }
 
 
-    private void switchToTab(Tab t)
-    {
+    private void switchToTab(Tab t) {
         editorTabPane.getSelectionModel().select(t);
     }
 
     // Write the file to the CodeArea
-    public void writeFile(Scanner input, CodeArea newTabCodeArea)
-    {
+    public void writeFile(Scanner input, CodeArea newTabCodeArea) {
         String fullText = "";
         // Open the file on click
         newTabCodeArea.positionCaret(0);
-        while (input.hasNextLine())
-        {
+        while (input.hasNextLine()) {
             String line = input.nextLine();
             fullText += (line + "\n");
         }
@@ -270,44 +239,36 @@ public class EditorController implements Initializable
         input.close();
     }
 
-    public String getText(CodeArea ca)
-    {
+    public String getText(CodeArea ca) {
         return ca.getText();
     }
 
 
-
-    @FXML private void onSaveButtonClick(ActionEvent event)
-    {
-                                // Basic way to write files back
+    @FXML
+    private void onSaveButtonClick(ActionEvent event) {
+        // Basic way to write files back
         String oldFilePath;
         Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
         //TODO: project path
         String projectPath = "";
         oldFilePath = projectPath + File.separator + curTab.getText();
         //oldFile = new File (oldFilePath);
-        try
-        {
+        try {
             BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath));
             bf.write(currentCodeArea.getText());
             bf.flush();
             bf.close();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
     }
 
 
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
     // TODO: every time we switch tabs
-    public void setupMobWrite(CodeArea ca, String name)
-    {
-        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, name);
+    public void setupMobWrite(CodeArea ca, String name) {
+        //mobwrite ids have to start with a letter. Append a letter to the start to make sure. s for squire!
+        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, "s" + name);
         Main.getMobwriteClient().share(mobwriteComponent);
     }
 
@@ -316,18 +277,14 @@ public class EditorController implements Initializable
 
         private TextField textField;
 
-        public TextFieldTreeCellImpl()
-        {
-
+        public TextFieldTreeCellImpl() {
         }
 
         @Override
-        public void startEdit()
-        {
+        public void startEdit() {
             super.startEdit();
 
-            if (textField == null)
-            {
+            if (textField == null) {
                 createTextField();
             }
             setText(null);
@@ -336,65 +293,49 @@ public class EditorController implements Initializable
         }
 
         @Override
-        public void cancelEdit()
-        {
+        public void cancelEdit() {
             super.cancelEdit();
             setText((String) getItem());
             setGraphic(getTreeItem().getGraphic());
         }
 
         @Override
-        public void updateItem(String item, boolean empty)
-        {
+        public void updateItem(String item, boolean empty) {
             super.updateItem(item, empty);
 
-            if (empty)
-            {
+            if (empty) {
                 setText(null);
                 setGraphic(null);
-            }
-            else
-            {
-                if (isEditing())
-                {
-                    if (textField != null)
-                    {
+            } else {
+                if (isEditing()) {
+                    if (textField != null) {
                         textField.setText(getString());
                     }
                     setText(null);
                     setGraphic(textField);
-                }
-                else
-                {
+                } else {
                     setText(getString());
                     setGraphic(getTreeItem().getGraphic());
                 }
             }
         }
 
-        private void createTextField()
-        {
+        private void createTextField() {
             textField = new TextField(getString());
-            textField.setOnKeyReleased(new EventHandler<KeyEvent>()
-            {
+            textField.setOnKeyReleased(new EventHandler<KeyEvent>() {
 
                 @Override
-                public void handle(KeyEvent t)
-                {
-                    if (t.getCode() == KeyCode.ENTER)
-                    {
+                public void handle(KeyEvent t) {
+                    if (t.getCode() == KeyCode.ENTER) {
                         commitEdit(textField.getText());
-                    }
-                    else if (t.getCode() == KeyCode.ESCAPE)
-                    {
+                    } else if (t.getCode() == KeyCode.ESCAPE) {
                         cancelEdit();
                     }
                 }
             });
         }
 
-        private String getString()
-        {
+        private String getString() {
             return getItem() == null ? "" : getItem().toString();
         }
     }
@@ -404,8 +345,7 @@ public class EditorController implements Initializable
         compileCode();
     }
 
-    private void compileCode()
-    {
+    private void compileCode() {
         /*
         compilationOutputTextArea.appendText("Compiling...\n");
         File entryPoint = currentProject.getEntryPointClassFile();

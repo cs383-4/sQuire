@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import squire.Networking.Request;
+import squire.Networking.Response;
 import squire.Users.PropertiesController;
 import squire.Users.User;
 
@@ -27,6 +29,7 @@ public class Main extends Application implements Initializable {
 
     public static String sessionID = null;
     public static String projectID = null;
+    public static String projectName = null;
     public static MobWriteClient mobwrite = null;
 
     public static BooleanProperty userNotLoggedIn = new SimpleBooleanProperty(true);
@@ -109,6 +112,13 @@ public class Main extends Application implements Initializable {
         }
     }
 
+    public static String getProjectName() {
+        if(projectName == null) {
+            Response res = new Request("project/getProjectName").set("projectUUID", getProjectID()).send();
+            projectName = (String) res.get("name");
+        }
+        return projectName;
+    }
     private static void createPropFileIfNeeded() {
         File propFile = new File("squire_config.properties");
 
