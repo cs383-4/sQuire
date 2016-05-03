@@ -5,7 +5,7 @@ create table o_project (
   path                          varchar(255),
   description                   varchar(255),
   primary_file_id               integer,
-  project_uuid                  varchar(40),
+  project_uuid                  varchar(255),
   project_name                  varchar(255),
   project_description           varchar(255),
   entry_point_class_file        longvarbinary,

@@ -9,9 +9,9 @@ import squire.Users.query.QProject;
 
 import java.util.UUID;
 
-public class ProjectFinder extends Finder<Long, User> {
+public class ProjectFinder extends Finder<Long, Project> {
     public ProjectFinder() {
-        super(User.class);
+        super(Project.class);
     }
 
     public QProject where() {

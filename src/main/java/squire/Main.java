@@ -26,7 +26,7 @@ public class Main extends Application implements Initializable {
     private static PropertiesController pc;
 
     public static String sessionID = null;
-    public static UUID projectID = null;
+    public static String projectID = null;
     public static MobWriteClient mobwrite = null;
 
     public static BooleanProperty userNotLoggedIn = new SimpleBooleanProperty(true);
@@ -43,11 +43,11 @@ public class Main extends Application implements Initializable {
         sessionID = val;
     }
 
-    public static UUID getProjectID() {
+    public static String getProjectID() {
         return projectID;
     }
 
-    public static void setProjectID(UUID val) {
+    public static void setProjectID(String val) {
         projectID = val;
     }
 

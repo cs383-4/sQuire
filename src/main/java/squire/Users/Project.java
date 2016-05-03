@@ -40,7 +40,7 @@ public class Project extends BaseModel
     @OneToOne
     private ProjectFile primaryFile;
 
-    private UUID projectUuid = UUID.randomUUID();
+    private String projectUuid = UUID.randomUUID().toString();
 
     /**
      * The list of source code files in this project.
@@ -109,7 +109,7 @@ public class Project extends BaseModel
     public String getProjectPath() { return projectPath; }
     public File getEntryPointClassFile() { return entryPointClassFile; }
     public ArrayList<File> getFileList() { return fileList;}
-    public UUID getProjectUuid() {return projectUuid;};
+    public String getProjectUuid() {return projectUuid;};
 
     public String getMatchingFile(String s)
     {

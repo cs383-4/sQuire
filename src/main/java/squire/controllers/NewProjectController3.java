@@ -119,7 +119,7 @@ public class NewProjectController3 implements Initializable {
                 .set("name", projectName)
                 .set("description", projectDescription)
                 .send();
-        Main.setProjectID((UUID) res.get("projectUUID"));
+        Main.setProjectID((String) res.get("projectUUID"));
     }
 
     public void copyMainFile(String fileLocation) {
