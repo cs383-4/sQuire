@@ -120,7 +120,7 @@ public class EditorController implements Initializable
 
     //load the project set in Main.projectID
     public void loadProject() {
-        projectPath = Main.getProjectsDir() + File.separator + Main.getProjectName();
+        projectPath = Main.getProjectsDir() + File.separator + Main.getProjectID();
         setupFileList();
     }
 
