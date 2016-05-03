@@ -8,7 +8,6 @@ create table o_project (
   project_uuid                  varchar(255),
   project_name                  varchar(255),
   project_description           varchar(255),
-  entry_point_class_file        longvarbinary,
   project_path                  varchar(255),
   version                       integer not null,
   when_created                  timestamp not null,
