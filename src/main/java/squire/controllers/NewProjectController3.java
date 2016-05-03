@@ -139,8 +139,7 @@ public class NewProjectController3 implements Initializable
                         .set("name", projectName)
                         .set("description", projectDescription)
                         .send();
-                currentSession.addProject(createdProject);
-                currentSession.setCurrentProject(createdProject);
+                Main.setProjectID((String) res.get("projectID"));
 
                 //TODO: Make this persist, and be gettable
               //  pc.setProp(projectName, createdProject.getProjectPath());

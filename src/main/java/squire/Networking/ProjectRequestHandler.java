@@ -22,5 +22,10 @@ class ProjectRequestHandler {
         p.setProjectDescription((String) req.get("description"));
         u.save();
     }
+
+    @Route("getProjectName")
+    static void getProjectName(Request req, Response res) {
+        Project p = Project.find.
+    }
 }
 
