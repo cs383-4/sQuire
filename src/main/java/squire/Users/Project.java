@@ -20,36 +20,29 @@ public class Project extends BaseModel
     // Database code
 
 
-    @Column(nullable = false)
-    @ManyToOne
-    private User owner;
-
-    @Column()
-    private String name;
-
-    @Column()
-    private String path;
-
-    @Column()
-    private String description;
-
-    @Column()
-    private ArrayList<JavaSourceFromString> importedFiles;
-
     @Column()
     @OneToOne
-    private ProjectFile primaryFile;
-
+    private String primaryFile;
 
     /**
      * The list of source code files in this project.
      */
     private ArrayList<File> fileList = new ArrayList<>();
+
+    @Column()
     private String projectName;
+
+    @Column()
     private String projectDescription;
+
     private File entryPointClassFile;
     private UUID projectUuid = UUID.randomUUID();
+
+    @Column()
+    @ManyToOne
     private User projectOwner;
+
+    @Column()
     private String projectPath;
 
     /**
@@ -97,23 +90,6 @@ public class Project extends BaseModel
     public String getProjectPath() { return projectPath; }
     public File getEntryPointClassFile() { return entryPointClassFile; }
     public ArrayList<File> getFileList() { return fileList;}
-    public UUID getProjectUuid() {return projectUuid;};
+    public UUID getProjectUuid() {return projectUuid;}
 
-    public String getMatchingFile(String s)
-    {
-        String file = "";
-        String t;
-        for (File fileName: this.getFileList())
-        {
-            t = fileName.getName();
-
-            if (s.equals(t))
-            {
-                //     System.out.println(fileName.substring(file.lastIndexOf("/")+1));
-                file = file.toString();
-            }
-        }
-        //   System.out.println(file);
-        return file;
-    }
 }
