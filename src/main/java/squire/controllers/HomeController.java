@@ -187,7 +187,7 @@ public class HomeController implements Initializable
             Parent root = loader.load(getClass().getResource("/fxml/SettingsDialog.fxml"));
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
-            dialogStage.setTitle("PropertiesController");
+            dialogStage.setTitle("Settings");
             dialogStage.showAndWait();
         }
         catch (Exception e)

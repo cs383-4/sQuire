@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import squire.Main;
 import squire.Networking.Request;
 import squire.Networking.Response;
+import squire.Users.PropertiesController;
+import squire.Users.User;
 
 import java.util.ResourceBundle;
 import java.net.URL;
