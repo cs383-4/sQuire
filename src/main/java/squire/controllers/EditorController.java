@@ -37,22 +37,21 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import org.fxmisc.richtext.*;
+import squire.chatserver.ChatClient;
 
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class EditorController implements Initializable {
-    @FXML
-    private ImageView avatarImageView;
-    @FXML
-    private Button homeButton;
-    @FXML
-    private TreeView fileExplorer;
-    @FXML
-    private TextArea editorTextArea;
-
-    @FXML
-    private Button saveButton;
+public class EditorController implements Initializable
+{
+    @FXML private ImageView avatarImageView;
+    @FXML private Button homeButton;
+    @FXML private TreeView fileExplorer;
+    @FXML private TextArea editorTextArea;
+    @FXML private Button saveButton;
+    @FXML private TextArea chatTextArea;
+    @FXML private TextField chatTextField;
+    @FXML private Button sendButton;
 
     // Compilation vars.
     @FXML
@@ -100,8 +99,10 @@ public class EditorController implements Initializable {
     }
 
     @FXML
-    private void onHomeButtonClick(ActionEvent event) {
-        try {
+    private void onHomeButtonClick(ActionEvent event)
+    {
+        try
+        {
             FXMLLoader loader = new FXMLLoader();
             Parent root = loader.load(getClass().getResource("/fxml/Home.fxml"));
             Stage stage = (Stage) homeButton.getScene().getWindow();
@@ -220,16 +221,19 @@ public class EditorController implements Initializable {
     }
 
 
-    private void switchToTab(Tab t) {
+    private void switchToTab(Tab t)
+    {
         editorTabPane.getSelectionModel().select(t);
     }
 
     // Write the file to the CodeArea
-    public void writeFile(Scanner input, CodeArea newTabCodeArea) {
+    public void writeFile(Scanner input, CodeArea newTabCodeArea)
+    {
         String fullText = "";
         // Open the file on click
         newTabCodeArea.positionCaret(0);
-        while (input.hasNextLine()) {
+        while (input.hasNextLine())
+        {
             String line = input.nextLine();
             fullText += (line + "\n");
         }
@@ -239,24 +243,29 @@ public class EditorController implements Initializable {
         input.close();
     }
 
-    public String getText(CodeArea ca) {
+    public String getText(CodeArea ca)
+    {
         return ca.getText();
     }
 
 
-    @FXML
-    private void onSaveButtonClick(ActionEvent event) {
-        // Basic way to write files back
+
+    @FXML private void onSaveButtonClick(ActionEvent event)
+    {
+                                // Basic way to write files back
         String oldFilePath;
         Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
         oldFilePath = projectPath + File.separator + curTab.getText();
         //oldFile = new File (oldFilePath);
-        try {
+        try
+        {
             BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath));
             bf.write(currentCodeArea.getText());
             bf.flush();
             bf.close();
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
     }
@@ -264,9 +273,9 @@ public class EditorController implements Initializable {
 
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
     // TODO: every time we switch tabs
-    public void setupMobWrite(CodeArea ca, String name) {
-        //mobwrite ids have to start with a letter. Append a letter to the start to make sure. s for squire!
-        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, "s" + name);
+    public void setupMobWrite(CodeArea ca, String name)
+    {
+        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, name);
         Main.getMobwriteClient().share(mobwriteComponent);
     }
 
@@ -275,14 +284,18 @@ public class EditorController implements Initializable {
 
         private TextField textField;
 
-        public TextFieldTreeCellImpl() {
+        public TextFieldTreeCellImpl()
+        {
+
         }
 
         @Override
-        public void startEdit() {
+        public void startEdit()
+        {
             super.startEdit();
 
-            if (textField == null) {
+            if (textField == null)
+            {
                 createTextField();
             }
             setText(null);
@@ -291,27 +304,36 @@ public class EditorController implements Initializable {
         }
 
         @Override
-        public void cancelEdit() {
+        public void cancelEdit()
+        {
             super.cancelEdit();
             setText((String) getItem());
             setGraphic(getTreeItem().getGraphic());
         }
 
         @Override
-        public void updateItem(String item, boolean empty) {
+        public void updateItem(String item, boolean empty)
+        {
             super.updateItem(item, empty);
 
-            if (empty) {
+            if (empty)
+            {
                 setText(null);
                 setGraphic(null);
-            } else {
-                if (isEditing()) {
-                    if (textField != null) {
+            }
+            else
+            {
+                if (isEditing())
+                {
+                    if (textField != null)
+                    {
                         textField.setText(getString());
                     }
                     setText(null);
                     setGraphic(textField);
-                } else {
+                }
+                else
+                {
                     setText(getString());
                     setGraphic(getTreeItem().getGraphic());
                 }
@@ -379,5 +401,10 @@ public class EditorController implements Initializable {
         {
             e.printStackTrace();
         }
+    }
+
+    @FXML private void onSendButtonClick(ActionEvent event)
+    {
+
     }
 }
