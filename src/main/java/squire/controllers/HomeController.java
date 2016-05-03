@@ -234,6 +234,21 @@ public class HomeController implements Initializable
     }
 
 
+    // Methods to instantiate the project list
+
+
+
+//    public static void getProjectsWithUid()
+//    {
+//        if (!userName.isEmpty())
+//        {
+//
+//            Response res = new Request("project/getProjectsWithUid").set("sessionID", Main.getSessionID()).send();
+//            String username = (String)res.get("username");
+//        }
+//    }
+
+
 
     public void setupListView()
     {
@@ -244,6 +259,14 @@ public class HomeController implements Initializable
                 "chocolate", "salmon", "gold", "coral", "darkorchid",
                 "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
                 "blueviolet", "brown");
+
+
+
+
+
+
+
+
         final Label label = new Label();
 
         recentProjectsListView.setItems(data);
