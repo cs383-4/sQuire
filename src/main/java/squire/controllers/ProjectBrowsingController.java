@@ -9,16 +9,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import squire.CustomViews.ListViewCell;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by Domn on 4/4/2016.
@@ -28,21 +28,13 @@ public class ProjectBrowsingController implements Initializable
 {
     @FXML private Button backButton;
     @FXML private ListView projectsListView;
+    private List<String> projectNameTestList = new ArrayList<>();
+    ObservableList observableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        ArrayList<HBox> projectCellsList = new ArrayList<>();
-        ObservableList<HBox> projectCellsObservableList = FXCollections.observableList(projectCellsList);
-        FXMLLoader loader = new FXMLLoader();
-        try
-        {
-            projectCellsList.add(loader.load(getClass().getResource("/fxml/ProjectListViewItem")));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        setListView();
     }
 
     @FXML private void onBackButtonClick(ActionEvent event)
@@ -63,5 +55,14 @@ public class ProjectBrowsingController implements Initializable
                 e.printStackTrace();
             }
         }
+    }
+
+    private void setListView()
+    {
+        projectNameTestList.add("Test1");
+        projectNameTestList.add("Test2");
+        projectNameTestList.add("Test3");
+        observableList.setAll(projectNameTestList);
+        projectsListView.setCellFactory((Callback<ListView<String>, ListCell<String>>) listVIew -> new ListViewCell());
     }
 }
