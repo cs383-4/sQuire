@@ -2,13 +2,8 @@ package squire;
 
 import google.mobwrite.MobWriteClient;
 import javafx.application.Application;
-import javafx.beans.InvalidationListener;
-import javafx.beans.binding.BooleanExpression;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -20,8 +15,8 @@ import squire.Users.User;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 
 public class Main extends Application implements Initializable {
@@ -31,7 +26,7 @@ public class Main extends Application implements Initializable {
     private static PropertiesController pc;
 
     public static String sessionID = null;
-    public static String projectID = null;
+    public static UUID projectID = null;
     public static MobWriteClient mobwrite = null;
 
     public static BooleanProperty userNotLoggedIn = new SimpleBooleanProperty(true);
@@ -48,11 +43,11 @@ public class Main extends Application implements Initializable {
         sessionID = val;
     }
 
-    public static String getProjectID() {
+    public static UUID getProjectID() {
         return projectID;
     }
 
-    public static void setProjectID(String val) {
+    public static void setProjectID(UUID val) {
         projectID = val;
     }
 

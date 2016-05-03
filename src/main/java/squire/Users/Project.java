@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Project extends BaseModel
 {
     public static final ProjectFinder find = new ProjectFinder();
-    // Database code
+    // Database code    public QSession where() {
 
 
     @Column(nullable = false)
@@ -40,7 +40,7 @@ public class Project extends BaseModel
     @OneToOne
     private ProjectFile primaryFile;
 
-    @Column
+    private UUID projectUuid = UUID.randomUUID();
 
     /**
      * The list of source code files in this project.
@@ -49,7 +49,6 @@ public class Project extends BaseModel
     private String projectName;
     private String projectDescription;
     private File entryPointClassFile;
-    private UUID projectUuid = UUID.randomUUID();
     private User projectOwner;
     private String projectPath;
 

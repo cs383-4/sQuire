@@ -54,9 +54,9 @@ public class EditorTest extends ApplicationTest
         npc = new NewProjectController3();
         File dummyFile = new File(System.getProperty("user.dir") + "src/main/resources/Test_Files");
 
-        p = new Project("test", currentUser,"test","test",dummyFile);
+        //p = new Project("test", currentUser,"test","test",dummyFile);
 
-        currentUser.setCurrentProject(p);
+        //currentUser.setCurrentProject(p);
 
         nodeNamesToTest.add("#avatarImageView");
         nodeNamesToTest.add("#homeButton");
