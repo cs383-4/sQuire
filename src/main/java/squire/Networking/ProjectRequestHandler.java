@@ -22,12 +22,14 @@ class ProjectRequestHandler {
         p.setProjectOwner(u);
         p.setProjectDescription((String) req.get("description"));
         p.save();
-        res.set("projectID", p.getProjectUuid());
+        res.set("projectUUID", p.getProjectUuid());
     }
 
     @Route("getProjectName")
     static void getProjectName(Request req, Response res) {
-        Project p = Project.find.where().projectUuid.equalTo(UUID.fromString((String) req.get("projectUUID"))).findUnique();
+        System.out.println(req.get("projectUUID"));
+        System.out.println(Project.find.where().projectUuid.equalTo((UUID) req.get("projectUUID")).findList().size());
+        Project p = Project.find.where().projectUuid.equalTo((UUID) req.get("projectUUID")).findUnique();
         if(p == null) {
             //can't find project
             res.setFail();
