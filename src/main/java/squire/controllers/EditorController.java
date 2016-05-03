@@ -37,7 +37,7 @@ import org.fxmisc.richtext.*;
 /**
  * Created by MattDaniel on 3/31/16.
  */
-public class EditorController implements Initializable
+public class EditorController extends CodeArea implements Initializable
 {
     @FXML
     private ImageView avatarImageView;
@@ -411,7 +411,7 @@ public class EditorController implements Initializable
     private void compileCode()
     {
         //If user hasn't yet specified their local JDK path
-        if(jdkPath == null)
+        if(jdkPath.isEmpty())
         {
 
             FXMLLoader loader = new FXMLLoader();
@@ -430,8 +430,9 @@ public class EditorController implements Initializable
             {
                 e.printStackTrace();
             }
-        }
 
+        }
+        pc = PropertiesController.getPropertiesController();
         compilationOutputTextArea.appendText("Compiling...\n");
         File entryPoint = currentProject.getEntryPointClassFile();
         String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
