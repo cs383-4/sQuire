@@ -38,7 +38,6 @@ class ProjectRequestHandler {
     @Route("getProjectsWithUid")
     static void getProjectsWithUid (Request req, Response res)
     {
-
     }
 
 }
