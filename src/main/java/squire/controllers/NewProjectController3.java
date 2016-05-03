@@ -156,8 +156,7 @@ public class NewProjectController3 implements Initializable {
         try {
             Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
             Scene scene = new Scene(root);
-            Response res = new Request("project/getProjectName").set("projectUUID", Main.getProjectID()).send();
-            stage.setTitle("sQuire Editor - Project " + res.get("name"));
+            stage.setTitle("sQuire Editor - Project " + Main.getProjectName());
             stage.setScene(scene);
             Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
@@ -212,6 +211,5 @@ public class NewProjectController3 implements Initializable {
             projectLocation = selectedDir.getAbsolutePath();
         }
     }
-
 }
 
