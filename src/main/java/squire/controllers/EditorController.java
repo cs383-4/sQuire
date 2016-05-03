@@ -75,8 +75,8 @@ public class EditorController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
-        currentUser = Main.getSessionID();
-        currentProject = currentUser.getCurrentProject();
+        //currentUser = Main.getSessionID();
+        //currentProject = currentUser.getCurrentProject();
         compilationOutputTextArea.setWrapText(true);
         setupFileList();
         pc = PropertiesController.getPropertiesController();
