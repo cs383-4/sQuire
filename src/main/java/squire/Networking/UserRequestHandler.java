@@ -51,4 +51,13 @@ class UserRequestHandler
             res.set("username", u.getUsername());
         }
     }
+
+    @Route("ChangePassword")
+    static void ChangePassword(Request req, Response res)
+    {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        u.setPassword((String) req.get("password"));
+        u.save();
+    }
+
 }
