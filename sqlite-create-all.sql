@@ -51,6 +51,14 @@ create table o_user (
   constraint pk_o_user primary key (id)
 );
 
+create table o_user_project (
+  o_user_id                     integer not null,
+  o_project_id                  integer not null,
+  constraint pk_o_user_project primary key (o_user_id,o_project_id),
+  foreign key (o_user_id) references o_user (id) on delete restrict on update restrict,
+  foreign key (o_project_id) references o_project (id) on delete restrict on update restrict
+);
+
 create table o_works_on (
   id                            integer not null,
   uid_id                        integer,
