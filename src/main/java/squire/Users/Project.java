@@ -5,7 +5,6 @@ import squire.BaseModel;
 import javax.persistence.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,7 +14,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "o_project")
-public class Project extends BaseModel {
+public class Project extends BaseModel
+{
     public static final ProjectFinder find = new ProjectFinder();
     // Database code    public QSession where() {
 
@@ -28,6 +28,10 @@ public class Project extends BaseModel {
 
     @OneToOne
     private ProjectFile primaryFile;
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    private List<Project> workingOn;
+
 
     private String projectUuid = UUID.randomUUID().toString();
 
