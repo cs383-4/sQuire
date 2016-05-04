@@ -97,9 +97,13 @@
                <children>
                   <VBox prefHeight="474.0" prefWidth="226.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="249.0" style="-fx-border-color: gray;" text="File Explorer" textAlignment="CENTER" />
+                        <HBox>
+                           <children>
+                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" style="-fx-background-color: pink;" text="+" />
+                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="199.0" style="-fx-border-color: gray;" text="File Explorer" textAlignment="CENTER" />
+                           </children>
+                        </HBox>
                         <TreeView fx:id="fileExplorer" editable="true" prefHeight="464.0" prefWidth="226.0" style="-fx-border-color: gray;" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" text="+" />
                      </children>
                   </VBox>
                </children>
