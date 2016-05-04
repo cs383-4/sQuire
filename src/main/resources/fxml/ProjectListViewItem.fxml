@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="mainHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="102.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="mainHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="102.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="projectImage" fitHeight="92.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="projectImage" fitHeight="81.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/gear-tools.png" />
          </image>
@@ -18,7 +18,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </HBox.margin>
       </ImageView>
-      <VBox prefHeight="102.0" prefWidth="500.0">
+      <VBox prefHeight="102.0" prefWidth="417.0">
          <children>
             <Label fx:id="projectNameLabel" prefHeight="38.0" prefWidth="487.0" text="Project Name">
                <font>
@@ -28,7 +28,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="descriptionLabel" prefHeight="45.0" prefWidth="495.0" text="Description">
+            <Label fx:id="projectDescriptionLabel" prefHeight="45.0" prefWidth="495.0" text="Description">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin></Label>

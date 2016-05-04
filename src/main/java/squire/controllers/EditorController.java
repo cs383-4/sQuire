@@ -37,21 +37,21 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import org.fxmisc.richtext.*;
+import squire.chatserver.ChatClient;
+
 /**
  * Created by MattDaniel on 3/31/16.
  */
 public class EditorController implements Initializable
 {
-    @FXML
-    private ImageView avatarImageView;
-    @FXML
-    private Button homeButton;
-    @FXML
-    private TreeView fileExplorer;
-    @FXML
-    private TextArea editorTextArea;
-
+    @FXML private ImageView avatarImageView;
+    @FXML private Button homeButton;
+    @FXML private TreeView fileExplorer;
+    @FXML private TextArea editorTextArea;
     @FXML private Button saveButton;
+    @FXML private TextArea chatTextArea;
+    @FXML private TextField chatTextField;
+    @FXML private Button sendButton;
 
     // Compilation vars.
     @FXML
@@ -67,8 +67,7 @@ public class EditorController implements Initializable
     private CodeArea currentCodeArea;
 
     private PropertiesController pc = null;
-
-//    private ShareJTextComponent mobwriteComponent;
+    private String projectPath = "";
 
 
     // Compilation vars.
@@ -77,7 +76,8 @@ public class EditorController implements Initializable
     public void initialize(URL location, ResourceBundle resources) {
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
         compilationOutputTextArea.setWrapText(true);
-        setupFileList();
+        //setupFileList();
+        loadProject();
         pc = PropertiesController.getPropertiesController();
     }
 
@@ -118,106 +118,75 @@ public class EditorController implements Initializable
         }
     }
 
-    public void setupFileList()
-    {
-        //Set up tree view cell factory
+    //load the project set in Main.projectID
+    public void loadProject() {
+        projectPath = Main.getProjectsDir() + File.separator + Main.getProjectID();
+        setupFileList();
+    }
 
-        Response res = new Request("project/getProjectName").set("projectUUID", Main.getProjectID()).send();
-        TreeItem<String> rootItem = new TreeItem<>((String) res.get("name"));
+    public void setupFileList() {
+        //Set up tree view cell factory
+        TreeItem<String> rootItem = new TreeItem<>(Main.getProjectName());
         rootItem.setExpanded(true);
 
-        //TODO:file list
-        ArrayList<File> fileList = new ArrayList<>();
-        for (File file : fileList) {
-            // Get just the filename
-            String fileName = file.getName();
-            TreeItem<String> item = new TreeItem<>(fileName);
-            rootItem.getChildren().add(item);
+        Response res = new Request("project/getFilesInProject")
+                .set("projectUUID", Main.getProjectID())
+                .send();
+        for(String file: (ArrayList<String>) res.get("files")) {
+            rootItem.getChildren().add(new TreeItem<>(file));
         }
-
 
         fileExplorer.setRoot(rootItem);
         fileExplorer.setEditable(false);
         fileExplorer.setCellFactory(p -> {
-                // Name used for class in oracle online demo
+            // Name used for class in oracle online demo
             return new TextFieldTreeCellImpl();
         });
 
-
         // One way to get the clicked on cell
-
-        fileExplorer.setOnMouseClicked(new EventHandler<MouseEvent>()
-        {
+        fileExplorer.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent)
-            {
-                if (mouseEvent.getClickCount() == 2)
-                {
+            public void handle(MouseEvent mouseEvent) {
+                if (mouseEvent.getClickCount() == 2) {
                     TreeItem<String> selectedItem = (TreeItem<String>) fileExplorer.getSelectionModel().getSelectedItem();
 
-                    try
-                    {
-                        Scanner input = new Scanner(System.in);
+                    try {
                         // TODO: get this string to be the actual path of the file
                         //String newFilePath = currentProject.getProjectPath() + File.separator + selectedItem.getValue();
 
-                        String newFilePath = "";
-
-                        File file = new File(newFilePath);
                         CodeArea newTabCodeArea = new CodeArea();
 
-                     //   writeFileBackOnSwitchTab();
-
-                        createNewTab(file, newTabCodeArea);
-                        input = new Scanner(file);
-
-                        //Write the dummy file if it does not exist
-                        String getText = getText(newTabCodeArea);
-                        if(getText.isEmpty())
-                        {
-                            writeFile(input, newTabCodeArea);
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
+                        createNewTab(selectedItem.getValue(), newTabCodeArea);
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
             }
-
         });
     }
 
 
-
     //Create new tab programatically
-    public void createNewTab(File file, CodeArea newTabCodeArea)
-    {
-
+    public void createNewTab(String name, CodeArea newTabCodeArea) {
         Boolean isInList = false;
         Tab newTab = new Tab();
-        newTab.setText(file.getName());
+        newTab.setText(name);
 
-         for (Tab t : editorTabPane.getTabs())
-         {
-             if (t.getText().equals( newTab.getText()))
-             {
+        for (Tab t : editorTabPane.getTabs()) {
+            if (t.getText().equals(newTab.getText())) {
 
-                 isInList = true;
-                 switchToTab(t);
-             }
+                isInList = true;
+                switchToTab(t);
+            }
 
-         }
-        if (isInList == false)
-         {
-
+        }
+        if (isInList == false) {
             newTabCodeArea.setLayoutX(167.0);
             newTabCodeArea.setLayoutY(27.0);
             newTabCodeArea.setPrefHeight(558.0);
             newTabCodeArea.setPrefWidth(709.0);
 
-            setupMobWrite(newTabCodeArea, Main.getProjectID() + ":" + file.getName());
+            setupMobWrite(newTabCodeArea, Main.getProjectID() + ":" + name);
             AnchorPane ap = new AnchorPane(newTabCodeArea);
 
 
@@ -241,7 +210,6 @@ public class EditorController implements Initializable
 
             newTab.setContent(ap);
             editorTabPane.getTabs().add(newTab);
-
         }
         //TODO: Fix this!
         currentCodeArea = newTabCodeArea;
@@ -276,38 +244,31 @@ public class EditorController implements Initializable
     }
 
 
-
     @FXML private void onSaveButtonClick(ActionEvent event)
     {
-                                // Basic way to write files back
-        String oldFilePath;
         Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
-        //TODO: project path
-        String projectPath = "";
-        oldFilePath = projectPath + File.separator + curTab.getText();
-        //oldFile = new File (oldFilePath);
+        String filePath = projectPath + File.separator + curTab.getText();
+        File file = new File(filePath);
+        file.getParentFile().mkdirs();
         try
         {
-            BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath));
-            bf.write(currentCodeArea.getText());
-            bf.flush();
-            bf.close();
+            PrintWriter writer = new PrintWriter(file);
+            writer.write(currentCodeArea.getText());
+            writer.close();
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-
-
-
     }
 
 
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
-    // TODO: every time we switch tabs
+    //TODO: every time we switch tabs
     public void setupMobWrite(CodeArea ca, String name)
     {
-        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, name);
+        //mobwrite needs an id that starts with a letter, prefix 's' for squire
+        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, 's' + name);
         Main.getMobwriteClient().share(mobwriteComponent);
     }
 
@@ -372,29 +333,22 @@ public class EditorController implements Initializable
             }
         }
 
-        private void createTextField()
-        {
+        private void createTextField() {
             textField = new TextField(getString());
-            textField.setOnKeyReleased(new EventHandler<KeyEvent>()
-            {
+            textField.setOnKeyReleased(new EventHandler<KeyEvent>() {
 
                 @Override
-                public void handle(KeyEvent t)
-                {
-                    if (t.getCode() == KeyCode.ENTER)
-                    {
+                public void handle(KeyEvent t) {
+                    if (t.getCode() == KeyCode.ENTER) {
                         commitEdit(textField.getText());
-                    }
-                    else if (t.getCode() == KeyCode.ESCAPE)
-                    {
+                    } else if (t.getCode() == KeyCode.ESCAPE) {
                         cancelEdit();
                     }
                 }
             });
         }
 
-        private String getString()
-        {
+        private String getString() {
             return getItem() == null ? "" : getItem().toString();
         }
     }
@@ -404,25 +358,24 @@ public class EditorController implements Initializable
         compileCode();
     }
 
-    private void compileCode()
-    {
-        /*
+    private void compileCode() {
         compilationOutputTextArea.appendText("Compiling...\n");
-        File entryPoint = currentProject.getEntryPointClassFile();
         String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
         String javaExePath = pc.getProp("jdkLocation") + File.separator + "java";
 
         try
         {
-            ProcessBuilder compilation = new ProcessBuilder(javacPath, entryPoint.getName());
-            compilation.directory(new File(currentProject.getProjectPath()));
+            String entryPoint = "Main.java";
+            ProcessBuilder compilation = new ProcessBuilder(javacPath, entryPoint);
+            System.out.println(projectPath);
+            compilation.directory(new File(projectPath));
             Process p = compilation.start();
             int errorCode = p.waitFor();
             System.out.println("p1 Error Code: " + errorCode);
 
 
-            ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.getName().replace(".java", ""));
-            execution.directory(new File(currentProject.getProjectPath()));
+            ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.replace(".java", ""));
+            execution.directory(new File(projectPath));
             Process p2 = execution.start();
             p2.waitFor(5, TimeUnit.SECONDS);
             int errorCode2 = p2.exitValue();
@@ -441,6 +394,10 @@ public class EditorController implements Initializable
         {
             e.printStackTrace();
         }
-        */
+    }
+
+    @FXML private void onSendButtonClick(ActionEvent event)
+    {
+
     }
 }

@@ -2,13 +2,9 @@ create table o_project (
   id                            integer not null,
   owner_id                      integer,
   name                          varchar(255),
-  path                          varchar(255),
   description                   varchar(255),
   primary_file_id               integer,
   project_uuid                  varchar(255),
-  project_name                  varchar(255),
-  project_description           varchar(255),
-  project_path                  varchar(255),
   version                       integer not null,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,
@@ -21,9 +17,7 @@ create table o_project (
 create table o_project_file (
   id                            integer not null,
   project_id                    integer,
-  file                          longvarbinary,
-  path                          varchar(255),
-  description                   varchar(255),
+  name                          varchar(255),
   version                       integer not null,
   when_created                  timestamp not null,
   when_updated                  timestamp not null,
@@ -55,5 +49,26 @@ create table o_user (
   constraint uq_o_user_username unique (username),
   constraint uq_o_user_email unique (email),
   constraint pk_o_user primary key (id)
+);
+
+create table o_user_project (
+  o_user_id                     integer not null,
+  o_project_id                  integer not null,
+  constraint pk_o_user_project primary key (o_user_id,o_project_id),
+  foreign key (o_user_id) references o_user (id) on delete restrict on update restrict,
+  foreign key (o_project_id) references o_project (id) on delete restrict on update restrict
+);
+
+create table o_works_on (
+  id                            integer not null,
+  uid_id                        integer,
+  pid_id                        integer,
+  version                       integer not null,
+  when_created                  timestamp not null,
+  when_updated                  timestamp not null,
+  constraint uq_o_works_on_pid_id unique (pid_id),
+  constraint pk_o_works_on primary key (id),
+  foreign key (uid_id) references o_user (id) on delete restrict on update restrict,
+  foreign key (pid_id) references o_project (id) on delete restrict on update restrict
 );
 

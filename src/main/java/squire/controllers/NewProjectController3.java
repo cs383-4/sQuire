@@ -87,12 +87,8 @@ public class NewProjectController3 implements Initializable {
         } else {
             projectName = projectTitleTextField.getText();
             projectDescription = projectDescriptionTextArea.getText();
-            projectLocation = locationTextField.getText() + File.separator + projectName;
-
-            String fileLocation = initProjectFields(projectName, projectDescription, projectLocation);
 
             createProject();
-            copyMainFile(fileLocation);
             loadEditorScene();
         }
     }
@@ -100,16 +96,6 @@ public class NewProjectController3 implements Initializable {
 
     //__________________________________________________________________________________________
 //Helper functions
-    public String initProjectFields(String projectName, String projectDescription, String projectLocation) {
-        // Placeholder.
-        String entryPointClassName = "Main.java";
-        String fileLocation = projectLocation + File.separator + entryPointClassName;
-        File projectDirectory = new File(projectLocation);
-        projectDirectory.mkdir();
-
-        return fileLocation;
-    }
-
     public void createProject() {
         Response res = new Request("project/addProject")
                 .set("sessionID", Main.getSessionID())
@@ -117,37 +103,9 @@ public class NewProjectController3 implements Initializable {
                 .set("description", projectDescription)
                 .send();
         Main.setProjectID((String) res.get("projectUUID"));
+        //make sure the project name is null, so it will be repopulated. This is needed if changing projects without restarting
+        Main.setProjectName(null);
     }
-
-    public void copyMainFile(String fileLocation) {
-        File file = new File(fileLocation);
-        try {
-            if (file.createNewFile()) {
-
-                //System.out.println("File created: " + fileLocation);
-
-                // Copies the dummy file over
-                URL url = this.getClass().getResource("/Test_Files/Main.java");
-                File mainFile = new File(url.getPath());
-                Path from = mainFile.toPath();
-                File toFile = new File(fileLocation);
-                Path to = toFile.toPath();
-                CopyOption[] options = new CopyOption[]{
-                        StandardCopyOption.REPLACE_EXISTING,
-                        StandardCopyOption.COPY_ATTRIBUTES
-                };
-                Files.copy(from, to, options);
-                projectFiles.add(toFile);
-
-
-                //TODO: Make this persist, and be gettable
-                //  pc.setProp(projectName, createdProject.getProjectPath());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 
     public void loadEditorScene() {
         FXMLLoader loader = new FXMLLoader();
@@ -156,8 +114,7 @@ public class NewProjectController3 implements Initializable {
         try {
             Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
             Scene scene = new Scene(root);
-            Response res = new Request("project/getProjectName").set("projectUUID", Main.getProjectID()).send();
-            stage.setTitle("sQuire Editor - Project " + res.get("name"));
+            stage.setTitle("sQuire Editor - Project " + Main.getProjectName());
             stage.setScene(scene);
             Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
@@ -212,6 +169,4 @@ public class NewProjectController3 implements Initializable {
             projectLocation = selectedDir.getAbsolutePath();
         }
     }
-
 }
-
