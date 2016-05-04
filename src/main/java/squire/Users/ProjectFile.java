@@ -18,17 +18,26 @@ import java.io.File;
 public class ProjectFile extends BaseModel {
     public static final ProjectFileFinder find = new ProjectFileFinder();
 
-    @Column()
-    @ManyToOne
+    @ManyToOne()
     private Project project;
+    private String name;
 
-    @Column()
-    private File file;
+    public ProjectFile(String name) {
+        this.name = name;
+    }
+        public Project getProject() {
+        return project;
+    }
 
-    @Column()
-    private String path;
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
-    @Column()
-    private String description;
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 }
