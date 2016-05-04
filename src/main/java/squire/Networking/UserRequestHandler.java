@@ -54,6 +54,16 @@ class UserRequestHandler
         }
     }
 
+    @Route("getEmailFromUsername")
+    static void getEmailFromUsername(Request req, Response res)
+    {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        if (u != null)
+        {
+            res.set("email", u.getEmail());
+        }
+    }
+
     @Route("ChangePassword")
     static void ChangePassword(Request req, Response res)
     {
@@ -69,4 +79,6 @@ class UserRequestHandler
         u.setEmail((String) req.get("Email"));
         u.save();
     }
+
+
 }
