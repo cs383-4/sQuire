@@ -27,6 +27,7 @@ public class Main extends Application implements Initializable {
     private static User currentUser = null;
     private static PropertiesController pc;
 
+    public static String userName = null;
     public static String sessionID = null;
     public static String projectID = null;
     public static String projectName = null;
@@ -118,6 +119,18 @@ public class Main extends Application implements Initializable {
             projectName = (String) res.get("name");
         }
         return projectName;
+    }
+
+    public static String getUserName() {
+        if(userName == null) {
+            Response res = new Request("user/getUsernameFromSessionId").set("sessionID", getSessionID()).send();
+            userName = (String) res.get("username");
+        }
+        return userName;
+    }
+
+    public static void setUserName(String value) {
+        userName = value;
     }
 
     public static void setProjectName(String name) {
