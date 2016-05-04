@@ -1,5 +1,6 @@
 package squire.controllers;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import google.mobwrite.ShareJTextComponent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -129,7 +130,7 @@ public class EditorController implements Initializable
         projectPath = Main.getProjectsDir() + File.separator + Main.getProjectID();
         setupFileList();
         //set up the chat
-        setupMobWrite(chatCodeArea, "chat" + Main.getProjectID());
+        setupMobWrite(chatCodeArea, "chat" + Main.getProjectID(), true);
         chatCodeArea.setWrapText(true);
         chatCodeArea.appendText("\n" + Main.getUserName() + " opened the project");
     }
@@ -225,7 +226,7 @@ public class EditorController implements Initializable
             newTabCodeArea.setPrefHeight(558.0);
             newTabCodeArea.setPrefWidth(709.0);
 
-            setupMobWrite(newTabCodeArea, Main.getProjectID() + ":" + name);
+            setupMobWrite(newTabCodeArea, Main.getProjectID() + ":" + name, false);
             AnchorPane ap = new AnchorPane(newTabCodeArea);
 
 
@@ -303,10 +304,10 @@ public class EditorController implements Initializable
 
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
     //TODO: every time we switch tabs
-    public void setupMobWrite(CodeArea ca, String name)
+    public void setupMobWrite(CodeArea ca, String name, Boolean chatMode)
     {
         //mobwrite needs an id that starts with a letter, prefix 's' for squire
-        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, 's' + name);
+        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, 's' + name, chatMode);
         Main.getMobwriteClient().share(mobwriteComponent);
     }
 
