@@ -60,31 +60,26 @@
                         <Font size="14.0" />
                      </font>
                   </Hyperlink>
-                  <Hyperlink id="openProjectHyperlink" fx:id="openProjectHyperlink" alignment="CENTER" layoutX="10.0" layoutY="169.0" onAction="#onOpenProjectHyperlinkClick" prefHeight="23.0" prefWidth="374.0" text="Open Project">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Hyperlink>
                   <Hyperlink id="browseProjectsHyperlink" fx:id="browseProjectsHyperlink" alignment="CENTER" layoutX="10.0" layoutY="278.0" onAction="#onBrowseProjectsHyperlinkClick" prefHeight="23.0" prefWidth="374.0" text="Browse Projects">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Hyperlink>
-                  <Region prefHeight="53.0" prefWidth="366.0" VBox.vgrow="NEVER" />
+                  <Region prefHeight="52.0" prefWidth="366.0" VBox.vgrow="NEVER" />
                   <HBox fx:id="bottomSettingsHBox" prefHeight="0.0" prefWidth="366.0">
                      <children>
-                        <Hyperlink id="settingsHyperlink" fx:id="settingsHyperlink" onAction="#onSettingsHyperlinkClick" prefHeight="23.0" prefWidth="66.0" text="Settings">
+                        <Hyperlink id="settingsHyperlink" fx:id="settingsHyperlink" onAction="#onSettingsHyperlinkClick" prefHeight="29.0" prefWidth="73.0" text="Settings">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Hyperlink>
-                        <Region prefHeight="29.0" prefWidth="196.0" />
-                        <Hyperlink id="registerHyperlink" fx:id="registerHyperlink" onAction="#onRegisterHyperlinkClick" text="Register">
+                        <Region prefHeight="29.0" prefWidth="181.0" />
+                        <Hyperlink id="registerHyperlink" fx:id="registerHyperlink" onAction="#onRegisterHyperlinkClick" prefHeight="29.0" prefWidth="67.0" text="Register">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </Hyperlink>
-                        <Hyperlink id="logInHyperlink" fx:id="logInHyperlink" layoutX="10.0" layoutY="10.0" onAction="#onLogInHyperlinkClick" text="Log In">
+                        <Hyperlink id="logInHyperlink" fx:id="logInHyperlink" layoutX="10.0" layoutY="10.0" onAction="#onLogInHyperlinkClick" prefHeight="29.0" prefWidth="60.0" text="Log In">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
