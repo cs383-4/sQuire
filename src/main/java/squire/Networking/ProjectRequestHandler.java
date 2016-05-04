@@ -86,6 +86,12 @@ class ProjectRequestHandler {
         for(Project p: Project.find.all()) {
             projects.add(new ProjectData(p.getName(), p.getProjectUuid(), p.getProjectDescription()));
         }
+        res.set("projects", projects);
+    }
+
+    @Route("getUserRecentProjects")
+    static void getUserRecentProjects(Request req, Response res) {
+
     }
 
     @Route("getProjectsWithUid")
