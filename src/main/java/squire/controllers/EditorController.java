@@ -61,7 +61,8 @@ public class EditorController implements Initializable
     @FXML
     private TextArea compilationOutputTextArea;
     @FXML
-    private CodeArea sourceCodeTextArea;
+    private CodeArea chatCodeArea;
+    private ShareJTextComponent chatShareComponent;
     @FXML
     private TabPane editorTabPane;
 
@@ -127,6 +128,8 @@ public class EditorController implements Initializable
     public void loadProject() {
         projectPath = Main.getProjectsDir() + File.separator + Main.getProjectID();
         setupFileList();
+        //set up the chat
+        setupMobWrite(chatCodeArea, "chat" + Main.getProjectID());
     }
 
     public void setupFileList()
@@ -442,6 +445,7 @@ public class EditorController implements Initializable
 
     @FXML private void onSendButtonClick(ActionEvent event)
     {
-
+        chatCodeArea.appendText("\n" + Main.getUserName() + "> " + chatTextField.getText());
+        chatTextField.clear();
     }
 }
