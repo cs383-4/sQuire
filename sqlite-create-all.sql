@@ -59,16 +59,3 @@ create table o_user_project (
   foreign key (o_project_id) references o_project (id) on delete restrict on update restrict
 );
 
-create table o_works_on (
-  id                            integer not null,
-  uid_id                        integer,
-  pid_id                        integer,
-  version                       integer not null,
-  when_created                  timestamp not null,
-  when_updated                  timestamp not null,
-  constraint uq_o_works_on_pid_id unique (pid_id),
-  constraint pk_o_works_on primary key (id),
-  foreign key (uid_id) references o_user (id) on delete restrict on update restrict,
-  foreign key (pid_id) references o_project (id) on delete restrict on update restrict
-);
-
