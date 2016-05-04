@@ -33,7 +33,7 @@ public class ProjectDatabaseTest extends TestCase
         assertEquals(1,1);
     }
 
-/*    @Test
+    @Test
     public void testAddProject() throws Exception
     {
         Project testproject = new Project();
@@ -46,12 +46,12 @@ public class ProjectDatabaseTest extends TestCase
     public void testGetSetOwner() throws Exception
     {
         Project testproject = new Project();
-        testproject.setProjectOwner(new User("testowner","testpassword"));
+        testproject.setOwner(new User("testowner","test@email.com","testpassword"));
 
         testproject.save();
 
-        assertEquals("testowner", testproject.getProjectOwner().getUsername());
+        assertEquals("testowner", testproject.getOwner().getUsername());
     }
-*/
+
 
 }
