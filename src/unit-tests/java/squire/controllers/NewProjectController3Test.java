@@ -54,7 +54,7 @@ public class NewProjectController3Test
             for (String description: testDescriptions)
             {
                 testLocation = testLocationRoot + File.separator + name;
-                fileLoc = npc.initProjectFields(name, description, testLocation);
+                //fileLoc = npc.initProjectFields(name, description, testLocation);
                 File fileFromLoc = new File(fileLoc);
 
                 // For all combinations of names and descriptions, see if a new project directory was created in the
@@ -82,13 +82,13 @@ public class NewProjectController3Test
         File fileAtPath2 = new File(filepath);
         fileAtPath2.mkdir();
         filepath += "/Main.java";
-        npc.copyMainFile(filepath);
+        //npc.copyMainFile(filepath);
 
         File testFile = new File(filepath);
 
         assertTrue("No file!: " + filepath, fileAtPath.exists());
 
-        npc.copyMainFile(filepath);
+        //npc.copyMainFile(filepath);
 
         assertTrue("No file!: " + filepath, fileAtPath.exists());
 
