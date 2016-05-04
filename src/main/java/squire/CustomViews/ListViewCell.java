@@ -1,6 +1,7 @@
 package squire.CustomViews;
 
 import javafx.scene.control.ListCell;
+import squire.Networking.ProjectData;
 
 /**
  * Created by Domn Werner on 5/2/2016.

@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import squire.Networking.ProjectData;
+
+import java.util.UUID;
 
 /**
  * Created by Domn Werner on 5/2/2016.
@@ -15,7 +18,7 @@ public class ProjectListViewItem
     @FXML private Label projectNameLabel;
     @FXML private Label projectDescriptionLabel;
     @FXML private Button joinButton;
-    
+    public String projectId;
     
     public ProjectListViewItem()
     {
@@ -33,8 +36,9 @@ public class ProjectListViewItem
     
     public void setInfo(ProjectData data)
     {
-        projectNameLabel.setText(data.getProjectName());
-        projectDescriptionLabel.setText(data.getProjectDescription());
+        projectNameLabel.setText(data.name);
+        projectDescriptionLabel.setText(data.description);
+        projectId = data.projectUUID;
     }
 
     public HBox getMainHBox()

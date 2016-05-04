@@ -11,12 +11,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import squire.CustomViews.ListViewCell;
+import squire.Networking.ProjectData;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -28,7 +27,7 @@ public class ProjectBrowsingController implements Initializable
 {
     @FXML private Button backButton;
     @FXML private ListView projectsListView;
-    private List<String> projectNameTestList = new ArrayList<>();
+    private List<ProjectData> projectDataList = new ArrayList<>();
     ObservableList observableList = FXCollections.observableArrayList();
 
     @Override
@@ -59,12 +58,9 @@ public class ProjectBrowsingController implements Initializable
 
     private void setListView()
     {
-        projectNameTestList.add("Test1");
-        projectNameTestList.add("Test2");
-        projectNameTestList.add("Test3");
-        projectNameTestList.add("Test4");
-        observableList.setAll(projectNameTestList);
+
+        observableList.setAll(projectDataList);
         projectsListView.setItems(observableList);
-        projectsListView.setCellFactory((Callback<ListView<String>, ListCell<String>>) listVIew -> new ListViewCell());
+        projectsListView.setCellFactory((Callback<ListView<ProjectData>, ListCell<ProjectData>>) listVIew -> new ListViewCell());
     }
 }
