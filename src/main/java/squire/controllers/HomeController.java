@@ -278,7 +278,7 @@ public class HomeController implements Initializable
                             .getSelectedItem();
                     if (selectedItem != null)
                     {
-                        Main.projectID = selectedItem.projectUUID;
+                        Main.setProjectID(selectedItem.projectUUID);
                         loadEditorScene();
                     }
                 }

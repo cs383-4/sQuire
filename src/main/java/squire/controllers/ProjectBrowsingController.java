@@ -84,8 +84,7 @@ public class ProjectBrowsingController implements Initializable
         ProjectData selectedProject = (ProjectData)projectsListView.getSelectionModel().getSelectedItem();
         if (selectedProject != null)
         {
-            Main.projectID = selectedProject.projectUUID;
-            Main.setProjectName(null);
+            Main.setProjectID(selectedProject.projectUUID);
             new Request("project/addRecentProject")
                     .set("sessionID", Main.getSessionID())
                     .set("projectUUID", Main.getProjectID())

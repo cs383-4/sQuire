@@ -49,6 +49,7 @@ public class Main extends Application implements Initializable {
     }
     public static void setProjectID(String val) {
         projectID = val;
+        setProjectName(null);
     }
 
     public static void main(String[] args) {
