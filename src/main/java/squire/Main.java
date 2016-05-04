@@ -129,6 +129,10 @@ public class Main extends Application implements Initializable {
         return userName;
     }
 
+    public static void setUserName(String value) {
+        userName = value;
+    }
+
     public static void setProjectName(String name) {
         projectName = name;
     }

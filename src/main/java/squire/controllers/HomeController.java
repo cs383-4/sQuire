@@ -46,6 +46,7 @@ public class HomeController implements Initializable
     @FXML private Hyperlink settingsHyperlink;
     @FXML private Hyperlink registerHyperlink;
     @FXML private Hyperlink logInHyperlink;
+    @FXML private Hyperlink logOutHyperlink;
     @FXML private ImageView avatarImageView;
     @FXML private ListView recentProjectsListView;
     @FXML private Label userNameLabel;
@@ -58,21 +59,36 @@ public class HomeController implements Initializable
         // Since ImageViews don't have their own onAction event, I created my own event/handler lambda here.
         // This event handler will be called whenever the avatarImageView is clicked.
         avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> onAvatarImageViewClick());
+        logInHyperlink.managedProperty().bind(logInHyperlink.visibleProperty());
+        registerHyperlink.managedProperty().bind(registerHyperlink.visibleProperty());
         if (Main.getSessionID() != null)
         {
-            Platform.runLater(() -> logInHyperlink.setVisible(false));
             Platform.runLater(() -> registerHyperlink.setVisible(false));
+            Platform.runLater(() -> logInHyperlink.setText("Log Out"));
 
             Response res = new Request("user/getUsernameFromSessionId").set("sessionID", Main.getSessionID()).send();
             String username = (String)res.get("username");
             Platform.runLater(() -> userNameLabel.setText(username));
             setupListView();
+        } else {
+            Platform.runLater(() -> logInHyperlink.setVisible(true));
+            Platform.runLater(() -> registerHyperlink.setVisible(true));
         }
     }
 
     @FXML
     private void onLogInHyperlinkClick(ActionEvent event)
     {
+        if (Main.sessionID != null) {
+            //log out
+            Main.setSessionID(null);
+            Main.setUserName(null);
+            recentProjectsListView.getItems().clear();
+            Platform.runLater(() -> logInHyperlink.setText("Log In"));
+            Platform.runLater(() -> registerHyperlink.setVisible(true));
+            Platform.runLater(() -> userNameLabel.setText(""));
+            return;
+        }
         FXMLLoader loader = new FXMLLoader();
         Stage dialogStage = new Stage();
         Parent root = null;
@@ -89,7 +105,7 @@ public class HomeController implements Initializable
             dialogStage.showAndWait();
             if (Main.sessionID != null)
             {
-                Platform.runLater(() -> logInHyperlink.setVisible(false));
+                Platform.runLater(() -> logInHyperlink.setText("Log Out"));
                 Platform.runLater(() -> registerHyperlink.setVisible(false));
                 Platform.runLater(() -> userNameLabel.setText(userName));
                 setupListView();
