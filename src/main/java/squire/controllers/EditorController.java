@@ -39,6 +39,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.fxmisc.richtext.*;
 import squire.chatserver.ChatClient;
+import javafx.scene.control.*;
+
 
 /**
  * Created by MattDaniel on 3/31/16.
@@ -173,6 +175,12 @@ public class EditorController implements Initializable
 
     public void onAddButtonClick(ActionEvent event)
     {
+        openAddDialog();
+    }
+
+
+    public void openAddDialog()
+    {
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Enter the name for the new file");
         dialog.setHeaderText("Enter the name for the new file");
@@ -183,8 +191,7 @@ public class EditorController implements Initializable
             addFile(result.get());
         }
     }
-
-        void addFile(String s)
+    public void addFile(String s)
     {
         String newFileName = s;
         rootItem.getChildren().add(new TreeItem<>(newFileName));

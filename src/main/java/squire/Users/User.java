@@ -45,11 +45,11 @@ public class User extends BaseModel {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Project> workingOn;
 
-    private void setEmail(String val) {
+    public void setEmail(String val) {
         email = val;
     }
 
-    private String getEmail() {
+    public String getEmail() {
         return email;
     }
 
