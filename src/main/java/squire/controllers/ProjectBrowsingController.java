@@ -85,6 +85,11 @@ public class ProjectBrowsingController implements Initializable
         if (selectedProject != null)
         {
             Main.projectID = selectedProject.projectUUID;
+            Main.setProjectName(null);
+            new Request("project/addRecentProject")
+                    .set("sessionID", Main.getSessionID())
+                    .set("projectUUID", Main.getProjectID())
+                    .send();
             loadEditor();
         }
         else
