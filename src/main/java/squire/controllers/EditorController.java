@@ -192,6 +192,7 @@ public class EditorController implements Initializable
             addFile(result.get());
         }
     }
+
     public void addFile(String s)
     {
         String newFileName = s;
@@ -201,8 +202,6 @@ public class EditorController implements Initializable
                 .set("name", s)
                 .send();
     }
-
-
 
     //Create new tab programatically
     public void createNewTab(String name, CodeArea newTabCodeArea) {
@@ -395,7 +394,10 @@ public class EditorController implements Initializable
         compileCode();
     }
 
-    private void compileCode() {
+    private void compileCode()
+    {
+        boolean badJdkPath = checkJdkLocation();
+        if (badJdkPath) return;
         boolean compileError = false;
         compilationOutputTextArea.setStyle("-fx-text-fill: black;");
         compilationOutputTextArea.clear();
@@ -442,6 +444,35 @@ public class EditorController implements Initializable
         {
             e.printStackTrace();
         }
+    }
+
+    private boolean checkJdkLocation()
+    {
+        pc.loadProps();
+        String testJdkPath = pc.getProp("jdkLocation");
+        File f = new File(testJdkPath);
+        if (!f.exists() || !testJdkPath.contains("bin"))
+        {
+            FXMLLoader loader = new FXMLLoader();
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(compilationOutputTextArea.getScene().getWindow());
+            dialogStage.setResizable(false);
+            try
+            {
+                Parent root = loader.load(getClass().getResource("/fxml/SettingsDialog.fxml"));
+                Scene scene = new Scene(root);
+                dialogStage.setScene(scene);
+                dialogStage.setTitle("Settings");
+                dialogStage.showAndWait();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return true;
+        }
+        return false;
     }
 
     @FXML private void onSendButtonClick(ActionEvent event)
