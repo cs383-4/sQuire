@@ -44,8 +44,9 @@ public class PreferencesDialogController implements Initializable
     @FXML private void onSubmitButtonClick(ActionEvent event)
     {
         thisStage = (Stage)submitButton.getScene().getWindow();
-        System.out.println("Close button clicked.");
-        if (newPasswordField.getText().equals(confirmPasswordField.getText())) {
+        System.out.println("Submit button clicked.");
+        if (newPasswordField.getText().equals(confirmPasswordField.getText()) && !newPasswordField.getText().isEmpty()
+                && !confirmPasswordField.getText().isEmpty() ) {
             Response res = new Request("user/ChangePassword")
                     .set("sessionID", Main.getSessionID())
                     .set("password", newPasswordField.getText())
@@ -62,6 +63,25 @@ public class PreferencesDialogController implements Initializable
             }
         }
 
+        if(newEmailTextField.getText().equals(confirmEmailTextField.getText()) && !newEmailTextField.getText().isEmpty()
+                && !confirmEmailTextField.getText().isEmpty())
+        {
+            Response res = new Request("user/ChangeEmail")
+                    .set("sessionID", Main.getSessionID())
+                    .set("Email", newEmailTextField.getText())
+                    .send();
+
+            if (res.getSuccess())
+            {
+                System.out.println("Email Changed.");
+                thisStage.close();
+            }
+            else
+            {
+                //user already exists
+            }
+
+        }
         //thisStage.close();
     }
 }
