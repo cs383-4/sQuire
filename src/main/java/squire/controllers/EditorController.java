@@ -32,6 +32,7 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -52,6 +53,7 @@ public class EditorController implements Initializable
     @FXML private TextArea chatTextArea;
     @FXML private TextField chatTextField;
     @FXML private Button sendButton;
+    @FXML private Button addButton;
 
     // Compilation vars.
     @FXML
@@ -68,6 +70,7 @@ public class EditorController implements Initializable
 
     private PropertiesController pc = null;
     private String projectPath = "";
+    private TreeItem<String> rootItem = new TreeItem<>(Main.getProjectName());
 
 
     // Compilation vars.
@@ -124,9 +127,10 @@ public class EditorController implements Initializable
         setupFileList();
     }
 
-    public void setupFileList() {
+    public void setupFileList()
+    {
         //Set up tree view cell factory
-        TreeItem<String> rootItem = new TreeItem<>(Main.getProjectName());
+
         rootItem.setExpanded(true);
 
         Response res = new Request("project/getFilesInProject")
@@ -164,6 +168,32 @@ public class EditorController implements Initializable
             }
         });
     }
+
+
+
+    public void onAddButtonClick(ActionEvent event)
+    {
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle("Enter the name for the new file");
+        dialog.setHeaderText("Enter the name for the new file");
+        dialog.setContentText("File name: ");
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent())
+        {
+            addFile(result.get());
+        }
+    }
+
+        void addFile(String s)
+    {
+        String newFileName = s;
+        rootItem.getChildren().add(new TreeItem<>(newFileName));
+        Response res = new Request("project/addFileToProject")
+                .set("projectUUID", Main.getProjectID())
+                .set("name", s)
+                .send();
+    }
+
 
 
     //Create new tab programatically
