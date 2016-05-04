@@ -62,4 +62,11 @@ class UserRequestHandler
         u.save();
     }
 
+    @Route("ChangeEmail")
+    static void ChangeEmail(Request req, Response res)
+    {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        u.setEmail((String) req.get("Email"));
+        u.save();
+    }
 }

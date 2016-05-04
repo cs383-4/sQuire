@@ -20,12 +20,17 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import squire.CustomViews.ListViewCell;
+import squire.CustomViews.RecentListViewCell;
 import squire.Main;
+import squire.Networking.ProjectData;
 import squire.Networking.Request;
 import squire.Networking.Response;
+import squire.Users.Project;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -60,7 +65,8 @@ public class HomeController implements Initializable
             String username = (String)res.get("username");
             Platform.runLater(() -> userNameLabel.setText(username));
         }
-        setupListView();
+
+
     }
 
     @FXML
@@ -83,6 +89,10 @@ public class HomeController implements Initializable
             Platform.runLater(() -> logInHyperlink.setVisible(false));
             Platform.runLater(() -> registerHyperlink.setVisible(false));
             Platform.runLater(() -> userNameLabel.setText(userName));
+            if(Main.getSessionID() != null)
+            {
+                setupListView();
+            }
         }
         catch (Exception e)
         {
@@ -252,36 +262,24 @@ public class HomeController implements Initializable
 
     public void setupListView()
     {
+        ObservableList observableList = FXCollections.observableArrayList();
         //Set up tree view cell factory
         // TODO: change next line to get x number of recent projects from DB. Will likely want to do this for open as
         // well
-        ObservableList<String> data = FXCollections.observableArrayList(
-                "chocolate", "salmon", "gold", "coral", "darkorchid",
-                "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
-                "blueviolet", "brown");
+        Response res = new Request("project/getUserRecentProjects")
+                .set("sessionID", Main.getSessionID())
+                .send();
+        ArrayList<ProjectData> projData = (ArrayList<ProjectData>) res.get("projects");
+        observableList.setAll(projData);
 
 
-
-
-
-
-
-
-        final Label label = new Label();
-
-        recentProjectsListView.setItems(data);
+//        recentProjectsListView.setItems(projData);
 //
 //        fileExplorer.setRoot(rootItem);
 //        fileExplorer.setEditable(false);
 
 
-        recentProjectsListView.setCellFactory(new Callback<ListView<String>,
-                        ListCell<String>>() {
-                                @Override
-                                public ListCell<String> call(ListView<String> list) {
-                                    return new ProjectName();
-                                }
-                            }
+        recentProjectsListView.setCellFactory(list -> new RecentListViewCell()
         );
 
         // One way to get the clicked on cell
@@ -313,23 +311,5 @@ public class HomeController implements Initializable
     }
 
 
-    static class ProjectName extends ListCell<String>
-    {
-        @Override
-        public void updateItem(String item, boolean empty)
-        {
-            super.updateItem(item, empty);
 
-            if (item != null)
-            {
-                setText(getString());
-            }
-        }
-
-        private String getString()
-        {
-            return getItem() == null ? "" : getItem().toString();
-    }
-
-    }
 }

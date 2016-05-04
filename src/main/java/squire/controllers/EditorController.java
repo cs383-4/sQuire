@@ -186,7 +186,7 @@ public class EditorController implements Initializable
         }
     }
 
-        void addFile(String s)
+    public void addFile(String s)
     {
         String newFileName = s;
         rootItem.getChildren().add(new TreeItem<>(newFileName));
