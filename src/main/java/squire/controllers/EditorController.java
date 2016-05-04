@@ -130,6 +130,8 @@ public class EditorController implements Initializable
         setupFileList();
         //set up the chat
         setupMobWrite(chatCodeArea, "chat" + Main.getProjectID());
+        chatCodeArea.setWrapText(true);
+        chatCodeArea.appendText("\n" + Main.getUserName() + " opened the project");
     }
 
     public void setupFileList()
