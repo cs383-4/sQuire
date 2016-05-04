@@ -10,8 +10,7 @@ import java.net.Socket;
  * Note: the proper way to call this function is from Request.send()
  */
 class Client {
-    private static final String address = "localhost";
-    //private static final String address = "squireserver.westus.cloudapp.azure.com";
+    private static final String address = "squireserver.westus.cloudapp.azure.com";
     private static final int port = 3017;
 
     /**
