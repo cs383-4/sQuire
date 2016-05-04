@@ -5,6 +5,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
+import static sun.misc.Version.print;
+
 public class ProjectDatabaseTest extends TestCase
 {
     /**
@@ -43,14 +48,23 @@ public class ProjectDatabaseTest extends TestCase
     }
 
     @Test
-    public void testGetSetOwner() throws Exception
+    public void testGetSetFields() throws Exception
     {
         Project testproject = new Project();
         testproject.setOwner(new User("testowner","test@email.com","testpassword"));
+        testproject.setName("testname");
+        testproject.setProjectDescription("a test project");
+
 
         testproject.save();
 
         assertEquals("testowner", testproject.getOwner().getUsername());
+        assertEquals("testname", testproject.getName());
+        assertEquals("a test project", testproject.getProjectDescription());
+
+
+        List<Project> foundtestprojects = Project.find.where().name.equalTo("testname").findList();
+        assertFalse(foundtestprojects.isEmpty());
     }
 
 
