@@ -25,6 +25,8 @@ class ProjectRequestHandler {
         p.setProjectDescription((String) req.get("description"));
         p.save();
 
+        u.getWorkingOn().add(p);
+        u.save();
         //create the starting file
         ProjectFile mainFile = new ProjectFile("Main.java");
         mainFile.setProject(p);
@@ -97,6 +99,20 @@ class ProjectRequestHandler {
             projects.add(new ProjectData(p.getName(), p.getProjectUuid(), p.getProjectDescription()));
         }
         res.set("projects", projects);
+    }
+
+    @Route("addRecentProject")
+    static void addRecentProject(Request req, Response res) {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        Project p = Project.find.where().projectUuid.equalTo((String) req.get("projectUUID")).findUnique();
+        for(Project recent: u.getWorkingOn()) {
+           if(p.getName().equals(recent.getName())) {
+               //don't add a project if it already exists in the recent projects
+               return;
+           }
+        }
+        u.getWorkingOn().add(p);
+        u.save();
     }
 
     @Route("getProjectsWithUid")
