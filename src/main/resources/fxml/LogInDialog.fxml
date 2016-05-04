@@ -51,7 +51,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <CheckBox id="keepMeLoggedInCheckBox" fx:id="keepMeLoggedInCheckBox" mnemonicParsing="false" prefHeight="17.0" prefWidth="251.0" text="Keep Me Logged in">
+                  <CheckBox id="keepMeLoggedInCheckBox" fx:id="keepMeLoggedInCheckBox" mnemonicParsing="false" prefHeight="17.0" prefWidth="251.0" text="Remember Me">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

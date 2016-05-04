@@ -39,6 +39,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.fxmisc.richtext.*;
 import squire.chatserver.ChatClient;
+import javafx.scene.control.*;
+
 
 /**
  * Created by MattDaniel on 3/31/16.
