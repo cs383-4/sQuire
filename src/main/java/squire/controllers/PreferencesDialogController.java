@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import squire.Main;
 import squire.Networking.Request;
 import squire.Networking.Response;
 
@@ -46,6 +47,7 @@ public class PreferencesDialogController implements Initializable
         System.out.println("Close button clicked.");
         if (newPasswordField.getText().equals(confirmPasswordField.getText())) {
             Response res = new Request("user/ChangePassword")
+                    .set("sessionID", Main.getSessionID())
                     .set("password", newPasswordField.getText())
                     .send();
 
