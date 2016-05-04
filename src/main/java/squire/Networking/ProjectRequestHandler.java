@@ -80,6 +80,25 @@ class ProjectRequestHandler {
         res.set("name", p.getName());
     }
 
+    @Route("getProjectList")
+    static void getProjectList(Request req, Response res) {
+        ArrayList<ProjectData> projects = new ArrayList<>();
+        for(Project p: Project.find.all()) {
+            projects.add(new ProjectData(p.getName(), p.getProjectUuid(), p.getProjectDescription()));
+        }
+        res.set("projects", projects);
+    }
+
+    @Route("getUserRecentProjects")
+    static void getUserRecentProjects(Request req, Response res) {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        ArrayList<ProjectData> projects = new ArrayList<>();
+        for(Project p: u.getWorkingOn()) {
+            projects.add(new ProjectData(p.getName(), p.getProjectUuid(), p.getProjectDescription()));
+        }
+        res.set("projects", projects);
+    }
+
     @Route("getProjectsWithUid")
     static void getProjectsWithUid(Request req, Response res) {
     }

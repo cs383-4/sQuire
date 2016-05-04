@@ -144,24 +144,24 @@ public class HomeController implements Initializable
         }
     }
 
-    @FXML
-    private void onOpenProjectHyperlinkClick(ActionEvent event)
-    {
-        if (event.getSource() == openProjectHyperlink)
-        {
-            Stage stage = null;
-            stage = (Stage) openProjectHyperlink.getScene().getWindow();
-            DirectoryChooser directoryChooser = new DirectoryChooser();
-            directoryChooser.setInitialDirectory(new File(Main.getProjectsDir()));
-            directoryChooser.setTitle("Choose Project Location");
-            File selectedDir = directoryChooser.showDialog(stage);
-            if (selectedDir != null)
-            {
-
-                System.out.println(selectedDir);
-            }
-        }
-    }
+//    @FXML
+//    private void onOpenProjectHyperlinkClick(ActionEvent event)
+//    {
+//        if (event.getSource() == openProjectHyperlink)
+//        {
+//            Stage stage = null;
+//            stage = (Stage) openProjectHyperlink.getScene().getWindow();
+//            DirectoryChooser directoryChooser = new DirectoryChooser();
+//            directoryChooser.setInitialDirectory(new File(Main.getProjectsDir()));
+//            directoryChooser.setTitle("Choose Project Location");
+//            File selectedDir = directoryChooser.showDialog(stage);
+//            if (selectedDir != null)
+//            {
+//
+//                System.out.println(selectedDir);
+//            }
+//        }
+//    }
     @FXML
     private void onBrowseProjectsHyperlinkClick(ActionEvent event)
     {

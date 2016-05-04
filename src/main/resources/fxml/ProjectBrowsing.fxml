@@ -32,7 +32,7 @@
                      </HBox.margin>
                   </Button>
                   <Region prefHeight="45.0" prefWidth="55.0" />
-                  <Button fx:id="joinButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="51.0" text="Join">
+                  <Button fx:id="openButton" mnemonicParsing="false" onAction="#onOpenButtonClick" prefHeight="25.0" prefWidth="51.0" text="Open">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
