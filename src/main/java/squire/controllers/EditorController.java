@@ -39,6 +39,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.fxmisc.richtext.*;
 import squire.chatserver.ChatClient;
+import javafx.scene.control.*;
+
 
 /**
  * Created by MattDaniel on 3/31/16.
@@ -59,7 +61,8 @@ public class EditorController implements Initializable
     @FXML
     private TextArea compilationOutputTextArea;
     @FXML
-    private CodeArea sourceCodeTextArea;
+    private CodeArea chatCodeArea;
+    private ShareJTextComponent chatShareComponent;
     @FXML
     private TabPane editorTabPane;
 
@@ -125,6 +128,8 @@ public class EditorController implements Initializable
     public void loadProject() {
         projectPath = Main.getProjectsDir() + File.separator + Main.getProjectID();
         setupFileList();
+        //set up the chat
+        setupMobWrite(chatCodeArea, "chat" + Main.getProjectID());
     }
 
     public void setupFileList()
@@ -169,9 +174,13 @@ public class EditorController implements Initializable
         });
     }
 
-
-
     public void onAddButtonClick(ActionEvent event)
+    {
+        openAddDialog();
+    }
+
+
+    public void openAddDialog()
     {
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Enter the name for the new file");
@@ -183,8 +192,7 @@ public class EditorController implements Initializable
             addFile(result.get());
         }
     }
-
-        void addFile(String s)
+    public void addFile(String s)
     {
         String newFileName = s;
         rootItem.getChildren().add(new TreeItem<>(newFileName));
@@ -292,7 +300,6 @@ public class EditorController implements Initializable
         }
     }
 
-
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
     //TODO: every time we switch tabs
     public void setupMobWrite(CodeArea ca, String name)
@@ -389,6 +396,9 @@ public class EditorController implements Initializable
     }
 
     private void compileCode() {
+        boolean compileError = false;
+        compilationOutputTextArea.setStyle("-fx-text-fill: black;");
+        compilationOutputTextArea.clear();
         compilationOutputTextArea.appendText("Compiling...\n");
         String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
         String javaExePath = pc.getProp("jdkLocation") + File.separator + "java";
@@ -403,7 +413,15 @@ public class EditorController implements Initializable
             int errorCode = p.waitFor();
             System.out.println("p1 Error Code: " + errorCode);
 
-
+            BufferedReader errors = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            String errorLine;
+            while ((errorLine = errors.readLine()) != null)
+            {
+                compileError = true;
+                compilationOutputTextArea.setStyle("-fx-text-fill: red;");
+                compilationOutputTextArea.appendText(errorLine + "\n");
+            }
+            if (compileError == true) return;
             ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.replace(".java", ""));
             execution.directory(new File(projectPath));
             Process p2 = execution.start();
@@ -428,6 +446,7 @@ public class EditorController implements Initializable
 
     @FXML private void onSendButtonClick(ActionEvent event)
     {
-
+        chatCodeArea.appendText("\n" + Main.getUserName() + "> " + chatTextField.getText());
+        chatTextField.clear();
     }
 }

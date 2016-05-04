@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
@@ -18,14 +19,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import squire.CustomViews.ListViewCell;
+import squire.CustomViews.RecentListViewCell;
 import squire.Main;
+import squire.Networking.ProjectData;
 import squire.Networking.Request;
 import squire.Networking.Response;
+import squire.Users.Project;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -59,8 +66,8 @@ public class HomeController implements Initializable
             Response res = new Request("user/getUsernameFromSessionId").set("sessionID", Main.getSessionID()).send();
             String username = (String)res.get("username");
             Platform.runLater(() -> userNameLabel.setText(username));
+            setupListView();
         }
-        setupListView();
     }
 
     @FXML
@@ -80,9 +87,13 @@ public class HomeController implements Initializable
             dialogStage.setScene(scene);
             dialogStage.setTitle("Log in to sQuire");
             dialogStage.showAndWait();
-            Platform.runLater(() -> logInHyperlink.setVisible(false));
-            Platform.runLater(() -> registerHyperlink.setVisible(false));
-            Platform.runLater(() -> userNameLabel.setText(userName));
+            if (Main.sessionID != null)
+            {
+                Platform.runLater(() -> logInHyperlink.setVisible(false));
+                Platform.runLater(() -> registerHyperlink.setVisible(false));
+                Platform.runLater(() -> userNameLabel.setText(userName));
+                setupListView();
+            }
         }
         catch (Exception e)
         {
@@ -144,24 +155,6 @@ public class HomeController implements Initializable
         }
     }
 
-//    @FXML
-//    private void onOpenProjectHyperlinkClick(ActionEvent event)
-//    {
-//        if (event.getSource() == openProjectHyperlink)
-//        {
-//            Stage stage = null;
-//            stage = (Stage) openProjectHyperlink.getScene().getWindow();
-//            DirectoryChooser directoryChooser = new DirectoryChooser();
-//            directoryChooser.setInitialDirectory(new File(Main.getProjectsDir()));
-//            directoryChooser.setTitle("Choose Project Location");
-//            File selectedDir = directoryChooser.showDialog(stage);
-//            if (selectedDir != null)
-//            {
-//
-//                System.out.println(selectedDir);
-//            }
-//        }
-//    }
     @FXML
     private void onBrowseProjectsHyperlinkClick(ActionEvent event)
     {
@@ -233,57 +226,29 @@ public class HomeController implements Initializable
         }
     }
 
-
-    // Methods to instantiate the project list
-
-
-
-//    public static void getProjectsWithUid()
-//    {
-//        if (!userName.isEmpty())
-//        {
-//
-//            Response res = new Request("project/getProjectsWithUid").set("sessionID", Main.getSessionID()).send();
-//            String username = (String)res.get("username");
-//        }
-//    }
-
-
-
     public void setupListView()
     {
+        ObservableList observableList = FXCollections.observableArrayList();
         //Set up tree view cell factory
         // TODO: change next line to get x number of recent projects from DB. Will likely want to do this for open as
         // well
-        ObservableList<String> data = FXCollections.observableArrayList(
-                "chocolate", "salmon", "gold", "coral", "darkorchid",
-                "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
-                "blueviolet", "brown");
+        Response res = new Request("project/getUserRecentProjects")
+                .set("sessionID", Main.getSessionID())
+                .send();
+        ArrayList<ProjectData> projData = (ArrayList<ProjectData>) res.get("projects");
+        observableList.setAll(projData);
 
 
-
-
-
-
-
-
-        final Label label = new Label();
-
-        recentProjectsListView.setItems(data);
+//        recentProjectsListView.setItems(projData);
 //
 //        fileExplorer.setRoot(rootItem);
 //        fileExplorer.setEditable(false);
 
 
-        recentProjectsListView.setCellFactory(new Callback<ListView<String>,
-                        ListCell<String>>() {
-                                @Override
-                                public ListCell<String> call(ListView<String> list) {
-                                    return new ProjectName();
-                                }
-                            }
+        recentProjectsListView.setCellFactory(list -> new RecentListViewCell()
         );
 
+        recentProjectsListView.setItems(observableList);
         // One way to get the clicked on cell
 
         recentProjectsListView.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -293,18 +258,12 @@ public class HomeController implements Initializable
             {
                 if (mouseEvent.getClickCount() == 2)
                 {
-                    String selectedItem =  recentProjectsListView.getSelectionModel()
-                            .getSelectedItem().toString();
-
-                    try
+                    ProjectData selectedItem = (ProjectData) recentProjectsListView.getSelectionModel()
+                            .getSelectedItem();
+                    if (selectedItem != null)
                     {
-                        //TODO: open project based on input
-                        System.out.println(selectedItem);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.printStackTrace();
+                        Main.projectID = selectedItem.projectUUID;
+                        loadEditorScene();
                     }
                 }
             }
@@ -312,24 +271,32 @@ public class HomeController implements Initializable
         });
     }
 
+    public void loadEditorScene() {
+        FXMLLoader loader = new FXMLLoader();
+        Stage stage = (Stage) recentProjectsListView.getScene().getWindow();
+        //stage.setResizable(false);
+        try {
+            Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+            Scene scene = new Scene(root);
+            stage.setTitle("sQuire Editor - Project " + Main.getProjectName());
+            stage.setScene(scene);
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
-    static class ProjectName extends ListCell<String>
-    {
-        @Override
-        public void updateItem(String item, boolean empty)
-        {
-            super.updateItem(item, empty);
+            int fromEdge = 50;
 
-            if (item != null)
-            {
-                setText(getString());
-            }
+            //set Stage boundaries to visible bounds of the main screen
+            stage.setX(primaryScreenBounds.getMinX() + fromEdge / 2);
+            stage.setY(primaryScreenBounds.getMinY() + fromEdge / 2);
+            stage.setWidth(primaryScreenBounds.getWidth() - fromEdge);
+            stage.setHeight(primaryScreenBounds.getHeight() - fromEdge);
+            stage.setResizable(true);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        private String getString()
-        {
-            return getItem() == null ? "" : getItem().toString();
     }
 
-    }
+
+
 }
