@@ -26,7 +26,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.fxmisc.richtext.CodeArea?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.EditorController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="squire.controllers.EditorController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="791.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -97,10 +97,10 @@
                <children>
                   <VBox prefHeight="474.0" prefWidth="226.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <HBox>
+                        <HBox VBox.vgrow="NEVER">
                            <children>
-                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" style="-fx-background-color: pink;" text="+" />
                               <Label alignment="CENTER" prefHeight="34.0" prefWidth="199.0" style="-fx-border-color: gray;" text="File Explorer" textAlignment="CENTER" />
+                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" prefHeight="39.0" prefWidth="27.0" style="-fx-background-color: pink; -fx-border-color: gray;" text="+" />
                            </children>
                         </HBox>
                         <TreeView fx:id="fileExplorer" editable="true" prefHeight="464.0" prefWidth="226.0" style="-fx-border-color: gray;" VBox.vgrow="ALWAYS" />
@@ -116,7 +116,7 @@
                   <TextField promptText="Search" />
                   <ListView prefHeight="339.0" prefWidth="248.0" />
                   <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="248.0" style="-fx-border-color: gray;" text="Chat" />
-                  <CodeArea fx:id="chatCodeArea" prefHeight="229.0" prefWidth="177.0" />
+                  <TextArea fx:id="chatTextArea" prefHeight="229.0" prefWidth="177.0" promptText="Messages " />
                   <HBox prefHeight="27.0" prefWidth="248.0">
                      <children>
                         <TextField fx:id="chatTextField" prefHeight="25.0" prefWidth="156.0" promptText="Write a message" />

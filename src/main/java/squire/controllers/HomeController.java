@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
@@ -18,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import squire.CustomViews.ListViewCell;
@@ -64,6 +66,7 @@ public class HomeController implements Initializable
             Response res = new Request("user/getUsernameFromSessionId").set("sessionID", Main.getSessionID()).send();
             String username = (String)res.get("username");
             Platform.runLater(() -> userNameLabel.setText(username));
+            setupListView();
         }
 
 
@@ -282,6 +285,7 @@ public class HomeController implements Initializable
         recentProjectsListView.setCellFactory(list -> new RecentListViewCell()
         );
 
+        recentProjectsListView.setItems(observableList);
         // One way to get the clicked on cell
 
         recentProjectsListView.setOnMouseClicked(new EventHandler<MouseEvent>()
@@ -291,23 +295,43 @@ public class HomeController implements Initializable
             {
                 if (mouseEvent.getClickCount() == 2)
                 {
-                    String selectedItem =  recentProjectsListView.getSelectionModel()
-                            .getSelectedItem().toString();
-
-                    try
+                    ProjectData selectedItem = (ProjectData) recentProjectsListView.getSelectionModel()
+                            .getSelectedItem();
+                    if (selectedItem != null)
                     {
-                        //TODO: open project based on input
-                        System.out.println(selectedItem);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.printStackTrace();
+                        Main.projectID = selectedItem.projectUUID;
+                        loadEditorScene();
                     }
                 }
             }
 
         });
+    }
+
+    public void loadEditorScene() {
+        FXMLLoader loader = new FXMLLoader();
+        Stage stage = (Stage) recentProjectsListView.getScene().getWindow();
+        //stage.setResizable(false);
+        try {
+            Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
+            Scene scene = new Scene(root);
+            stage.setTitle("sQuire Editor - Project " + Main.getProjectName());
+            stage.setScene(scene);
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
+            int fromEdge = 50;
+
+            //set Stage boundaries to visible bounds of the main screen
+            stage.setX(primaryScreenBounds.getMinX() + fromEdge / 2);
+            stage.setY(primaryScreenBounds.getMinY() + fromEdge / 2);
+            stage.setWidth(primaryScreenBounds.getWidth() - fromEdge);
+            stage.setHeight(primaryScreenBounds.getHeight() - fromEdge);
+            stage.setResizable(true);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -14,7 +14,7 @@ public class RecentListViewCell extends ListCell<ProjectData>
         super.updateItem(data, empty);
         if (data != null)
         {
-            ProjectListViewItem item = new ProjectListViewItem();
+            RecentListViewItem item = new RecentListViewItem();
             item.setInfo(data);
             setGraphic(item.getMainHBox());
         }

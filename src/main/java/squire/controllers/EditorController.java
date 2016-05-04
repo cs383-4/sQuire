@@ -397,6 +397,8 @@ public class EditorController implements Initializable
 
     private void compileCode() {
         boolean compileError = false;
+        compilationOutputTextArea.setStyle("-fx-text-fill: black;");
+        compilationOutputTextArea.clear();
         compilationOutputTextArea.appendText("Compiling...\n");
         String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
         String javaExePath = pc.getProp("jdkLocation") + File.separator + "java";
@@ -420,7 +422,6 @@ public class EditorController implements Initializable
                 compilationOutputTextArea.appendText(errorLine + "\n");
             }
             if (compileError == true) return;
-            compilationOutputTextArea.setStyle("-fx-text-fill: black;");
             ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.replace(".java", ""));
             execution.directory(new File(projectPath));
             Process p2 = execution.start();
