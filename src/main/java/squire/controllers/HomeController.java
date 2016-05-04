@@ -174,6 +174,11 @@ public class HomeController implements Initializable
     @FXML
     private void onBrowseProjectsHyperlinkClick(ActionEvent event)
     {
+        if (Main.getSessionID() == null)
+        {
+            onLogInHyperlinkClick(new ActionEvent());
+            return;
+        }
         if (event.getSource() == browseProjectsHyperlink)
         {
             FXMLLoader loader = new FXMLLoader();
