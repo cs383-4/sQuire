@@ -120,7 +120,7 @@ public class EditorController implements Initializable
 
     //load the project set in Main.projectID
     public void loadProject() {
-        projectPath = Main.getProjectsDir() + File.separator + Main.getProjectName();
+        projectPath = Main.getProjectsDir() + File.separator + Main.getProjectID();
         setupFileList();
     }
 
@@ -129,17 +129,12 @@ public class EditorController implements Initializable
         TreeItem<String> rootItem = new TreeItem<>(Main.getProjectName());
         rootItem.setExpanded(true);
 
-        //TODO:make this not hard coded
-        /*
-        ArrayList<File> fileList = new ArrayList<>();
-        for (File file : fileList) {
-            // Get just the filename
-            String fileName = file.getName();
-            TreeItem<String> item = new TreeItem<>(fileName);
-            rootItem.getChildren().add(item);
+        Response res = new Request("project/getFilesInProject")
+                .set("projectUUID", Main.getProjectID())
+                .send();
+        for(String file: (ArrayList<String>) res.get("files")) {
+            rootItem.getChildren().add(new TreeItem<>(file));
         }
-        */
-        rootItem.getChildren().add(new TreeItem<>("main.java"));
 
         fileExplorer.setRoot(rootItem);
         fileExplorer.setEditable(false);
@@ -249,22 +244,17 @@ public class EditorController implements Initializable
     }
 
 
-
     @FXML private void onSaveButtonClick(ActionEvent event)
     {
-                                // Basic way to write files back
-        String oldFilePath;
         Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();
-        //TODO: project path
-        String projectPath = "";
-        oldFilePath = projectPath + File.separator + curTab.getText();
-        //oldFile = new File (oldFilePath);
+        String filePath = projectPath + File.separator + curTab.getText();
+        File file = new File(filePath);
+        file.getParentFile().mkdirs();
         try
         {
-            BufferedWriter bf = new BufferedWriter(new FileWriter(oldFilePath));
-            bf.write(currentCodeArea.getText());
-            bf.flush();
-            bf.close();
+            PrintWriter writer = new PrintWriter(file);
+            writer.write(currentCodeArea.getText());
+            writer.close();
         }
         catch (IOException e)
         {
@@ -274,10 +264,11 @@ public class EditorController implements Initializable
 
 
     //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
-    // TODO: every time we switch tabs
+    //TODO: every time we switch tabs
     public void setupMobWrite(CodeArea ca, String name)
     {
-        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, name);
+        //mobwrite needs an id that starts with a letter, prefix 's' for squire
+        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, 's' + name);
         Main.getMobwriteClient().share(mobwriteComponent);
     }
 
@@ -368,23 +359,23 @@ public class EditorController implements Initializable
     }
 
     private void compileCode() {
-        /*
         compilationOutputTextArea.appendText("Compiling...\n");
-        File entryPoint = currentProject.getEntryPointClassFile();
         String javacPath = pc.getProp("jdkLocation") + File.separator + "javac";
         String javaExePath = pc.getProp("jdkLocation") + File.separator + "java";
 
         try
         {
-            ProcessBuilder compilation = new ProcessBuilder(javacPath, entryPoint.getName());
-            compilation.directory(new File(currentProject.getProjectPath()));
+            String entryPoint = "Main.java";
+            ProcessBuilder compilation = new ProcessBuilder(javacPath, entryPoint);
+            System.out.println(projectPath);
+            compilation.directory(new File(projectPath));
             Process p = compilation.start();
             int errorCode = p.waitFor();
             System.out.println("p1 Error Code: " + errorCode);
 
 
-            ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.getName().replace(".java", ""));
-            execution.directory(new File(currentProject.getProjectPath()));
+            ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.replace(".java", ""));
+            execution.directory(new File(projectPath));
             Process p2 = execution.start();
             p2.waitFor(5, TimeUnit.SECONDS);
             int errorCode2 = p2.exitValue();
@@ -403,7 +394,6 @@ public class EditorController implements Initializable
         {
             e.printStackTrace();
         }
-        */
     }
 
     @FXML private void onSendButtonClick(ActionEvent event)

@@ -37,9 +37,11 @@ class UserRequestHandler
         {
             res.setFail();
         }
-        res.set("sessionID", Session.login(u).getToken());
-        res.set("userName", u.getUsername());
-        res.set("userID", u.getId());
+        else {
+            res.set("sessionID", Session.login(u).getToken());
+            res.set("userName", u.getUsername());
+            res.set("userID", u.getId());
+        }
     }
 
     @Route("getUsernameFromSessionId")

@@ -119,6 +119,11 @@ public class Main extends Application implements Initializable {
         }
         return projectName;
     }
+
+    public static void setProjectName(String name) {
+        projectName = name;
+    }
+
     private static void createPropFileIfNeeded() {
         File propFile = new File("squire_config.properties");
 
