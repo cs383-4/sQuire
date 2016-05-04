@@ -175,6 +175,12 @@ public class EditorController implements Initializable
 
     public void onAddButtonClick(ActionEvent event)
     {
+        openAddDialog();
+    }
+
+
+    public void openAddDialog()
+    {
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Enter the name for the new file");
         dialog.setHeaderText("Enter the name for the new file");
@@ -185,7 +191,6 @@ public class EditorController implements Initializable
             addFile(result.get());
         }
     }
-
     public void addFile(String s)
     {
         String newFileName = s;
