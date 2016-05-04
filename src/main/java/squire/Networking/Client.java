@@ -11,6 +11,7 @@ import java.net.Socket;
  */
 class Client {
     private static final String address = "localhost";
+    //private static final String address = "squireserver.westus.cloudapp.azure.com";
     private static final int port = 3017;
 
     /**
