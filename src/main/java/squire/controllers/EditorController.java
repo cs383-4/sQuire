@@ -482,4 +482,8 @@ public class EditorController implements Initializable
         chatCodeArea.appendText("\n" + Main.getUserName() + "> " + chatTextField.getText());
         chatTextField.clear();
     }
+
+    @FXML public void onChatTextFieldEnter(ActionEvent event) {
+        onSendButtonClick(event);
+    }
 }

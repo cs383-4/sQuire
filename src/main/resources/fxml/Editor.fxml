@@ -119,7 +119,7 @@
                   <CodeArea fx:id="chatCodeArea" editable="false" prefHeight="212.0" prefWidth="201.0" />
                   <HBox prefHeight="27.0" prefWidth="248.0">
                      <children>
-                        <TextField fx:id="chatTextField" prefHeight="25.0" prefWidth="156.0" promptText="Write a message" />
+                        <TextField fx:id="chatTextField" prefHeight="25.0" prefWidth="156.0" onAction="#onChatTextFieldEnter" promptText="Write a message" />
                         <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendButtonClick" prefHeight="7.0" prefWidth="45.0" text="Send" />
                      </children>
                   </HBox>
