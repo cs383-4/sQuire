@@ -68,8 +68,6 @@ public class HomeController implements Initializable
             Platform.runLater(() -> userNameLabel.setText(username));
             setupListView();
         }
-
-
     }
 
     @FXML
@@ -89,11 +87,11 @@ public class HomeController implements Initializable
             dialogStage.setScene(scene);
             dialogStage.setTitle("Log in to sQuire");
             dialogStage.showAndWait();
-            Platform.runLater(() -> logInHyperlink.setVisible(false));
-            Platform.runLater(() -> registerHyperlink.setVisible(false));
-            Platform.runLater(() -> userNameLabel.setText(userName));
-            if(Main.getSessionID() != null)
+            if (Main.sessionID != null)
             {
+                Platform.runLater(() -> logInHyperlink.setVisible(false));
+                Platform.runLater(() -> registerHyperlink.setVisible(false));
+                Platform.runLater(() -> userNameLabel.setText(userName));
                 setupListView();
             }
         }
@@ -157,24 +155,6 @@ public class HomeController implements Initializable
         }
     }
 
-//    @FXML
-//    private void onOpenProjectHyperlinkClick(ActionEvent event)
-//    {
-//        if (event.getSource() == openProjectHyperlink)
-//        {
-//            Stage stage = null;
-//            stage = (Stage) openProjectHyperlink.getScene().getWindow();
-//            DirectoryChooser directoryChooser = new DirectoryChooser();
-//            directoryChooser.setInitialDirectory(new File(Main.getProjectsDir()));
-//            directoryChooser.setTitle("Choose Project Location");
-//            File selectedDir = directoryChooser.showDialog(stage);
-//            if (selectedDir != null)
-//            {
-//
-//                System.out.println(selectedDir);
-//            }
-//        }
-//    }
     @FXML
     private void onBrowseProjectsHyperlinkClick(ActionEvent event)
     {
@@ -245,23 +225,6 @@ public class HomeController implements Initializable
             }
         }
     }
-
-
-    // Methods to instantiate the project list
-
-
-
-//    public static void getProjectsWithUid()
-//    {
-//        if (!userName.isEmpty())
-//        {
-//
-//            Response res = new Request("project/getProjectsWithUid").set("sessionID", Main.getSessionID()).send();
-//            String username = (String)res.get("username");
-//        }
-//    }
-
-
 
     public void setupListView()
     {
