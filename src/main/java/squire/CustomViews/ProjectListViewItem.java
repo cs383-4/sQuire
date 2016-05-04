@@ -16,6 +16,7 @@ public class ProjectListViewItem
     @FXML private Label projectDescriptionLabel;
     @FXML private Button joinButton;
     
+    
     public ProjectListViewItem()
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ProjectListViewItem.fxml"));
@@ -30,10 +31,10 @@ public class ProjectListViewItem
         }
     }
     
-    public void setInfo(String projectName, String description)
+    public void setInfo(ProjectData data)
     {
-        projectNameLabel.setText(projectName);
-        projectDescriptionLabel.setText(description);
+        projectNameLabel.setText(data.getProjectName());
+        projectDescriptionLabel.setText(data.getProjectDescription());
     }
 
     public HBox getMainHBox()
