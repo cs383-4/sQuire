@@ -80,6 +80,14 @@ class ProjectRequestHandler {
         res.set("name", p.getName());
     }
 
+    @Route("getProjectList")
+    static void getProjectList(Request req, Response res) {
+        ArrayList<ProjectData> projects = new ArrayList<>();
+        for(Project p: Project.find.all()) {
+            projects.add(new ProjectData(p.getName(), p.getProjectUuid(), p.getProjectDescription()));
+        }
+    }
+
     @Route("getProjectsWithUid")
     static void getProjectsWithUid(Request req, Response res) {
     }
