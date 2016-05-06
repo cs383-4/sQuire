@@ -454,7 +454,7 @@ public class EditorController implements Initializable
         pc.loadProps();
         String testJdkPath = pc.getProp("jdkLocation");
         File f = new File(testJdkPath);
-        if (!f.exists() || !testJdkPath.contains("bin"))
+        if (!testJdkPath.contains("bin"))
         {
             FXMLLoader loader = new FXMLLoader();
             Stage dialogStage = new Stage();
