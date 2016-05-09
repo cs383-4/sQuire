@@ -21,6 +21,7 @@ class Router {
     Router() {
         //define all the routes here
         addRoutes(UserRequestHandler.class);
+        addRoutes(ProjectRequestHandler.class);
     }
 
     /**

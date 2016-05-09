@@ -37,9 +37,48 @@ class UserRequestHandler
         {
             res.setFail();
         }
-        res.set("sessionID", Session.login(u).getToken());
-        res.set("userName", u.getUsername());
-        res.set("userID", u.getId());
+        else {
+            res.set("sessionID", Session.login(u).getToken());
+            res.set("userName", u.getUsername());
+            res.set("userID", u.getId());
+        }
     }
-}
 
+    @Route("getUsernameFromSessionId")
+    static void getUsernameFromSessionId(Request req, Response res)
+    {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        if (u != null)
+        {
+            res.set("username", u.getUsername());
+        }
+    }
+
+    @Route("getEmailFromUsername")
+    static void getEmailFromUsername(Request req, Response res)
+    {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        if (u != null)
+        {
+            res.set("email", u.getEmail());
+        }
+    }
+
+    @Route("ChangePassword")
+    static void ChangePassword(Request req, Response res)
+    {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        u.setPassword((String) req.get("password"));
+        u.save();
+    }
+
+    @Route("ChangeEmail")
+    static void ChangeEmail(Request req, Response res)
+    {
+        User u = Session.find.activeSession((String) req.get("sessionID")).getUser();
+        u.setEmail((String) req.get("Email"));
+        u.save();
+    }
+
+
+}

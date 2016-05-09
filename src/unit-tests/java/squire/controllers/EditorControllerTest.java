@@ -57,7 +57,7 @@ public class EditorControllerTest extends TestCase
        for (String test: testStrings)
        {
 
-           ec.setupMobWrite(ca, test);
+           ec.setupMobWrite(ca, test, false);
 
        }
     }

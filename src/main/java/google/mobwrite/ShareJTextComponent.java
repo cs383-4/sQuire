@@ -20,6 +20,7 @@ public class ShareJTextComponent extends ShareObj {
      * The user-facing text component to be shared.
      */
     private CodeArea codeArea;
+    private Boolean chatMode;
 
     /**
      * Constructor of shared object representing a text field.
@@ -27,9 +28,10 @@ public class ShareJTextComponent extends ShareObj {
      * @param ca   Text component to share.
      * @param file Filename to share as.
      */
-    public ShareJTextComponent(CodeArea ca, String file) {
+    public ShareJTextComponent(CodeArea ca, String file, Boolean chatMode) {
         super(file);
         this.codeArea = ca;
+        this.chatMode = chatMode;
     }
 
     /**
@@ -53,6 +55,10 @@ public class ShareJTextComponent extends ShareObj {
         System.out.println("here");
         Platform.runLater(() -> {
             this.codeArea.replaceText(text);
+            if(chatMode) {
+                //scroll to bottom
+                this.codeArea.moveTo(10000000);
+            }
         });
         // TODO: Fire synthetic change events.
     }
@@ -71,13 +77,16 @@ public class ShareJTextComponent extends ShareObj {
             }
             Vector<Integer> offsets = new Vector<Integer>();
             offsets.add(this.codeArea.getCaretPosition());
-            System.out.println(this.codeArea.getCaretPosition());
             //this.mobwrite.logger.log(Level.INFO, "Cursor get: " + offsets.firstElement());
             //offsets.add(this.codeArea.getSelection().getStart());
             //offsets.add(this.codeArea.getSelection().getEnd());
             this.patch_apply_(patches, offsets);
-            this.codeArea.moveTo(offsets.get(0));
-            System.out.println(offsets.get(0));
+            if(!chatMode) {
+                this.codeArea.moveTo(offsets.get(0));
+            } else {
+                //move to the end
+                this.codeArea.moveTo(10000000);
+            }
         });
         //this.mobwrite.logger.log(Level.INFO, "Cursor set: " + offsets.firstElement());
         //getting the selection to work will take a little bit of trial and error
@@ -205,7 +214,10 @@ public class ShareJTextComponent extends ShareObj {
             text = text.substring(nullPadding.length(), text.length()
                     - nullPadding.length());
         } finally {
-            this.codeArea.setEditable(true);
+            if(!chatMode) {
+                //chat mode should stay uneditable
+                this.codeArea.setEditable(true);
+            }
         }
     }
     // TODO: Fire synthetic change events.

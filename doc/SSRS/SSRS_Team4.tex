@@ -124,7 +124,7 @@ sQuire Collaborative IDE
 \bigskip
 
 \begin{center}
-\includegraphics[width=6.0in]{images/sQuire-logo-monochrome.jpg}
+\includegraphics[width=6.0in]{images/sQuire-logo-transparent.png}
 \end{center}
 
 \bigskip
@@ -919,13 +919,6 @@ Section\ \ Page}
 	\end{enumerate}
 	
 	\bigskip
-
-
-\subsection[SYSTEM FEATURES]{\rmfamily\bfseries SYSTEM FEATURES}
-\hypertarget{RefHeading21659017292}{}
-
-
-
 
 
 \section[DESIGN]{\rmfamily\bfseries DESIGN}
@@ -3151,9 +3144,6 @@ Section\ \ Page}
 	\newpage
 
 
-
-
-
 \subsection[USER INTERFACE DIAGRAMS]{\rmfamily\bfseries USER INTERFACE DIAGRAMS}
 \subsubsection[UI Window Flowchart]{\selectlanguage{english}\rmfamily\bfseries\color{black}
 	UI Window Flowchart}
@@ -3162,411 +3152,47 @@ Section\ \ Page}
 
 \section[IMPLEMENTATION]{\selectlanguage{english}\rmfamily\bfseries\color{black} IMPLEMENTATION}
 
-\subsection[PRIORITIZED BACKLOG]{\rmfamily\bfseries PRIORITIZED BACKLOG}
+\subsection{User Interface}
 
-\subsection[TRACEABILITY]{\rmfamily\bfseries TRACEABILITY}
-\begin{flushleft}
-\tablefirsthead{\hline
-\multicolumn{1}{|m{0.9212598in}|}{\centering{\selectlanguage{english}\bfseries\color{black} Feature Name}} &
-\centering{\selectlanguage{english}\bfseries\color{black} Req No.} &
-\centering{\selectlanguage{english}\bfseries\color{black} Requirement Description} &
-\centering{\selectlanguage{english}\bfseries\color{black} Priority} &
-\centering{\selectlanguage{english}\bfseries\color{black} SDD} &
-\multicolumn{2}{m{1.2872598in}|}{\centering{\selectlanguage{english}\bfseries\color{black} Alpha Release}} &
-\multicolumn{2}{m{1.3587599in}|}{\centering{\selectlanguage{english}\bfseries\color{black} Beta Release}} &
-\multicolumn{2}{m{1.3795599in}|}{\centering{\selectlanguage{english}\bfseries\color{black} Final Test}}\\\hline
- &
- &
- &
- &
- &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Case(s)} &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Res.} &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Case(s)} &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Res.} &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Case(s)} &
-{\selectlanguage{english}\bfseries\color{black} Test Res.}\\}
-\tablehead{\hline
-\multicolumn{1}{|m{0.9212598in}|}{\centering{\selectlanguage{english}\bfseries\color{black} Feature Name}} &
-\centering{\selectlanguage{english}\bfseries\color{black} Req No.} &
-\centering{\selectlanguage{english}\bfseries\color{black} Requirement Description} &
-\centering{\selectlanguage{english}\bfseries\color{black} Priority} &
-\centering{\selectlanguage{english}\bfseries\color{black} SDD} &
-\multicolumn{2}{m{1.2872598in}|}{\centering{\selectlanguage{english}\bfseries\color{black} Alpha Release}} &
-\multicolumn{2}{m{1.3587599in}|}{\centering{\selectlanguage{english}\bfseries\color{black} Beta Release}} &
-\multicolumn{2}{m{1.3795599in}|}{\centering{\selectlanguage{english}\bfseries\color{black} Final Test}}\\\hline
- &
- &
- &
- &
- &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Case(s)} &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Res.} &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Case(s)} &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Res.} &
-\centering{\selectlanguage{english}\bfseries\color{black} Test Case(s)} &
-{\selectlanguage{english}\bfseries\color{black} Test Res.}\\}
-\tabletail{}
-\tablelasttail{}
-\begin{supertabular}{m{0.9212598in}|m{0.42125985in}|m{1.9212599in}|m{0.39275986in}|m{0.7587598in}|m{0.6622598in}|m{0.5462598in}|m{0.6712598in}|m{0.6087598in}|m{0.6712598in}|m{0.6295598in}|}
-\hhline{~~~~~------}
-\multicolumn{1}{|m{0.9212598in}|}{~
-} &
-\centering{\selectlanguage{english}\color{black} 1.1} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hline
- &
-\centering{\selectlanguage{english}\color{black} 1.2} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
- &
-\centering{\selectlanguage{english}\color{black} {\dots}} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
- &
-\centering{\selectlanguage{english}\color{black} 1.[n]} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
-\multicolumn{1}{|m{0.9212598in}|}{~
-} &
-\centering{\selectlanguage{english}\color{black} 2.1} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hline
- &
-\centering{\selectlanguage{english}\color{black} 2.2} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
- &
-\centering{\selectlanguage{english}\color{black} {\dots}} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
- &
-\centering{\selectlanguage{english}\color{black} 2.[n]} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
-\multicolumn{1}{|m{0.9212598in}|}{~
-} &
-\centering{\selectlanguage{english}\color{black} 3.1} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hline
- &
-\centering{\selectlanguage{english}\color{black} 3.2} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
- &
-\centering{\selectlanguage{english}\color{black} {\dots}} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
- &
-\centering{\selectlanguage{english}\color{black} 3.[n]} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
-\multicolumn{1}{|m{0.9212598in}|}{{\selectlanguage{english}\color{black} {\dots}}} &
-\centering{\selectlanguage{english}\color{black} {\dots}} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hline
-\multicolumn{1}{|m{0.9212598in}|}{~
-} &
-\centering{\selectlanguage{english}\color{black} [m].1} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hline
- &
-\centering{\selectlanguage{english}\color{black} [m].2} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hhline{~----------}
-\multicolumn{1}{|m{0.9212598in}|}{~
-} &
-\centering{\selectlanguage{english}\color{black} {\dots}} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hline
-\multicolumn{1}{|m{0.9212598in}|}{~
-} &
-\centering{\selectlanguage{english}\color{black} [m.n]} &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
- &
-~
-\\\hline
-\end{supertabular}
-\end{flushleft}
-{\selectlanguage{english}\color{black}
-Priorities are: \textbf{M}andatory, \textbf{L}ow, \textbf{H}igh}
+\subsubsection{JavaFX Framework}
 
-{\selectlanguage{english}\color{black}
-SDD link is version and page number or function name.}
+We used the JavaFX framework for the implementation of our user interface. It comes by default as part of the current JDKs. There are two major parts to the JavaFX framework: FXML resource files and their respective controllers.
 
-{\selectlanguage{english}\color{black}
-Test cases and results are file names and \textbf{P}ass/\textbf{F}ail or \% passing.}
 
+The FXML files are XML files dictating the static structure of each user-interface ``scene'' - the current content being show in a window of the program. Each FXML file is associated with a controller class that has the FXML file's items, the UI elements, injected into it via Java annotations. The controller class is then able to handle any events that take place on the user interface. 
+
+
+Our project's FXML files can be located in the \textbf{src/main/resources} directory: \bigskip
+
+
+\begin{center}
+	\includegraphics[scale=1]{images/Implementation/Resources.png}
+\end{center}
+
+\newpage
+
+
+
+
+\newpage
+\subsection{Server}
+
+
+
+\newpage
+\subsection{Client}
+
+
+\newpage
+\subsection{Deployment}
+
+\newpage
+\section[Testing]{\selectlanguage{english}\rmfamily\bfseries\color{black} TESTING}
+
+
+
+\newpage
+\section[METRICS]{\selectlanguage{english}\rmfamily\bfseries\color{black} METRICS}
 
 \bigskip
 \end{document}

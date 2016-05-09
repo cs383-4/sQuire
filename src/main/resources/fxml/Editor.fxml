@@ -11,7 +11,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -74,8 +73,7 @@
                               <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" text="Home" />
                               <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="2.0" />
                               <ToggleButton mnemonicParsing="false" text="Open" />
-                              <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonClick"
-                                  text="Save" />
+                              <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" />
                               <ToggleButton mnemonicParsing="false" text="Save All" />
                               <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
                               <ToggleButton layoutX="105.0" layoutY="10.0" mnemonicParsing="false" text="Undo" />
@@ -99,7 +97,12 @@
                <children>
                   <VBox prefHeight="474.0" prefWidth="226.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="249.0" style="-fx-border-color: gray;" text="File Explorer" textAlignment="CENTER" />
+                        <HBox VBox.vgrow="NEVER">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="199.0" style="-fx-border-color: gray;" text="File Explorer" textAlignment="CENTER" HBox.hgrow="NEVER" />
+                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" prefHeight="34.0" prefWidth="29.0" style="-fx-background-color: lightblue; -fx-border-color: gray;" text="+" HBox.hgrow="NEVER" />
+                           </children>
+                        </HBox>
                         <TreeView fx:id="fileExplorer" editable="true" prefHeight="464.0" prefWidth="226.0" style="-fx-border-color: gray;" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
@@ -107,17 +110,17 @@
             </AnchorPane>
          </left>
          <right>
-            <VBox prefHeight="474.0" prefWidth="201.0">
+            <VBox prefHeight="481.0" prefWidth="274.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="19.0" prefWidth="252.0" style="-fx-border-color: gray;" text="Friends" />
+                  <Label alignment="CENTER" prefHeight="19.0" prefWidth="289.0" style="-fx-border-color: gray;" text="Friends" />
                   <TextField promptText="Search" />
                   <ListView prefHeight="339.0" prefWidth="248.0" />
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="248.0" style="-fx-border-color: gray;" text="Chat" />
-                  <TextArea prefHeight="229.0" prefWidth="177.0" promptText="Messages " />
+                  <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="274.0" style="-fx-border-color: gray;" text="Chat" />
+                  <CodeArea fx:id="chatCodeArea" editable="false" prefHeight="212.0" prefWidth="201.0" />
                   <HBox prefHeight="27.0" prefWidth="248.0">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="202.0" promptText="Write a message" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" text="Send" />
+                        <TextField fx:id="chatTextField" onAction="#onChatTextFieldEnter" prefHeight="25.0" prefWidth="225.0" promptText="Write a message" />
+                        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#onSendButtonClick" prefHeight="25.0" prefWidth="57.0" text="Send" />
                      </children>
                   </HBox>
                </children>
