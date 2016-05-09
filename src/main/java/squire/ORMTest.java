@@ -1,11 +1,9 @@
 package squire;
 
-import squire.Users.Project;
 import squire.Users.Session;
 import squire.Users.User;
 
 import java.util.Random;
-import java.util.UUID;
 
 public class ORMTest
 {
@@ -13,7 +11,7 @@ public class ORMTest
     {
         //create a new user with the name hello
         String username = "user" + new Random().nextInt();
-        User u = new User(username, username + "@email.com", "password123");
+        User u = new User(username, "email@email.com", "password123");
 
         //we need to save it to write the changes to the database
         u.save();

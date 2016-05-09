@@ -54,9 +54,9 @@ public class EditorTest extends ApplicationTest
         npc = new NewProjectController3();
         File dummyFile = new File(System.getProperty("user.dir") + "src/main/resources/Test_Files");
 
-        //p = new Project("test", currentUser,"test","test",dummyFile);
+        p = new Project("test", currentUser,"test","test",dummyFile);
 
-        //currentUser.setCurrentProject(p);
+        currentUser.setCurrentProject(p);
 
         nodeNamesToTest.add("#avatarImageView");
         nodeNamesToTest.add("#homeButton");
@@ -98,7 +98,7 @@ public class EditorTest extends ApplicationTest
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource("/fxml/Editor.fxml"));
         Scene scene = new Scene(root);
-     //   stage.setTitle("sQuire Editor - Project " + currentSession.getCurrentProject().toString());
+     //   stage.setTitle("sQuire Editor - Project " + currentUser.getCurrentProject().toString());
         stage.setScene(scene);
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 

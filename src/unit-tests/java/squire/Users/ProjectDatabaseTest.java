@@ -5,10 +5,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.junit.Assert.assertTrue;
-import static sun.misc.Version.print;
+import javax.jws.soap.SOAPBinding;
+import java.io.File;
+import java.util.ArrayList;
 
 public class ProjectDatabaseTest extends TestCase
 {
@@ -41,30 +40,26 @@ public class ProjectDatabaseTest extends TestCase
     @Test
     public void testAddProject() throws Exception
     {
-        Project testproject = new Project();
+        User testuser = new User("1","2","3");
+        File testFile = new File("");
+
+        Project testproject = new Project("name", testuser,"3","4",testFile);
 
         testproject.save();
 
     }
 
     @Test
-    public void testGetSetFields() throws Exception
+    public void testGetSetOwner() throws Exception
     {
-        Project testproject = new Project();
-        testproject.setOwner(new User("testowner","test@email.com","testpassword"));
-        testproject.setName("testname");
-        testproject.setProjectDescription("a test project");
-
+        User testuser = new User("4","5","6");
+        File testFile = new File("");
+        Project testproject = new Project("name", testuser,"3","4",testFile);
+        testproject.setProjectOwner(new User("testowner","email@email.com","testpassword"));
 
         testproject.save();
 
-        assertEquals("testowner", testproject.getOwner().getUsername());
-        assertEquals("testname", testproject.getName());
-        assertEquals("a test project", testproject.getProjectDescription());
-
-
-        List<Project> foundtestprojects = Project.find.where().name.equalTo("testname").findList();
-        assertFalse(foundtestprojects.isEmpty());
+        assertEquals("testowner", testproject.getProjectOwner().getUsername());
     }
 
 

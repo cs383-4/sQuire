@@ -5,17 +5,16 @@ package squire.Users;
 
 import com.avaje.ebean.Finder;
 import squire.Users.User;
-import squire.Users.query.QProject;
+import squire.Users.query.QSession;
 
 import java.util.UUID;
 
-public class ProjectFinder extends Finder<Long, Project> {
+public class ProjectFinder extends Finder<Long, User> {
     public ProjectFinder() {
-        super(Project.class);
+        super(User.class);
     }
 
-    public QProject where() {
-        return new QProject(db());
-    }
+
+
 }
 
