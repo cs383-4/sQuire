@@ -3154,6 +3154,9 @@ Section\ \ Page}
 
 \subsection{User Interface}
 
+Code organization overview. Description of major components/folders (client, server, ..., but maybe a level or two more detailed). Description of how it is built. Which IDE(s)? Number of targets in IDE. What does it look like to run outside an IDE? What does a client binary distribution look like, and how portable is it? What about a server (or client/server) binary distribution, and how portable is it?
+
+
 \subsubsection{JavaFX Framework}
 
 We used the JavaFX framework for the implementation of our user interface. It comes by default as part of the current JDKs. There are two major parts to the JavaFX framework: FXML resource files and their respective controllers.
@@ -3219,13 +3222,35 @@ Our project's FXML files can be located in the \textbf{src/main/resources} direc
 \newpage
 \subsubsection{Dependencies}
 
+
+\newpage
+\subsubsection{IDE and Plugins}
+
 \newpage
 \section[Testing]{\selectlanguage{english}\rmfamily\bfseries\color{black} TESTING}
+
+
+Stuff that Jeffery wants in bold and then followed by my comments:
+
+\begin{itemize}
+	\item \textbf{Test plans, tests actually run, test results, test coverage.} I'll just copy our test plan document that we turned in for homework in. I think it needs some more stuff added to it though so add it here from now on and not there. Basically, we need to write tests for our major pieces of functionality. I think we should just focus on the logic instead of the UI here.
+	\item \textbf{Write textual descriptions of test cases for everything that's not junit-integrated.} I think we only need to this for ORMTest so far.
+\end{itemize}
 
 
 
 \newpage
 \section[METRICS]{\selectlanguage{english}\rmfamily\bfseries\color{black} METRICS}
+
+Metrics that Jeffery wants are in bold and then followed by my ideas on how to get them:
+
+\begin{itemize}
+	\item \textbf{How ``big'' our projects are.} Ex: lines of code, complexity, packages, classes. Use IntelliJ for that.
+	\item \textbf{How much of our functionality is implemented.} Will probably have to be done by hand. Maybe make a table of use-case/functional requirement and whether it was implemented or not and a justification.
+	\item \textbf{How much of our code is tested and how tested is the code.} Get a ratio of unit test classes vs actual classes? How much functions have a unit test associated with them? Do we have uncovered cases?
+	\item \textbf{Who did the work?} Use GitHub for that? Add any extra info manually.
+	\item \textbf{Problem Areas.} What was hard to implement and why?
+\end{itemize}
 
 \bigskip
 \end{document}
