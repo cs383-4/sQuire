@@ -3183,7 +3183,7 @@ The server side portion of sQuire was hosted all on an Azure server. It was divi
 \subsubsection{MobWrite}
 As stated earlier in this document, MobWrite is a set of libraries created by Google written on top of their Diff-Match-Patch algorithms. It consists of a server written in python, and several different clients written in several different languages. As the server worked fine without modifications, we did not include it in our repository. It can be retrieved from the MobWrite website (https://code.google.com/archive/p/google-mobwrite/).
 
-Setting up the MobWrite server is a little interesting, as most of the documentation is gone, or never existed, it required digging into the code to see what was going on. It turns out that the MobWrite server consists of two parts. An Apache server with mod\_python listens for https requests on port 80, and then passes them to a python script. This python script takes the raw http requests, formats them, and then connects to the MobWrite daemon listening on localhost via tellnet.
+Setting up the MobWrite server is a little interesting, as most of the documentation is gone, or never existed, it required digging into the code to see what was going on. It turns out that the MobWrite server consists of two parts. An Apache server with mod\_python listens for https requests on port 80, and then passes them to a python script. This python script takes the raw http requests, formats them, and then connects to the MobWrite daemon listening on localhost via Telnet.
 
 Each request to the MobWrite server consists of a Room ID, and patch information about that room (any additions, or deletions made). Inside the MobWrite daemon, Berkeley DB (an embedded key/value database) is used to store the contents of the room. The patch information is then used on the contents of the room on the server to update it, and to determine if any changes need to be sent back to the client.
 
@@ -3194,12 +3194,13 @@ In the client, it's possible to configure the update frequency. This specifies t
 
 This entire setup is surprisingly efficient. MobWrite comes with a couple of stress testing tools that tests 200 clients connecting to the MobWrite daemon at the same time. During this test, the CPU usage of our modest server never past 75\%. It's reasonable to assume then, that in a production environment with a server of the same size as the one we had, the system could support at least that many concurrent users. This number could be increased if needed by reducing the update frequency, using a more powerful server, or splitting the load across multiple servers based on the Room ID.
 
-
 \newpage
 \subsubsection{Chat}
+Our chat client was originally implemented as a stand alone client/server program. It worked by opening a socket on a separate thread between the client and the server. When messages were sent from the client, the server then broadcasted them to every other connected client.
 
+Unfortunately, when we tried to integrate this with the JavaFX GUI, it didn't work to well due to the fact that everything in JavaFX runs in a separate thread. As the chat client used it's own thread to communicate with the server, it didn't work when plugged into the GUI. Due to time constraints, we ended up using MobWrite to power our chat.
 
-
+The chat window consisted of an uneditable MobWrite Room unique to every project. Chat messages are appended to the MobWrite buffer, which is then synced to all the other clients. This approach is a little limited, because it means that all the clients have to see the same thing, so it is impossible to implement a whisper mechanism, for example. It was however extremely easy to implement, and works without any additional sever architecture, and works very well for a simple chat client.
 
 \newpage
 \subsubsection{Database}
