@@ -1,0 +1,19 @@
+Class count metrics,Thu, 12 May 2016 14:51:47 PDT
+Package,C,C(rec),Cp,Cp(rec),Ct,TC(rec)
+"",9,75,0,58,9,17
+"google",n/a,17,n/a,17,n/a,0
+"google.mobwrite",17,17,17,17,0,0
+"squire",3,49,3,41,0,8
+"squire.CustomViews",5,5,5,5,0,0
+"squire.Networking",10,10,10,10,0,0
+"squire.Users",15,15,11,11,4,4
+"squire.controllers",15,16,12,12,3,4
+"squire.controllers.ProjectLocationTest",n/a,1,n/a,0,n/a,1
+"squire.controllers.ProjectLocationTest.CopyTestProject",1,1,0,0,1,1
+
+Module,C,Cp,Ct
+"sQuire",75,58,17
+
+Project,C,Cp,Ct
+"project",75,58,17
+
