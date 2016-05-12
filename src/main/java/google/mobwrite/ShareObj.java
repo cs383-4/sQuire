@@ -19,13 +19,15 @@
 
 package google.mobwrite;
 
+import google.mobwrite.diff_match_patch.Diff;
+import google.mobwrite.diff_match_patch.Operation;
+import google.mobwrite.diff_match_patch.Patch;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
-import google.mobwrite.diff_match_patch;
-import google.mobwrite.diff_match_patch.*;
 
 public abstract class ShareObj {
   /**

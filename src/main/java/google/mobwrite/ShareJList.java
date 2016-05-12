@@ -19,11 +19,8 @@
 
 package google.mobwrite;
 
+import javax.swing.*;
 import java.util.Vector;
-
-import javax.swing.JList;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
 
 class ShareJList extends ShareObj {
 

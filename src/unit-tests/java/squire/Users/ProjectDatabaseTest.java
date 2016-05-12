@@ -7,9 +7,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
-import static sun.misc.Version.print;
-
 public class ProjectDatabaseTest extends TestCase
 {
     /**

@@ -1,11 +1,11 @@
+import google.mobwrite.MobWriteClientTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import squire.Users.PasswordHashTest;
+import squire.Users.ProjectDatabaseTest;
 import squire.Users.SessionTest;
 import squire.Users.UserTest;
-import squire.Users.ProjectDatabaseTest;
 import squire.controllers.EditorControllerTest;
-import google.mobwrite.MobWriteClientTest;
 import squire.controllers.NewProjectController3Test;
 
 /**

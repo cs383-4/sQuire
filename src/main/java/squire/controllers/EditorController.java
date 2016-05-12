@@ -1,6 +1,5 @@
 package squire.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import google.mobwrite.ShareJTextComponent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.*;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -20,27 +16,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.fxmisc.richtext.CodeArea;
 import squire.Main;
 import squire.Networking.Request;
 import squire.Networking.Response;
-import squire.Users.Project;
 import squire.Users.PropertiesController;
-import squire.Users.User;
-
 
 import java.io.*;
-
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
-import org.fxmisc.richtext.*;
-import squire.chatserver.ChatClient;
-import javafx.scene.control.*;
 
 
 /**

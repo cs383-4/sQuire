@@ -15,17 +15,15 @@ import javafx.scene.control.ListView;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import org.junit.runner.Result;
 import squire.CustomViews.ListViewCell;
 import squire.Main;
 import squire.Networking.ProjectData;
 import squire.Networking.Request;
 import squire.Networking.Response;
 
-import java.awt.*;
 import java.net.URL;
-import java.util.*;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created by Domn on 4/4/2016.

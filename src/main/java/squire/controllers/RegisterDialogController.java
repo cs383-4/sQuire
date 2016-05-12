@@ -2,12 +2,13 @@ package squire.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import squire.Networking.Request;
 import squire.Networking.Response;
-import squire.Users.User;
 
 /**
  * Created by Domn on 4/4/2016.

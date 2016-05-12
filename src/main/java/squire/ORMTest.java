@@ -1,11 +1,9 @@
 package squire;
 
-import squire.Users.Project;
 import squire.Users.Session;
 import squire.Users.User;
 
 import java.util.Random;
-import java.util.UUID;
 
 public class ORMTest
 {
