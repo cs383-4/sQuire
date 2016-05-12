@@ -3180,7 +3180,7 @@ Our project's FXML files can be located in the \textbf{src/main/resources} direc
 \subsection{Server}
 The server side portion of sQuire was hosted all on an Azure server. It was divided into two main sections: the MobWrite server handling the collaborative editing, and the sQuire server handling all the database requests.
 
-\subsubsection{MobWrite}
+\subsubsection{MobWrite (ratc8795)}
 As stated earlier in this document, MobWrite is a set of libraries created by Google written on top of their Diff-Match-Patch algorithms. It consists of a server written in python, and several different clients written in several different languages. As the server worked fine without modifications, we did not include it in our repository. It can be retrieved from the MobWrite website (https://code.google.com/archive/p/google-mobwrite/).
 
 Setting up the MobWrite server is a little interesting, as most of the documentation is gone, or never existed, it required digging into the code to see what was going on. It turns out that the MobWrite server consists of two parts. An Apache server with mod\_python listens for https requests on port 80, and then passes them to a python script. This python script takes the raw http requests, formats them, and then connects to the MobWrite daemon listening on localhost via Telnet.
@@ -3194,24 +3194,24 @@ In the client, it's possible to configure the update frequency. This specifies t
 
 This entire setup is surprisingly efficient. MobWrite comes with a couple of stress testing tools that tests 200 clients connecting to the MobWrite daemon at the same time. During this test, the CPU usage of our modest server never past 75\%. It's reasonable to assume then, that in a production environment with a server of the same size as the one we had, the system could support at least that many concurrent users. This number could be increased if needed by reducing the update frequency, using a more powerful server, or splitting the load across multiple servers based on the Room ID.
 
-\subsubsection{Chat}
+\subsubsection{Chat (ratc8795)}
 Our chat client was originally implemented as a stand alone client/server program. It worked by opening a socket on a separate thread between the client and the server. When messages were sent from the client, the server then broadcasted them to every other connected client.
 
 Unfortunately, when we tried to integrate this with the JavaFX GUI, it didn't work to well due to the fact that everything in JavaFX runs in a separate thread. As the chat client used it's own thread to communicate with the server, it didn't work when plugged into the GUI. Due to time constraints, we ended up using MobWrite to power our chat.
 
 The chat window consisted of an uneditable MobWrite Room unique to every project. Chat messages are appended to the MobWrite buffer, which is then synced to all the other clients. This approach is a little limited, because it means that all the clients have to see the same thing, so it is impossible to implement a whisper mechanism, for example. It was however extremely easy to implement, and works without any additional sever architecture, and works very well for a simple chat client.
 
-\subsubsection{sQuire server}
-The sQuire server is the part of the application that handles storing and retrieving information in the database. It consists of two main parts: The Router and the Server. The Server accepts socket connections one at a time in a queue. Upon receiving a connection, the server accepts a Request object, and then passes this object to the Router.
+\subsubsection{Networking (ratc8795)}
+The networking layer is the part of the application that handles storing and retrieving information in the database. It consists of two main parts: The Router and the Server. The Server accepts socket connections one at a time in a queue. Upon receiving a connection, the server accepts a Request object, and then passes this object to the Router.
 
 The Request object contains a route field. This field tells the router what to do with this request. Upon the initialization, the Router accepts RouteHandlers. The route handles contain a bunch of functions that all register themselves to a specific route. When the Router receives a Request, it uses the route field of the request to pass it to the correct function in the correct RouteHandler. That function then returns a Response object containing all the data requested by the Request object.
 
 The Router passes this Response back to the Server, which returns it to the client, and then moves onto the next waiting connection in the queue.
 
-The client makes requests to the sQuire server only when doing things like creating new files or projects, browsing project, and logging in. Most of the collaborative part that requires continuous requests is handled by the MobWrite server. As such, this server won't be 
+The client makes requests to the sQuire server only when doing things like creating new files or projects, browsing project, and logging in. Most of the collaborative part that requires continuous requests is handled by the MobWrite server. As such, this server won't be overly stressed, even with a large amount of clients. Several easy optimizations are available to us if needed are: splitting of a new thread for every connection so multiple can me served at once instead of only one at a time, or creating a way to send multiple requests in one go, reducing the overhead of creating and destroying sockets.
 
 
-\subsubsection{Database}
+\subsubsection{Database (ratc8795)}
 The database code was written using the EBean ORM (https://ebean-orm.github.io/). It has a very simple structure. Using Java's persistence annotations, we defined several models. These models live in the src/main/java/squire/Users/ directory in our repository. All of these models inherit from a Model class provided by Ebean, this provides several methods such as \textbf{save()} that make retrieving and saving models to the database work senselessly with normal getters and setters. Using the settings defined in src/main/resources/ebean.properties, every time the program is run, either a IDE plugin, or a Maven plugin generate a couple of files:
 \begin{itemize}
 	\item \textbf{Typed query files} For every model, a Query class is created. This class allows querying the database using typed java code, so queries can be build by stringing together fields and method calls.
@@ -3230,13 +3230,15 @@ EBean uses a separate configuration for tests. Every time our unit tests run, EB
 \newpage
 \subsection{Client}
 
-\subsubsection{CodeArea}
+\subsubsection{CodeArea (ratc8795)}
+For the code editor, we used a CodeArea component from RichTextFX (https://github.com/TomasMikula/RichTextFX). This is a library of rich text editing components built for JavaFX. As JavaFX is a relatively new technology (compared to Swing), the libraries available for it are not as refined as some of the ones built for other GUI frameworks. RichTextFX is no exception. It includes the capability to do basic syntax highlighting, and code completion, but all of this requires extensive configuration and set up that we did not get to due to time constraints.
 
+Some work had to be done to integrate MobWrite into the CodeArea. This work mainly consisted of replacing API calls used in MobWrite to call the ones in CodeArea instead of a JTextComponent, and then debugging it and diving into the source code of the two libraries when it didn't work. The results of this work can be seen in the src/main/java/google/mobwrite/ShareJTextComponent.java file.
 
+Each instance of this ShareJTextComponent class contains a CodeArea (the name is a little misleading after we made our changes). A new instance of this is created every time a new editor tab is created, or the chat is created.
 
-\newpage
-\subsubsection{Response Handler}
-
+\subsubsection{Networking (ratc8795)}
+ All of the data regarding Users and Projects is stored on the server, and the client has no direct access to this. To retrieve information it has to send a request to the server. This is done by creating a Request object with the specified path (described more in the server section above). The Request object contains a HashMap of a string associated with an object. Any data the server needs to process the request is stored in this HashMap. Any object can be stored in this, just so long as it implements Serializable. Each Request object has a 
 
 \newpage
 \subsection{Deployment}
