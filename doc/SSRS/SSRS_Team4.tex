@@ -3651,22 +3651,81 @@ The following items are deemed low risk to the security of users and to the usab
 
 Many of our metrics are measured via an IntelliJ plugin called MetricsReloaded, which measures lines of code, complexity, etc. Anything under the package google.mobwrite is a modified version of Google's Mobwrite project, which we found on Github.
 
-\begin{itemize}
-	\item \textbf{Size of our Project} \\
-	These metrics were all calculated with MetricsReloaded. To keep the analysis concise, most of the data is presented on a per-package basis.
-	\begin{itemize}
-		\item Number of Classes
-		\item Cyclomatic Complexity	\\
-		Our project had an average cyclomatic complexity of 2.85. Mobwrite introduced the greatest amount of cycomatic complexity to our project. Outside of Mobwrite, none of our classes had a v(G) exceeding 10.
-		\item Lines of Code \\
-		
+
+	\subsection{Size of our Project} 
 	
-	\end{itemize}
-	\item \textbf{How much of our functionality is implemented.} Will probably have to be done by hand. Maybe make a table of use-case/functional requirement and whether it was implemented or not and a justification.
-	\item \textbf{How much of our code is tested and how tested is the code.} Get a ratio of unit test classes vs actual classes? How much functions have a unit test associated with them? Do we have uncovered cases?
-	\item \textbf{Who did the work?} Use GitHub for that? Add any extra info manually.
-	\item \textbf{Problem Areas.} What was hard to implement and why?
-\end{itemize}
+	These metrics were all calculated with MetricsReloaded. To keep the analysis concise, most of the data is presented on a per-package basis.
+\subsubsection{ Number of Classes by Package }
+
+\begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+Package                      & Number of Total Classes & Number of Product Classes & Number of Test Classes \\ \hline
+Unnamed                     & 9                       & 0                        & 9                      \\ \hline
+google.mobwrite              & 17                      & 17                       & 0                      \\ \hline
+squire                       & 3                       & 3                        & 0                      \\ \hline
+squire.CustomViews           & 5                       & 5                        & 0                      \\ \hline
+squire.Networking            & 10                      & 10                       & 0                      \\ \hline
+squire.Users                 & 15                      & 11                       & 4                      \\ \hline
+squire.controllers           & 15                      & 12                       & 3                      \\ \hline
+Total                       & 74                      & 58                       & 16                     \\ \hline
+\end{tabular}
+
+\subsubsection{ Cyclomatic Complexity	}
+\begin{flushleft}
+
+\begin{tabular}{|l|l|}
+\hline
+Cyclomatic Complexity Average by Package & v(G)avg \\ \hline
+Unnamed (i.e. "Main.java")               & 1.41    \\ \hline
+google.mobwrite                          & 6.07    \\ \hline
+squire                                   & 1.4     \\ \hline
+squire.CustomViews                       & 1.45    \\ \hline
+squire.Networking                        & 1.78    \\ \hline
+squire.Users                             & 1.22    \\ \hline
+squire.controllers                       & 2       \\ \hline
+Module                                   & v(G)avg \\ \hline
+sQuire                                   & 2.85    \\ \hline
+\end{tabular}
+\end{flushleft}
+
+\noindent	Our project had an average cyclomatic complexity of 2.85. Mobwrite introduced the greatest amount of cycomatic complexity to our project. Outside of Mobwrite, none of our classes had a v(G) exceeding 10.
+	
+	
+\subsubsection{Lines of Code}
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+Package                    & LOC   & Product LOC     & Testing LOC \\ \hline
+Unnamed (i.e. "Main.java") & 393   & 0               & 393         \\ \hline
+google.mobwrite            & 3,727 & 3,727           & 0           \\ \hline
+squire                     & 239   & 239             & 0           \\ \hline
+squire.CustomViews         & 155   & 155             & 0           \\ \hline
+squire.Networking          & 460   & 460             & 0           \\ \hline
+squire.Users               & 854   & 686             & 168         \\ \hline
+squire.controllers         & 1,444 & 1,292           & 152         \\ \hline
+\textbf{Total}			   &	7,272 & 6,559		    & 713		\\ \hline
+                           &       &                 &             \\ \hline
+Lines of Code by File Type &       &                 &             \\ \hline
+FileType                   & LOC   & Non-Comment LOC & Difference  \\ \hline
+Git file                   & 35    & 35              & 0           \\ \hline
+HTML                       & 2,333 & 2,233           & 100         \\ \hline
+Java                       & 7,278 & 5,430           & 1848        \\ \hline
+LaTeX file                 & 4,783 & 4,761           & 22          \\ \hline
+Properties                 & 29    & 20              & 9           \\ \hline
+SQL                        & 60    & 60              & 0           \\ \hline
+Text                       & 4,844 & 4,844           & 0           \\ \hline
+XML                        & 1,087 & 1,087           & 0           \\ \hline
+\end{tabular}
+
+\subsubsection{Number of Files}
+
+
+%		
+%	\item \textbf{How much of our functionality is implemented.} Will probably have to be done by hand. Maybe make a table of use-case/functional requirement and whether it was implemented or not and a justification.
+%	\item \textbf{How much of our code is tested and how tested is the code.} Get a ratio of unit test classes vs actual classes? How much functions have a unit test associated with them? Do we have uncovered cases?
+%	\item \textbf{Who did the work?} Use GitHub for that? Add any extra info manually.
+%	\item \textbf{Problem Areas.} What was hard to implement and why?
+
 
 \bigskip
 \end{document}
