@@ -1,0 +1,244 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Main</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">squire</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Main (squire)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Main</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (6/ 18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    30.8%
+  </span>
+  <span class="absValue">
+    (20/ 65)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package squire;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import google.mobwrite.MobWriteClient;
+<i>4</i>&nbsp;import javafx.application.Application;
+<i>5</i>&nbsp;import javafx.beans.property.BooleanProperty;
+<i>6</i>&nbsp;import javafx.beans.property.SimpleBooleanProperty;
+<i>7</i>&nbsp;import javafx.fxml.FXMLLoader;
+<i>8</i>&nbsp;import javafx.fxml.Initializable;
+<i>9</i>&nbsp;import javafx.scene.Parent;
+<i>10</i>&nbsp;import javafx.scene.Scene;
+<i>11</i>&nbsp;import javafx.stage.Stage;
+<i>12</i>&nbsp;import squire.Networking.Request;
+<i>13</i>&nbsp;import squire.Networking.Response;
+<i>14</i>&nbsp;import squire.Users.PropertiesController;
+<i>15</i>&nbsp;import squire.Users.User;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;import java.io.File;
+<i>18</i>&nbsp;import java.io.IOException;
+<i>19</i>&nbsp;import java.net.URL;
+<i>20</i>&nbsp;import java.util.ResourceBundle;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;
+<b class="nc"><i>23</i>&nbsp;public class Main extends Application implements Initializable {</b>
+<i>24</i>&nbsp;    // The location of the directory that stores all the user&#39;s projects.
+<b class="fc"><i>25</i>&nbsp;    private static String projectsDir = System.getProperty(&quot;user.dir&quot;) + File.separator + &quot;Projects&quot;;</b>
+<b class="fc"><i>26</i>&nbsp;    private static User currentUser = null;</b>
+<i>27</i>&nbsp;    private static PropertiesController pc;
+<i>28</i>&nbsp;
+<b class="fc"><i>29</i>&nbsp;    public static String userName = null;</b>
+<b class="fc"><i>30</i>&nbsp;    public static String sessionID = null;</b>
+<b class="fc"><i>31</i>&nbsp;    public static String projectID = null;</b>
+<b class="fc"><i>32</i>&nbsp;    public static String projectName = null;</b>
+<b class="fc"><i>33</i>&nbsp;    public static MobWriteClient mobwrite = null;</b>
+<i>34</i>&nbsp;
+<b class="fc"><i>35</i>&nbsp;    public static BooleanProperty userNotLoggedIn = new SimpleBooleanProperty(true);</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    public static String getProjectsDir() {
+<b class="fc"><i>38</i>&nbsp;        return projectsDir;</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;    public static String getSessionID() {
+<b class="fc"><i>41</i>&nbsp;        return sessionID;</b>
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;    public static void setSessionID(String val) {
+<b class="nc"><i>44</i>&nbsp;        sessionID = val;</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;    public static String getProjectID() {
+<b class="fc"><i>47</i>&nbsp;        return projectID;</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;    public static void setProjectID(String val) {
+<b class="nc"><i>50</i>&nbsp;        projectID = val;</b>
+<b class="nc"><i>51</i>&nbsp;        setProjectName(null);</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    public static void main(String[] args) {
+<i>55</i>&nbsp;        // From the &#39;Application&#39; class.
+<i>56</i>&nbsp;        // Sets up program as a javafx application.
+<b class="nc"><i>57</i>&nbsp;        System.out.println(System.getProperty(&quot;user.dir&quot;));</b>
+<b class="nc"><i>58</i>&nbsp;        generateProjectsDir();</b>
+<b class="nc"><i>59</i>&nbsp;        createPropFileIfNeeded();</b>
+<b class="nc"><i>60</i>&nbsp;        launch(args);</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    @Override
+<i>64</i>&nbsp;    public void initialize(URL location, ResourceBundle resources) {
+<b class="nc"><i>65</i>&nbsp;        pc = PropertiesController.getPropertiesController();</b>
+<b class="nc"><i>66</i>&nbsp;        pc.loadProps();</b>
+<i>67</i>&nbsp;    }
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    // Called during launch().
+<i>70</i>&nbsp;    @Override
+<i>71</i>&nbsp;    public void start(Stage stage) throws Exception {
+<i>72</i>&nbsp;        try {
+<i>73</i>&nbsp;            // This is returning null, thus the catch block is executing.
+<b class="nc"><i>74</i>&nbsp;            FXMLLoader loader = new FXMLLoader();</b>
+<b class="nc"><i>75</i>&nbsp;            Parent root = loader.load(getClass().getResource(&quot;/fxml/Home.fxml&quot;));</b>
+<b class="nc"><i>76</i>&nbsp;            Scene scene = new Scene(root);</b>
+<b class="nc"><i>77</i>&nbsp;            stage.setTitle(&quot;sQuire Home&quot;);</b>
+<b class="nc"><i>78</i>&nbsp;            stage.setHeight(400);</b>
+<b class="nc"><i>79</i>&nbsp;            stage.setWidth(600);</b>
+<b class="nc"><i>80</i>&nbsp;            stage.setResizable(false);</b>
+<b class="nc"><i>81</i>&nbsp;            stage.setScene(scene);</b>
+<b class="nc"><i>82</i>&nbsp;            stage.show();</b>
+<b class="nc"><i>83</i>&nbsp;        } catch (Exception exception) {</b>
+<b class="nc"><i>84</i>&nbsp;            exception.printStackTrace();</b>
+<b class="nc"><i>85</i>&nbsp;        }</b>
+<i>86</i>&nbsp;    }
+<i>87</i>&nbsp;
+<i>88</i>&nbsp;    @Override
+<i>89</i>&nbsp;    public void stop() {
+<b class="nc"><i>90</i>&nbsp;        System.exit(0);</b>
+<i>91</i>&nbsp;    }
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    /**
+<i>94</i>&nbsp;     * Generates a folder for storing user projects if doesn&#39;t already exist.
+<i>95</i>&nbsp;     */
+<i>96</i>&nbsp;    private static void generateProjectsDir() {
+<b class="nc"><i>97</i>&nbsp;        File f = new File(projectsDir);</b>
+<b class="nc"><i>98</i>&nbsp;        if (!f.exists()) {</b>
+<b class="nc"><i>99</i>&nbsp;            System.out.println(&quot;Creating directory: &quot; + projectsDir);</b>
+<b class="nc"><i>100</i>&nbsp;            boolean success = false;</b>
+<i>101</i>&nbsp;
+<i>102</i>&nbsp;            try {
+<b class="nc"><i>103</i>&nbsp;                f.mkdir();</b>
+<b class="nc"><i>104</i>&nbsp;                success = true;</b>
+<b class="nc"><i>105</i>&nbsp;            } catch (Exception e) {</b>
+<b class="nc"><i>106</i>&nbsp;                System.out.println(e.toString());</b>
+<i>107</i>&nbsp;                // Handle...
+<b class="nc"><i>108</i>&nbsp;            }</b>
+<i>109</i>&nbsp;
+<b class="nc"><i>110</i>&nbsp;            if (success) {</b>
+<b class="nc"><i>111</i>&nbsp;                System.out.println(&quot;Projects dir created at &quot; + projectsDir);</b>
+<i>112</i>&nbsp;            }
+<i>113</i>&nbsp;        }
+<i>114</i>&nbsp;    }
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;    public static String getProjectName() {
+<b class="pc"><i>117</i>&nbsp;        if(projectName == null) {</b>
+<b class="fc"><i>118</i>&nbsp;            Response res = new Request(&quot;project/getProjectName&quot;).set(&quot;projectUUID&quot;, getProjectID()).send();</b>
+<b class="fc"><i>119</i>&nbsp;            projectName = (String) res.get(&quot;name&quot;);</b>
+<i>120</i>&nbsp;        }
+<b class="fc"><i>121</i>&nbsp;        return projectName;</b>
+<i>122</i>&nbsp;    }
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;    public static String getUserName() {
+<b class="nc"><i>125</i>&nbsp;        if(userName == null) {</b>
+<b class="nc"><i>126</i>&nbsp;            Response res = new Request(&quot;user/getUsernameFromSessionId&quot;).set(&quot;sessionID&quot;, getSessionID()).send();</b>
+<b class="nc"><i>127</i>&nbsp;            userName = (String) res.get(&quot;username&quot;);</b>
+<i>128</i>&nbsp;        }
+<b class="nc"><i>129</i>&nbsp;        return userName;</b>
+<i>130</i>&nbsp;    }
+<i>131</i>&nbsp;
+<i>132</i>&nbsp;    public static void setUserName(String value) {
+<b class="nc"><i>133</i>&nbsp;        userName = value;</b>
+<i>134</i>&nbsp;    }
+<i>135</i>&nbsp;
+<i>136</i>&nbsp;    public static void setProjectName(String name) {
+<b class="nc"><i>137</i>&nbsp;        projectName = name;</b>
+<i>138</i>&nbsp;    }
+<i>139</i>&nbsp;
+<i>140</i>&nbsp;    private static void createPropFileIfNeeded() {
+<b class="nc"><i>141</i>&nbsp;        File propFile = new File(&quot;squire_config.properties&quot;);</b>
+<i>142</i>&nbsp;
+<i>143</i>&nbsp;        try {
+<b class="nc"><i>144</i>&nbsp;            propFile.createNewFile();</b>
+<b class="nc"><i>145</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>146</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>147</i>&nbsp;        }</b>
+<i>148</i>&nbsp;    }
+<i>149</i>&nbsp;
+<i>150</i>&nbsp;    /**
+<i>151</i>&nbsp;     * Returns the mobwrite project, initilizing it if it hasn&#39;t been used yet
+<i>152</i>&nbsp;     */
+<i>153</i>&nbsp;    public static MobWriteClient getMobwriteClient() {
+<b class="fc"><i>154</i>&nbsp;        if (mobwrite == null) {</b>
+<b class="fc"><i>155</i>&nbsp;            mobwrite = new MobWriteClient(&quot;http://squireserver.westus.cloudapp.azure.com/py/q.py&quot;);</b>
+<b class="fc"><i>156</i>&nbsp;            mobwrite.maxSyncInterval = 1000;</b>
+<b class="fc"><i>157</i>&nbsp;            mobwrite.minSyncInterval = 500;</b>
+<i>158</i>&nbsp;        }
+<b class="fc"><i>159</i>&nbsp;        return mobwrite;</b>
+<i>160</i>&nbsp;    }
+<i>161</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-05-12 16:48</div>
+</div>
+</body>
+</html>

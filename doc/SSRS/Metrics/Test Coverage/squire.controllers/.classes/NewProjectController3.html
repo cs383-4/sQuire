@@ -1,0 +1,252 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NewProjectController3</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">squire.controllers</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NewProjectController3 (squire.controllers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NewProjectController3</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    22.2%
+  </span>
+  <span class="absValue">
+    (2/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10.4%
+  </span>
+  <span class="absValue">
+    (7/ 67)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package squire.controllers;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javafx.event.ActionEvent;
+<i>4</i>&nbsp;import javafx.fxml.FXML;
+<i>5</i>&nbsp;import javafx.fxml.FXMLLoader;
+<i>6</i>&nbsp;import javafx.fxml.Initializable;
+<i>7</i>&nbsp;import javafx.geometry.Rectangle2D;
+<i>8</i>&nbsp;import javafx.scene.Parent;
+<i>9</i>&nbsp;import javafx.scene.Scene;
+<i>10</i>&nbsp;import javafx.scene.control.Button;
+<i>11</i>&nbsp;import javafx.scene.control.TextArea;
+<i>12</i>&nbsp;import javafx.scene.control.TextField;
+<i>13</i>&nbsp;import javafx.stage.DirectoryChooser;
+<i>14</i>&nbsp;import javafx.stage.Screen;
+<i>15</i>&nbsp;import javafx.stage.Stage;
+<i>16</i>&nbsp;import squire.Main;
+<i>17</i>&nbsp;import squire.Networking.Request;
+<i>18</i>&nbsp;import squire.Networking.Response;
+<i>19</i>&nbsp;import squire.Users.PropertiesController;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;import java.io.File;
+<i>22</i>&nbsp;import java.io.IOException;
+<i>23</i>&nbsp;import java.net.URL;
+<i>24</i>&nbsp;import java.util.ArrayList;
+<i>25</i>&nbsp;import java.util.ResourceBundle;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;/**
+<i>28</i>&nbsp; * Created by Domn Werner on 4/19/2016.
+<i>29</i>&nbsp; */
+<b class="fc"><i>30</i>&nbsp;public class NewProjectController3 implements Initializable {</b>
+<i>31</i>&nbsp;    @FXML
+<i>32</i>&nbsp;    private TextField projectTitleTextField;
+<i>33</i>&nbsp;    @FXML
+<i>34</i>&nbsp;    private TextArea projectDescriptionTextArea;
+<i>35</i>&nbsp;    @FXML
+<i>36</i>&nbsp;    private TextField locationTextField;
+<i>37</i>&nbsp;    @FXML
+<i>38</i>&nbsp;    private Button browseButton;
+<i>39</i>&nbsp;    @FXML
+<i>40</i>&nbsp;    private Button finishButton;
+<i>41</i>&nbsp;    @FXML
+<i>42</i>&nbsp;    private Button cancelButton;
+<i>43</i>&nbsp;    @FXML
+<i>44</i>&nbsp;    private Button backButton;
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public String projectName;
+<i>47</i>&nbsp;    public String projectLocation;
+<i>48</i>&nbsp;    public String projectDescription;
+<i>49</i>&nbsp;    public String currentSession;
+<b class="fc"><i>50</i>&nbsp;    public ArrayList&lt;File&gt; projectFiles = new ArrayList&lt;File&gt;();</b>
+<b class="fc"><i>51</i>&nbsp;    private PropertiesController pc = null;</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    @Override
+<i>54</i>&nbsp;    public void initialize(URL location, ResourceBundle resources) {
+<b class="fc"><i>55</i>&nbsp;        currentSession = Main.getSessionID();</b>
+<b class="fc"><i>56</i>&nbsp;        projectLocation = Main.getProjectsDir();</b>
+<b class="fc"><i>57</i>&nbsp;        locationTextField.setText(projectLocation);</b>
+<b class="fc"><i>58</i>&nbsp;        pc = PropertiesController.getPropertiesController();</b>
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    @FXML
+<i>62</i>&nbsp;    private void onBrowseButtonClick(ActionEvent event) {
+<b class="nc"><i>63</i>&nbsp;        if (event.getSource() == browseButton) {</b>
+<b class="nc"><i>64</i>&nbsp;            Stage stage = null;</b>
+<b class="nc"><i>65</i>&nbsp;            stage = (Stage) browseButton.getScene().getWindow();</b>
+<b class="nc"><i>66</i>&nbsp;            loadBrowser(stage);</b>
+<i>67</i>&nbsp;        }
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    //Sends back to home screen
+<i>71</i>&nbsp;    @FXML
+<i>72</i>&nbsp;    private void onBackButtonClick(ActionEvent event) {
+<i>73</i>&nbsp;
+<b class="nc"><i>74</i>&nbsp;        if (event.getSource() == backButton || event.getSource() == cancelButton) {</b>
+<b class="nc"><i>75</i>&nbsp;            loadHomeScene();</b>
+<i>76</i>&nbsp;        }
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    @FXML
+<i>80</i>&nbsp;    private void onFinishButtonClick(ActionEvent event) {
+<i>81</i>&nbsp;        // Do not allow an invalid name
+<b class="nc"><i>82</i>&nbsp;        if (projectTitleTextField.getText().isEmpty()) {</b>
+<b class="nc"><i>83</i>&nbsp;            projectTitleTextField.setPromptText(&quot;Please enter a project name&quot;);</b>
+<i>84</i>&nbsp;        } else {
+<b class="nc"><i>85</i>&nbsp;            projectName = projectTitleTextField.getText();</b>
+<b class="nc"><i>86</i>&nbsp;            projectDescription = projectDescriptionTextArea.getText();</b>
+<i>87</i>&nbsp;
+<b class="nc"><i>88</i>&nbsp;            createProject();</b>
+<b class="nc"><i>89</i>&nbsp;            loadEditorScene();</b>
+<i>90</i>&nbsp;        }
+<i>91</i>&nbsp;    }
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;
+<i>94</i>&nbsp;    //__________________________________________________________________________________________
+<i>95</i>&nbsp;//Helper functions
+<i>96</i>&nbsp;    public void createProject() {
+<b class="nc"><i>97</i>&nbsp;        Response res = new Request(&quot;project/addProject&quot;)</b>
+<b class="nc"><i>98</i>&nbsp;                .set(&quot;sessionID&quot;, Main.getSessionID())</b>
+<b class="nc"><i>99</i>&nbsp;                .set(&quot;name&quot;, projectName)</b>
+<b class="nc"><i>100</i>&nbsp;                .set(&quot;description&quot;, projectDescription)</b>
+<b class="nc"><i>101</i>&nbsp;                .send();</b>
+<b class="nc"><i>102</i>&nbsp;        Main.setProjectID((String) res.get(&quot;projectUUID&quot;));</b>
+<i>103</i>&nbsp;        //make sure the project name is null, so it will be repopulated. This is needed if changing projects without restarting
+<b class="nc"><i>104</i>&nbsp;        Main.setProjectName(null);</b>
+<i>105</i>&nbsp;    }
+<i>106</i>&nbsp;
+<i>107</i>&nbsp;    public void loadEditorScene() {
+<b class="nc"><i>108</i>&nbsp;        FXMLLoader loader = new FXMLLoader();</b>
+<b class="nc"><i>109</i>&nbsp;        Stage stage = (Stage) finishButton.getScene().getWindow();</b>
+<i>110</i>&nbsp;        //stage.setResizable(false);
+<i>111</i>&nbsp;        try {
+<b class="nc"><i>112</i>&nbsp;            Parent root = loader.load(getClass().getResource(&quot;/fxml/Editor.fxml&quot;));</b>
+<b class="nc"><i>113</i>&nbsp;            Scene scene = new Scene(root);</b>
+<b class="nc"><i>114</i>&nbsp;            stage.setTitle(&quot;sQuire Editor - Project &quot; + Main.getProjectName());</b>
+<b class="nc"><i>115</i>&nbsp;            stage.setScene(scene);</b>
+<b class="nc"><i>116</i>&nbsp;            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();</b>
+<i>117</i>&nbsp;
+<b class="nc"><i>118</i>&nbsp;            int fromEdge = 50;</b>
+<i>119</i>&nbsp;
+<i>120</i>&nbsp;            //set Stage boundaries to visible bounds of the main screen
+<b class="nc"><i>121</i>&nbsp;            stage.setX(primaryScreenBounds.getMinX() + fromEdge / 2);</b>
+<b class="nc"><i>122</i>&nbsp;            stage.setY(primaryScreenBounds.getMinY() + fromEdge / 2);</b>
+<b class="nc"><i>123</i>&nbsp;            stage.setWidth(primaryScreenBounds.getWidth() - fromEdge);</b>
+<b class="nc"><i>124</i>&nbsp;            stage.setHeight(primaryScreenBounds.getHeight() - fromEdge);</b>
+<b class="nc"><i>125</i>&nbsp;            stage.setResizable(true);</b>
+<b class="nc"><i>126</i>&nbsp;            stage.show();</b>
+<i>127</i>&nbsp;
+<b class="nc"><i>128</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>129</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>130</i>&nbsp;        }</b>
+<i>131</i>&nbsp;    }
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;    //Go back to the home screen
+<i>135</i>&nbsp;    public void loadHomeScene() {
+<b class="nc"><i>136</i>&nbsp;        Stage stage = null;</b>
+<b class="nc"><i>137</i>&nbsp;        Parent root = null;</b>
+<b class="nc"><i>138</i>&nbsp;        FXMLLoader loader = new FXMLLoader();</b>
+<b class="nc"><i>139</i>&nbsp;        stage = (Stage) backButton.getScene().getWindow();</b>
+<i>140</i>&nbsp;        try {
+<b class="nc"><i>141</i>&nbsp;            root = loader.load(getClass().getResource(&quot;/fxml/Home.fxml&quot;));</b>
+<b class="nc"><i>142</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>143</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>144</i>&nbsp;        }</b>
+<i>145</i>&nbsp;
+<b class="nc"><i>146</i>&nbsp;        if (root != null) {</b>
+<b class="nc"><i>147</i>&nbsp;            Scene scene = new Scene(root);</b>
+<b class="nc"><i>148</i>&nbsp;            stage.setScene(scene);</b>
+<b class="nc"><i>149</i>&nbsp;            stage.setHeight(400);</b>
+<b class="nc"><i>150</i>&nbsp;            stage.setWidth(600);</b>
+<b class="nc"><i>151</i>&nbsp;            stage.setTitle(&quot;sQuire Home&quot;);</b>
+<b class="nc"><i>152</i>&nbsp;            stage.show();</b>
+<b class="nc"><i>153</i>&nbsp;        } else {</b>
+<b class="nc"><i>154</i>&nbsp;            System.out.println(&quot;Null scene.&quot;);</b>
+<i>155</i>&nbsp;        }
+<i>156</i>&nbsp;    }
+<i>157</i>&nbsp;
+<i>158</i>&nbsp;    //Load a directory browser
+<i>159</i>&nbsp;    public void loadBrowser(Stage stage) {
+<b class="nc"><i>160</i>&nbsp;        DirectoryChooser dirChoose = new DirectoryChooser();</b>
+<b class="nc"><i>161</i>&nbsp;        dirChoose.setInitialDirectory(new File(Main.getProjectsDir()));</b>
+<b class="nc"><i>162</i>&nbsp;        dirChoose.setTitle(&quot;Choose Project Location&quot;);</b>
+<b class="nc"><i>163</i>&nbsp;        File selectedDir = dirChoose.showDialog(stage);</b>
+<b class="nc"><i>164</i>&nbsp;        if (selectedDir != null) {</b>
+<b class="nc"><i>165</i>&nbsp;            locationTextField.setText(selectedDir.getPath());</b>
+<b class="nc"><i>166</i>&nbsp;            projectLocation = selectedDir.getAbsolutePath();</b>
+<i>167</i>&nbsp;        }
+<i>168</i>&nbsp;    }
+<i>169</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-05-12 16:48</div>
+</div>
+</body>
+</html>

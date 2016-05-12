@@ -3731,12 +3731,92 @@ SQL        & 2     \\ \hline
 Text       & 25    \\ \hline
 XML        & 15    \\ \hline
 \end{tabular}
-\\ \noindent Not surprisingly, the majority of our files were Java files. We may not have expected to have as many XML files when we began our project, but JavaFX mandated this.
+\\ \noindent Not surprisingly, the majority of our files were Java files. We may not have expected to have as many XML files when we began our project, but JavaFX mandated this.\\
+\newpage
+\;
+\subsection{Functionality Implemented}
+\subsubsection{Table of Use Cases}
+\begin{tabular}{|p{6cm}|p{2.5cm}|p{8cm}|}
+\hline
+Use Cases Planed vs Implemented                                                        &                       &                                                                                                                          \\ \hline
+Functional Requirement                                                                 & Use Case Implemented? & Comments                                                                                                                 \\ \hline
+See a list of open projects                                                            & 1                     & User can see which projects he or she has been working on in the Recent Project list                                     \\ \hline
+Filter or search projects                                                              & 0                     &                                                                                                                          \\ \hline
+View more information about a specific project.                                        & 1                     & User can see a description of all of the projects avaliable                                                              \\ \hline
+Upvote and downvote projects.                                                          & 0                     &                                                                                                                          \\ \hline
+Comment on projects and interact with its contributors.                                & 0                     &                                                                                                                          \\ \hline
+Request to join a specific project.                                                    & 0                     &                                                                                                                          \\ \hline
+Sign up for a sQuire user account.                                                     & 1                     &                                                                                                                          \\ \hline
+Log in to the program using their user account.                                        & 1                     &                                                                                                                          \\ \hline
+Log out of the program using their user account.                                       & 1                     &                                                                                                                          \\ \hline
+Change their password.                                                                 & 1                     &                                                                                                                          \\ \hline
+Change their email.                                                                    & 1                     &                                                                                                                          \\ \hline
+Change their username.                                                                 & 0                     & We decided that this was not a piece of functionallity that we wanted                                                    \\ \hline
+Open and close project chat.                                                           & 0                     & We ended up leaving chat open at all times                                                                               \\ \hline
+Write to project chat.                                                                 & 1                     &                                                                                                                          \\ \hline
+Read from project chat.                                                                & 1                     &                                                                                                                          \\ \hline
+Message a user by their name.                                                          & 0                     & We had this working in a standalone chat client, but weren't able to implemented in the integrated version of the editor \\ \hline
+Leave a comment in a file.                                                             & 0                     & A user can't leave a comment other than one that is a Java style comment in the actual file itself                       \\ \hline
+Open one or more files.                                                                & 1                     &                                                                                                                          \\ \hline
+Close one or more files.                                                               & 1                     &                                                                                                                          \\ \hline
+Delete one or more files.                                                              & 0                     &                                                                                                                          \\ \hline
+Download one or more files.                                                            & 1                     & Users download files before compiling, but it is not easy to tell that this is going on                                  \\ \hline
+Add a new file to the project.                                                         & 1                     &                                                                                                                          \\ \hline
+Add an existing file to the project.                                                   & 0                     & We had this working in an earlier build, but ditched it when we integrated with Mobwrite                                 \\ \hline
+Save one or more files.                                                                & 1                     &                                                                                                                          \\ \hline
+Enable or disable line numbers.                                                        & 0                     &                                                                                                                          \\ \hline
+Enable or disable viewing reference counts above each line.                            & 0                     &                                                                                                                         
+\\ \hline
+\end{tabular}
+\newpage
+\begin{tabular}{|p{6cm}|p{2.5cm}|p{8cm}|}
+ \hline
+Enable or disable viewing date of last edit above each line.                           & 0                     &                                                                                                                          \\ \hline
+Enable or disable view author of each line.                                            & 0                     &                                                                                                                          \\ \hline
+Comment/Uncomment a selected section code.                                             & 0                     & Can only do this manually by typing //                                                                                   \\ \hline
+Format the document to adhere to code style.                                           & 0                     &                                                                                                                          \\ \hline
+Find/Replace specified text.                                                           & 0                     &                                                                                                                          \\ \hline
+View text highlighted by other users.                                                  & 0                     &                                                                                                                          \\ \hline
+Type text and have the system apply syntax coloring for Java files and display errors. & 0                     &                                                                                                                          \\ \hline
+View other users carets as they type.                                                 & 0                     &                                                                                                                          \\ \hline
+Compile a project.                                                                     & 1                     &                                                                                                                          \\ \hline
+Execute a compiled project.                                                            & 1                     & Very basic here - you only really get console output                                                                     \\ \hline
+Create a new project.                                                                  & 1                     &                                                                                                                          \\ \hline
+Delete a project.                                                                      & 0                     &                                                                                                                          \\ \hline
+Invite a user to a project.                                                            & 0                     & All users can join all projects currently                                                                                \\ \hline
+Join a project.                                                                        & 1                     &                                                                                                                          \\ \hline
+Leave a project.                                                                       & 0                     &                                                                                                                          \\ \hline
+Add users to a project.                                                                & 0                     &                                                                                                                          \\ \hline
+Remove users from a project.                                                           & 0                     &                                                                                                                          \\ \hline
+Change user permissions to a project.                                                  & 0                     &                                                                                                                          \\ \hline
+                                                                                       &                       &                                                                                                                          \\ \hline
+Percentage Implemented                                                                 & 41\%                  &                                                                                                                          \\ \hline
+\end{tabular}
 
-%		
-%	\item \textbf{How much of our functionality is implemented.} Will probably have to be done by hand. Maybe make a table of use-case/functional requirement and whether it was implemented or not and a justification.
+\subsubsection{Analysis and Comments}
+In choosing which of our use cases to attempt to implement under the time constraints, we chose those which we considered structural rather than ornamental. We wanted to demonstrate a basic, working editor over something that simply looked good. This meant that a lot of the collaboration with respect to sharing project ideas, asking to join projects, etc. went on the back burner. We did research syntax highlighting fairly extensively, but were never able to integrate it with Mobwrite. With a little more time, it is likely that we could have implemented a lot of the use cases related to project browsing.
+
+\subsection{Testing Coverage}
+
+\subsubsection{Package Breakdown}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Package                  & Class, \%       & Method, \%      & Line, \%          \\ \hline
+squire                   & 66.7\% (2/ 3)   & 36.8\% (14/ 38) & 29.6\% (29/ 98)   \\ \hline
+squire.CustomViews       & 0\% (0/ 5)      & 0\% (0/ 13)     & 0\% (0/ 44)       \\ \hline
+squire.Networking        & 33.3\% (3/ 9)   & 18.4\% (7/ 38)  & 12.5\% (20/ 160)  \\ \hline
+squire.Users             & 90.9\% (10/ 11) & 65\% (65/ 100)  & 67.6\% (127/ 188) \\ \hline
+squire.Users.query       & 60\% (3/ 5)     & 45\% (9/ 20)    & 48\% (12/ 25)     \\ \hline
+squire.Users.query.assoc & 60\% (3/ 5)     & 15\% (3/ 20)    & 12\% (3/ 25)      \\ \hline
+squire.controllers       & 25\% (3/ 12)    & 12.7\% (10/ 79) & 5.6\% (32/ 574)   \\ \hline
+\end{tabular}
+
+\subsubsection{Analysis}
+
+\subsection{Workload Distribution}
+We invite the reader to view our GitHub repository here: \url{https://github.com/cs383-4/sQuire/graphs/contributors}.
+
 %	\item \textbf{How much of our code is tested and how tested is the code.} Get a ratio of unit test classes vs actual classes? How much functions have a unit test associated with them? Do we have uncovered cases?
-%	\item \textbf{Who did the work?} Use GitHub for that? Add any extra info manually.
 %	\item \textbf{Problem Areas.} What was hard to implement and why?
 
 

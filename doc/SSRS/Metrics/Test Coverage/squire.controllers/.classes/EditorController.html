@@ -1,0 +1,625 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: EditorController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">squire.controllers</a> ]
+</div>
+
+<h1>Coverage Summary for Class: EditorController (squire.controllers)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EditorController</td>
+<td class="coverageStat">
+  <span class="percent">
+    23.8%
+  </span>
+  <span class="absValue">
+    (5/ 21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    9.9%
+  </span>
+  <span class="absValue">
+    (17/ 172)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EditorController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 8)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">EditorController$TextFieldTreeCellImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 25)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">EditorController$TextFieldTreeCellImpl$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    15.6%
+  </span>
+  <span class="absValue">
+    (5/ 32)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    8.1%
+  </span>
+  <span class="absValue">
+    (17/ 210)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package squire.controllers;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import google.mobwrite.ShareJTextComponent;
+<i>4</i>&nbsp;import javafx.event.ActionEvent;
+<i>5</i>&nbsp;import javafx.event.EventHandler;
+<i>6</i>&nbsp;import javafx.fxml.FXML;
+<i>7</i>&nbsp;import javafx.fxml.FXMLLoader;
+<i>8</i>&nbsp;import javafx.fxml.Initializable;
+<i>9</i>&nbsp;import javafx.scene.Parent;
+<i>10</i>&nbsp;import javafx.scene.Scene;
+<i>11</i>&nbsp;import javafx.scene.control.*;
+<i>12</i>&nbsp;import javafx.scene.image.ImageView;
+<i>13</i>&nbsp;import javafx.scene.input.KeyCode;
+<i>14</i>&nbsp;import javafx.scene.input.KeyEvent;
+<i>15</i>&nbsp;import javafx.scene.input.MouseEvent;
+<i>16</i>&nbsp;import javafx.scene.layout.AnchorPane;
+<i>17</i>&nbsp;import javafx.stage.Modality;
+<i>18</i>&nbsp;import javafx.stage.Stage;
+<i>19</i>&nbsp;import org.fxmisc.richtext.CodeArea;
+<i>20</i>&nbsp;import squire.Main;
+<i>21</i>&nbsp;import squire.Networking.Request;
+<i>22</i>&nbsp;import squire.Networking.Response;
+<i>23</i>&nbsp;import squire.Users.PropertiesController;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;import java.io.*;
+<i>26</i>&nbsp;import java.net.URL;
+<i>27</i>&nbsp;import java.util.ArrayList;
+<i>28</i>&nbsp;import java.util.Optional;
+<i>29</i>&nbsp;import java.util.ResourceBundle;
+<i>30</i>&nbsp;import java.util.Scanner;
+<i>31</i>&nbsp;import java.util.concurrent.TimeUnit;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;/**
+<i>35</i>&nbsp; * Created by MattDaniel on 3/31/16.
+<i>36</i>&nbsp; */
+<b class="fc"><i>37</i>&nbsp;public class EditorController implements Initializable</b>
+<i>38</i>&nbsp;{
+<i>39</i>&nbsp;    @FXML private ImageView avatarImageView;
+<i>40</i>&nbsp;    @FXML private Button homeButton;
+<i>41</i>&nbsp;    @FXML private TreeView fileExplorer;
+<i>42</i>&nbsp;    @FXML private TextArea editorTextArea;
+<i>43</i>&nbsp;    @FXML private Button saveButton;
+<i>44</i>&nbsp;    @FXML private TextArea chatTextArea;
+<i>45</i>&nbsp;    @FXML private TextField chatTextField;
+<i>46</i>&nbsp;    @FXML private Button sendButton;
+<i>47</i>&nbsp;    @FXML private Button addButton;
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    // Compilation vars.
+<i>50</i>&nbsp;    @FXML
+<i>51</i>&nbsp;    private TextArea compilationOutputTextArea;
+<i>52</i>&nbsp;    @FXML
+<i>53</i>&nbsp;    private CodeArea chatCodeArea;
+<i>54</i>&nbsp;    private ShareJTextComponent chatShareComponent;
+<i>55</i>&nbsp;    @FXML
+<i>56</i>&nbsp;    private TabPane editorTabPane;
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    private File oldFile;
+<b class="fc"><i>59</i>&nbsp;    private ArrayList&lt;Tab&gt; openTabs = new ArrayList&lt;&gt;();</b>
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    private CodeArea currentCodeArea;
+<i>62</i>&nbsp;
+<b class="fc"><i>63</i>&nbsp;    private PropertiesController pc = null;</b>
+<b class="fc"><i>64</i>&nbsp;    private String projectPath = &quot;&quot;;</b>
+<b class="fc"><i>65</i>&nbsp;    private TreeItem&lt;String&gt; rootItem = new TreeItem&lt;&gt;(Main.getProjectName());</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    // Compilation vars.
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    @Override
+<i>71</i>&nbsp;    public void initialize(URL location, ResourceBundle resources) {
+<b class="fc"><i>72</i>&nbsp;        avatarImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -&gt; onAvatarImageViewClick());</b>
+<b class="fc"><i>73</i>&nbsp;        compilationOutputTextArea.setWrapText(true);</b>
+<i>74</i>&nbsp;        //setupFileList();
+<b class="fc"><i>75</i>&nbsp;        loadProject();</b>
+<b class="nc"><i>76</i>&nbsp;        pc = PropertiesController.getPropertiesController();</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    private void onAvatarImageViewClick() {
+<b class="nc"><i>80</i>&nbsp;        FXMLLoader loader = new FXMLLoader();</b>
+<b class="nc"><i>81</i>&nbsp;        Stage dialogStage = new Stage();</b>
+<b class="nc"><i>82</i>&nbsp;        dialogStage.setTitle(&quot;User Profile&quot;);</b>
+<b class="nc"><i>83</i>&nbsp;        dialogStage.initModality(Modality.WINDOW_MODAL);</b>
+<b class="nc"><i>84</i>&nbsp;        dialogStage.initOwner(avatarImageView.getScene().getWindow());</b>
+<b class="nc"><i>85</i>&nbsp;        dialogStage.setResizable(false);</b>
+<i>86</i>&nbsp;        try {
+<b class="nc"><i>87</i>&nbsp;            Parent root = loader.load(getClass().getResource(&quot;/fxml/Preferences2.fxml&quot;));</b>
+<b class="nc"><i>88</i>&nbsp;            Scene scene = new Scene(root);</b>
+<b class="nc"><i>89</i>&nbsp;            dialogStage.setScene(scene);</b>
+<b class="nc"><i>90</i>&nbsp;            dialogStage.showAndWait();</b>
+<b class="nc"><i>91</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>92</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>93</i>&nbsp;        }</b>
+<i>94</i>&nbsp;    }
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    @FXML
+<i>97</i>&nbsp;    private void onHomeButtonClick(ActionEvent event)
+<i>98</i>&nbsp;    {
+<i>99</i>&nbsp;        try
+<i>100</i>&nbsp;        {
+<b class="nc"><i>101</i>&nbsp;            FXMLLoader loader = new FXMLLoader();</b>
+<b class="nc"><i>102</i>&nbsp;            Parent root = loader.load(getClass().getResource(&quot;/fxml/Home.fxml&quot;));</b>
+<b class="nc"><i>103</i>&nbsp;            Stage stage = (Stage) homeButton.getScene().getWindow();</b>
+<b class="nc"><i>104</i>&nbsp;            Scene scene = new Scene(root);</b>
+<b class="nc"><i>105</i>&nbsp;            stage.setHeight(400);</b>
+<b class="nc"><i>106</i>&nbsp;            stage.setWidth(600);</b>
+<b class="nc"><i>107</i>&nbsp;            stage.setTitle(&quot;sQuire Home&quot;);</b>
+<b class="nc"><i>108</i>&nbsp;            stage.setResizable(false);</b>
+<b class="nc"><i>109</i>&nbsp;            stage.setScene(scene);</b>
+<b class="nc"><i>110</i>&nbsp;            stage.show();</b>
+<b class="nc"><i>111</i>&nbsp;        } catch (Exception exception) {</b>
+<b class="nc"><i>112</i>&nbsp;            exception.printStackTrace();</b>
+<b class="nc"><i>113</i>&nbsp;        }</b>
+<i>114</i>&nbsp;    }
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;    //load the project set in Main.projectID
+<i>117</i>&nbsp;    public void loadProject() {
+<b class="fc"><i>118</i>&nbsp;        projectPath = Main.getProjectsDir() + File.separator + Main.getProjectID();</b>
+<b class="fc"><i>119</i>&nbsp;        setupFileList();</b>
+<i>120</i>&nbsp;        //set up the chat
+<b class="nc"><i>121</i>&nbsp;        setupMobWrite(chatCodeArea, &quot;chat&quot; + Main.getProjectID(), true);</b>
+<b class="nc"><i>122</i>&nbsp;        chatCodeArea.setWrapText(true);</b>
+<b class="nc"><i>123</i>&nbsp;        chatCodeArea.appendText(&quot;\n&quot; + Main.getUserName() + &quot; opened the project&quot;);</b>
+<i>124</i>&nbsp;    }
+<i>125</i>&nbsp;
+<i>126</i>&nbsp;    public void setupFileList()
+<i>127</i>&nbsp;    {
+<i>128</i>&nbsp;        //Set up tree view cell factory
+<i>129</i>&nbsp;
+<b class="fc"><i>130</i>&nbsp;        rootItem.setExpanded(true);</b>
+<i>131</i>&nbsp;
+<b class="fc"><i>132</i>&nbsp;        Response res = new Request(&quot;project/getFilesInProject&quot;)</b>
+<b class="fc"><i>133</i>&nbsp;                .set(&quot;projectUUID&quot;, Main.getProjectID())</b>
+<b class="fc"><i>134</i>&nbsp;                .send();</b>
+<b class="pc"><i>135</i>&nbsp;        for(String file: (ArrayList&lt;String&gt;) res.get(&quot;files&quot;)) {</b>
+<b class="nc"><i>136</i>&nbsp;            rootItem.getChildren().add(new TreeItem&lt;&gt;(file));</b>
+<b class="nc"><i>137</i>&nbsp;        }</b>
+<i>138</i>&nbsp;
+<b class="nc"><i>139</i>&nbsp;        fileExplorer.setRoot(rootItem);</b>
+<b class="nc"><i>140</i>&nbsp;        fileExplorer.setEditable(false);</b>
+<b class="nc"><i>141</i>&nbsp;        fileExplorer.setCellFactory(p -&gt; {</b>
+<i>142</i>&nbsp;            // Name used for class in oracle online demo
+<b class="nc"><i>143</i>&nbsp;            return new TextFieldTreeCellImpl();</b>
+<i>144</i>&nbsp;        });
+<i>145</i>&nbsp;
+<i>146</i>&nbsp;        // One way to get the clicked on cell
+<b class="nc"><i>147</i>&nbsp;        fileExplorer.setOnMouseClicked(new EventHandler&lt;MouseEvent&gt;() {</b>
+<i>148</i>&nbsp;            @Override
+<i>149</i>&nbsp;            public void handle(MouseEvent mouseEvent) {
+<b class="nc"><i>150</i>&nbsp;                if (mouseEvent.getClickCount() == 2) {</b>
+<b class="nc"><i>151</i>&nbsp;                    TreeItem&lt;String&gt; selectedItem = (TreeItem&lt;String&gt;) fileExplorer.getSelectionModel().getSelectedItem();</b>
+<i>152</i>&nbsp;
+<i>153</i>&nbsp;                    try {
+<i>154</i>&nbsp;                        // TODO: get this string to be the actual path of the file
+<i>155</i>&nbsp;                        //String newFilePath = currentProject.getProjectPath() + File.separator + selectedItem.getValue();
+<i>156</i>&nbsp;
+<b class="nc"><i>157</i>&nbsp;                        CodeArea newTabCodeArea = new CodeArea();</b>
+<i>158</i>&nbsp;
+<b class="nc"><i>159</i>&nbsp;                        createNewTab(selectedItem.getValue(), newTabCodeArea);</b>
+<b class="nc"><i>160</i>&nbsp;                    } catch (Exception ex) {</b>
+<b class="nc"><i>161</i>&nbsp;                        ex.printStackTrace();</b>
+<b class="nc"><i>162</i>&nbsp;                    }</b>
+<i>163</i>&nbsp;                }
+<i>164</i>&nbsp;            }
+<i>165</i>&nbsp;        });
+<i>166</i>&nbsp;    }
+<i>167</i>&nbsp;
+<i>168</i>&nbsp;    public void onAddButtonClick(ActionEvent event)
+<i>169</i>&nbsp;    {
+<b class="nc"><i>170</i>&nbsp;        openAddDialog();</b>
+<i>171</i>&nbsp;    }
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;
+<i>174</i>&nbsp;    public void openAddDialog()
+<i>175</i>&nbsp;    {
+<b class="nc"><i>176</i>&nbsp;        TextInputDialog dialog = new TextInputDialog(&quot;&quot;);</b>
+<b class="nc"><i>177</i>&nbsp;        dialog.setTitle(&quot;Enter the name for the new file&quot;);</b>
+<b class="nc"><i>178</i>&nbsp;        dialog.setHeaderText(&quot;Enter the name for the new file&quot;);</b>
+<b class="nc"><i>179</i>&nbsp;        dialog.setContentText(&quot;File name: &quot;);</b>
+<b class="nc"><i>180</i>&nbsp;        Optional&lt;String&gt; result = dialog.showAndWait();</b>
+<b class="nc"><i>181</i>&nbsp;        if (result.isPresent())</b>
+<i>182</i>&nbsp;        {
+<b class="nc"><i>183</i>&nbsp;            addFile(result.get());</b>
+<i>184</i>&nbsp;        }
+<i>185</i>&nbsp;    }
+<i>186</i>&nbsp;
+<i>187</i>&nbsp;    public void addFile(String s)
+<i>188</i>&nbsp;    {
+<b class="nc"><i>189</i>&nbsp;        String newFileName = s;</b>
+<b class="nc"><i>190</i>&nbsp;        rootItem.getChildren().add(new TreeItem&lt;&gt;(newFileName));</b>
+<b class="nc"><i>191</i>&nbsp;        Response res = new Request(&quot;project/addFileToProject&quot;)</b>
+<b class="nc"><i>192</i>&nbsp;                .set(&quot;projectUUID&quot;, Main.getProjectID())</b>
+<b class="nc"><i>193</i>&nbsp;                .set(&quot;name&quot;, s)</b>
+<b class="nc"><i>194</i>&nbsp;                .send();</b>
+<i>195</i>&nbsp;    }
+<i>196</i>&nbsp;
+<i>197</i>&nbsp;    //Create new tab programatically
+<i>198</i>&nbsp;    public void createNewTab(String name, CodeArea newTabCodeArea) {
+<b class="nc"><i>199</i>&nbsp;        Boolean isInList = false;</b>
+<b class="nc"><i>200</i>&nbsp;        Tab newTab = new Tab();</b>
+<b class="nc"><i>201</i>&nbsp;        newTab.setText(name);</b>
+<i>202</i>&nbsp;
+<b class="nc"><i>203</i>&nbsp;        for (Tab t : editorTabPane.getTabs()) {</b>
+<b class="nc"><i>204</i>&nbsp;            if (t.getText().equals(newTab.getText())) {</b>
+<i>205</i>&nbsp;
+<b class="nc"><i>206</i>&nbsp;                isInList = true;</b>
+<b class="nc"><i>207</i>&nbsp;                switchToTab(t);</b>
+<i>208</i>&nbsp;            }
+<i>209</i>&nbsp;
+<b class="nc"><i>210</i>&nbsp;        }</b>
+<b class="nc"><i>211</i>&nbsp;        if (isInList == false) {</b>
+<b class="nc"><i>212</i>&nbsp;            newTabCodeArea.setLayoutX(167.0);</b>
+<b class="nc"><i>213</i>&nbsp;            newTabCodeArea.setLayoutY(27.0);</b>
+<b class="nc"><i>214</i>&nbsp;            newTabCodeArea.setPrefHeight(558.0);</b>
+<b class="nc"><i>215</i>&nbsp;            newTabCodeArea.setPrefWidth(709.0);</b>
+<i>216</i>&nbsp;
+<b class="nc"><i>217</i>&nbsp;            setupMobWrite(newTabCodeArea, Main.getProjectID() + &quot;:&quot; + name, false);</b>
+<b class="nc"><i>218</i>&nbsp;            AnchorPane ap = new AnchorPane(newTabCodeArea);</b>
+<i>219</i>&nbsp;
+<i>220</i>&nbsp;
+<i>221</i>&nbsp;            //Setup information from FXML
+<i>222</i>&nbsp;            //                    &lt;AnchorPane minHeight=&quot;0.0&quot; minWidth=&quot;0.0&quot; prefHeight=&quot;180.0&quot; prefWidth=&quot;200.0&quot;&gt;
+<i>223</i>&nbsp;            //                    &lt;children&gt;
+<i>224</i>&nbsp;            //                    &lt;CodeArea fx:id=&quot;sourceCodeTextArea&quot; layoutX=&quot;167.0&quot; layoutY=&quot;27.0&quot; prefHeight=&quot;558.0&quot; prefWidth=&quot;709.0&quot; AnchorPane.bottomAnchor=&quot;0.0&quot; AnchorPane.leftAnchor=&quot;0.0&quot; AnchorPane.rightAnchor=&quot;0.0&quot; AnchorPane.topAnchor=&quot;0.0&quot; /&gt;
+<i>225</i>&nbsp;            //                    &lt;/children&gt;
+<i>226</i>&nbsp;            //                    &lt;/AnchorPane&gt;
+<i>227</i>&nbsp;
+<b class="nc"><i>228</i>&nbsp;            ap.setMinHeight(0.0);</b>
+<b class="nc"><i>229</i>&nbsp;            ap.setMinWidth(0.0);</b>
+<b class="nc"><i>230</i>&nbsp;            ap.setPrefHeight(180.0);</b>
+<b class="nc"><i>231</i>&nbsp;            ap.setPrefWidth(200.0);</b>
+<i>232</i>&nbsp;
+<i>233</i>&nbsp;
+<b class="nc"><i>234</i>&nbsp;            ap.setBottomAnchor(newTabCodeArea, 0.0);</b>
+<b class="nc"><i>235</i>&nbsp;            ap.setTopAnchor(newTabCodeArea, 0.0);</b>
+<b class="nc"><i>236</i>&nbsp;            ap.setRightAnchor(newTabCodeArea, 0.0);</b>
+<b class="nc"><i>237</i>&nbsp;            ap.setLeftAnchor(newTabCodeArea, 0.0);</b>
+<i>238</i>&nbsp;
+<b class="nc"><i>239</i>&nbsp;            newTab.setContent(ap);</b>
+<b class="nc"><i>240</i>&nbsp;            editorTabPane.getTabs().add(newTab);</b>
+<i>241</i>&nbsp;        }
+<i>242</i>&nbsp;        //TODO: Fix this!
+<b class="nc"><i>243</i>&nbsp;        currentCodeArea = newTabCodeArea;</b>
+<i>244</i>&nbsp;    }
+<i>245</i>&nbsp;
+<i>246</i>&nbsp;
+<i>247</i>&nbsp;    private void switchToTab(Tab t)
+<i>248</i>&nbsp;    {
+<b class="nc"><i>249</i>&nbsp;        editorTabPane.getSelectionModel().select(t);</b>
+<i>250</i>&nbsp;    }
+<i>251</i>&nbsp;
+<i>252</i>&nbsp;    // Write the file to the CodeArea
+<i>253</i>&nbsp;    public void writeFile(Scanner input, CodeArea newTabCodeArea)
+<i>254</i>&nbsp;    {
+<b class="nc"><i>255</i>&nbsp;        String fullText = &quot;&quot;;</b>
+<i>256</i>&nbsp;        // Open the file on click
+<b class="nc"><i>257</i>&nbsp;        newTabCodeArea.positionCaret(0);</b>
+<b class="nc"><i>258</i>&nbsp;        while (input.hasNextLine())</b>
+<i>259</i>&nbsp;        {
+<b class="nc"><i>260</i>&nbsp;            String line = input.nextLine();</b>
+<b class="nc"><i>261</i>&nbsp;            fullText += (line + &quot;\n&quot;);</b>
+<b class="nc"><i>262</i>&nbsp;        }</b>
+<i>263</i>&nbsp;
+<i>264</i>&nbsp;        //TODO: COMMENT THIS OUT FOR DEMO
+<b class="nc"><i>265</i>&nbsp;        newTabCodeArea.replaceText(fullText);</b>
+<b class="nc"><i>266</i>&nbsp;        input.close();</b>
+<i>267</i>&nbsp;    }
+<i>268</i>&nbsp;
+<i>269</i>&nbsp;    public String getText(CodeArea ca)
+<i>270</i>&nbsp;    {
+<b class="nc"><i>271</i>&nbsp;        return ca.getText();</b>
+<i>272</i>&nbsp;    }
+<i>273</i>&nbsp;
+<i>274</i>&nbsp;
+<i>275</i>&nbsp;    @FXML private void onSaveButtonClick(ActionEvent event)
+<i>276</i>&nbsp;    {
+<b class="nc"><i>277</i>&nbsp;        Tab curTab = editorTabPane.getSelectionModel().getSelectedItem();</b>
+<b class="nc"><i>278</i>&nbsp;        String filePath = projectPath + File.separator + curTab.getText();</b>
+<b class="nc"><i>279</i>&nbsp;        File file = new File(filePath);</b>
+<b class="nc"><i>280</i>&nbsp;        file.getParentFile().mkdirs();</b>
+<i>281</i>&nbsp;        try
+<i>282</i>&nbsp;        {
+<b class="nc"><i>283</i>&nbsp;            PrintWriter writer = new PrintWriter(file);</b>
+<b class="nc"><i>284</i>&nbsp;            writer.write(currentCodeArea.getText());</b>
+<b class="nc"><i>285</i>&nbsp;            writer.close();</b>
+<i>286</i>&nbsp;        }
+<b class="nc"><i>287</i>&nbsp;        catch (IOException e)</b>
+<i>288</i>&nbsp;        {
+<b class="nc"><i>289</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>290</i>&nbsp;        }</b>
+<i>291</i>&nbsp;    }
+<i>292</i>&nbsp;
+<i>293</i>&nbsp;    //TODO: create a new mobwrite component based on projectID, fileID in database that we can connect to
+<i>294</i>&nbsp;    //TODO: every time we switch tabs
+<i>295</i>&nbsp;    public void setupMobWrite(CodeArea ca, String name, Boolean chatMode)
+<i>296</i>&nbsp;    {
+<i>297</i>&nbsp;        //mobwrite needs an id that starts with a letter, prefix &#39;s&#39; for squire
+<b class="fc"><i>298</i>&nbsp;        ShareJTextComponent mobwriteComponent = new ShareJTextComponent(ca, &#39;s&#39; + name, chatMode);</b>
+<b class="fc"><i>299</i>&nbsp;        Main.getMobwriteClient().share(mobwriteComponent);</b>
+<i>300</i>&nbsp;    }
+<i>301</i>&nbsp;
+<i>302</i>&nbsp;    // Using example at http://docs.oracle.com/javafx/2/ui_controls/tree-view.htm
+<b class="nc"><i>303</i>&nbsp;    private final class TextFieldTreeCellImpl extends TreeCell&lt;String&gt; {</b>
+<i>304</i>&nbsp;
+<i>305</i>&nbsp;        private TextField textField;
+<i>306</i>&nbsp;
+<i>307</i>&nbsp;        public TextFieldTreeCellImpl()
+<b class="nc"><i>308</i>&nbsp;        {</b>
+<i>309</i>&nbsp;
+<i>310</i>&nbsp;        }
+<i>311</i>&nbsp;
+<i>312</i>&nbsp;        @Override
+<i>313</i>&nbsp;        public void startEdit()
+<i>314</i>&nbsp;        {
+<b class="nc"><i>315</i>&nbsp;            super.startEdit();</b>
+<i>316</i>&nbsp;
+<b class="nc"><i>317</i>&nbsp;            if (textField == null)</b>
+<i>318</i>&nbsp;            {
+<b class="nc"><i>319</i>&nbsp;                createTextField();</b>
+<i>320</i>&nbsp;            }
+<b class="nc"><i>321</i>&nbsp;            setText(null);</b>
+<b class="nc"><i>322</i>&nbsp;            setGraphic(textField);</b>
+<b class="nc"><i>323</i>&nbsp;            textField.selectAll();</b>
+<i>324</i>&nbsp;        }
+<i>325</i>&nbsp;
+<i>326</i>&nbsp;        @Override
+<i>327</i>&nbsp;        public void cancelEdit()
+<i>328</i>&nbsp;        {
+<b class="nc"><i>329</i>&nbsp;            super.cancelEdit();</b>
+<b class="nc"><i>330</i>&nbsp;            setText((String) getItem());</b>
+<b class="nc"><i>331</i>&nbsp;            setGraphic(getTreeItem().getGraphic());</b>
+<i>332</i>&nbsp;        }
+<i>333</i>&nbsp;
+<i>334</i>&nbsp;        @Override
+<i>335</i>&nbsp;        public void updateItem(String item, boolean empty)
+<i>336</i>&nbsp;        {
+<b class="nc"><i>337</i>&nbsp;            super.updateItem(item, empty);</b>
+<i>338</i>&nbsp;
+<b class="nc"><i>339</i>&nbsp;            if (empty)</b>
+<i>340</i>&nbsp;            {
+<b class="nc"><i>341</i>&nbsp;                setText(null);</b>
+<b class="nc"><i>342</i>&nbsp;                setGraphic(null);</b>
+<i>343</i>&nbsp;            }
+<i>344</i>&nbsp;            else
+<i>345</i>&nbsp;            {
+<b class="nc"><i>346</i>&nbsp;                if (isEditing())</b>
+<i>347</i>&nbsp;                {
+<b class="nc"><i>348</i>&nbsp;                    if (textField != null)</b>
+<i>349</i>&nbsp;                    {
+<b class="nc"><i>350</i>&nbsp;                        textField.setText(getString());</b>
+<i>351</i>&nbsp;                    }
+<b class="nc"><i>352</i>&nbsp;                    setText(null);</b>
+<b class="nc"><i>353</i>&nbsp;                    setGraphic(textField);</b>
+<i>354</i>&nbsp;                }
+<i>355</i>&nbsp;                else
+<i>356</i>&nbsp;                {
+<b class="nc"><i>357</i>&nbsp;                    setText(getString());</b>
+<b class="nc"><i>358</i>&nbsp;                    setGraphic(getTreeItem().getGraphic());</b>
+<i>359</i>&nbsp;                }
+<i>360</i>&nbsp;            }
+<i>361</i>&nbsp;        }
+<i>362</i>&nbsp;
+<i>363</i>&nbsp;        private void createTextField() {
+<b class="nc"><i>364</i>&nbsp;            textField = new TextField(getString());</b>
+<b class="nc"><i>365</i>&nbsp;            textField.setOnKeyReleased(new EventHandler&lt;KeyEvent&gt;() {</b>
+<i>366</i>&nbsp;
+<i>367</i>&nbsp;                @Override
+<i>368</i>&nbsp;                public void handle(KeyEvent t) {
+<b class="nc"><i>369</i>&nbsp;                    if (t.getCode() == KeyCode.ENTER) {</b>
+<b class="nc"><i>370</i>&nbsp;                        commitEdit(textField.getText());</b>
+<b class="nc"><i>371</i>&nbsp;                    } else if (t.getCode() == KeyCode.ESCAPE) {</b>
+<b class="nc"><i>372</i>&nbsp;                        cancelEdit();</b>
+<i>373</i>&nbsp;                    }
+<i>374</i>&nbsp;                }
+<i>375</i>&nbsp;            });
+<i>376</i>&nbsp;        }
+<i>377</i>&nbsp;
+<i>378</i>&nbsp;        private String getString() {
+<b class="nc"><i>379</i>&nbsp;            return getItem() == null ? &quot;&quot; : getItem().toString();</b>
+<i>380</i>&nbsp;        }
+<i>381</i>&nbsp;    }
+<i>382</i>&nbsp;
+<i>383</i>&nbsp;    @FXML
+<i>384</i>&nbsp;    private void onRunButtonClick(ActionEvent event) {
+<b class="nc"><i>385</i>&nbsp;        compileCode();</b>
+<i>386</i>&nbsp;    }
+<i>387</i>&nbsp;
+<i>388</i>&nbsp;    private void compileCode()
+<i>389</i>&nbsp;    {
+<b class="nc"><i>390</i>&nbsp;        boolean badJdkPath = checkJdkLocation();</b>
+<b class="nc"><i>391</i>&nbsp;        if (badJdkPath) return;</b>
+<b class="nc"><i>392</i>&nbsp;        boolean compileError = false;</b>
+<b class="nc"><i>393</i>&nbsp;        compilationOutputTextArea.setStyle(&quot;-fx-text-fill: black;&quot;);</b>
+<b class="nc"><i>394</i>&nbsp;        compilationOutputTextArea.clear();</b>
+<b class="nc"><i>395</i>&nbsp;        compilationOutputTextArea.appendText(&quot;Compiling...\n&quot;);</b>
+<b class="nc"><i>396</i>&nbsp;        String javacPath = pc.getProp(&quot;jdkLocation&quot;) + File.separator + &quot;javac&quot;;</b>
+<b class="nc"><i>397</i>&nbsp;        String javaExePath = pc.getProp(&quot;jdkLocation&quot;) + File.separator + &quot;java&quot;;</b>
+<i>398</i>&nbsp;
+<i>399</i>&nbsp;        try
+<i>400</i>&nbsp;        {
+<b class="nc"><i>401</i>&nbsp;            String entryPoint = &quot;Main.java&quot;;</b>
+<b class="nc"><i>402</i>&nbsp;            ProcessBuilder compilation = new ProcessBuilder(javacPath, entryPoint);</b>
+<b class="nc"><i>403</i>&nbsp;            System.out.println(projectPath);</b>
+<b class="nc"><i>404</i>&nbsp;            compilation.directory(new File(projectPath));</b>
+<b class="nc"><i>405</i>&nbsp;            Process p = compilation.start();</b>
+<b class="nc"><i>406</i>&nbsp;            int errorCode = p.waitFor();</b>
+<b class="nc"><i>407</i>&nbsp;            System.out.println(&quot;p1 Error Code: &quot; + errorCode);</b>
+<i>408</i>&nbsp;
+<b class="nc"><i>409</i>&nbsp;            BufferedReader errors = new BufferedReader(new InputStreamReader(p.getErrorStream()));</b>
+<i>410</i>&nbsp;            String errorLine;
+<b class="nc"><i>411</i>&nbsp;            while ((errorLine = errors.readLine()) != null)</b>
+<i>412</i>&nbsp;            {
+<b class="nc"><i>413</i>&nbsp;                compileError = true;</b>
+<b class="nc"><i>414</i>&nbsp;                compilationOutputTextArea.setStyle(&quot;-fx-text-fill: red;&quot;);</b>
+<b class="nc"><i>415</i>&nbsp;                compilationOutputTextArea.appendText(errorLine + &quot;\n&quot;);</b>
+<i>416</i>&nbsp;            }
+<b class="nc"><i>417</i>&nbsp;            if (compileError == true) return;</b>
+<b class="nc"><i>418</i>&nbsp;            ProcessBuilder execution = new ProcessBuilder(javaExePath, entryPoint.replace(&quot;.java&quot;, &quot;&quot;));</b>
+<b class="nc"><i>419</i>&nbsp;            execution.directory(new File(projectPath));</b>
+<b class="nc"><i>420</i>&nbsp;            Process p2 = execution.start();</b>
+<b class="nc"><i>421</i>&nbsp;            p2.waitFor(5, TimeUnit.SECONDS);</b>
+<b class="nc"><i>422</i>&nbsp;            int errorCode2 = p2.exitValue();</b>
+<b class="nc"><i>423</i>&nbsp;            System.out.println(&quot;p2 Error Code: &quot; + errorCode2);</b>
+<i>424</i>&nbsp;
+<i>425</i>&nbsp;            String line;
+<b class="nc"><i>426</i>&nbsp;            BufferedReader input = new BufferedReader(new InputStreamReader(p2.getInputStream()));</b>
+<b class="nc"><i>427</i>&nbsp;            while ((line = input.readLine()) != null)</b>
+<i>428</i>&nbsp;            {
+<b class="nc"><i>429</i>&nbsp;                compilationOutputTextArea.appendText(line);</b>
+<b class="nc"><i>430</i>&nbsp;                compilationOutputTextArea.appendText(&quot;\n&quot;);</b>
+<i>431</i>&nbsp;            }
+<b class="nc"><i>432</i>&nbsp;            input.close();</b>
+<i>433</i>&nbsp;        }
+<b class="nc"><i>434</i>&nbsp;        catch (Exception e)</b>
+<i>435</i>&nbsp;        {
+<b class="nc"><i>436</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>437</i>&nbsp;        }</b>
+<i>438</i>&nbsp;    }
+<i>439</i>&nbsp;
+<i>440</i>&nbsp;    private boolean checkJdkLocation()
+<i>441</i>&nbsp;    {
+<b class="nc"><i>442</i>&nbsp;        pc.loadProps();</b>
+<b class="nc"><i>443</i>&nbsp;        String testJdkPath = pc.getProp(&quot;jdkLocation&quot;);</b>
+<b class="nc"><i>444</i>&nbsp;        File f = new File(testJdkPath);</b>
+<b class="nc"><i>445</i>&nbsp;        if (!testJdkPath.contains(&quot;bin&quot;))</b>
+<i>446</i>&nbsp;        {
+<b class="nc"><i>447</i>&nbsp;            FXMLLoader loader = new FXMLLoader();</b>
+<b class="nc"><i>448</i>&nbsp;            Stage dialogStage = new Stage();</b>
+<b class="nc"><i>449</i>&nbsp;            dialogStage.initModality(Modality.WINDOW_MODAL);</b>
+<b class="nc"><i>450</i>&nbsp;            dialogStage.initOwner(compilationOutputTextArea.getScene().getWindow());</b>
+<b class="nc"><i>451</i>&nbsp;            dialogStage.setResizable(false);</b>
+<i>452</i>&nbsp;            try
+<i>453</i>&nbsp;            {
+<b class="nc"><i>454</i>&nbsp;                Parent root = loader.load(getClass().getResource(&quot;/fxml/SettingsDialog.fxml&quot;));</b>
+<b class="nc"><i>455</i>&nbsp;                Scene scene = new Scene(root);</b>
+<b class="nc"><i>456</i>&nbsp;                dialogStage.setScene(scene);</b>
+<b class="nc"><i>457</i>&nbsp;                dialogStage.setTitle(&quot;Settings&quot;);</b>
+<b class="nc"><i>458</i>&nbsp;                dialogStage.showAndWait();</b>
+<i>459</i>&nbsp;            }
+<b class="nc"><i>460</i>&nbsp;            catch (Exception e)</b>
+<i>461</i>&nbsp;            {
+<b class="nc"><i>462</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>463</i>&nbsp;            }</b>
+<b class="nc"><i>464</i>&nbsp;            return true;</b>
+<i>465</i>&nbsp;        }
+<b class="nc"><i>466</i>&nbsp;        return false;</b>
+<i>467</i>&nbsp;    }
+<i>468</i>&nbsp;
+<i>469</i>&nbsp;    @FXML private void onSendButtonClick(ActionEvent event)
+<i>470</i>&nbsp;    {
+<b class="nc"><i>471</i>&nbsp;        chatCodeArea.appendText(&quot;\n&quot; + Main.getUserName() + &quot;&gt; &quot; + chatTextField.getText());</b>
+<b class="nc"><i>472</i>&nbsp;        chatTextField.clear();</b>
+<i>473</i>&nbsp;    }
+<i>474</i>&nbsp;
+<i>475</i>&nbsp;    @FXML public void onChatTextFieldEnter(ActionEvent event) {
+<b class="nc"><i>476</i>&nbsp;        onSendButtonClick(event);</b>
+<i>477</i>&nbsp;    }
+<i>478</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-05-12 16:48</div>
+</div>
+</body>
+</html>

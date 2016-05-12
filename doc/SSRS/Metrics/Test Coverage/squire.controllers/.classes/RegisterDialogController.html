@@ -1,0 +1,165 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: RegisterDialogController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">squire.controllers</a> ]
+</div>
+
+<h1>Coverage Summary for Class: RegisterDialogController (squire.controllers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RegisterDialogController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package squire.controllers;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javafx.event.ActionEvent;
+<i>4</i>&nbsp;import javafx.fxml.FXML;
+<i>5</i>&nbsp;import javafx.scene.control.Button;
+<i>6</i>&nbsp;import javafx.scene.control.PasswordField;
+<i>7</i>&nbsp;import javafx.scene.control.TextField;
+<i>8</i>&nbsp;import javafx.scene.image.ImageView;
+<i>9</i>&nbsp;import javafx.stage.Stage;
+<i>10</i>&nbsp;import squire.Networking.Request;
+<i>11</i>&nbsp;import squire.Networking.Response;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;/**
+<i>14</i>&nbsp; * Created by Domn on 4/4/2016.
+<i>15</i>&nbsp; */
+<b class="nc"><i>16</i>&nbsp;public class RegisterDialogController</b>
+<i>17</i>&nbsp;{
+<i>18</i>&nbsp;    @FXML
+<i>19</i>&nbsp;    private ImageView avatarImageView;
+<i>20</i>&nbsp;    @FXML
+<i>21</i>&nbsp;    private TextField emailTextField;
+<i>22</i>&nbsp;    @FXML
+<i>23</i>&nbsp;    private TextField usernameTextField;
+<i>24</i>&nbsp;    @FXML
+<i>25</i>&nbsp;    private PasswordField passwordPasswordField1;
+<i>26</i>&nbsp;    @FXML
+<i>27</i>&nbsp;    private PasswordField passwordPasswordField2;
+<i>28</i>&nbsp;    @FXML
+<i>29</i>&nbsp;    private Button cancelButton;
+<i>30</i>&nbsp;    @FXML
+<i>31</i>&nbsp;    private Button registerButton;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    private Stage thisStage;
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    @FXML
+<i>36</i>&nbsp;    private void initialize()
+<i>37</i>&nbsp;    {
+<i>38</i>&nbsp;        // Initialize anything here if needed.
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    @FXML
+<i>43</i>&nbsp;    private void onCancelButtonClick(ActionEvent event)
+<i>44</i>&nbsp;    {
+<b class="nc"><i>45</i>&nbsp;        thisStage = (Stage) cancelButton.getScene().getWindow();</b>
+<b class="nc"><i>46</i>&nbsp;        System.out.println(&quot;Cancel button clicked.&quot;);</b>
+<b class="nc"><i>47</i>&nbsp;        thisStage.close();</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    @FXML
+<i>51</i>&nbsp;    private void onChangeAvatarButtonClick(ActionEvent event)
+<i>52</i>&nbsp;    {
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    }
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    @FXML
+<i>57</i>&nbsp;    private void onRegisterButtonClicked(ActionEvent event)
+<i>58</i>&nbsp;    {
+<b class="nc"><i>59</i>&nbsp;        thisStage = (Stage)registerButton.getScene().getWindow();</b>
+<b class="nc"><i>60</i>&nbsp;        System.out.println(&quot;Register button clicked.&quot;);</b>
+<i>61</i>&nbsp;
+<b class="nc"><i>62</i>&nbsp;        if (passwordPasswordField1.getText().equals(passwordPasswordField2.getText()))</b>
+<i>63</i>&nbsp;        {
+<i>64</i>&nbsp;            //create a new request with route register, and send it.
+<b class="nc"><i>65</i>&nbsp;            Response res = new Request(&quot;user/register&quot;)</b>
+<b class="nc"><i>66</i>&nbsp;                    .set(&quot;username&quot;, usernameTextField.getText())</b>
+<b class="nc"><i>67</i>&nbsp;                    .set(&quot;email&quot;, emailTextField.getText())</b>
+<b class="nc"><i>68</i>&nbsp;                    .set(&quot;password&quot;, passwordPasswordField1.getText())</b>
+<b class="nc"><i>69</i>&nbsp;                    .send();</b>
+<i>70</i>&nbsp;
+<b class="nc"><i>71</i>&nbsp;            if (res.getSuccess())</b>
+<i>72</i>&nbsp;            {
+<b class="nc"><i>73</i>&nbsp;                System.out.println(&quot;Registration successful.&quot;);</b>
+<b class="nc"><i>74</i>&nbsp;                thisStage.close();</b>
+<i>75</i>&nbsp;            }
+<i>76</i>&nbsp;            else
+<i>77</i>&nbsp;            {
+<i>78</i>&nbsp;                //user already exists
+<i>79</i>&nbsp;            }
+<i>80</i>&nbsp;        }
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-05-12 16:48</div>
+</div>
+</body>
+</html>
