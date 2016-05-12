@@ -1,7 +1,5 @@
 package squire.Networking;
 
-import java.util.HashMap;
-
 /**
  * A request object is what's set to the server, and an object will be returned.
  *

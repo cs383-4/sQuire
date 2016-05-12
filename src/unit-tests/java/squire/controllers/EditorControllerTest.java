@@ -5,9 +5,8 @@ import org.fxmisc.richtext.CodeArea;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-//import squire.FileList;
 
-import static org.junit.Assert.assertEquals;
+//import squire.FileList;
 
 /**
  * Created by Domn Werner on 4/23/2016.

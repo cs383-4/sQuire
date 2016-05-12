@@ -1,7 +1,6 @@
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-import squire.controllers.EditorControllerTest;
 
 /**
  * Created by Domn Werner on 4/23/2016.

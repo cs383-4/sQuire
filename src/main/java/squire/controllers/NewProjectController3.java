@@ -16,16 +16,13 @@ import javafx.stage.Stage;
 import squire.Main;
 import squire.Networking.Request;
 import squire.Networking.Response;
-import squire.Users.Project;
 import squire.Users.PropertiesController;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 /**
  * Created by Domn Werner on 4/19/2016.

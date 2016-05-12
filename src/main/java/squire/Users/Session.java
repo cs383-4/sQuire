@@ -18,8 +18,6 @@ package squire.Users;
  */
 
 import squire.BaseModel;
-import squire.Users.query.QSession;
-import squire.Users.query.QUser;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

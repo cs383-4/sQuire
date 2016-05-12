@@ -14,10 +14,9 @@ package squire.Users;
  * Session.login(u)
  */
 
-import javax.persistence.*;
-
 import squire.BaseModel;
 
+import javax.persistence.*;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;

@@ -1,19 +1,14 @@
 package google.mobwrite;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
-import java.util.logging.Level;
-
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.JTextComponent;
-
 import google.mobwrite.diff_match_patch.Diff;
 import google.mobwrite.diff_match_patch.Operation;
 import google.mobwrite.diff_match_patch.Patch;
 import javafx.application.Platform;
 import org.fxmisc.richtext.CodeArea;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 
 public class ShareJTextComponent extends ShareObj {
     /**

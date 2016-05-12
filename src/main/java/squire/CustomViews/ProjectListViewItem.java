@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import squire.Networking.ProjectData;
 
-import java.util.UUID;
-
 /**
  * Created by Domn Werner on 5/2/2016.
  */

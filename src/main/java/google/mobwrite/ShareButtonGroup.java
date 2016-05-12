@@ -19,12 +19,10 @@
 
 package google.mobwrite;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
-
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
 
 class ShareButtonGroup extends ShareObj {
 

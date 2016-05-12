@@ -1,12 +1,7 @@
 package squire.Networking;
 
-import squire.Main;
 import squire.Users.Session;
 import squire.Users.User;
-
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.PersistenceException;
-import java.sql.SQLException;
 
 /**
  * The request handler dealing with all things Users

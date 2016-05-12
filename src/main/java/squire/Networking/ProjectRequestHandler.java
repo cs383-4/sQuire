@@ -1,15 +1,11 @@
 package squire.Networking;
 
+import squire.Users.Project;
 import squire.Users.ProjectFile;
 import squire.Users.Session;
 import squire.Users.User;
-import squire.Users.Project;
 
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.PersistenceException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
  * The request handler dealing with all things Users
