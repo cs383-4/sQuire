@@ -3201,17 +3201,30 @@ Unfortunately, when we tried to integrate this with the JavaFX GUI, it didn't wo
 
 The chat window consisted of an uneditable MobWrite Room unique to every project. Chat messages are appended to the MobWrite buffer, which is then synced to all the other clients. This approach is a little limited, because it means that all the clients have to see the same thing, so it is impossible to implement a whisper mechanism, for example. It was however extremely easy to implement, and works without any additional sever architecture, and works very well for a simple chat client.
 
+\subsubsection{sQuire server}
+The sQuire server is the part of the application that handles storing and retrieving information in the database. It consists of two main parts: The Router and the Server. The Server accepts socket connections one at a time in a queue. Upon receiving a connection, the server accepts a Request object, and then passes this object to the Router.
+
+The Request object contains a route field. This field tells the router what to do with this request. Upon the initialization, the Router accepts RouteHandlers. The route handles contain a bunch of functions that all register themselves to a specific route. When the Router receives a Request, it uses the route field of the request to pass it to the correct function in the correct RouteHandler. That function then returns a Response object containing all the data requested by the Request object.
+
+The Router passes this Response back to the Server, which returns it to the client, and then moves onto the next waiting connection in the queue.
+
+The client makes requests to the sQuire server only when doing things like creating new files or projects, browsing project, and logging in. Most of the collaborative part that requires continuous requests is handled by the MobWrite server. As such, this server won't be 
+
+
 \subsubsection{Database}
-The database code was written using the EBean ORM (https://ebean-orm.github.io/). It has a very simple structure. Using Java's persistence annotations, we defined several models. These models live in the src/main/java/squire/Users/ directory in our repository. Using the settings defined in src/main/resources/ebean.properties, every time the program is run, either a IDE plugin, or a Maven plugin generate a couple of files:
+The database code was written using the EBean ORM (https://ebean-orm.github.io/). It has a very simple structure. Using Java's persistence annotations, we defined several models. These models live in the src/main/java/squire/Users/ directory in our repository. All of these models inherit from a Model class provided by Ebean, this provides several methods such as \textbf{save()} that make retrieving and saving models to the database work senselessly with normal getters and setters. Using the settings defined in src/main/resources/ebean.properties, every time the program is run, either a IDE plugin, or a Maven plugin generate a couple of files:
 \begin{itemize}
-	\item description
+	\item \textbf{Typed query files} For every model, a Query class is created. This class allows querying the database using typed java code, so queries can be build by stringing together fields and method calls.
+	\item \textbf{create-all.sql} A sql file that creates all the tables defined in the model classes.
+	\item \textbf{drop-all.sql} A sql file that drops all the tables defined in the model classes.
 \end{itemize}
 
+EBean also preforms some Java bytecode modification upon compilation to make all the calls to model functions work with the database.
+In our experience, Ebean seems very reliable. The only difficult issue is getting everything building properly, but once that is set up, everything just works.
 
+We configured EBean to use a Sqlite database. This made it really easy to develop with because the only extra thing that needs to be installed is the Sqlite Java libraries, which can be entirely installed with Maven. This means no additional work setting up a database server is needed to set up the server, and it can easily be run on a local machine during development. Since Sqlite stores everything in a single file, it's easy to share this database file with others for testing or debugging.
 
-\newpage
-\subsubsection{Request Handler}
-
+EBean uses a separate configuration for tests. Every time our unit tests run, EBean creates a new, clean database, and then runs our tests against it. This means that our tests are much more repeatable and reliable as they always start with the same state. 
 
 
 \newpage
