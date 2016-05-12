@@ -3652,11 +3652,14 @@ The following items are deemed low risk to the security of users and to the usab
 Many of our metrics are measured via an IntelliJ plugin called MetricsReloaded, which measures lines of code, complexity, etc. Anything under the package google.mobwrite is a modified version of Google's Mobwrite project, which we found on Github.
 
 \begin{itemize}
-	\item \textbf{Size of our Project} 
+	\item \textbf{Size of our Project} \\
+	These metrics were all calculated with MetricsReloaded. To keep the analysis concise, most of the data is presented on a per-package basis.
 	\begin{itemize}
 		\item Number of Classes
 		\item Cyclomatic Complexity	\\
-		Our project had an average cyclomatic complexity of 2.85. Mobwrite introduced the greatest amount of cycomatic complexity to our project. None of our classes had a v(G) exceeding 10.
+		Our project had an average cyclomatic complexity of 2.85. Mobwrite introduced the greatest amount of cycomatic complexity to our project. Outside of Mobwrite, none of our classes had a v(G) exceeding 10.
+		\item Lines of Code \\
+		
 	
 	\end{itemize}
 	\item \textbf{How much of our functionality is implemented.} Will probably have to be done by hand. Maybe make a table of use-case/functional requirement and whether it was implemented or not and a justification.

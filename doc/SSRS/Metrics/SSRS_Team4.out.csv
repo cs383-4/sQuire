@@ -1,19 +1,50 @@
-Class count metrics,Thu, 12 May 2016 14:51:47 PDT
-Package,C,C(rec),Cp,Cp(rec),Ct,TC(rec)
-"",9,75,0,58,9,17
-"google",n/a,17,n/a,17,n/a,0
-"google.mobwrite",17,17,17,17,0,0
-"squire",3,49,3,41,0,8
-"squire.CustomViews",5,5,5,5,0,0
-"squire.Networking",10,10,10,10,0,0
-"squire.Users",15,15,11,11,4,4
-"squire.controllers",15,16,12,12,3,4
-"squire.controllers.ProjectLocationTest",n/a,1,n/a,0,n/a,1
-"squire.controllers.ProjectLocationTest.CopyTestProject",1,1,0,0,1,1
-
-Module,C,Cp,Ct
-"sQuire",75,58,17
-
-Project,C,Cp,Ct
-"project",75,58,17
-
+Number of Classes by Package,,,,,
+Package,Number of Total Classes,Nuber of Product Classes,Number of Test Classes,,
+,9,0,9,,
+google.mobwrite,17,17,0,,
+squire,3,3,0,,
+squire.CustomViews,5,5,0,,
+squire.Networking,10,10,0,,
+squire.Users,15,11,4,,
+squire.controllers,15,12,3,,
+,,,,,
+sQuire,74,58,16,,
+,,,,,
+,,,,,
+,,,,,
+Cyclomatic Complexity Average by Package,v(G)avg,,,,
+"Unnamed (i.e. ""Main.java"")",1.41,,,,
+google.mobwrite,6.07,,,,
+squire,1.4,,,,
+squire.CustomViews,1.45,,,,
+squire.Networking,1.78,,,,
+squire.Users,1.22,,,,
+squire.controllers,2,,,,
+squire.controllers.ProjectLocationTest.CopyTestProject,1,,,,
+Module,v(G)avg,,,,
+sQuire,2.85,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+Lines of code metrics,,,,,
+Package,LOC,Product LOC ,Testing LOC,,
+"Unnamed (i.e. ""Main.java"")",393,0,393,,
+google.mobwrite,"3,727","3,727",0,,
+squire,239,239,0,,
+squire.CustomViews,155,155,0,,
+squire.Networking,460,460,0,,
+squire.Users,854,686,168,,
+squire.controllers,"1,444","1,292",152,,
+,,,,,
+Lines of Code by File Type,,,,,
+FileType,LOC,Non-Comment LOC,Difference,,
+Git file,35,35,0,,
+HTML,"2,333","2,233",100,,
+Java,"7,278","5,430",1848,,
+LaTeX file,"4,783","4,761",22,,
+Properties,29,20,9,,
+SQL,60,60,0,,
+Text,"4,844","4,844",0,,
+XML,"1,087","1,087",0,,
