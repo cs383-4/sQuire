@@ -3194,7 +3194,6 @@ In the client, it's possible to configure the update frequency. This specifies t
 
 This entire setup is surprisingly efficient. MobWrite comes with a couple of stress testing tools that tests 200 clients connecting to the MobWrite daemon at the same time. During this test, the CPU usage of our modest server never past 75\%. It's reasonable to assume then, that in a production environment with a server of the same size as the one we had, the system could support at least that many concurrent users. This number could be increased if needed by reducing the update frequency, using a more powerful server, or splitting the load across multiple servers based on the Room ID.
 
-\newpage
 \subsubsection{Chat}
 Our chat client was originally implemented as a stand alone client/server program. It worked by opening a socket on a separate thread between the client and the server. When messages were sent from the client, the server then broadcasted them to every other connected client.
 
@@ -3202,9 +3201,11 @@ Unfortunately, when we tried to integrate this with the JavaFX GUI, it didn't wo
 
 The chat window consisted of an uneditable MobWrite Room unique to every project. Chat messages are appended to the MobWrite buffer, which is then synced to all the other clients. This approach is a little limited, because it means that all the clients have to see the same thing, so it is impossible to implement a whisper mechanism, for example. It was however extremely easy to implement, and works without any additional sever architecture, and works very well for a simple chat client.
 
-\newpage
 \subsubsection{Database}
-
+The database code was written using the EBean ORM (https://ebean-orm.github.io/). It has a very simple structure. Using Java's persistence annotations, we defined several models. These models live in the src/main/java/squire/Users/ directory in our repository. Using the settings defined in src/main/resources/ebean.properties, every time the program is run, either a IDE plugin, or a Maven plugin generate a couple of files:
+\begin{itemize}
+	\item description
+\end{itemize}
 
 
 
