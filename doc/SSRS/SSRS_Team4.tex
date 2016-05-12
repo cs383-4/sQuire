@@ -3170,24 +3170,51 @@ Code organization overview. Description of major components/folders (client, ser
 
 \subsection{User Interface}
 
-\subsubsection{JavaFX Framework}
+\subsubsection{JavaFX Framework (wern0096)}
 
 We used the JavaFX framework for the implementation of our user interface. It comes by default as part of the current JDKs. There are two major parts to the JavaFX framework: FXML resource files and their respective controllers.
 
 
 The FXML files are XML files dictating the static structure of each user-interface ``scene'' - the current content being show in a window of the program. Each FXML file is associated with a controller class that has the FXML file's items, the UI elements, injected into it via Java annotations. The controller class is then able to handle any events that take place on the user interface. 
 
-
 Our project's FXML files can be located in the \textbf{src/main/resources} directory: \bigskip
 
+\begin{center}
+\includegraphics[scale=0.85]{images/Implementation/Resources.png}
+\end{center}
+
+By storing the fxml files in a specified resources folder, IntelliJ copies them into the output directory and preserves their relative path. The files can then be loaded with most resource loading APIs. For example, here is a function call for loading an FXML resource file:
 
 \begin{center}
-%	\includegraphics[scale=1]{images/Implementation/Resources.png}
+\includegraphics[scale=1]{images/Implementation/Loader.png}
+\end{center}
+
+Since the \textit{ProjectBrowsing.fxml} file is in that path relative to the \textit{resources} directory, it can be loaded by the FXMLLoader's API. Once loaded into a scene -- or window -- the FXML file relies on a controller to handle any interactions with the scene. Our controllers can be found in the \textbf{src/main/java/squire/controllers} package:
+
+\begin{center}
+	\includegraphics[scale=1]{images/Implementation/Controllers.png}
 \end{center}
 
 \newpage
+Controllers and FXML files have a one-to-one association that can be set in the FXML file itself in two ways. One way is to set the controller via the SceneBuilder application that we used to create our user inteface scenes like this:
 
+\begin{center}
+	\includegraphics[scale=1]{images/Implementation/SceneBuilder.png}
+\end{center}
 
+Whenever you set the controller in SceneBuilder, it will set it in the FXML file. Alternatively, you can set the controller in the FXML file itself with the \textbf{fx:controller} attribute in the parent node of the scene like this:
+
+\begin{center}
+	\includegraphics[width=\textwidth]{images/Implementation/Controller.png}
+\end{center}
+
+Once a controller is associated with an fxml file, you can use \textbf{@FXML} Java annotations to inject the UI elements into the Controller class, allowing dynamic interaction with them. Here is an example of a some UI elements injected into a controller class via Java annotations:
+
+\begin{center}
+	\includegraphics[scale=1.2]{images/Implementation/FxmlAnnotations.png}
+\end{center}
+
+Similarly, functions annotated with \textbf{@FXML} can be referenced in the fxml file to be used as handlers for actions on the UI.
 
 
 \newpage
