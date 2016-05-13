@@ -3216,6 +3216,16 @@ Once a controller is associated with an fxml file, you can use \textbf{@FXML} Ja
 
 Similarly, functions annotated with \textbf{@FXML} can be referenced in the fxml file to be used as handlers for actions on the UI.
 
+\newpage
+
+The following diagram shows the relationship between forms, dialogs, and their controllers:
+
+\begin{center}
+	\includegraphics[scale=0.4]{images/Implementation/Diagram.png}
+\end{center}
+
+The \textbf{Main} class is the entry pint of the program. The \textbf{F} boxes are .fxml forms and the \textbf{D} boxes are .fxml dialogs. Each form or dialog is in aggregation with a controller class that handles all events performed in that form. Many forms can also load other forms, indicated with the 'can load' association between different forms.
+
 
 \newpage
 \subsection{Server}
@@ -3291,20 +3301,19 @@ Each instance of this ShareJTextComponent class contains a CodeArea (the name is
 \newpage
 \subsubsection{Dependencies}
 
-
 \newpage
 \subsubsection{IDE and Plugins (cart1189)}
 The project was developed and built using the IDE IntelliJ IDEA (Ultimate Version) and the following plugins in addition to the defaults:
 \begin{itemize}
-	\item \textbf{Database Tools and SQL} 
+	\item \textbf{Database Tools and SQL}
 	\item \textbf{Ebean ORM Enhancer}
-	\item \textbf{Ebean ORM Query Bean Enhancer} 
+	\item \textbf{Ebean ORM Query Bean Enhancer}
 	\item \textbf{GitHub}
 	\item \textbf{JavaFX}
 	\item \textbf{JUnit}
 	\item \textbf{Maven Integration}
 	\item \textbf{Multirun}
-	
+
 \end{itemize}
 
 
@@ -3584,7 +3593,7 @@ One of the major libraries we use on the server (MobWrite) contains a full test 
 		authenticate() & PASS & \\\hline
 		userQuery() & PASS & \\\hline
 	\end{tabular}
-	
+
 	\centering
 	\caption{ProjectDatabaseTest (cart1189)}
 	\begin{tabular}{|p{4cm}|p{3cm}|p{8cm}|}
@@ -3593,7 +3602,7 @@ One of the major libraries we use on the server (MobWrite) contains a full test 
 		testAddProject() & PASS & \\\hline
 		testGetSetTextFields() & PASS & \\\hline
 	\end{tabular}
-		
+
 \end{table*}
 
 \clearpage
@@ -3678,6 +3687,7 @@ Many of our metrics are measured via an IntelliJ plugin called MetricsReloaded, 
 	\subsection{Size of our Project} 
 	
 	These metrics were all calculated with MetricsReloaded. To keep the analysis concise, most of the data is presented on a per-package basis.
+	
 \subsubsection{ Number of Classes by Package }
 
 \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
@@ -3837,17 +3847,24 @@ squire.controllers       & 25\% (3/ 12)    & 12.7\% (10/ 79) & 5.6\% (32/ 574)  
 \subsubsection{Analysis}
 A lot of our code changed in the final sprint as we worked hard to refine how we were querying the database. As a result, a lot of code was written that wasn't covered by the existing tests. Additionally, in the controllers package, there was a lot of code that we never figured out how to test. This generally had something to do with the methods called by the GUI elements. We found a few GUI tests, but they didn't always work as expected. We acknowledge that we probably have a lot of uncovered cases when it comes to logic unit testing.
 
+\subsection{Runtime Memory Requirements}
+Running the application from IntelliJ on a MacBook Pro (Retina, 15-inch, Early 2013), with a  2.7 GHz Intel Core i7 processor, and 16 GB 1600 MHz DDR3 memory uses between 150MB and 500MB of memory.
+
 \subsection{Workload Distribution}
 We invite the reader to view our GitHub repository here: \url{https://github.com/cs383-4/sQuire/graphs/contributors}.
 
 % What was hard to implement and why?
-\subsection{Problem Areas}
+\subsection{Problem Areas (Whole Team)}
 We encountered difficulty in the following areas:
-\begin{itemize}
-	\item Integrating Mobwrite and a syntax highlighting project. 
-	\item Sorting and deleting projects with the given time constraints.
+%\begin{itemize}
+%	\item Integrating Mobwrite and syntax highlighting functionality.
+%	\item Initially dividing work into proper tasks for indivduals.
+%	\item
+%
+%\end{itemize}
 
-\end{itemize} 
+\subsubsection{GitHub (dani2918)}
+We had a bad merge that overwrote a lot of the integration work we had done a in branch called \textit{NetworkEverything} in the master branch. I spent a lot of time correcting this so that we got back to a working project in master. I had to do a bunch of backing up of branches, merging, and rebasing in order to get things back up to scratch. This was time consuming and nerve wracking, as I ended up using a lot of commands that produced menacing warnings. I learned about reverting commits, resetting, and pushing with the -f option.
 
 
 
