@@ -3293,7 +3293,20 @@ Each instance of this ShareJTextComponent class contains a CodeArea (the name is
 
 
 \newpage
-\subsubsection{IDE and Plugins}
+\subsubsection{IDE and Plugins (cart1189)}
+The project was developed and built using the IDE IntelliJ IDEA (Ultimate Version) and the following plugins in addition to the defaults:
+\begin{itemize}
+	\item \textbf{Database Tools and SQL} 
+	\item \textbf{Ebean ORM Enhancer}
+	\item \textbf{Ebean ORM Query Bean Enhancer} 
+	\item \textbf{GitHub}
+	\item \textbf{JavaFX}
+	\item \textbf{JUnit}
+	\item \textbf{Maven Integration}
+	\item \textbf{Multirun}
+	
+\end{itemize}
+
 
 \newpage
 \section[Testing]{\selectlanguage{english}\rmfamily\bfseries\color{black} TESTING}
@@ -3571,6 +3584,16 @@ One of the major libraries we use on the server (MobWrite) contains a full test 
 		authenticate() & PASS & \\\hline
 		userQuery() & PASS & \\\hline
 	\end{tabular}
+	
+	\centering
+	\caption{ProjectDatabaseTest (cart1189)}
+	\begin{tabular}{|p{4cm}|p{3cm}|p{8cm}|}
+		\hline
+		\textbf{Function Name} & \textbf{Result} & \textbf{Description}  \\\hline
+		testAddProject() & PASS & \\\hline
+		testGetSetTextFields() & PASS & \\\hline
+	\end{tabular}
+		
 \end{table*}
 
 \clearpage
@@ -3822,6 +3845,7 @@ We invite the reader to view our GitHub repository here: \url{https://github.com
 We encountered difficulty in the following areas:
 \begin{itemize}
 	\item Integrating Mobwrite and a syntax highlighting project. 
+	\item Sorting and deleting projects with the given time constraints.
 
 \end{itemize} 
 
