@@ -3216,6 +3216,16 @@ Once a controller is associated with an fxml file, you can use \textbf{@FXML} Ja
 
 Similarly, functions annotated with \textbf{@FXML} can be referenced in the fxml file to be used as handlers for actions on the UI.
 
+\newpage
+
+The following diagram shows the relationship between forms, dialogs, and their controllers:
+
+\begin{center}
+	\includegraphics[scale=0.4]{images/Implementation/Diagram.png}
+\end{center}
+
+The \textbf{Main} class is the entry pint of the program. The \textbf{F} boxes are .fxml forms and the \textbf{D} boxes are .fxml dialogs. Each form or dialog is in aggregation with a controller class that handles all events performed in that form. Many forms can also load other forms, indicated with the 'can load' association between different forms.
+
 
 \newpage
 \subsection{Server}
