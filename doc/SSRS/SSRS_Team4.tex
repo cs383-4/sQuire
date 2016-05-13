@@ -3677,6 +3677,7 @@ Many of our metrics are measured via an IntelliJ plugin called MetricsReloaded, 
 	\subsection{Size of our Project} 
 	
 	These metrics were all calculated with MetricsReloaded. To keep the analysis concise, most of the data is presented on a per-package basis.
+	
 \subsubsection{ Number of Classes by Package }
 
 \begin{tabular}{|p{4cm}|p{3cm}|p{3cm}|p{3cm}|}
@@ -3835,6 +3836,9 @@ squire.controllers       & 25\% (3/ 12)    & 12.7\% (10/ 79) & 5.6\% (32/ 574)  
 
 \subsubsection{Analysis}
 A lot of our code changed in the final sprint as we worked hard to refine how we were querying the database. As a result, a lot of code was written that wasn't covered by the existing tests. Additionally, in the controllers package, there was a lot of code that we never figured out how to test. This generally had something to do with the methods called by the GUI elements. We found a few GUI tests, but they didn't always work as expected. We acknowledge that we probably have a lot of uncovered cases when it comes to logic unit testing.
+
+\subsection{Runtime Memory Requirements}
+Running the application from IntelliJ on a MacBook Pro (Retina, 15-inch, Early 2013), with a  2.7 GHz Intel Core i7 processor, and 16 GB 1600 MHz DDR3 memory uses between 150MB and 500MB of memory.
 
 \subsection{Workload Distribution}
 We invite the reader to view our GitHub repository here: \url{https://github.com/cs383-4/sQuire/graphs/contributors}.
