@@ -1,5 +1,7 @@
 package squire.Networking;
 
+import squire.Main;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,7 +14,6 @@ import java.net.Socket;
  * Note: the proper way to call this function is from Request.send()
  */
 class Client {
-    private static final String address = "squireserver.westus.cloudapp.azure.com";
     private static final int port = 3017;
 
     /**
@@ -24,7 +25,7 @@ class Client {
         Response res = null;
 
         try {
-            Socket socket = new Socket(address, port);
+            Socket socket = new Socket(Main.serverURL, port);
             //each end needs the output stream to exist before creating the input stream, so do that, and then flush
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             out.flush();
@@ -43,7 +44,7 @@ class Client {
         } catch (IOException ex) {
             //something wrong with the socket
             ex.printStackTrace();
-            System.out.println("Error connecting to " + address + ":" + port);
+            System.out.println("Error connecting to " + Main.serverURL + ":" + port);
             System.out.println("Is the server running (SquireServer)?");
         }
         return res;

@@ -26,6 +26,7 @@ public class Main extends Application implements Initializable {
     private static User currentUser = null;
     private static PropertiesController pc;
 
+    public static String serverURL = "squireserver.westus.cloudapp.azure.com";
     public static String userName = null;
     public static String sessionID = null;
     public static String projectID = null;
@@ -55,6 +56,11 @@ public class Main extends Application implements Initializable {
         // From the 'Application' class.
         // Sets up program as a javafx application.
         System.out.println(System.getProperty("user.dir"));
+        if(args.length > 0) {
+            //specified url
+            serverURL = args[0];
+            System.out.println(serverURL);
+        }
         generateProjectsDir();
         createPropFileIfNeeded();
         launch(args);
