@@ -3296,10 +3296,35 @@ Each instance of this ShareJTextComponent class contains a CodeArea (the name is
 
 \subsubsection{GitHub Repository}
 
+To compile the project from GitHub with IntelliJ, perform the following steps:
 
+\begin{enumerate}
+	\item Clone the directory using the URL \textbf{https://github.com/cs383-4/sQuire.git}.
+	\item Allow Maven to import changes and reindex files.
+	\item Run the \textbf{SquireServer} run configuration which will compile and launch the server.
+	\subitem The server is by default listening on port 3017.
+	\item Run the \textbf{RunHello} run configuration which will compile and launch the client application.
+\end{enumerate}
 
 \newpage
-\subsubsection{Dependencies}
+\subsubsection{Dependencies (wern0096)}
+
+The sQuire project relies on the following libraries:
+
+\begin{itemize}
+	\item Ebean ORM
+	\item Ebean ORM and Type Query Generator
+	\item Xerial SQLite Database Driver
+	\item JUnit
+	\item TestFX
+	\item JavaFX
+	\subitem This comes with the latest JDK.
+	\item Google Mobwrite
+	\subitem This package should come as part of the project.
+\end{itemize}
+
+You may also refer to the \textbf{pom.xml} file for project dependencies if not using Maven and then install the specified jars/libraries individually. Otherwise, simply allow Maven to import them.
+
 
 \newpage
 \subsubsection{IDE and Plugins (cart1189)}
@@ -3309,7 +3334,6 @@ The project was developed and built using the IDE IntelliJ IDEA (Ultimate Versio
 	\item \textbf{Ebean ORM Enhancer}
 	\item \textbf{Ebean ORM Query Bean Enhancer}
 	\item \textbf{GitHub}
-	\item \textbf{JavaFX}
 	\item \textbf{JUnit}
 	\item \textbf{Maven Integration}
 	\item \textbf{Multirun}
