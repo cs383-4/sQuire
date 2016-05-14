@@ -3331,7 +3331,7 @@ You may also refer to the \textbf{pom.xml} file for project dependencies if not 
 
 To create the JAR files necessary for deploying to the server, and to end users, we use the capability built into IntelliJ to do this. IntelliJ grabs all the dependencies specified in our Maven pom.xml file, and puts in in the JAR file, along with all of our code. We then can modify the MANIFEST.MF file to specify the entry class.
 
-For the server, we use \textbf{squire.Networking.Server} as the entry class, and \textfb{squire.Main} for the client. Then, we create a basic squire.db file using IntelliJ's built in SQLite capabilities using the generated sqlite-create-all.sql script.
+For the server, we use \textbf{squire.Networking.Server} as the entry class, and \textbf{squire.Main} for the client. Then, we create a basic squire.db file using IntelliJ's built in SQLite capabilities using the generated sqlite-create-all.sql script.
 
 This method creates two separate JAR files, with basically the same contents. Obviously, this is not the most space efficient method. The server and the client have very little overlap with each other and several dependencies could be removed from each one. Doing this though, would take additional work that we didn't end up having the time for.
 
@@ -3802,14 +3802,16 @@ XML        & 15    \\ \hline
 \end{tabular}
 \\ \noindent Not surprisingly, the majority of our files were Java files. We may not have expected to have as many XML files when we began our project, but JavaFX mandated this.\\
 \newpage
-\;
 \subsection{Binary file size}
+
+\begin{tabular}{|l|l|}
 \hline
 File   & Size \\ \hline
 server.jar   & 11MB     \\ \hline
 client.jar   & 11MB     \\ \hline
 \end{tabular}
-\\ \noindent Both of these files have the same file size. This is because both of the JAR files have exactly the same code. See the Deployment section for more details. \\
+\newline 
+\noindent Both of these files have the same file size. This is because both of the JAR files have exactly the same code. See the Deployment section for more details. \\
 \newpage
 
 \subsection{Functionality Implemented}
